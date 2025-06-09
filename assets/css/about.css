@@ -1,0 +1,7 @@
+svg { height: auto;}
+.about_visual {width:100%; height:1080px; border:2px solid red; background-color: #000; position:relative; display:flex; overflow:hidden;}
+.svg_01 {position:absolute; top:-166px; left:0;}
+.svg_01 svg {width:120%;}
+.svg_02 {position:absolute; top:-619px; right:-435px;}
+.svg_02 svg {width:120%;}
+.about_visual em {color:#fff; font-size:90px; font-weight:900; position:absolute; top:50%; left:25%; transform:translate(0, -50%);}
