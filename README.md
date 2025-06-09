@@ -3,7 +3,7 @@
 git remote add origin https://github.com/Rian-ag/Renewal.git
 
 ### View URL
-[https://rian-ag.github.io/Renewal/] (https://rian-ag.github.io/Renewal/)
+[https://rian-ag.github.io/Renewal/]
 
 <br />
 
