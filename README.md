@@ -5,7 +5,7 @@ git remote add origin https://github.com/Rian-ag/Renewal.git
 [리뉴얼 확인하기](https://rian-ag.github.io/Renewal/)
 
 ## path
-📦assets<br/>
+📦assets
  ┣ 📂css
  ┣ 📂fonts
  ┣ 📂images
