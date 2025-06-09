@@ -3,7 +3,7 @@
 git remote add origin https://github.com/Rian-ag/Renewal.git
 
 ### View URL
-[https://rian-ag.github.io/Renewal/]
+[리뉴얼 확인하기](https://rian-ag.github.io/Renewal/){:target="_blank"}
 
 <br />
 
