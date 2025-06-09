@@ -1,9 +1,6 @@
-# remote
+### Git README.md Template
 
 git remote add origin https://github.com/Rian-ag/Renewal.git
-
-
-# Git README.md Template
 
 ### Collaborators
 ![](https://github.com/yewon-Noh.png?size=80) ![](https://github.com/SeongHo-C.png?size=80)
