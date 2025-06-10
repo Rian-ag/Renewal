@@ -4,8 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RIANAG_About</title>
+    <link rel="stylesheet" href="./assets/css/swiper.css">
+    <link rel="stylesheet" href="./assets/css/common.css">
+    <link rel="stylesheet" href="./assets/css/font.css">
     <link rel="stylesheet" href="./assets/css/about.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="./assets/js/jquery-3.7.1.min.js"></script>
+    <script src="./assets/js/swiper.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
     <script src="./assets/js/about.js" defer></script>
 </head>
 <body>
@@ -37,15 +43,16 @@
                 </svg>
             </div>
             <em>About</em>
+            <div class="custom-cursor">Scroll</div>
         </div>
-        <section>
+        <section class="about_vision">
             <div class="inner">
                 <h2>
                     <p>We deliver digital benefit</p>
                     <p>to the world and make digital solutions </p>
                     <p>that deliver real result.</p>
                 </h2>
-                <dl>
+                <dl class="one">
                     <dt>
                         <span>We are</span>
                     </dt>
@@ -53,7 +60,7 @@
                         <strong>e-Commerce, e-Finance, e-Brand 등 온라인 사업분야에서 강한 리더십과 믿음직한 커뮤니케이션 능력을 활용하여 글로벌 비즈니스, 모바일, 컨버전스 분야로 확대해 가고 있습니다.</strong>
                     </dd>
                 </dl>
-                <dl>
+                <dl class="two">
                     <dt><span>We do</span></dt>
                     <dd>
                         <dl>
@@ -62,8 +69,8 @@
                                 <p>Operations that consider the convenience of our customers.</p>
                             </dt>
                             <dd>
-                                <p>현장에서 검증된 경험과 철저한 품질 관리 및 지원 체계를 바탕으로, 안정적인 구축과 개편 사업을 성공적으로 수행합니다.</p>
-                                <p>사용자 중심의 UX 설계와 최신 트렌드를 반영하여, 최적의 품질과 효율적인 기간 내에 더 나은 방향을 제시하고 실행합니다.</p>
+                                <p>현장에서 검증된 경험과 철저한 품질 관리 및 지원 체<br/>계를 바탕으로, 안정적인 구축과 개편 사업을 성공적<br/>으로 수행합니다.</p>
+                                <p>사용자 중심의 UX 설계와 최신 트렌드를 반영하여, <br/>최적의 품질과 효율적인 기간 내에 더 나은 방향을 제<br/>시하고 실행합니다.</p>
                             </dd>
                         </dl>
                         <dl>
@@ -71,9 +78,10 @@
                                 <strong>02</strong>
                                 <p>Renewal & new construction to maximize customer benefits.</p>
                             </dt>
+
                             <dd>
-                                <p>다양한 디지털 플랫폼을 성공적으로 운영해온 풍부한 경험을 보유하고 있습니다.</p>
-                                <p>특화된 인력과 깊이 있는 인사이트를 바탕으로, 안정성과 창의성을 갖춘 맞춤형 운영을 제공합니다.</p>
+                                <p>다양한 디지털 플랫폼을 성공적으로 운영해온 풍부한 <br/>경험을 보유하고 있습니다.</p>
+                                <p>특화된 인력과 깊이 있는 인사이트를 바탕으로, 안정<br/>성과 창의성을 갖춘 맞춤형 운영을 제공합니다.</p>
                             </dd>
                         </dl>
                         <dl>
@@ -82,9 +90,9 @@
                                 <p>Actionable consulting that delivers real results.</p>
                             </dt>
                             <dd>
-                                <p>실행 가능한 컨설팅을 목표로 합니다.</p>
-                                <p>축적된 노하우와 전문 인력을 바탕으로, 고객사의 환경과 목표에 최적화된 맞춤형 전략을 수립합니다.</p>
-                                <p>구체적이고 실질적인 수행 전략을 통해 실질적인 성과를 창출하는 컨설팅을 제공합니다.</p>
+                                <p>실행 가능한 컨설팅을 목표로 합니다.<br/> 축적된 노하우와 전문 인력을 바탕으로, 고객사의 환<br/>경과 목표에 최적화된 맞춤형 전략을 수립합니다.</p>
+                                
+                                <p>구체적이고 실질적인 수행 전략을 통해 실질적인 성<br/>과를 창출하는 컨설팅을 제공합니다.</p>
                             </dd>
                         </dl>
                         <dl>
@@ -101,8 +109,8 @@
                 </dl>
             </div>
         </section>
-        <section>
-            <img src="./assets/images/about/sec_02_visual.png" alt="">
+        <img src="./assets/images/about/sec_02_visual.png" alt="">
+        <section class="about_awards">
             <div class="inner">
                 <dl>
                     <dt>
@@ -110,34 +118,39 @@
                         <img src="./assets/images/about/awards.png" alt="">
                     </dt>
                     <dd>
-                        <h2>We have been recognized with several awards.</h2>
-                        <p>다수의 프로젝트를 성공적으로 수행하며 여러 수상 경력으로 인정받고 있습니다.</p>
-                        <ul>
-                            <li>
-                                <strong>8</strong>
-                                <span>Commerce</span>
-                            </li>
-                            <li>
-                                <strong>2</strong>
-                                <span>Finance</span>
-                            </li>
-                            <li>
-                                <strong>1</strong>
-                                <span>Digital service</span>
-                            </li>
-                            <li>
-                                <strong>1</strong>
-                                <span>Communication</span>
-                            </li>
-                            <li>
-                                <strong>1</strong>
-                                <span>Web standard</span>
-                            </li>
-                            <li>
-                                <strong>3</strong>
-                                <span>Government</span>
-                            </li>
-                        </ul>
+                        <h2>We have been<br/> recognized with several<br/> awards.</h2>
+                        <p>다수의 프로젝트를 성공적으로 수행하며<br/>여러 수상 경력으로 인정받고 있습니다.</p>
+                        <div class="about_swiper">
+                            <div class="visual swiper-container">
+                                <ul class="swiper-wrapper">
+                                    <li class="swiper-slide">
+                                        <strong>8</strong>
+                                        <span>Commerce</span>
+                                    </li>
+                                    <li class="swiper-slide">
+                                        <strong>2</strong>
+                                        <span>Finance</span>
+                                    </li>
+                                    <li class="swiper-slide">
+                                        <strong>1</strong>
+                                        <span>Digital service</span>
+                                    </li>
+                                    <li class="swiper-slide">
+                                        <strong>1</strong>
+                                        <span>Communication</span>
+                                    </li>
+                                    <li class="swiper-slide">
+                                        <strong>1</strong>
+                                        <span>Web standard</span>
+                                    </li>
+                                    <li class="swiper-slide">
+                                        <strong>3</strong>
+                                        <span>Government</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="custom-cursor">Drag</div>
+                        </div>
                         <div>
                             <p>
                                 <span>DGB캐피탈 2021 웹어워드 금융분야 최우수상,</span>
