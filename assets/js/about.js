@@ -12,33 +12,57 @@ $(document).ready(function () {
     var swiper = new Swiper('.about_swiper .visual.swiper-container', option_sec03);
 
     /* gsap path 이벤트 */
-    const paths = document.querySelectorAll('path');
+    // const paths = document.querySelectorAll('path');
 
-    paths.forEach((path, i) => {
-        const length = path.getTotalLength();
-        path.style.stroke = "white";
-        path.style.strokeWidth = "2";
-        path.style.fill = "none";
+    // paths.forEach((path, i) => {
+    //     const length = path.getTotalLength();
+    //     path.style.stroke = "white";
+    //     path.style.strokeWidth = "2";
+    //     path.style.fill = "none";
 
-        gsap.set(path, {
-            strokeDasharray: length,
-            strokeDashoffset: length
-        });
+    //     gsap.set(path, {
+    //         strokeDasharray: length,
+    //         strokeDashoffset: length
+    //     });
 
-        gsap.to(path, {
-            strokeDashoffset: 0,
-            duration: 2,
-            delay: i * 0.3,
-            ease: "power2.out",
-            onComplete: () => {
-            gsap.to(path, {
-                fill: "white",
-                duration: 0.5,
-                ease: "power1.inOut"
-            });
-            }
-        });
-    });
+    //     gsap.to(path, {
+    //         strokeDashoffset: 0,
+    //         duration: 2,
+    //         delay: i * 0.3,
+    //         ease: "power2.out",
+    //         onComplete: () => {
+    //         gsap.to(path, {
+    //             fill: "white",
+    //             duration: 0.5,
+    //             ease: "power1.inOut"
+    //         });
+    //         }
+    //     });
+    // });
+      const allPaths = document.querySelectorAll('svg path');
+      let master = gsap.timeline({ defaults: { ease: "power1.inOut" } });
+
+      allPaths.forEach((path, i) => {
+          const length = path.getTotalLength();
+          gsap.set(path, {
+              strokeDasharray: length,
+              strokeDashoffset: length,
+              fill: 'rgba(255, 255, 255, 0)'
+          });
+
+          const tl = gsap.timeline();
+
+          // 붓글씨처럼 stroke와 fill이 동시에 나타나는 효과
+          tl.to(path, {
+              strokeDashoffset: 0,
+              fill: 'rgba(255, 255, 255, 1)',
+              duration: 1.4,
+              ease: "power2.inOut"
+          });
+
+          master.add(tl);
+      });
+
 
     /* gsap 이벤트 */
     gsap.timeline({
@@ -145,30 +169,84 @@ $(document).ready(function () {
     $(this).removeClass('hide-cursor');
   });
 
-    let triggered = false;
+    // let triggered = false;
 
-    ScrollTrigger.create({
-        trigger: ".about_partners",
-        start: "top 80%",
-        once: true, // 스크롤 한 번만 작동
-        onEnter: function () {
-            if (triggered) return;
-            triggered = true;
+    // ScrollTrigger.create({
+    //     trigger: ".about_partners",
+    //     start: "top 80%",
+    //     once: true, // 스크롤 한 번만 작동
+    //     onEnter: function () {
+    //         if (triggered) return;
+    //         triggered = true;
 
-            $(".about_partners ul li").each(function (index) {
-                gsap.fromTo($(this), 
-                    { opacity: 0, y: 50 }, 
-                    {
-                        opacity: 1,
-                        y: 0,
-                        duration: 0.6,
-                        ease: "bounce.out",
-                        delay: index * 0.1
-                    }
-                );
+    //         $(".about_partners ul li").each(function (index) {
+    //             gsap.fromTo($(this), 
+    //                 { opacity: 0, y: 50 }, 
+    //                 {
+    //                     opacity: 1,
+    //                     y: 0,
+    //                     duration: 0.6,
+    //                     ease: "bounce.out",
+    //                     delay: index * 0.1
+    //                 }
+    //             );
+    //         });
+    //     }
+    // });
+
+    // let triggered = false;
+
+    // ScrollTrigger.create({
+    //     trigger: ".about_partners",
+    //     start: "top 80%",
+    //     once: true,
+    //     onEnter: function () {
+    //         if (triggered) return;
+    //         triggered = true;
+
+    //         $(".about_partners ul li").each(function (index) {
+    //             gsap.fromTo($(this),
+    //                 { opacity: 0, y: 0 },
+    //                 {
+    //                     opacity: 1,
+    //                     keyframes: [
+    //                         { y: 0, opacity: 0, offset: 0 },
+    //                         { y: -20, opacity: 1, offset: 0.2 },  // 튕김 상단
+    //                         { y: 10, offset: 0.4 },               // 아래로 반동
+    //                         { y: -6, offset: 0.6 },               // 작은 튕김
+    //                         { y: 3, offset: 0.8 },                // 마지막 미세 반동
+    //                         { y: 0, offset: 1 }                   // 정착
+    //                     ],
+    //                     duration: 0.8,
+    //                     delay: index * 0.5,
+    //                     ease: "power1.out"
+    //                 }
+    //             );
+    //         });
+    //     }
+    // });
+
+        let animated = false;
+
+    $(window).on('scroll', function () {
+        if (animated) return;
+
+        let triggerPos = $('.about_partners').offset().top;
+        let scrollPos = $(window).scrollTop() + $(window).height() * 0.6; // 70% = 30% 진입
+
+        if (scrollPos > triggerPos) {
+            animated = true;
+
+            $('.about_partners ul li').each(function (index) {
+                let that = $(this);
+                setTimeout(function () {
+                    that.addClass('animate');
+                }, index * 150); // 0.1초 간격으로 순차 실행
             });
         }
     });
+
+
 
     const $scroll = $('.about_visual .custom-cursor');
     const $target = $('.about_visual');

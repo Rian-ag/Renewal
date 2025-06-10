@@ -1,0 +1,64 @@
+.custom-cursor {width:80px; height:80px; color:white; font-size:16px; font-weight:bold; border-radius:50%; background:radial-gradient(circle at 60% 70%,rgba(0, 0, 0, 0.4) 5%,rgba(170, 170, 170, 0.6) 30%,rgba(200, 200, 200, 0.4) 100%); box-shadow:inset -5px -5px 10px rgba(0, 0, 0, 0.3); display:flex; align-items:center; justify-content:center; position: fixed; pointer-events: none; transform: translate(-50%, -50%); z-index: 9999; opacity: 0;transition: opacity 0.2s ease;}
+.hide-cursor {cursor: none;}
+
+/* about_visual */
+svg { height: auto;}
+path {stroke:white; stroke-width:2; fill:rgba(255, 255, 255, 0); stroke-linecap:round; stroke-linejoin:round;}
+.about_visual {height:100vh; padding-top:56.25%; background-color: #000; position:relative; display:flex; overflow:hidden;}
+.mo_cursor {width:50px; height:50px; background-image:url('../images/about/scroll_btn.png'); background-repeat: no-repeat; background-size: cover; background-position: center; position:absolute; bottom:30px; left:50%; transform:translate(-50%,0);}
+.svg_01 {width:72.916666%; position:absolute; top:-0; right:27.61927%;}
+.svg_01 svg {width:100%;}
+.svg_02 {width:68.020312%; position:absolute; top:0; left:36.09375%;}
+.svg_02 svg {width:100%;}
+.about_visual em {color:#fff; font-size:90px; font-weight:900; position:absolute; top:50%; left:25%; transform:translate(0, -50%);}
+.inner {margin:110px 30px 160px;}
+h2 {font-size:40px; font-weight:700;}
+h3 {font-size:24px; font-weight:700;}
+section .inner dl dd strong {font-size:24px; font-weight:700;}
+section dt span {font-size:32px; font-weight:400;}
+
+/* about_vision */
+.about_vision .inner h2 p {text-align:right; opacity:0; transform:translateY(100px); overflow:hidden;}
+.about_vision .inner h2 p:not(:first-child) {text-align:left;}
+.about_vision .inner > dl:first-of-type {margin:220px 0 200px;}
+.about_vision .inner > dl dt {margin-bottom:40px;}
+.about_vision .inner > dl dt p {margin-bottom:24px; font-size:24px; font-weight:700;}
+.about_vision .inner > dl dt span {font-size:20px; font-weight:500;}
+.about_vision .inner > dl dd {display:flex; flex-wrap:wrap; justify-content:space-between;}
+.about_vision .inner dl dd dl {width:100%; margin-bottom:140px; display:flex; flex-direction:column;}
+.about_vision .inner dl dd dl dt {display:flex; flex-direction:column; gap:8px;}
+.about_vision .inner dl dd dl dd p:first-of-type {margin-bottom:16px;}
+.about_vision .inner .one dd {opacity:0; transform:translateX(100px); }
+.about_vision .inner .two dd dl {opacity:0;}
+
+/* about_awards */
+.wrap > img {min-width:1920px; height:900px; padding:0 30px; box-sizing:border-box; opacity:0; transform:translateY(100px); }
+.about_awards {overflow:hidden;}
+.about_awards .inner > dl > dt {width:480px;}
+.about_awards .inner > dl > dt img {width:344px; margin-top:16px;}
+.about_awards .inner > dl > dd > p {font-size:32px;  margin:80px 0; font-weight:700;}
+.about_awards .inner > dl > dd > ul {display:flex;}
+.about_awards .inner > dl > dd > .about_swiper ul li {width:230px !important; height:182px; padding:59px 32px 65px; background-color:#FAFAFA; box-sizing:border-box; display:flex; flex-direction:column;}
+.about_awards .inner > dl > dd > .about_swiper ul li strong {font-size:48px; font-weight:700;}
+.about_awards .inner > dl > dd > .about_swiper ul li span {margin-top:14px; font-size:14px; font-weight:500;}
+.about_awards .inner > dl > dd > div {margin-top:60px;}
+.about_awards .inner > dl > dd > div p {margin-bottom:16px;}
+.about_awards .inner > dl > dd > div p:last-of-type {margin-bottom:0;}
+.about_awards .inner > dl > dd > div p span{color:#808080; font-size:14px; font-weight:400;}
+.about_swiper {position: relative;}
+
+/* about_partners */
+.about_partners {background:#000;}
+.about_partners .inner {margin-bottom:0;}
+.about_partners h3 {padding-top:120px; margin-bottom:60px; color:#fff;}
+.about_partners ul {display:flex; flex-wrap:wrap; align-items:center;}
+.about_partners ul li {width:33.333%; opacity:0; transform:translateY(50px); transition:opacity 0.3s ease;}
+.about_partners ul li {text-align:center; opacity: 0;transform: translateY(50px);}
+.about_partners ul li img {width:95%;}
+.about_partners ul li.animate {animation: jumps 2s ease-out forwards;}
+
+@keyframes jumps {
+    0%, 40%, 100% {transform:translateY(0); opacity: 1;}
+    20% {transform: translateY(-1.2rem);}
+}
+
