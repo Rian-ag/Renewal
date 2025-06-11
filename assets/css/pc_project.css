@@ -36,7 +36,10 @@ body {
     width: 92.317px;
     height: 24px;
 }
-
+.logo image {
+    display: block;
+    width: 100%;
+}
 .menu-icon {
     display: block;
     position: relative;
@@ -196,7 +199,29 @@ body {
 }
 
 /* 네비게이션 버튼 (prev/next) */
+.indicator {
+    position: fixed;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    width: 33.696px;
+    height: 262px;
+    padding-bottom: 8px;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 45px;
+    background-color: green;
+    z-index: 200;
+}
 .swiper-button-prev,
+.swiper-button-next {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+/* .swiper-button-prev,
 .swiper-button-next {
     position: fixed;
     right: 40px;
@@ -210,7 +235,7 @@ body {
 }
 .swiper-button-next {
     bottom: 40px;
-}
+} */
 .swiper-button-prev::after,
 .swiper-button-next::after {
     content: '';
