@@ -19,7 +19,7 @@ section .inner dl dd strong {font-size:32px; font-weight:700;}
 section dt span {font-size:32px; font-weight:400;}
 
 /* about_vision */
-.about_vision .inner h2 p {text-align:right; opacity:0; transform:translateY(100px); overflow:hidden;}
+.about_vision .inner h2 p {text-indent:195px; text-align:left;  opacity:0; transform:translateY(100px); overflow:hidden;}
 .about_vision .inner h2 p:last-of-type {text-align:left;}
 .about_vision .inner > dl:first-of-type {margin:220px 0 200px;}
 .about_vision .inner > dl dt p {margin-bottom:40px; font-size:32px; font-weight:700;}
@@ -30,7 +30,8 @@ section dt span {font-size:32px; font-weight:400;}
 .about_vision .inner .two dd dl {opacity:0;}
 
 /* about_awards */
-.wrap > img {min-width:1920px; height:900px; padding:0 30px; box-sizing:border-box; opacity:0; transform:translateY(100px); }
+.wrap > p {text-align:center;}
+.wrap > p > img {min-width:1920px; height:900px; padding:0 30px; box-sizing:border-box; opacity:0; transform:translateY(100px); }
 .about_awards {overflow:hidden;}
 .about_awards .inner > dl > dt {width:480px;}
 .about_awards .inner > dl > dt img {width:344px; margin-top:16px;}
@@ -50,9 +51,10 @@ section dt span {font-size:32px; font-weight:400;}
 .about_partners .inner {margin-bottom:0;}
 .about_partners h3 {padding-top:160px; margin-bottom:100px; color:#fff;}
 .about_partners ul {display:flex; flex-wrap:wrap; align-items:center;}
-.about_partners ul li {width:22.1%; margin-bottom:40px; padding:40px 20px; text-align:center; opacity:0; transform:translateY(50px); transition:opacity 0.3s ease;}
+.about_partners ul li {width:24.9%; margin-bottom:40px; padding:20px 40px; text-align:center; box-sizing:border-box;  opacity:0; transform:translateY(50px); transition:opacity 0.3s ease;}
 .about_partners ul li {opacity: 0;transform: translateY(50px);}
 .about_partners ul li.animate {animation: jumps 2s ease-out forwards;}
+.about_partners ul li img {width:50%;}
 
 @keyframes jumps {
     0%, 40%, 100% {transform:translateY(0); opacity: 1;}

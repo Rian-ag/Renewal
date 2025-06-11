@@ -106,14 +106,14 @@ $(document).ready(function () {
 
     gsap.timeline({
         scrollTrigger:{
-            trigger:'.wrap > img',
+            trigger:'.wrap > p > img',
             start:'top 90%',
             end:'50% 100%',
             toggleActions: 'play none none none',
             // markers:true,
         }
     })
-    .to('.wrap > img',{y:'0px', duration:1, ease:'none', opacity:1},0.2)
+    .to('.wrap > p > img',{y:'0px', duration:1, ease:'none', opacity:1},0.2)
 
 /* count evetn */
   const $targets = $('.about_swiper .swiper-slide strong');
