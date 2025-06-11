@@ -10,8 +10,12 @@
       parallax: true,               // 패럴럭스 배경 효과 여부
       parallaxRatio: 1,             // 배경이 따라오는 비율 (작을수록 느림)
       navigation: true,             // 내비게이션 추가 여부
+      arrows: true,                 // 이전 / 다음 버튼 활성화 여부
+      autoplay: false,
+      autoplaySpeed: 5000,
       onLeave: function(prevIndex, nextIndex) {},  // 이동 직전 호출
-      afterLoad: function(index) {}                // 이동 완료 후 호출
+      afterLoad: function(index) {},                // 이동 완료 후 호출
+      on: {} // ✅ 사용자 정의 이벤트 객체 추가
     }, options);
 
     const $container = this; // 전체 페이지 래퍼 (예: #wrap)
@@ -19,6 +23,7 @@
     let isScrolling = false;   // 전환 중 중복 입력 방지용 플래그
     let touchStartY = 0;       // 터치 시작 Y 좌표 저장용
     let currentIndex = 0;      // 현재 활성화된 섹션 인덱스
+    let autoplayTimer = null;
 
     // 초기 활성화 상태 설정
     $sections.removeClass('active');
@@ -43,6 +48,22 @@
         const target = parseInt($(this).attr('data-index'));
         moveTo(target);
       });
+    }
+
+    // ✅ 이전/다음버튼
+    let $prevBtn, $nextBtn;
+    if (settings.arrows) {
+      $prevBtn = $('<button class="fp-arrow fp-prev">↑</button>');
+      $nextBtn = $('<button class="fp-arrow fp-next">↓</button>');
+
+      $arrowWrap = $('<div class="fp-arrows"></div');
+
+      $arrowWrap.append($prevBtn, $nextBtn);
+
+      $container.append($arrowWrap);
+
+      $prevBtn.on('click', () => moveTo(currentIndex - 1));
+      $nextBtn.on('click', () => moveTo(currentIndex + 1));
     }
 
     // 🔽 섹션 이동 함수
@@ -163,6 +184,47 @@
       });
     }
 
-    return this; // jQuery 체이닝을 위해 반환
+    function init() {
+      clearInterval(autoplayTimer);
+      isScrolling = false;
+      currentIndex = 0;
+      $sections.removeClass('active');
+      $sections.eq(currentIndex).addClass('active');
+
+      if (settings.navigation && $navDots) {
+        $navDots.find('.fp-dot').removeClass('active');
+        $navDots.find(`.fp-dot[data-index="${currentIndex}"]`).addClass('active');
+      }
+
+      if (!settings.parallax) {
+        $container.css({
+          transform: `translateY(${moveY}px)`,
+          transition: `transform ${settings.duration}ms ${settings.easing}`
+        });
+      }
+
+      if (typeof settings.afterLoad === 'function') {
+        settings.afterLoad(currentIndex);
+      }
+
+      // ✅ on.init 호출
+      if (typeof settings.on.init === 'function') {
+        settings.on.init.call($container[0]);
+      }
+
+      if (settings.autoplay) {
+        autoplayTimer = setInterval(() => {
+          moveTo(currentIndex + 1);
+        }, settings.autoplaySpeed);
+      }
+    }
+
+    init();
+
+    // 🔚 API 반환
+    return {
+      moveTo,
+      init
+    };
   };
 })(jQuery);

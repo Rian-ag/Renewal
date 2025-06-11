@@ -3,12 +3,31 @@ html, body {height:100%; margin:0; padding:0; overflow:hidden;}
 section {height:100vh; position:relative; overflow:hidden;}
 section.active {z-index:1;}
 
-.parallax-bg {background-size:cover; background-position:center; position:absolute; top:0; left:0; right:0; bottom:0; z-index:-1; transition:transform 1s ease;}
+.visual_cont .project, .visual_cont .slogan {opacity:0; display:block; transition:all 0.8s ease-in-out;}
+.visual_cont .slogan {transition-delay:0.2s;}
+.visual_cont .project {transform:translateX(-100%);}
+.visual_cont .slogan {transform:translateX(100%);}
+.visual_cont.active .project, .visual_cont.active .slogan {opacity:1; transform:translateX(0);}
+
+.parallax-bg {background-size:cover; background-position:center; position:absolute; top:0; left:0; right:0; bottom:0; z-index:-1; transition:transform 3s ease}
+section.active .parallax-bg {transform:scale(1.2);}
 
 .fp-nav {position:fixed; top:50%; right:30px; transform:translateY(-50%); z-index:1;}
 .fp-dot {width:10px; height:10px; margin:10px 0; background:#ccc; border-radius:50%; cursor:pointer; transition:background 0.3s;}
 .fp-dot.active {background:#333;}
 
+.fp-arrows {position:fixed; right:30px; bottom:114px; z-index:1; display:flex; align-items:center; flex-direction:column; gap:10px;}
+.fp-arrow {width:28px; height:28px; font-size:0; background-image:url('/assets/images/common/icon_split.png'); background-position:0 0; background-repeat:no-repeat; background-size:500px auto; border:none; cursor:pointer; display:flex;}
+.fp-next {transform:rotate(180deg);}
+
+.fp-navi {margin-bottom:18px; color:#fff; font-size:24px; font-weight:600; line-height:102%; display:flex; align-items:center; flex-direction:column;}
+.fp-navi em {font-style:normal; display:flex; flex-direction:column; align-items:center;}
+.fp-navi em:before {height:77px; margin:10px auto; border-left:1px solid rgba(255,255,255,0.6); content:''; display:block;}
+
+.visual_cont {color:#fff; font-size:100px; font-weight:800; line-height:102%; position:fixed; bottom:83px; left:30px; z-index:1;}
+
 #bottom {padding:28px 30px; position:fixed; right:0; bottom:0; left:0; z-index:100; display:flex; align-items:center; justify-content:space-between;}
 #bottom * {color:#fff; font-size:14px; font-weight:800; letter-spacing:0;}
 #bottom div {display:flex; align-items:center; gap:160px;}
+#bottom .download {display:flex; align-items:center; gap:12px;}
+#bottom .download:after {width:20px; height:20px; background-image:url('/assets/images/common/icon_split.png'); background-position:-50px 0; background-repeat:no-repeat; background-size:500px auto; content:''; display:block;}
