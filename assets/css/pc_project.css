@@ -1,0 +1,224 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    letter-spacing: -0.02em;
+    background-color: #000;
+    color: #fff;
+}
+
+* {
+    box-sizing: border-box;
+}
+.sr-only {
+    font-size: 0;
+    text-indent: -9999px;
+}
+
+/* HEADER */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    padding: 0px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+}
+
+.logo {
+    display: block;
+    width: 92.317px;
+    height: 24px;
+}
+
+.menu-icon {
+    display: block;
+    position: relative;
+    width: 28px;
+    height: 28px;
+}
+
+.menu-icon::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 100%;
+    height: 5px;
+    background-color: #fff;
+}
+.menu-icon::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 5px;
+    width: 100%;
+    height: 5px;
+    background-color: #fff;
+}
+
+/* SECTION */
+.section {
+    position: relative;
+    width: 100vw;
+    /* height: 100vh; */
+    padding: 80px 0 74px;
+}
+
+.section-content {
+    position: relative;
+    max-width: 1179px;
+    height: 572px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.section-content .project-title {
+    position: absolute;
+    left: 36px;
+    top: 22px;
+    font-feature-settings: 'cpsp' on;
+    font-size: 128px;
+    font-weight: 700;
+    line-height: 102%;
+    z-index: 1;
+}
+
+.project-wrapper {
+    display: flex;
+    gap: 30px;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.project-wrapper .project-name {
+    text-align: right;
+    font-size: 24px;
+    font-weight: 800;
+    line-height: 110%;
+    letter-spacing: -0.48px;
+}
+
+.project-wrapper .project-image img {
+    display: block;
+    /* width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: contain; */
+}
+.project-wrapper .project-info {
+    display: flex;
+    padding-bottom: 8px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 32px;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 102%;
+    letter-spacing: -0.28px;
+}
+/* BOTTOM */
+.bottom-menu {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    height: 74px;
+    padding: 0px 30px;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+.bottom-menu .go-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 160px;
+}
+.bottom-menu .go-link > a,
+.bottom-menu .download > button {
+    font-size: 14px;
+    color: #fff;
+    font-weight: 800;
+    line-height: 100%;
+    text-transform: uppercase;
+}
+.bottom-menu .go-projects button {
+    display: inline-flex;
+    align-items: center;
+    height: 18px;
+    gap: 8px;
+}
+.bottom-menu .go-projects button span {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 102%;
+    letter-spacing: -0.36px;
+}
+
+/* Swiper */
+.swiper {
+    overflow: hidden;
+}
+.swiper,
+.swiper-wrapper,
+.swiper-slide {
+    height: 100vh; /* 또는 100% */
+}
+/* 스와이퍼 인디케이터 (pagination) */
+.swiper-pagination {
+    position: fixed;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    z-index: 20;
+}
+.swiper-pagination-bullet {
+    font-size: 14px;
+    color: #fff;
+    opacity: 0.4;
+    transition: all 0.3s;
+    font-family: 'Arial', sans-serif;
+}
+.swiper-pagination-bullet-active {
+    opacity: 1;
+    font-weight: bold;
+}
+
+/* 네비게이션 버튼 (prev/next) */
+.swiper-button-prev,
+.swiper-button-next {
+    position: fixed;
+    right: 40px;
+    z-index: 21;
+    width: 24px;
+    height: 24px;
+    color: #fff;
+}
+.swiper-button-prev {
+    bottom: 70px;
+}
+.swiper-button-next {
+    bottom: 40px;
+}
+.swiper-button-prev::after,
+.swiper-button-next::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: url('../images/project/arrow-up.svg') no-repeat center / contain;
+}
+.swiper-button-next::after {
+    background-image: url('../images/project/arrow-down.svg');
+}
