@@ -25,20 +25,116 @@
 
 	<script>
 		$(document).ready(function(){
+			var project = {
+        		'title' : ['CGV', 'LOTTE', 'HOME &', 'KB', 'COLDPLAY'],
+				'slogan' : ['DEEP DIVE SPACE', 'DUTY FREE', 'SHOPPING', 'KOOKMIN\nCARD', 'SOUND, VISUAL, STORY']
+			};
+
+			$('.visual_cont').addClass('active');
+			$('.visual_cont .project').html(project.title[0].replace(/\n/g, '<br>'));
+			$('.visual_cont .slogan').html(project.slogan[0].replace(/\n/g, '<br>'));
+
+			var current = ($('section.active').index() + 1);
+			var length = $('section').length;
+
+			if(length < 10){
+				length = '0'+length;
+			}
+
+			if(current < 10){
+				current = '0'+current;
+			}
+
 			$('#section_wrap').simpleFullpage({
 				duration: 1500,
 				easing: 'ease',
 				parallax: true,
 				keyboard: true,
 				touch: true,
-				navigation: true,
+				navigation: false,
+				//autoplay:true,
+				//autoplaySpeed: 1000,
+				on: {
+					init() {
+						console.log('a : '+current);
+						$('.fp-arrows').prepend(`
+							<div class="fp-navi">
+								<span>${current}</span>
+								<em>${length}</em>
+							</div>
+						`);
+					}
+				},
 				onLeave: function(prev, next) {
 					console.log(`Leaving section ${prev} → ${next}`);
+					$('.visual_cont').removeClass('active');
 				},
 				afterLoad: function(index) {
 					console.log(`Now at section ${index}`);
+					$('.fp-navi span').text('0'+(index + 1));
+					setTimeout(function(){
+
+						$('.visual_cont').addClass('active');
+
+						$('.visual_cont .project').html(project.title[index].replace(/\n/g, '<br>'));
+						$('.visual_cont .slogan').html(project.slogan[index].replace(/\n/g, '<br>'));
+					},800);
 				}
 			});
+
+			/* date & time */
+			const today = new Date();
+			const year = String(today.getFullYear()); // YY (연도)
+			const month = today.toLocaleString('en-US', { month: 'short' }); // m (영문 월)
+			const day = String(today.getDate()).padStart(2, '0'); // dd (일)
+
+			const formattedDate = `${year}.${month}.${day}`;
+
+			$('.visual_cont div p').text(formattedDate);
+
+			const hours = ('0' + today.getHours()).slice(-2); 
+			const minutes = ('0' + today.getMinutes()).slice(-2);
+			const seconds = ('0' + today.getSeconds()).slice(-2);
+			const formattime = hours + ':' + minutes  + ':' + seconds;
+
+			$('.visual_cont div strong').text(formattime);
+
+			setInterval(function(){
+				const today = new Date();
+				const hours = ('0' + today.getHours()).slice(-2); 
+				const minutes = ('0' + today.getMinutes()).slice(-2);
+				const seconds = ('0' + today.getSeconds()).slice(-2);
+				const formattime = hours + ':' + minutes  + ':' + seconds;
+
+				$('.visual_cont div strong').text(formattime);
+			},1000);
+
+			/* s:custom cursor */
+			const $cursor = $('.custom-cursor');
+			const $area = $('.parallax-bg');
+			let isHovering = false;
+
+			$area.on('mousemove', function (e) {
+				if (isHovering) {
+				$cursor.css({
+					left: e.clientX + 'px',
+					top: e.clientY + 'px'
+				});
+				}
+			});
+
+			$area.on('mouseenter', function () {
+				isHovering = true;
+				$cursor.css('opacity', 1);
+				$(this).addClass('hide-cursor');
+			});
+
+			$area.on('mouseleave', function () {
+				isHovering = false;
+				$cursor.css('opacity', 0);
+				$(this).removeClass('hide-cursor');
+			});
+			/* e:custom cursor */
     	});
 	</script>
 </head>
@@ -55,11 +151,11 @@
 
 			<div class="site_map">
 				<ul>
-					<li><a href="#none">About</a></li>
+					<li><a href="/about.html">About</a></li>
 					<li><a href="#none">Work</a></li>
 					<li><a href="#none">What's on</a></li>
 					<li><a href="#none">Join Our Team</a></li>
-					<li><a href="#none">Contact</a></li>
+					<li><a href="/join.html">Contact</a></li>
 				</ul>
 			</div>
 		</header>
@@ -67,17 +163,29 @@
 
 		<div id="section_wrap">
 			<section class="active">
-				<div class="parallax-bg" style="background-image: url('https://img.hankyung.com/photo/202505/03.39591482.1.jpg');"></div>
-				<div class="content">첫 번째 섹션</div>
+				<div class="parallax-bg" style="background-image: url('/assets/images/main/visual_cgv.png');"></div>
 			</section>
 			<section>
-				<div class="parallax-bg" style="background-image: url('https://img.hankyung.com/photo/202410/01.38353572.1.jpg');"></div>
-				<div class="content">두 번째 섹션</div>
+				<div class="parallax-bg" style="background-image: url('/assets/images/main/visual_lotte.png');"></div>
 			</section>
 			<section>
-				<div class="parallax-bg" style="background-image: url('https://mblogthumb-phinf.pstatic.net/MjAyMzA4MjlfMTY2/MDAxNjkzMjk1NTExMTI2.1SyJmgQfdCAO-SxVIBy0HnypXom98Wyq0Myl0B2MYi0g.C_22VW7PP1Gd4JpDgtYDuS-SKrzKD8rmKv7BJ0BYFLYg.JPEG.guitarphil/QWER.jpg?type=w800');"></div>
-				<div class="content">세 번째 섹션</div>
+				<div class="parallax-bg" style="background-image: url('/assets/images/main/visual_homen.png');"></div>
 			</section>
+			<section>
+				<div class="parallax-bg" style="background-image: url('/assets/images/main/visual_kb.png');"></div>
+			</section>
+			<section>
+				<div class="parallax-bg" style="background-image: url('/assets/images/main/visual_coldplay.png');"></div>
+			</section>
+
+			<div class="visual_cont">
+				<strong class="project">CGV</strong>
+				<p class="slogan">DEEP DIVE SPACE</p>
+				<div>
+					<strong></strong>
+					<p></p>
+				</div>
+			</div>
 		</div>
 
 		<!-- bottom -->
@@ -86,10 +194,12 @@
 				<a href="mailto:rianag@rianag.com">RIANAG@RIANAG.COM</a>
 				<a href="http://daum.net" target="_blank">BLOG</a>
 			</div>
-			<a href="javascript:void(0);">BROCHURE DOWNLOAD</a>
+			<a href="javascript:void(0);" class="download">BROCHURE DOWNLOAD</a>
 		</div>
 		<!-- //bottom -->
 	</div>
+
+	<div class="custom-cursor">View</div>
 
 </body>
 </html>

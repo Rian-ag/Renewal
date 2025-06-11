@@ -2,8 +2,9 @@
 
 header {position:fixed; top:0; right:0; left:0; z-index:100;}
 header h1 img {height:24px; display:block;}
-header .inner {padding:28px 30px; background-color:rgba(0,0,0,0.4); display:flex; justify-content:space-between;}
-header .inner a {color:#fff; font-size:14px; font-weight:800; letter-spacing:-0.01em;}
+header .inner {padding:26px 30px; background-color:rgba(0,0,0,0.4); display:flex; align-items:center; justify-content:space-between;}
+header .inner a {color:#fff; font-size:14px; font-weight:800; letter-spacing:-0.01em; display:flex; align-items:center; gap:4px;}
+header .inner a:after {width:20px; height:20px; background-image:url('/assets/images/common/icon_split.png'); background-position:0 -50px; background-repeat:no-repeat; background-size:500px auto; content:''; display:block;}
 header .inner .btn_ham {width:28px; height:28px; font-size:0; background-color:transparent; border:0; position:relative; z-index:91; cursor:pointer;}
 header .inner .btn_ham:before, header .inner .btn_ham:after {width:100%; border-top:5px solid #fff; content:''; position:absolute; left:0; display:block; transition:all 0.25s ease-in-out;}
 header .inner .btn_ham:before {top:6px;}
