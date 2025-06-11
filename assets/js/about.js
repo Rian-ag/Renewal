@@ -39,6 +39,19 @@ $(document).ready(function () {
     //         }
     //     });
     // });
+
+    /* gsap  */
+        // .about_visual을 pin 하고 이후 콘텐츠가 올라오는 구조
+    ScrollTrigger.create({
+        trigger: ".wrap", // 전체 감싸는 요소
+        start: "top top",
+        end: "+=400%", // 필요에 따라 조정
+        pin: ".about_visual",
+        pinSpacing: false,
+        scrub: false
+    });
+
+
       const allPaths = document.querySelectorAll('svg path');
       let master = gsap.timeline({ defaults: { ease: "power1.inOut" } });
 
@@ -226,25 +239,36 @@ $(document).ready(function () {
     //     }
     // });
 
-        let animated = false;
+let animated = false;
 
-    $(window).on('scroll', function () {
-        if (animated) return;
+function runPartnerAnimation() {
+    if (animated) return;
 
-        let triggerPos = $('.about_partners').offset().top;
-        let scrollPos = $(window).scrollTop() + $(window).height() * 0.6; // 70% = 30% 진입
+    const $section = $('.about_partners');
+    const sectionTop = $section.offset().top;
+    const scrollBottom = $(window).scrollTop() + $(window).height() * 0.7;
 
-        if (scrollPos > triggerPos) {
-            animated = true;
+    // 영역 진입 시 실행
+    if (scrollBottom > sectionTop) {
+        animated = true;
 
-            $('.about_partners ul li').each(function (index) {
-                let that = $(this);
-                setTimeout(function () {
-                    that.addClass('animate');
-                }, index * 150); // 0.1초 간격으로 순차 실행
-            });
-        }
-    });
+        // 모바일 or PC 리스트 중 현재 보이는 것만 animate
+        const $visibleList = $('.about_partners .pc_list:visible li, .about_partners .mo_list:visible li');
+
+        $visibleList.each(function (i) {
+            const that = $(this);
+            setTimeout(() => {
+                that.addClass('animate');
+            }, i * 150); // 순차적 실행
+        });
+    }
+}
+
+// scroll과 resize에 바인딩
+$(window).on('scroll resize orientationchange', runPartnerAnimation);
+
+// 페이지 로딩 직후도 확인 (모바일 주소창 숨김 전 대응)
+$(document).ready(runPartnerAnimation);
 
 
 
