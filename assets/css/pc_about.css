@@ -8,14 +8,15 @@
 .about_vision,.about_awards,.about_partners {background-color:#fff; z-index:99 !important;}
 
 /* about_visual */
-svg { height: auto;}
+.svg_01, .svg_02 {transform:scale(1);}
+svg { height: auto; object-fit: contain;}
 path {stroke:white; stroke-width:2; fill:rgba(255, 255, 255, 0); stroke-linecap:round; stroke-linejoin:round;}
-.about_visual {width:100%; height: 100vh; background-color: #000; position: fixed; top:0; left:0; z-index:10;  display:flex; overflow:hidden;}
+.about_visual {width:100%; height:100vh; background-color: #000; position: fixed; top:0; left:0; z-index:10;  display:flex; overflow:hidden;}
 /* .svg_01 {width:72.916666%; position:absolute; top:-0; right:27.61927%;} */
-.svg_01 {width:105%; position:absolute; left:-7%; top:-4%;}
+.svg_01 {width:100%; position:absolute; left:-7%; top:-15%;}
 .svg_01 svg, .svg_02 svg {width:100%; height: auto; display: block;}
-.svg_02 {width:80%; position:absolute; left:25%; top:-33%;}
-.about_visual em {color:#fff; font-size:90px; font-weight:900; position:absolute; top:20%; left:25%;}
+.svg_02 {width:75%; position:absolute; left:25%; top:-48%;}
+.about_visual em {color:#fff; font-size:90px; font-weight:900; position:absolute; top:56%; left:18%;}
 .inner {width:1400px; margin:110px auto 160px;}
 h2 {font-size:78px; font-weight:700;}
 h3 {font-size:32px; font-weight:700;}
