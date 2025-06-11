@@ -1,0 +1,21 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g style="mix-blend-mode:multiply">
+<circle cx="30.8673" cy="35.3673" r="18.3673" fill="#FFA697"/>
+</g>
+<g style="mix-blend-mode:multiply">
+<circle cx="87.1173" cy="35.3673" r="18.3673" fill="#FFA697"/>
+</g>
+<g clip-path="url(#clip0_40_6664)">
+<g style="mix-blend-mode:multiply">
+<ellipse cx="90" cy="100" rx="40" ry="40" transform="rotate(180 90 100)" fill="#3BD469"/>
+</g>
+<g style="mix-blend-mode:multiply">
+<ellipse cx="30" cy="100" rx="40" ry="40" transform="rotate(180 30 100)" fill="#37AFEB"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_40_6664">
+<rect width="100" height="50" fill="white" transform="translate(10 54)"/>
+</clipPath>
+</defs>
+</svg>
