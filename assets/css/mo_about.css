@@ -18,7 +18,8 @@ section .inner dl dd strong {font-size:24px; font-weight:700;}
 section dt span {font-size:32px; font-weight:400;}
 
 /* about_vision */
-.about_vision .inner h2 p {text-align:right; opacity:0; transform:translateY(100px); overflow:hidden;}
+/* .about_vision .inner h2 {display:flex;} */
+.about_vision .inner h2 p {text-indent:105px; text-align:left; opacity:0; transform:translateY(100px); overflow:hidden; overflow-wrap: break-word;}
 .about_vision .inner h2 p:not(:first-child) {text-align:left;}
 .about_vision .inner > dl:first-of-type {margin:220px 0 200px;}
 .about_vision .inner > dl dt {margin-bottom:40px;}
