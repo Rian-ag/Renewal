@@ -1,0 +1,198 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+body {
+    color: #000;
+    font-family: 'Pretendard', sans-serif;
+    font-style: normal;
+    font-size: 16px;
+    font-weight: 400;
+}
+/* #wrap {
+    max-width: 390px;
+    margin: 0 auto;
+} */
+
+/* 공통 */
+.tar {
+    text-align: right !important;
+}
+.tal {
+    text-align: left !important;
+}
+
+.section {
+    width: 100vw; /* 또는 100% */
+    /* height: 100vh; */
+}
+.section:not(:first-child) {
+    padding-bottom: 120px;
+}
+.section-wrapper {
+    padding: 0 30px;
+    margin: 0 auto;
+}
+
+.title {
+    color: #000;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 130%; /* 31.2px */
+    letter-spacing: -0.48px;
+}
+.content {
+    margin-top: 80px;
+}
+.text {
+    color: #808080;
+    font-feature-settings: 'cpsp' on;
+    font-family: Pretendard;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 150%; /* 24px */
+}
+
+.char {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(60px) rotateX(60deg) scale(0.95);
+    transform-origin: center center;
+    will-change: transform, opacity;
+}
+
+/* main */
+.main {
+    height: 100vh;
+    padding: 260px 0 160px;
+}
+
+.main .section-wrapper .title-wrapper h2 {
+    color: #000;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 102%; /* 32.64px */
+    letter-spacing: -0.64px;
+}
+.main .section-wrapper .title-wrapper strong {
+    margin-top: 20px;
+    color: #000;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: 102%; /* 48.96px */
+    text-align: left;
+    letter-spacing: -0.96px;
+}
+.main .section-wrapper .sub-wrapper {
+    display: inline-block;
+
+    margin-top: 160px;
+    margin-top: 170px;
+    margin-left: auto !important;
+    margin-right: 0 !important;
+}
+
+.main .section-wrapper .sub-wrapper .headline {
+    color: #000;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 130%;
+    letter-spacing: -0.48px;
+}
+.main .section-wrapper .sub-wrapper .subhead {
+    margin-top: 40px;
+}
+.main .section-wrapper .sub-wrapper .subhead p {
+    color: #808080;
+    font-feature-settings: 'cpsp' on;
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 24px */
+}
+.main .section-wrapper .sub-wrapper p + p {
+    margin-top: 16px;
+}
+
+/* benefit */
+.section.benefit {
+}
+/* .benefit-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 100px 139px;
+} */
+.benefit-container {
+}
+.benefit-container + .benefit-container {
+}
+.benefit-item {
+}
+
+.benefit-item img {
+}
+
+.benefit-item strong {
+}
+
+.img-wrapper {
+}
+.img-wrapper img {
+}
+
+/* positoin */
+.accordion-item:first-child {
+}
+.accordion-item {
+}
+
+.accordion-header {
+}
+.accordion-header::after {
+}
+
+.accordion-item.active .accordion-header::after {
+}
+
+.accordion-content {
+}
+.accordion-content > li:not(:first-child) {
+}
+
+.accordion-content strong {
+}
+
+.accordion-content p {
+}
+
+/* apply */
+.apply-container {
+}
+.apply-item {
+}
+.apply-item > strong {
+}
+.apply-item .process-container {
+}
+.apply-item .process-container > li {
+}
+.apply-item .process-container > li > .num {
+}
+.apply-item .process-info > p {
+}
+.apply-item .process-info > p::before {
+}
