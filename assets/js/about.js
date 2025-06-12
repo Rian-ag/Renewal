@@ -48,12 +48,9 @@ $(document).ready(function () {
       });
 
 
-
 const animatedHeadingSelectors = [
   '.about_vision h2 span',
   '.about_awards h2 span',
-  '.about_vision h2 p',
-  '.about_awards h2 p',
 ];
 
 animatedHeadingSelectors.forEach(selector => {
@@ -70,23 +67,25 @@ animatedHeadingSelectors.forEach(selector => {
     });
 
     tl.fromTo(spans,
-      { y: 200, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1.5, stagger: 0.2, ease: 'power2.inOut' }
+      { y: 200, opacity: 0, force3D: true },
+      { y: 0, opacity: 1, duration: 1.5, stagger: 0.2, ease: 'power2.inOut', force3D: true }
     );
 
-    // 만약 현재 selector가 '.about_awards h2 span'이면 이어서 실행
     if (selector === '.about_awards h2 span') {
       const texts = gsap.utils.toArray('.about_awards dd > p');
       if (texts.length > 0) {
         tl.fromTo(texts,
-          { y: 100, opacity: 0 },
-          { y: 0, opacity: 1, duration: 1.2, stagger: 0.15, ease: 'power2.out' },
-          '+=0.1' // 약간의 지연 후 시작
+          { y: 100, opacity: 0, force3D: true },
+          { y: 0, opacity: 1, duration: 1.2, stagger: 0.1, ease: 'power2.out', force3D: true },
+          '+=0.1'
         );
       }
     }
   }
 });
+
+
+
 
 
 

@@ -6,18 +6,17 @@
 /* 공통 섹션 스타일 */
 .about_vision,.about_awards,.about_partners {width: 100%;position: relative;}
 .about_vision,.about_awards,.about_partners {background-color:#fff; z-index:99 !important;}
-
-
-/* about_visual */
 .mo_vision {display:none;}
 .pc_vision li {text-align:right; overflow:hidden;}
 .pc_vision li:last-of-type {text-align:left;}
-.pc_vision li span {display:block; transform:translateY(400px);}
+.pc_vision li span {display:block; transform:translate3d(0, 200px, 0); opacity:0; will-change:transform, opacity;}
+
+
+/* about_visual */
 .svg_01, .svg_02 {transform:scale(1);}
 svg { height: auto; object-fit: contain;}
 path {stroke:white; stroke-width:2; fill:rgba(255, 255, 255, 0); stroke-linecap:round; stroke-linejoin:round;}
 .about_visual {width:100%; height:100vh; background-color: #000; position: fixed; top:0; left:0; z-index:10;  display:flex; overflow:hidden;}
-/* .svg_01 {width:72.916666%; position:absolute; top:-0; right:27.61927%;} */
 .svg_01 {width:100%; position:absolute; left:-7%; top:-15%;}
 .svg_01 svg, .svg_02 svg {width:100%; height: auto; display: block;}
 .svg_02 {width:75%; position:absolute; left:25%; top:-48%;}
@@ -32,7 +31,7 @@ section dt span {font-size:32px; font-weight:400;}
 
 /* about_vision */
 .about_vision {padding-top:110px; padding-bottom: 50px}
-.about_vision .cont_inner h2 p {text-indent:195px; text-align:left;  opacity:0; transform:translateY(100px); overflow:hidden;}
+.about_vision .cont_inner h2 p {text-indent:195px; text-align:left; opacity:0; transform:translateY(100px); overflow:hidden;}
 .about_vision .cont_inner h2 p:last-of-type {text-align:left;}
 .about_vision .cont_inner > dl:first-of-type {margin:220px 0 200px;}
 .about_vision .cont_inner > dl dt p {margin-bottom:40px; font-size:32px; font-weight:700;}
@@ -50,7 +49,7 @@ section dt span {font-size:32px; font-weight:400;}
 .about_awards .cont_inner > dl > dt img {width:344px; margin-top:16px;}
 .about_awards .cont_inner > dl > dd h2 ul {max-width:920px;}
 .about_awards .cont_inner > dl > dd h2 ul li {text-align:left;}
-.about_awards .cont_inner > dl > dd > p {font-size:32px;  margin:80px 0; font-weight:700;}
+.about_awards .cont_inner > dl > dd > p {font-size:32px; margin:80px 0; font-weight:700; transform:translate3d(0, 200px, 0); opacity:0; will-change:transform, opacity;}
 .about_awards .cont_inner > dl > dd > ul {display:flex;}
 .about_awards .cont_inner > dl > dd > .about_swiper ul li {width:230px !important; height:182px; padding:59px 32px 65px; background-color:#FAFAFA; box-sizing:border-box; display:flex; flex-direction:column;}
 .about_awards .cont_inner > dl > dd > .about_swiper ul li strong {font-size:48px; font-weight:700;}
