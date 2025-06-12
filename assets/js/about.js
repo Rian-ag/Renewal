@@ -76,6 +76,28 @@ $(document).ready(function () {
           master.add(tl);
       });
 
+    // 첫 번째 span, 두 번째, 세 번째 span을 자동으로 선택
+    const spans = gsap.utils.toArray('.about_vision h2 span');
+
+    // 타임라인 생성
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: '.about_vision h2',
+        start: 'top 70%',
+        end: '90% 90%',
+        toggleActions: 'play none none none',
+        markers: true,
+      }
+    });
+
+    // stagger를 사용하여 순차 재생 설정
+    tl.fromTo(spans,
+      { y: 200, opacity: 0 },
+      { y: 0, opacity: 1, duration: 1.5, stagger: 0.2, ease: 'power2.inOut' }
+    );
+      
+
+
 
     /* gsap 이벤트 */
     gsap.timeline({
@@ -87,9 +109,8 @@ $(document).ready(function () {
             // markers:true,
         }
     })
-    .to('.about_vision h2 p:nth-child(1)',{y:'0px', duration:1, ease:'none', opacity:1},0.2)
-    .to('.about_vision h2 p:nth-child(2)',{y:'0px', duration:1, ease:'none', opacity:1},0.4)
-    .to('.about_vision h2 p:nth-child(3)',{y:'0px', duration:1, ease:'none', opacity:1},0.6)
+    .to('.about_vision h2 p',{y:'0px', duration:1, ease:'none', opacity:1},0.2)
+
 
     gsap.timeline({
         scrollTrigger:{
@@ -100,7 +121,7 @@ $(document).ready(function () {
             // markers:true,
         }
     })
-    .to('.about_vision .one dd',{x:'0px', duration:1, ease:'none', opacity:1},0.2)
+    .to('.about_vision .one dd',{x:'0px', duration:3, ease:'none', opacity:1},0.2)
 
     gsap.timeline({
         scrollTrigger:{
@@ -296,6 +317,56 @@ $(document).ready(runPartnerAnimation);
     $scroll.css('opacity', 0);
     $(this).removeClass('hide-cursor');
   });
+
+
+  /* about_partners hover 이벤트 */
+    $('.about_partners li img').each(function () {
+    const $img = $(this);
+    const originalSrc = $img.attr('src');
+    let onSrc;
+
+    // PC용 이미지 처리
+    const pcMatch = originalSrc.match(/(Frame\s?\d+)(\.png)/);
+    if (pcMatch) {
+      const baseName = pcMatch[1];
+      const extension = pcMatch[2];
+      onSrc = originalSrc.replace(baseName + extension, baseName + ' on' + extension);
+    }
+
+    // 모바일용 이미지 처리
+    const moMatch = originalSrc.match(/\/(\d+)(\.png)/);
+    if (!onSrc && moMatch) {
+      const number = moMatch[1];
+      const extension = moMatch[2];
+      onSrc = originalSrc.replace(number + extension, number + ' on' + extension);
+    }
+
+    // 이벤트 등록
+    if (onSrc) {
+      // PC: hover
+      $img.on('mouseenter', function () {
+        $(this).stop().fadeOut(150, function () {
+          $(this).attr('src', onSrc).fadeIn(150);
+        });
+      });
+
+      $img.on('mouseleave', function () {
+        $(this).stop().fadeOut(150, function () {
+          $(this).attr('src', originalSrc).fadeIn(150);
+        });
+      });
+
+      // Mobile: touchstart / touchend 대응
+      $img.on('touchstart', function () {
+        $(this).attr('src', onSrc);
+      });
+
+      $img.on('touchend touchcancel', function () {
+        $(this).attr('src', originalSrc);
+      });
+    }
+  });
+
 
 
 
