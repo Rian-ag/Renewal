@@ -7,7 +7,7 @@ body {
     letter-spacing: -0.02em;
     background-color: #000;
     color: #fff;
-    overflow: hidden;
+    overflow-y: hidden;
 }
 
 img {
@@ -42,7 +42,6 @@ img {
     height: 24px;
 }
 .logo img {
-    display: block;
     width: 100%;
 }
 .menu-icon {
@@ -92,10 +91,6 @@ section.active {
     right: 0;
     bottom: 0;
     z-index: -1;
-    transition: transform 3s ease;
-}
-section.active .section-content {
-    transform: scale(1.2);
 }
 
 .slogan {
@@ -124,7 +119,14 @@ section.active .section-content {
     letter-spacing: -0.48px;
 }
 
-.project-wrapper .project-info {
+.project-image img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.8s ease, opacity 0.8s ease;
+    transform-origin: center;
+}
+
+.project-info {
     display: flex;
     padding-bottom: 8px;
     flex-direction: column;
@@ -135,26 +137,45 @@ section.active .section-content {
     line-height: 102%;
     letter-spacing: -0.28px;
 }
+.project-info li {
+    transform: translateY(10%);
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.6s ease-in-out;
+}
 
+.visual-cont.active .project-info li {
+    transform: translateY(0);
+    opacity: 1;
+    overflow: visible;
+}
+.visual-cont.active .project-info li:nth-child(1) {
+    transition-delay: 0.2s;
+}
+.visual-cont.active .project-info li:nth-child(2) {
+    transition-delay: 0.3s;
+}
+.visual-cont.active .project-info li:nth-child(3) {
+    transition-delay: 0.4s;
+}
 .visual-cont .project,
 .visual-cont .slogan {
-    opacity: 0;
     display: block;
-    transition: all 0.8s ease-in-out;
+    transform: translateY(10%);
+    opacity: 0;
+    overflow: hidden;
+    transition: all 0.6s ease-in-out;
 }
-.visual-cont .slogan {
-    /* transition-delay: 0.2s; */
-}
-.visual-cont .project {
-    transform: translateX(-100%);
-}
-.visual-cont .slogan {
-    transform: translateX(100%);
-}
+
 .visual-cont.active .project,
 .visual-cont.active .slogan {
+    transform: translateY(0);
     opacity: 1;
-    transform: translateX(0);
+    overflow: visible;
+}
+
+.visual-cont.active .project {
+    transition-delay: 0.1s;
 }
 .visual-cont {
     position: fixed;
