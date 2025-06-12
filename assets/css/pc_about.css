@@ -48,6 +48,8 @@ section dt span {font-size:32px; font-weight:400;}
 .about_awards {padding-bottom:50px; overflow:hidden;}
 .about_awards .cont_inner > dl > dt {width:480px;}
 .about_awards .cont_inner > dl > dt img {width:344px; margin-top:16px;}
+.about_awards .cont_inner > dl > dd h2 ul {max-width:920px;}
+.about_awards .cont_inner > dl > dd h2 ul li {text-align:left;}
 .about_awards .cont_inner > dl > dd > p {font-size:32px;  margin:80px 0; font-weight:700;}
 .about_awards .cont_inner > dl > dd > ul {display:flex;}
 .about_awards .cont_inner > dl > dd > .about_swiper ul li {width:230px !important; height:182px; padding:59px 32px 65px; background-color:#FAFAFA; box-sizing:border-box; display:flex; flex-direction:column;}
