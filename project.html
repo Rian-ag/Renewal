@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>RIAN Project</title>
+        <!-- Font -->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700;800&display=swap"
+            rel="stylesheet"
+        />
+        <!-- CSS -->
+        <link rel="stylesheet" href="./assets/css/swiper-bundle.min.css" />
+        <link rel="stylesheet" href="./assets/css/common.css" />
+        <link rel="stylesheet" href="./assets/css/main.css" />
+        <link rel="stylesheet" href="./assets/css/pc_project.css" />
+    </head>
+    <body>
+        <div id="wrap">
+            <!-- HEADER -->
+            <header id="header">
+                <div class="header-left">
+                    <a class="logo" href="#">
+                        <img src="./assets/images/common/h1_logo.png" alt="Rian logo" />
+                    </a>
+                </div>
+                <div class="header-right">
+                    <button class="menu-icon" aria-label="메뉴 열기"></button>
+                </div>
+            </header>
+
+            <!-- SECTION -->
+            <div id="section_wrap">
+                <section style="background-color: #000" data-index="0"><div class="section-content"></div></section>
+                <section style="background-color: #131313" data-index="1"><div class="section-content"></div></section>
+                <section style="background-color: #e07356" data-index="2"><div class="section-content"></div></section>
+
+                <div class="visual-cont">
+                    <strong class="slogan"></strong>
+                    <div class="project-wrapper">
+                        <span class="project"></span>
+                        <div class="project-image">
+                            <img src="" alt="" />
+                        </div>
+                        <ul class="project-info">
+                            <li>INDUSTRY :<br /><span class="industry"></span></li>
+                            <li>DATE :<br /><span class="date"></span></li>
+                            <li>Project Type :<br /><span class="type"></span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom -->
+            <div id="bottom">
+                <div>
+                    <a href="mailto:rianag@rianag.com">RIANAG@RIANAG.COM</a>
+                    <a href="http://daum.net" target="_blank" rel="noopener noreferrer">BLOG</a>
+                </div>
+                <a href="javascript:void(0);" class="download">BROCHURE DOWNLOAD</a>
+            </div>
+        </div>
+
+        <!-- 커스텀 커서 -->
+        <div class="custom-cursor">View</div>
+
+        <!-- JS -->
+        <script src="./assets/js/jquery-3.7.1.min.js"></script>
+        <script src="./assets/js/gsap.min.js"></script>
+        <script src="./assets/js/ScrollTrigger.min.js"></script>
+        <script src="./assets/js/common.js"></script>
+        <!-- <script src="./assets/js/simplefullpage.js"></script> -->
+        <script>
+            $(function () {
+                gsap.registerPlugin(ScrollTrigger);
+
+                const project = {
+                    slogan: [
+                        'Go deep<br>Dive in<br>Watch on',
+                        'Simple<br>Clear<br>Module',
+                        'Effortless<br>Chic<br>Lifestyle',
+                    ],
+                    title: ['CGV<br>On MOBILE', 'HOME &<br>SHOPPING', 'LOTTE<br>DUTY FREE'],
+                    industry: ['Commerce', 'Commerce', 'Commerce'],
+                    date: ['July, 2025', '2021 - In Progress', '2019 - In Progress'],
+                    type: [
+                        'UI/UX Design / Mobile Web&App / PC Web',
+                        'UI/UX Design / Mobile Web&App / PC Web',
+                        'UI/UX Design / Mobile Web&App / PC Web',
+                    ],
+                };
+
+                // 각 섹션에 대해 ScrollTrigger 생성
+                $('section').each(function (i) {
+                    ScrollTrigger.create({
+                        trigger: this,
+                        start: 'top center',
+                        onEnter: () => showProject(i),
+                        onLeaveBack: () => showProject(i),
+                    });
+                });
+
+                // 프로젝트 콘텐츠 표시 함수 (애니메이션 포함)
+                function showProject(index) {
+                    const $visual = $('.visual-cont');
+                    const $projectImage = $visual.find('.project-image img');
+
+                    // 텍스트 & 이미지 콘텐츠 업데이트
+                    $visual.find('.slogan').html(project.slogan[index]);
+                    $visual.find('.project').html(project.title[index]);
+                    $visual.find('.industry').text(project.industry[index]);
+                    $visual.find('.date').text(project.date[index]);
+                    $visual.find('.type').text(project.type[index]);
+                    $projectImage.attr('src', `./assets/images/project/project${index + 1}.jpg`);
+
+                    // 애니메이션 초기 상태 설정
+                    gsap.set($visual, { autoAlpha: 0, y: 50 });
+                    gsap.set([$visual.find('.slogan'), $visual.find('.project'), $visual.find('.project-info li')], {
+                        opacity: 0,
+                        y: 20,
+                    });
+                    gsap.set($projectImage, { scale: 1.1, y: 30, opacity: 0 });
+
+                    // 애니메이션 재생
+                    const tl = gsap.timeline({ defaults: { ease: 'power2.out' } });
+
+                    tl.to($visual, { autoAlpha: 1, y: 0, duration: 0.8 })
+                        .to($visual.find('.slogan'), { opacity: 1, y: 0, duration: 0.6 }, '-=0.4')
+                        .to($visual.find('.project'), { opacity: 1, y: 0, duration: 0.6 }, '-=0.5')
+                        .to($visual.find('.project-info li').eq(0), { opacity: 1, y: 0, duration: 0.4 }, '-=0.4')
+                        .to($visual.find('.project-info li').eq(1), { opacity: 1, y: 0, duration: 0.4 }, '-=0.3')
+                        .to($visual.find('.project-info li').eq(2), { opacity: 1, y: 0, duration: 0.4 }, '-=0.3')
+                        .to($projectImage, { scale: 1, y: 0, opacity: 1, duration: 1 }, '-=1');
+
+                    // active 클래스 조절
+                    $visual.addClass('active');
+                }
+
+                // 커스텀 커서
+                const $cursor = $('.custom-cursor');
+                const $area = $('.section-content');
+
+                $area.on('mousemove', function (e) {
+                    $cursor.css({ left: e.clientX, top: e.clientY });
+                });
+
+                $area.on('mouseenter', () => $cursor.css('opacity', 1));
+                $area.on('mouseleave', () => $cursor.css('opacity', 0));
+            });
+        </script>
+    </body>
+</html>

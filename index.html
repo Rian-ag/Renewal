@@ -56,6 +56,7 @@
 				//autoplaySpeed: 1000,
 				on: {
 					init() {
+						console.log('a : '+current);
 						$('.fp-arrows').prepend(`
 							<div class="fp-navi">
 								<span>${current}</span>
@@ -161,7 +162,7 @@
 		<!-- //header -->
 
 		<div id="section_wrap">
-			<section>
+			<section class="active">
 				<div class="parallax-bg" style="background-image: url('/assets/images/main/visual_cgv.png');"></div>
 			</section>
 			<section>
