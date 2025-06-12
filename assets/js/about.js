@@ -101,7 +101,7 @@ $(document).ready(function () {
             start:'20% 90%',
             end:'90% 100%',
             toggleActions: 'play none none none',
-            markers:true,
+            // markers:true,
         }
     })
     .to('.about_vision .two dd dl:nth-child(1)',{duration:1, ease:'none', opacity:1},0.2)
@@ -123,12 +123,12 @@ $(document).ready(function () {
     scrollTrigger: {
       trigger: '.wrap > p > img',
       start: 'top 90%',
-      end: '50% 100%',
+      end: 'bottom 60%', // 애니메이션 범위 조정 가능
       toggleActions: 'play none none none',
       // markers: true,
     }
 })
-.to('.wrap > p > img', {clipPath: 'inset(16%);', y: 0,opacity: 1,duration: 1, ease: 'power2.out'}, 0.2);
+.to('.wrap > p > img', {clipPath: 'inset(0% 0%)', y: 0,opacity: 1,duration: 1, ease: 'power2.out'}, 0.2);
 
 /* count evetn */
   const $targets = $('.about_swiper .swiper-slide strong');
@@ -292,6 +292,8 @@ $(document).ready(runPartnerAnimation);
     }
   });
 
+
+  
 
 
 
