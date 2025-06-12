@@ -46,3 +46,53 @@ $(document).ready(function () {
     });
     /* e:sitemap */
 });
+
+/* 텍스트 줄바꿈 노출 인터렉션 */
+function splitTextByLine(text, $container) {
+
+    $container.empty();
+
+    // container의 스타일을 복사한 tempContainer 생성
+    const $tempContainer = $container
+        .clone()
+        .css({
+            overflow:'hidden',
+            height: 0
+        })
+        .addClass('tempContainer')
+        .prependTo($container.parent());
+
+    let currentTop = null;
+    let currentLine = '';
+
+    for (let i = 0; i < text.length; i++) {
+        const char = text[i];
+        const $span = $(`<span>${char}</span>`);
+        $tempContainer.append($span);
+
+        const top = $span.position().top;
+
+        $span.attr('data-top',top);
+
+        console.log('a : ', i, `"${char}"`, ' / top:', top); // ← 줄바꿈 추적용
+
+        if (currentTop === null) {
+            currentTop = top;
+        }
+
+        if (top === currentTop) {
+            currentLine += char;
+        } else {
+            $container.append(`<div>${currentLine}</div>`);
+            currentLine = char;
+            currentTop = top;
+        }
+    }
+
+    // 마지막 줄 추가
+    if (currentLine !== '') {
+        $container.append(`<div>${currentLine}</div>`);
+    }
+
+    $tempContainer.remove();
+}
