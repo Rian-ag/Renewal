@@ -44,7 +44,7 @@ section dt span {font-size:32px; font-weight:400;}
 
 /* about_awards */
 .wrap > p {text-align:center; background:#fff; position:relative; z-index:99;}
-.wrap > p > img {clip-path: inset(16%);; /* 위쪽에서 아래로 오픈 */ width:100%;  padding:0 30px; object-fit:cover; box-sizing:border-box; opacity:0; transform:translateY(100px); z-index:99;}
+.wrap > p > img {clip-path: inset(0 50%); width:100%;  padding:0 30px; object-fit:cover; box-sizing:border-box; opacity:0; transform:translateY(100px); z-index:99;}
 .about_awards {padding-bottom:50px; overflow:hidden;}
 .about_awards .cont_inner > dl > dt {width:480px;}
 .about_awards .cont_inner > dl > dt img {width:344px; margin-top:16px;}
@@ -53,7 +53,7 @@ section dt span {font-size:32px; font-weight:400;}
 .about_awards .cont_inner > dl > dd > .about_swiper ul li {width:230px !important; height:182px; padding:59px 32px 65px; background-color:#FAFAFA; box-sizing:border-box; display:flex; flex-direction:column;}
 .about_awards .cont_inner > dl > dd > .about_swiper ul li strong {font-size:48px; font-weight:700;}
 .about_awards .cont_inner > dl > dd > .about_swiper ul li span {margin-top:14px; font-size:14px; font-weight:500;}
-.about_awards .cont_inner > dl > dd > div {margin-top:60px;}
+.about_awards .cont_inner > dl > dd > div W{margin-top:60px;}
 .about_awards .cont_inner > dl > dd > div p {margin-bottom:16px;}
 .about_awards .cont_inner > dl > dd > div p:last-of-type {margin-bottom:0;}
 .about_awards .cont_inner > dl > dd > div p span{color:#808080; font-size:14px; font-weight:400;}
