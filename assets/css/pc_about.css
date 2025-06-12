@@ -44,7 +44,7 @@ section dt span {font-size:32px; font-weight:400;}
 
 /* about_awards */
 .wrap > p {text-align:center; background:#fff; position:relative; z-index:99;}
-.wrap > p > img {clip-path: inset(100% 0 0 0); /* 위쪽에서 아래로 오픈 */ width:70%;  padding:0 30px; object-fit:cover; box-sizing:border-box; opacity:0; transform:translateY(100px); z-index:99;}
+.wrap > p > img {clip-path: inset(16%);; /* 위쪽에서 아래로 오픈 */ width:100%;  padding:0 30px; object-fit:cover; box-sizing:border-box; opacity:0; transform:translateY(100px); z-index:99;}
 .about_awards {padding-bottom:50px; overflow:hidden;}
 .about_awards .cont_inner > dl > dt {width:480px;}
 .about_awards .cont_inner > dl > dt img {width:344px; margin-top:16px;}
