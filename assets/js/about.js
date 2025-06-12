@@ -11,35 +11,6 @@ $(document).ready(function () {
     };
     var swiper = new Swiper('.about_swiper .visual.swiper-container', option_sec03);
 
-    /* gsap path 이벤트 */
-    // const paths = document.querySelectorAll('path');
-
-    // paths.forEach((path, i) => {
-    //     const length = path.getTotalLength();
-    //     path.style.stroke = "white";
-    //     path.style.strokeWidth = "2";
-    //     path.style.fill = "none";
-
-    //     gsap.set(path, {
-    //         strokeDasharray: length,
-    //         strokeDashoffset: length
-    //     });
-
-    //     gsap.to(path, {
-    //         strokeDashoffset: 0,
-    //         duration: 2,
-    //         delay: i * 0.3,
-    //         ease: "power2.out",
-    //         onComplete: () => {
-    //         gsap.to(path, {
-    //             fill: "white",
-    //             duration: 0.5,
-    //             ease: "power1.inOut"
-    //         });
-    //         }
-    //     });
-    // });
-
     /* gsap  */
         // .about_visual을 pin 하고 이후 콘텐츠가 올라오는 구조
     ScrollTrigger.create({
@@ -83,10 +54,11 @@ $(document).ready(function () {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: '.about_vision h2',
+
         start: 'top 70%',
         end: '90% 90%',
         toggleActions: 'play none none none',
-        markers: true,
+        // markers: true,
       }
     });
 
@@ -126,10 +98,10 @@ $(document).ready(function () {
     gsap.timeline({
         scrollTrigger:{
             trigger:'.about_vision .two',
-            start:'top 90%',
+            start:'20% 90%',
             end:'90% 100%',
             toggleActions: 'play none none none',
-            // markers:true,
+            markers:true,
         }
     })
     .to('.about_vision .two dd dl:nth-child(1)',{duration:1, ease:'none', opacity:1},0.2)
@@ -147,7 +119,16 @@ $(document).ready(function () {
             // markers:true,
         }
     })
-    .to('.wrap > p > img',{y:'0px', duration:1, ease:'none', opacity:1},0.2)
+  gsap.timeline({
+    scrollTrigger: {
+      trigger: '.wrap > p > img',
+      start: 'top 90%',
+      end: '50% 100%',
+      toggleActions: 'play none none none',
+      // markers: true,
+    }
+})
+.to('.wrap > p > img', {width: '100%', y: 0,opacity: 1,duration: 1, ease: 'power2.out'}, 0.2);
 
 /* count evetn */
   const $targets = $('.about_swiper .swiper-slide strong');
@@ -203,62 +184,6 @@ $(document).ready(function () {
     $(this).removeClass('hide-cursor');
   });
 
-    // let triggered = false;
-
-    // ScrollTrigger.create({
-    //     trigger: ".about_partners",
-    //     start: "top 80%",
-    //     once: true, // 스크롤 한 번만 작동
-    //     onEnter: function () {
-    //         if (triggered) return;
-    //         triggered = true;
-
-    //         $(".about_partners ul li").each(function (index) {
-    //             gsap.fromTo($(this), 
-    //                 { opacity: 0, y: 50 }, 
-    //                 {
-    //                     opacity: 1,
-    //                     y: 0,
-    //                     duration: 0.6,
-    //                     ease: "bounce.out",
-    //                     delay: index * 0.1
-    //                 }
-    //             );
-    //         });
-    //     }
-    // });
-
-    // let triggered = false;
-
-    // ScrollTrigger.create({
-    //     trigger: ".about_partners",
-    //     start: "top 80%",
-    //     once: true,
-    //     onEnter: function () {
-    //         if (triggered) return;
-    //         triggered = true;
-
-    //         $(".about_partners ul li").each(function (index) {
-    //             gsap.fromTo($(this),
-    //                 { opacity: 0, y: 0 },
-    //                 {
-    //                     opacity: 1,
-    //                     keyframes: [
-    //                         { y: 0, opacity: 0, offset: 0 },
-    //                         { y: -20, opacity: 1, offset: 0.2 },  // 튕김 상단
-    //                         { y: 10, offset: 0.4 },               // 아래로 반동
-    //                         { y: -6, offset: 0.6 },               // 작은 튕김
-    //                         { y: 3, offset: 0.8 },                // 마지막 미세 반동
-    //                         { y: 0, offset: 1 }                   // 정착
-    //                     ],
-    //                     duration: 0.8,
-    //                     delay: index * 0.5,
-    //                     ease: "power1.out"
-    //                 }
-    //             );
-    //         });
-    //     }
-    // });
 
 let animated = false;
 

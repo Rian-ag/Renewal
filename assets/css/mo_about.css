@@ -47,7 +47,7 @@ em {display:none;}
 
 /* about_awards */
 .wrap > p {height:480px; padding-bottom:120px;  background-color:#fff; position:relative; z-index:99; overflow:hidden;}
-.wrap > p > img {width:100%; height:100%; object-fit:cover; display:block; opacity:0; transform:translateY(100px); }
+.wrap > p > img {width:30%; height:100%; object-fit:cover; display:block; opacity:0; transform:translateY(100px); }
 .about_awards {position:relative; overflow:hidden;}
 .about_awards .cont_inner {margin-top:0;}
 .about_awards h2 {margin-top:60px;}
