@@ -22,7 +22,7 @@ path {stroke:white; stroke-width:2; fill:rgba(255, 255, 255, 0); stroke-linecap:
 .svg_01 svg, .svg_02 svg {width:100%; height: auto; display: block;}
 .svg_02 {width:75%; position:absolute; left:25%; top:-48%;}
 .about_visual > em {color:#fff; font-size:90px; font-weight:900; position:absolute; top:56%; left:18%;}
-.cont_inner {width:1400px; margin:110px auto 160px;}
+.cont_inner {max-width:1400px; margin:110px auto 160px;}
 h2 {font-size:78px; font-weight:700;}
 h3 {font-size:32px; font-weight:700;}
 section dl {display:flex;}
@@ -44,7 +44,7 @@ section dt span {font-size:32px; font-weight:400;}
 
 /* about_awards */
 .wrap > p {text-align:center; background:#fff; position:relative; z-index:99;}
-.wrap > p > img {min-width:1920px; height:900px; padding:0 30px; box-sizing:border-box; opacity:0; transform:translateY(100px); z-index:99;}
+.wrap > p > img {clip-path: inset(100% 0 0 0); /* 위쪽에서 아래로 오픈 */ width:70%;  padding:0 30px; object-fit:cover; box-sizing:border-box; opacity:0; transform:translateY(100px); z-index:99;}
 .about_awards {padding-bottom:50px; overflow:hidden;}
 .about_awards .cont_inner > dl > dt {width:480px;}
 .about_awards .cont_inner > dl > dt img {width:344px; margin-top:16px;}
