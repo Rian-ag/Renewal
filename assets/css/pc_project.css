@@ -7,7 +7,7 @@ body {
     letter-spacing: -0.02em;
     background-color: #000;
     color: #fff;
-    overflow-y: hidden;
+    overflow: hidden;
 }
 
 img {
@@ -32,17 +32,6 @@ section {
 
 section.active {
     z-index: 1;
-}
-
-.section-content {
-    background-size: cover;
-    background-position: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: -1;
 }
 
 .slogan {
@@ -71,14 +60,7 @@ section.active {
     letter-spacing: -0.48px;
 }
 
-.project-image img {
-    width: 100%;
-    height: auto;
-    transition: transform 0.8s ease, opacity 0.8s ease;
-    transform-origin: center;
-}
-
-.project-info {
+.project-wrapper .project-info {
     display: flex;
     padding-bottom: 8px;
     flex-direction: column;
@@ -89,48 +71,9 @@ section.active {
     line-height: 102%;
     letter-spacing: -0.28px;
 }
-.project-info li {
-    transform: translateY(10%);
-    opacity: 0;
-    overflow: hidden;
-    transition: all 0.6s ease-in-out;
-}
 
-.visual-cont.active .project-info li {
-    transform: translateY(0);
-    opacity: 1;
-    overflow: visible;
-}
-.visual-cont.active .project-info li:nth-child(1) {
-    transition-delay: 0.2s;
-}
-.visual-cont.active .project-info li:nth-child(2) {
-    transition-delay: 0.3s;
-}
-.visual-cont.active .project-info li:nth-child(3) {
-    transition-delay: 0.4s;
-}
-.visual-cont .project,
-.visual-cont .slogan {
-    display: block;
-    transform: translateY(10%);
-    opacity: 0;
-    overflow: hidden;
-    transition: all 0.6s ease-in-out;
-}
-
-.visual-cont.active .project,
-.visual-cont.active .slogan {
-    transform: translateY(0);
-    opacity: 1;
-    overflow: visible;
-}
-
-.visual-cont.active .project {
-    transition-delay: 0.1s;
-}
 .visual-cont {
-    position: fixed;
+    position: absolute;
     color: #fff;
     bottom: 83px;
     left: 30px;
