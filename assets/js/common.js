@@ -70,7 +70,7 @@ function splitTextByLine(text, $container, options = { useSpan: false }) {
 
     for (let i = 0; i < text.length; i++) {
         const char = text[i];
-        const $span = $(`<span>${char}</span>`);
+        const $span = $(`<span style="display:inline-block;">${char}</span>`);
         $tempContainer.append($span);
 
         const top = $span.position().top;
@@ -84,12 +84,12 @@ function splitTextByLine(text, $container, options = { useSpan: false }) {
 
         if (top === currentTop) {
             currentLine += char;
-            if (options.useSpan) $lineWrapper.append(`<span>${char}</span>`);
+            if (options.useSpan) $lineWrapper.append(`<span style="display:inline-block;">${char}</span>`);
         } else {
             // 줄바뀜 감지 시 처리
             if (options.useSpan) {
                 $container.append($lineWrapper);
-                $lineWrapper = $('<div></div>').append(`<span>${char}</span>`);
+                $lineWrapper = $('<div></div>').append(`<span style="display:inline-block;">${char}</span>`);
             } else {
                 $container.append(`<div>${currentLine}</div>`);
             }
