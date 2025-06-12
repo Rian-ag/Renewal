@@ -84,26 +84,6 @@ animatedHeadingSelectors.forEach(selector => {
   }
 });
 
-
-
-
-
-
-
-    /* gsap 이벤트 */
-    // gsap.timeline({
-    //     scrollTrigger:{
-    //         trigger:'h2',
-    //         start:'top 90%',
-    //         end:'50% 100%',
-    //         toggleActions: 'play none none none',
-    //         // markers:true,
-    //     }
-    // })
-    // .to('.about_vision h2 p',{y:'0px', duration:1, ease:'none', opacity:1},0.2)
-    // .to('.about_awards h2 p',{y:'0px', duration:1, ease:'none', opacity:1},0.2)
-
-
     gsap.timeline({
         scrollTrigger:{
             trigger:'.about_vision .one',
