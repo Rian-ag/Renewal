@@ -48,22 +48,25 @@ $(document).ready(function () {
 });
 
 /* 텍스트 줄바꿈 노출 인터렉션 */
-function splitTextByLine(text, $container) {
-
+function splitTextByLine(text, $container, options = { useSpan: false }) {
     $container.empty();
 
     // container의 스타일을 복사한 tempContainer 생성
     const $tempContainer = $container
         .clone()
         .css({
-            overflow:'hidden',
-            height: 0
+            overflow: 'hidden',
+            height: 0,
+            position: 'absolute',
+            visibility: 'hidden',
+            whiteSpace: 'pre-wrap',
         })
         .addClass('tempContainer')
         .prependTo($container.parent());
 
     let currentTop = null;
     let currentLine = '';
+    let $lineWrapper = $('<div></div>');
 
     for (let i = 0; i < text.length; i++) {
         const char = text[i];
@@ -71,10 +74,9 @@ function splitTextByLine(text, $container) {
         $tempContainer.append($span);
 
         const top = $span.position().top;
+        $span.attr('data-top', top);
 
-        $span.attr('data-top',top);
-
-        console.log('a : ', i, `"${char}"`, ' / top:', top); // ← 줄바꿈 추적용
+        console.log('a : ', i, `"${char}"`, ' / top:', top); // 디버깅용
 
         if (currentTop === null) {
             currentTop = top;
@@ -82,16 +84,28 @@ function splitTextByLine(text, $container) {
 
         if (top === currentTop) {
             currentLine += char;
+            if (options.useSpan) $lineWrapper.append(`<span>${char}</span>`);
         } else {
-            $container.append(`<div>${currentLine}</div>`);
+            // 줄바뀜 감지 시 처리
+            if (options.useSpan) {
+                $container.append($lineWrapper);
+                $lineWrapper = $('<div></div>').append(`<span>${char}</span>`);
+            } else {
+                $container.append(`<div>${currentLine}</div>`);
+            }
+
             currentLine = char;
             currentTop = top;
         }
     }
 
-    // 마지막 줄 추가
+    // 마지막 줄 처리
     if (currentLine !== '') {
-        $container.append(`<div>${currentLine}</div>`);
+        if (options.useSpan) {
+            $container.append($lineWrapper);
+        } else {
+            $container.append(`<div>${currentLine}</div>`);
+        }
     }
 
     $tempContainer.remove();
