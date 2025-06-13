@@ -6,6 +6,7 @@
 /* 공통 섹션 스타일 */
 .about_vision,.about_awards,.about_partners {width: 100%;position: relative;}
 .about_vision,.about_awards,.about_partners {background-color:#fff; z-index:99 !important;}
+.about_vision h2 p,.about_awards h2 p {transform:translate3d(0, 200px, 0); opacity:0; will-change:transform, opacity;}
 
 /* .about_visual은 고정될 영역 */
 
@@ -31,7 +32,7 @@ em {display:none;}
 /* about_vision */
 .about_vision {padding:50px 0 60px;}
 .about_vision .cont_inner h2 {margin-top:170px;}
-.about_vision .cont_inner h2 p {text-indent:105px; text-align:left; opacity:0; transform:translateY(100px); overflow:hidden; overflow-wrap: break-word;}
+.about_vision .cont_inner h2 p {text-indent:105px; text-align:left; overflow:hidden; overflow-wrap: break-word;}
 .about_vision .cont_inner h2 p:not(:first-child) {text-align:left;}
 .about_vision .cont_inner > dl:first-of-type {margin:120px 0;}
 .about_vision .cont_inner > dl dt {margin-bottom:40px;}
@@ -47,7 +48,7 @@ em {display:none;}
 
 /* about_awards */
 .wrap > p {height:480px; padding-bottom:120px;  background-color:#fff; position:relative; z-index:99; overflow:hidden;}
-.wrap > p > img {width:30%; height:100%; object-fit:cover; display:block; opacity:0; transform:translateY(100px); }
+.wrap > p > img {width:100%; height:100%; object-fit:cover; display:block; opacity:0; transform:translateY(100px); }
 .about_awards {position:relative; overflow:hidden;}
 .about_awards .cont_inner {margin-top:0;}
 .about_awards h2 {margin-top:60px;}

@@ -23,65 +23,64 @@ $(document).ready(function () {
     });
 
 
-      const allPaths = document.querySelectorAll('svg path');
-      let master = gsap.timeline({ defaults: { ease: "power1.inOut" } });
+    /* gsap 이벤트 */
+    const animatedHeadingSelectors = [
+      '.about_vision h2 span','.about_awards h2 span', '.about_awards h2 p'
+    ];
 
-      allPaths.forEach((path, i) => {
-          const length = path.getTotalLength();
-          gsap.set(path, {
-              strokeDasharray: length,
-              strokeDashoffset: length,
-              fill: 'rgba(255, 255, 255, 0)'
-          });
+    animatedHeadingSelectors.forEach(selector => {
+      const spans = gsap.utils.toArray(selector);
+      if (spans.length > 0) {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: selector.split(' ')[0],
+            start: 'top 70%',
+            end: '90% 90%',
+            toggleActions: 'play none none none',
+            // markers: true,
+          }
+        });
 
-          const tl = gsap.timeline();
+        tl.fromTo(spans,
+          { y: 200, opacity: 0, force3D: true },
+          { y: 0, opacity: 1, duration: 1.5, stagger: 0.2, ease: 'power2.inOut', force3D: true }
+        );
 
-          // 붓글씨처럼 stroke와 fill이 동시에 나타나는 효과
-          tl.to(path, {
-              strokeDashoffset: 0,
-              fill: 'rgba(255, 255, 255, 1)',
-              duration: 1.4,
-              ease: "power2.inOut"
-          });
-
-          master.add(tl);
-      });
-
-    // 첫 번째 span, 두 번째, 세 번째 span을 자동으로 선택
-    const spans = gsap.utils.toArray('.about_vision h2 span');
-
-    // 타임라인 생성
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: '.about_vision h2',
-
-        start: 'top 70%',
-        end: '90% 90%',
-        toggleActions: 'play none none none',
-        // markers: true,
+        if (selector === '.about_awards h2 span') {
+          const texts = gsap.utils.toArray('.about_awards dd > p');
+          if (texts.length > 0) {
+            tl.fromTo(texts,
+              { y: 100, opacity: 0, force3D: true },
+              { y: 0, opacity: 1, duration: 1, stagger: 0.05, ease: 'power2.out', force3D: true },
+              '+=0.1'
+            );
+          }
+        }
       }
     });
 
-    // stagger를 사용하여 순차 재생 설정
-    tl.fromTo(spans,
-      { y: 200, opacity: 0 },
-      { y: 0, opacity: 1, duration: 1.5, stagger: 0.2, ease: 'power2.inOut' }
-    );
-      
-
-
-
-    /* gsap 이벤트 */
-    gsap.timeline({
-        scrollTrigger:{
-            trigger:'.about_vision h2',
-            start:'top 90%',
-            end:'50% 100%',
+    
+    const moVision = document.querySelector('.mo_vision');
+    if (moVision) {
+      gsap.fromTo(moVision,
+        {
+          opacity: 0,
+          transform: 'translate3d(0, 100px, 0)'
+        },
+        {
+          scrollTrigger: {
+            trigger: moVision,
+            start: 'top 80%',
             toggleActions: 'play none none none',
-            // markers:true,
+            // markers: true
+          },
+          opacity: 1,
+          transform: 'translate3d(0, 0, 0)',
+          duration: 1.2,
+          ease: 'power2.out'
         }
-    })
-    .to('.about_vision h2 p',{y:'0px', duration:1, ease:'none', opacity:1},0.2)
+      );
+    }
 
 
     gsap.timeline({

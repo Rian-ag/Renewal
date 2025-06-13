@@ -17,6 +17,7 @@ section dl {display:flex;}
 section .cont_inner > dl > dt {min-width:480px;}
 section .cont_inner dl dd strong {font-size:32px; font-weight:700;}
 section dt span {font-size:32px; font-weight:400;}
+.about_vision h2 span,.about_awards h2 span,.about_awards dd > p {transform: translate3d(0, 200px, 0);opacity: 0;will-change: transform, opacity;}
 
 
 /* about_visual */
@@ -49,6 +50,8 @@ path {stroke:white; stroke-width:2; fill:rgba(255, 255, 255, 0); stroke-linecap:
 .about_awards .cont_inner > dl > dt img {width:344px; margin-top:16px;}
 .about_awards .cont_inner > dl > dd > p {font-size:32px;  margin:80px 0; font-weight:700;}
 .about_awards .cont_inner > dl > dd > ul {display:flex;}
+.about_awards .cont_inner > dl > dd h2 ul {width:calc(100% - 480px);}
+.about_awards .cont_inner > dl > dd h2 ul li {text-align:left;}
 .about_awards .cont_inner > dl > dd > .about_swiper ul li {width:230px !important; height:182px; padding:59px 32px 65px; background-color:#FAFAFA; box-sizing:border-box; display:flex; flex-direction:column;}
 .about_awards .cont_inner > dl > dd > .about_swiper ul li strong {font-size:48px; font-weight:700;}
 .about_awards .cont_inner > dl > dd > .about_swiper ul li span {margin-top:14px; font-size:14px; font-weight:500;}
