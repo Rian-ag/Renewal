@@ -59,7 +59,7 @@ path {stroke:white; stroke-width:2; fill:rgba(255, 255, 255, 0); stroke-linecap:
 .about_awards .cont_inner > dl > dd > div p {margin-bottom:16px;}
 .about_awards .cont_inner > dl > dd > div p:last-of-type {margin-bottom:0;}
 .about_awards .cont_inner > dl > dd > div p span{color:#808080; font-size:14px; font-weight:400;}
-.about_swiper {position: relative;}
+.about_swiper {margin-bottom:60px; position: relative;}
 
 /* about_partners */
 .mo_list {display:none !important;}

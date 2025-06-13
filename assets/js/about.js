@@ -51,7 +51,7 @@ $(document).ready(function () {
           if (texts.length > 0) {
             tl.fromTo(texts,
               { y: 100, opacity: 0, force3D: true },
-              { y: 0, opacity: 1, duration: 1, stagger: 0.05, ease: 'power2.out', force3D: true },
+              { y: 0, opacity: 1, duration: 0.5, stagger: 0.05, ease: 'power2.out', force3D: true },
               '+=0.1'
             );
           }
@@ -92,7 +92,7 @@ $(document).ready(function () {
             // markers:true,
         }
     })
-    .to('.about_vision .one dd',{x:'0px', duration:3, ease:'none', opacity:1},0.2)
+    .to('.about_vision .one dd',{x:'0px', duration:1, ease:'none', opacity:1},0.2)
 
     gsap.timeline({
         scrollTrigger:{
