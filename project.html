@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="./assets/css/common.css" />
         <link rel="stylesheet" href="./assets/css/pc_project.css" />
         <link rel="stylesheet" href="./assets/css/main.css" />
+        <link rel="stylesheet" href="./assets/css/ui.css" />
         <!-- JS -->
         <script type="text/javascript" src="/assets/js/jquery-3.7.1.min.js"></script>
         <script src="./assets/js/gsap.min.js"></script>
@@ -91,6 +92,98 @@
                         </div>
                     </div>
                 </section>
+                <!-- work-section -->
+                <section style="background-color: #fff">
+                    <div class="project-list">
+                        <h2>OUR <br />PROJECT</h2>
+                        <p>We make digital solutions that <br />deliver real results.</p>
+                        <ul class="lists">
+                            <li class="list-item" data-img="./assets/images/project/project-list-1.jpg">
+                                <p>CGV On MOBILE</p>
+                                <ol>
+                                    <li>UI/UX Design</li>
+                                    <li>Mobile Web & App</li>
+                                    <li>PC Web</li>
+                                </ol>
+                            </li>
+                            <li class="list-item" data-img="./assets/images/project/project-list-1.jpg">
+                                <p>HOME & SHOPPING</p>
+                                <ol>
+                                    <li>UI/UX Design</li>
+                                    <li>Mobile Web & App</li>
+                                    <li>PC Web</li>
+                                </ol>
+                            </li>
+                            <li class="list-item" data-img="./assets/images/project/project-list-1.jpg">
+                                <p>LOTTE DUTY FREE</p>
+                                <ol>
+                                    <li>UI/UX Design</li>
+                                    <li>Mobile Web & App</li>
+                                    <li>PC Web</li>
+                                </ol>
+                            </li>
+                            <li class="list-item" data-img="./assets/images/project/project-list-1.jpg">
+                                <p>KB Kookmin Card Tablet</p>
+                                <ol>
+                                    <li>UI/UX Design</li>
+                                    <li>Tablet Web & App</li>
+                                </ol>
+                            </li>
+                            <li class="list-item" data-img="./assets/images/project/project-list-1.jpg">
+                                <p>Hyundai Duty Free</p>
+                                <ol>
+                                    <li>UI/UX Design</li>
+                                    <li>Mobile Web & App</li>
+                                    <li>PC Web</li>
+                                </ol>
+                            </li>
+                            <li class="list-item" data-img="./assets/images/project/project-list-1.jpg">
+                                <p>HYUNDAI LIVART</p>
+                                <ol>
+                                    <li>UI/UX Design</li>
+                                    <li>Mobile Web & App</li>
+                                    <li>PC Web</li>
+                                </ol>
+                            </li>
+                            <li class="list-item" data-img="./assets/images/project/project-list-1.jpg">
+                                <p>SKT T ID ADMIN</p>
+                                <ol>
+                                    <li>UI/UX Design</li>
+                                    <li>Mobile Web & App</li>
+                                    <li>PC Web</li>
+                                    <li>Admin</li>
+                                </ol>
+                            </li>
+                            <li class="list-item" data-img="./assets/images/project/project-list-1.jpg">
+                                <p>CJ SEAFOOD</p>
+                                <ol>
+                                    <li>UI/UX Design</li>
+                                    <li>Mobile Web & App</li>
+                                    <li>PC Web</li>
+                                </ol>
+                            </li>
+                            <li class="list-item" data-img="./assets/images/project/project-list-1.jpg">
+                                <p>WOORI BANK TABLET BRUNCH</p>
+                                <ol>
+                                    <li>UI/UX Design</li>
+                                    <li>Mobile Web & App</li>
+                                    <li>PC Web</li>
+                                </ol>
+                            </li>
+                            <li class="list-item" data-img="./assets/images/project/project-list-1.jpg">
+                                <p>OK CASHBAG</p>
+                                <ol>
+                                    <li>UI/UX Design</li>
+                                    <li>Mobile Web & App</li>
+                                    <li>PC Web</li>
+                                </ol>
+                            </li>
+                        </ul>
+                        <div class="hover-thumb" id="hover-thumb">
+                            <img id="hover-img" src="" alt="Preview" />
+                        </div>
+                    </div>
+                </section>
             </div>
 
             <!-- bottom -->
@@ -101,6 +194,7 @@
                 </div>
                 <a href="javascript:void(0);" class="download">BROCHURE DOWNLOAD</a>
             </div>
+            <!-- //bottom -->
 
             <!-- 커서 -->
             <div class="custom-cursor">View</div>
@@ -113,11 +207,11 @@
                     slogan: ['Go deep\nDive in\nWatch on', 'Simple\nClear\nModule', 'Effortless\nChic\nLifestyle'],
                     title: ['CGV\nOn MOBILE', 'HOME &\nSHOPPING', 'LOTTE\nDUTY FREE'],
                     industry: ['Commerce', 'Commerce', 'Commerce'],
-                    date: ['July, 2025', '2021 - In Progress', '2019 - In Preogress'],
+                    date: ['July, 2025', '2021 - In Progress', '2019 - In Progress'],
                     type: [
                         'UI/UX Design / Mobile Web&App / PC Web',
-                        'UI/UX Design / Mobile Web&App/PC Web',
-                        'UI/UX Design / Mobile Web&App/PC Web',
+                        'UI/UX Design / Mobile Web&App / PC Web',
+                        'UI/UX Design / Mobile Web&App / PC Web',
                     ],
                 };
 
@@ -134,14 +228,14 @@
                     on: {
                         init() {
                             $('.fp-arrows').prepend(`
-                            <div class="fp-navi">
-                                <span>01</span>
-                                <em>${formattedTotal}</em>
-                            </div>
-                        `);
+                    <div class="fp-navi">
+                        <span>01</span>
+                        <em>${formattedTotal}</em>
+                    </div>
+                `);
                         },
                     },
-                    onLeave: function (prev, next) {
+                    onLeave: function () {
                         $('.visual-cont').removeClass('active');
                     },
                     afterLoad: function (index) {
@@ -152,14 +246,16 @@
                         const $visual = $section.find('.visual-cont');
 
                         // 데이터 채우기
-                        $visual.find('.project').html(project.title[index].replace(/\n/g, '<br>'));
-                        $visual.find('.slogan').html(project.slogan[index].replace(/\n/g, '<br>'));
-                        $visual.find('.industry').text(project.industry[index]);
-                        $visual.find('.date').text(project.date[index]);
-                        $visual.find('.type').text(project.type[index]);
-                        $visual
-                            .find('.project-image img')
-                            .attr('src', `./assets/images/project/project${index + 1}.jpg`);
+                        if (project.title[index]) {
+                            $visual.find('.project').html(project.title[index].replace(/\n/g, '<br>'));
+                            $visual.find('.slogan').html(project.slogan[index].replace(/\n/g, '<br>'));
+                            $visual.find('.industry').text(project.industry[index]);
+                            $visual.find('.date').text(project.date[index]);
+                            $visual.find('.type').text(project.type[index]);
+                            $visual
+                                .find('.project-image img')
+                                .attr('src', `./assets/images/project/project${index + 1}.jpg`);
+                        }
 
                         // GSAP 애니메이션
                         gsap.set(
@@ -172,13 +268,11 @@
                             { y: 40, opacity: 0 },
                             { y: 0, opacity: 1, duration: 1, ease: 'power3.out' }
                         );
-
                         gsap.fromTo(
                             $visual.find('.project'),
                             { y: -40, opacity: 0 },
-                            { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 0.2 }
+                            { y: 0, opacity: 1, duration: 1, ease: 'power3.out' }
                         );
-
                         gsap.fromTo(
                             $visual.find('.project-info > li'),
                             { y: 20, opacity: 0 },
@@ -188,13 +282,23 @@
                                 duration: 0.6,
                                 ease: 'power2.out',
                                 stagger: 0.15,
-                                delay: 0.4,
+                            }
+                        );
+                        gsap.fromTo(
+                            $visual.find('.project-image img'),
+                            { scale: 1.2, opacity: 0 },
+                            {
+                                scale: 1,
+                                opacity: 1,
+                                duration: 1.2,
+                                ease: 'power3.out',
+                                clearProps: 'transform,opacity',
                             }
                         );
                     },
                 });
 
-                // Custom Cursor
+                // 커스텀 커서
                 const $cursor = $('.custom-cursor');
                 const $area = $('#section_wrap');
                 let isHovering = false;
@@ -211,16 +315,13 @@
                 $area.on('mouseenter', function () {
                     isHovering = true;
                     $cursor.css('opacity', 1);
-                    // $(this).addClass('hide-cursor');  <-- 이 부분 삭제 또는 주석 처리!
                 });
 
                 $area.on('mouseleave', function () {
                     isHovering = false;
                     $cursor.css('opacity', 0);
-                    // $(this).removeClass('hide-cursor');  <-- 이 부분도 삭제 또는 주석 처리!
                 });
 
-                // 특정 영역에서는 커스텀 커서만 숨김 (기본 커서는 그대로)
                 $('.slogan, .project, .project-info, .fp-arrows')
                     .on('mouseenter', function () {
                         $cursor.css('opacity', 0);
@@ -230,6 +331,44 @@
                             $cursor.css('opacity', 1);
                         }
                     });
+
+                // 리스트 썸네일
+                const $hoverThumb = $('#hover-thumb');
+                const $hoverImg = $('#hover-img');
+                let isThumbVisible = false;
+
+                $('.list-item').on('mouseenter', function () {
+                    const $this = $(this);
+                    const imgSrc = $this.data('img');
+                    console.log(imgSrc);
+                    if (imgSrc) {
+                        $hoverImg.attr('src', imgSrc);
+                        if (!isThumbVisible) {
+                            $hoverThumb.stop(true, true).fadeIn(150);
+                            isThumbVisible = true;
+                        }
+                    }
+
+                    $this.addClass('active no-transition');
+                    requestAnimationFrame(() => {
+                        $this.removeClass('no-transition');
+                    });
+                });
+
+                $('.list-item').on('mouseleave', function () {
+                    $(this).removeClass('active');
+                });
+
+                $('.project-list').on('mouseleave', function () {
+                    $hoverThumb.stop(true, true).fadeOut(150);
+                    isThumbVisible = false;
+                });
+
+                $('.list-item').on('mousemove', function (e) {
+                    $hoverThumb.css({
+                        transform: `translate(${e.pageX + 20}px, ${e.pageY + 20}px)`,
+                    });
+                });
             });
         </script>
     </body>
