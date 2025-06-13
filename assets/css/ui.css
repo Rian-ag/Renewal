@@ -2,17 +2,19 @@
 
 header {position:fixed; top:0; right:0; left:0; z-index:100;}
 header h1 img {height:24px; display:block;}
-header .inner {padding:26px 30px; background-color:rgba(0,0,0,0.4); display:flex; align-items:center; justify-content:space-between;}
+header .inner {padding:26px 30px; position:relative; z-index:91; display:flex; align-items:center; justify-content:space-between;}
 header .inner a {color:#fff; font-size:14px; font-weight:800; letter-spacing:-0.01em; display:flex; align-items:center; gap:4px;}
 header .inner a:after {width:20px; height:20px; background-image:url('/assets/images/common/icon_split.png'); background-position:0 -50px; background-repeat:no-repeat; background-size:500px auto; content:''; display:block;}
-header .inner .btn_ham {width:28px; height:28px; font-size:0; background-color:transparent; border:0; position:relative; z-index:91; cursor:pointer;}
+header .inner .btn_ham {width:28px; height:28px; font-size:0; background-color:transparent; border:0; position:relative; cursor:pointer;}
 header .inner .btn_ham:before, header .inner .btn_ham:after {width:100%; border-top:5px solid #fff; content:''; position:absolute; left:0; display:block; transition:all 0.25s ease-in-out;}
 header .inner .btn_ham:before {top:6px;}
 header .inner .btn_ham:after {bottom:6px;}
 
-header .inner .btn_ham.close:before, header .inner .btn_ham.close:after {border-color:#000; top:50%; bottom:initial; left:50%;}
-header .inner .btn_ham.close:before {transform:translate(-50%, -50%) rotate(45deg);}
-header .inner .btn_ham.close:after {transform:translate(-50%, -50%) rotate(135deg);}
+/* site map open */
+header .inner.close a {display:none;}
+header .inner.close .btn_ham:before, header .inner.close .btn_ham:after {border-color:#000; top:50%; bottom:initial; left:50%;}
+header .inner.close .btn_ham:before {transform:translate(-50%, -50%) rotate(45deg);}
+header .inner.close .btn_ham:after {transform:translate(-50%, -50%) rotate(135deg);}
 
 header .site_map {background-color:#fff; overflow:auto; position:fixed; top:50%; right:50%; bottom:50%; left:50%; z-index:90; opacity:0; display:flex; align-items:center;}
 header .site_map.active {animation:active_sitemap 1s forwards;}
@@ -21,6 +23,27 @@ header .site_map ul {margin-left:24%;}
 header .site_map li {overflow:hidden;}
 header .site_map li a {color:#000; font-size:90px; font-weight:800; line-height:120%; opacity:0; display:block; transform:translateY(-100%); transition:transform 0.6s ease-in-out, opacity 0.3s;}
 header .site_map li.active a {opacity:1; transform:translateY(0);}
+
+header .site_map #bottom {bottom:100vh;}
+header .site_map.active #bottom {bottom:0; transition-delay:0.95s;}
+header .site_map.active #bottom * {color:#000; transition:color 0.8s ease; transition-delay:0.95s;}
+header .site_map.active #bottom .download:after {background-position:-100px 0; transition:background 0s; transition-delay:0.8s}
+
+#bottom {padding:28px 30px; position:fixed; right:0; bottom:0; left:0; z-index:1; display:flex; align-items:center; justify-content:space-between;}
+#bottom * {color:#fff; font-size:14px; font-weight:800; letter-spacing:0;}
+#bottom div {display:flex; align-items:center; gap:160px;}
+#bottom .download {display:flex; align-items:center; gap:12px;}
+#bottom .download:after {width:20px; height:20px; background-image:url('/assets/images/common/icon_split.png'); background-position:-50px 0; background-repeat:no-repeat; background-size:500px auto; content:''; display:block;}
+
+/* go admin : hidden menu */
+header #hidden_menu {width:220px; height:70px; background:url('/assets/images/etc/etc_ticket.png') 0 0 no-repeat; position:fixed; top:10px; right:0; z-index:1000; display:flex; align-items:center; justify-content:flex-end; transform:translateX(100%); transition:transform 0.5s ease-in-out;}
+header #hidden_menu.active {transform:translateX(0);}
+header #hidden_menu a {width:150px; font-size:13px; text-align:center; word-break:keep-all; display:block;}
+header #hidden_menu strong {display:block;}
+header #hidden_menu button {width:17px; height:17px; font-size:0; position:absolute; top:10px; right:10px;}
+header #hidden_menu button:before, header #hidden_menu button:after {width:100%; margin-top:-1px; border-top:2px solid #000; content:''; position:absolute; top:50%; left:0; display:block;}
+header #hidden_menu button:before {transform:rotate(45deg);}
+header #hidden_menu button:after {transform:rotate(135deg);}
 
 @keyframes active_sitemap {
   0% {top:50%; right:50%; bottom:50%; left:50%; opacity:0;}
