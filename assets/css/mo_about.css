@@ -6,21 +6,22 @@
 /* 공통 섹션 스타일 */
 .about_vision,.about_awards,.about_partners {width: 100%;position: relative;}
 .about_vision,.about_awards,.about_partners {background-color:#fff; z-index:99 !important;}
+.about_vision h2 p,.about_awards h2 p {transform:translate3d(0, 200px, 0); opacity:0; will-change:transform, opacity;}
 
 /* .about_visual은 고정될 영역 */
 
 
 
-.svg_01, .svg_02 {transform:scale(1.2);}
+/* .svg_01, .svg_02 {transform:scale(1.2);} */
 /* about_visual */
-svg {width:100%; height: auto;}
+/* svg {width:100%; height: auto;} */
 .pc_vision {display:none;}
-path {stroke:white; stroke-width:2; fill:rgba(255, 255, 255, 0); stroke-linecap:round; stroke-linejoin:round;}
+/* path {stroke:white; stroke-width:2; fill:rgba(255, 255, 255, 0); stroke-linecap:round; stroke-linejoin:round;} */
 .about_visual {width: 100vw; height:100vh; padding-top:0; background-color: #000; position: fixed; top:0; left: 0; z-index:10; display:flex; overflow:hidden;}
-.mo_cursor {width:50px; height:50px; background-image:url('../images/about/scroll_btn.png'); background-repeat: no-repeat; background-size: cover; background-position: center; position:absolute; z-index: 10; bottom: 5vh; left:50%; transform: translateX(-50%);}
-.svg_01 {width:130%; position:absolute; top:35%; right:-20%;}
-.svg_02 {width:100%; position:absolute; top:-8%; left:8%;}
-.about_visual em {color:#fff; font-size:90px; font-weight:900; position:absolute; top:50%; left:25%; transform:translate(0, -50%);}
+/* .mo_cursor {width:50px; height:50px; background-image:url('../images/about/scroll_btn.png'); background-repeat: no-repeat; background-size: cover; background-position: center; position:absolute; z-index: 10; bottom: 5vh; left:50%; transform: translateX(-50%);} */
+/* .svg_01 {width:130%; position:absolute; top:35%; right:-20%;}
+.svg_02 {width:100%; position:absolute; top:-8%; left:8%;} */
+/* .about_visual em {color:#fff; font-size:90px; font-weight:900; position:absolute; top:50%; left:25%; transform:translate(0, -50%);} */
 .cont_inner {margin: 50px 30px 60px;}
 h2 {font-size:40px; font-weight:700;}
 h3 {font-size:24px; font-weight:700;}
@@ -31,7 +32,7 @@ em {display:none;}
 /* about_vision */
 .about_vision {padding:50px 0 60px;}
 .about_vision .cont_inner h2 {margin-top:170px;}
-.about_vision .cont_inner h2 p {text-indent:105px; text-align:left; opacity:0; transform:translateY(100px); overflow:hidden; overflow-wrap: break-word;}
+.about_vision .cont_inner h2 p {text-indent:105px; text-align:left; overflow:hidden; overflow-wrap: break-word;}
 .about_vision .cont_inner h2 p:not(:first-child) {text-align:left;}
 .about_vision .cont_inner > dl:first-of-type {margin:120px 0;}
 .about_vision .cont_inner > dl dt {margin-bottom:40px;}
@@ -47,7 +48,7 @@ em {display:none;}
 
 /* about_awards */
 .wrap > p {height:480px; padding-bottom:120px;  background-color:#fff; position:relative; z-index:99; overflow:hidden;}
-.wrap > p > img {width:30%; height:100%; object-fit:cover; display:block; opacity:0; transform:translateY(100px); }
+.wrap > p > img {width:100%; height:100%; object-fit:cover; display:block; opacity:0; transform:translateY(100px); }
 .about_awards {position:relative; overflow:hidden;}
 .about_awards .cont_inner {margin-top:0;}
 .about_awards h2 {margin-top:60px;}
