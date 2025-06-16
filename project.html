@@ -8,12 +8,16 @@
         <link rel="stylesheet" href="./assets/css/common.css" />
         <link rel="stylesheet" href="./assets/css/ui.css" />
         <!-- <link rel="stylesheet" href="./assets/css/pc_project.css" /> -->
+        <link rel="stylesheet" href="./assets/css/swiper.css" />
+        <link rel="stylesheet" href="./assets/css/swiper-bundle.min.css" />
         <link rel="stylesheet" href="./assets/css/mo_project.css" />
         <!-- JS -->
         <script type="text/javascript" src="./assets/js/jquery-3.7.1.min.js"></script>
         <script src="./assets/js/gsap.min.js"></script>
         <script src="./assets/js/common.js"></script>
         <script src="./assets/js/simplefullpage.js"></script>
+        <script src="./assets/js/slide.js"></script>
+        <script src="./assets//js/swiper-bundle.min.js"></script>
     </head>
     <body>
         <div id="wrap">
@@ -40,9 +44,16 @@
             <div id="cursor-area">
                 <div id="section_wrap">
                     <div class="fullpage-container">
-                        <section class="project-section fp-exit"></section>
-                        <section class="project-section fp-exit"></section>
-                        <section class="project-section fp-exit"></section>
+                        <div class="on_list_swiper">
+                            <div class="on_list swiper-container">
+                                <div class="swiper-wrapper">
+                                    <section class="swiper-slide project-section fp-exit"></section>
+                                    <section class="swiper-slide project-section fp-exit"></section>
+                                    <section class="swiper-slide project-section fp-exit"></section>
+                                </div>
+                                <div class="swiper-scrollbar"></div>
+                            </div>
+                        </div>
                         <div class="heading">
                             <h1 class="title"></h1>
                             <h2 class="sub-title"></h2>
@@ -201,6 +212,8 @@
         <!-- Script -->
         <script>
             $(document).ready(function () {
+                const isMobile = window.innerWidth <= 768;
+
                 const project = {
                     title: ['Go deep\nDive in\nWatch on', 'Simple\nClear\nModule', 'Effortless\nChic\nLifestyle'],
                     subTitle: ['CGV\nOn MOBILE', 'HOME &\nSHOPPING', 'LOTTE\nDUTY FREE'],
@@ -226,102 +239,102 @@
                 const totalSections = $sections.length;
                 const formattedTotal = totalSections < 10 ? '0' + totalSections : totalSections;
 
-                const fullpageInstance = $('#section_wrap').simpleFullpage({
-                    duration: 800,
-                    easing: 'ease',
-                    parallax: true,
-                    keyboard: true,
-                    touch: true,
-                    navigation: false,
-                    on: {
-                        init() {
-                            $('.fp-navi').remove();
-                            $('.fp-arrows').prepend(`
-                        <div class="fp-navi">
-                            <span>01</span>
-                            <em>${formattedTotal}</em>
-                        </div>
-                    `);
+                if (!isMobile) {
+                    // ✅ 데스크탑: fullpage.js 적용
+                    const fullpageInstance = $('#section_wrap').simpleFullpage({
+                        duration: 800,
+                        easing: 'ease',
+                        parallax: true,
+                        keyboard: true,
+                        touch: true,
+                        navigation: false,
+                        on: {
+                            init() {
+                                $('.fp-navi').remove();
+                                $('.fp-arrows').prepend(`
+                            <div class="fp-navi">
+                                <span>01</span>
+                                <em>${formattedTotal}</em>
+                            </div>
+                        `);
+                            },
                         },
-                    },
-                    afterLoad(index) {
-                        const current = index + 1;
-                        $('.fp-navi span').text(current < 10 ? '0' + current : current);
+                        afterLoad(index) {
+                            const current = index + 1;
+                            $('.fp-navi span').text(current < 10 ? '0' + current : current);
 
-                        const thumbHeight = $thumbnails.outerHeight();
-                        gsap.to($thumbnailViewer, {
-                            y: -(index * thumbHeight),
-                            duration: 1.2,
-                            ease: 'power2.out',
-                        });
+                            const thumbHeight = $thumbnails.outerHeight();
+                            gsap.to($thumbnailViewer, {
+                                y: -(index * thumbHeight),
+                                duration: 1.2,
+                                ease: 'power2.out',
+                            });
 
-                        $thumbnails.removeClass('active');
-                        $thumbnails.eq(index).addClass('active');
+                            $thumbnails.removeClass('active');
+                            $thumbnails.eq(index).addClass('active');
 
-                        $industry.text(project.industry[index]);
-                        $date.text(project.date[index]);
-                        $type.text(project.type[index]);
+                            $industry.text(project.industry[index]);
+                            $date.text(project.date[index]);
+                            $type.text(project.type[index]);
 
-                        $title.removeClass('active');
-                        $subtitle.removeClass('active');
-                        $projectInfoItems.each(function () {
-                            $(this).css({
+                            $title.removeClass('active');
+                            $subtitle.removeClass('active');
+                            $projectInfoItems.css({
                                 opacity: 0,
                                 transform: 'translateY(100%)',
                                 transition: 'none',
                             });
-                        });
 
-                        const titleLines = project.title[index]
-                            .split('\n')
-                            .map((line) => `<div>${line}</div>`)
-                            .join('');
-                        const subtitleLines = project.subTitle[index]
-                            .split('\n')
-                            .map((line) => `<div>${line}</div>`)
-                            .join('');
+                            const titleLines = project.title[index]
+                                .split('\n')
+                                .map((line) => `<div>${line}</div>`)
+                                .join('');
+                            const subtitleLines = project.subTitle[index]
+                                .split('\n')
+                                .map((line) => `<div>${line}</div>`)
+                                .join('');
 
-                        $title.html(titleLines);
-                        $subtitle.html(subtitleLines);
+                            $title.html(titleLines);
+                            $subtitle.html(subtitleLines);
 
-                        setTimeout(() => {
-                            $title.addClass('active');
-                            $subtitle.addClass('active');
-
-                            $title.find('div').each(function (i) {
-                                $(this).css('transition-delay', i * 0.1 + 's');
-                            });
-
-                            $subtitle.find('div').each(function (i) {
-                                $(this).css('transition-delay', i * 0.1 + 's');
-                            });
-
-                            $projectInfoItems.each(function (i) {
-                                const $li = $(this);
-                                setTimeout(() => {
-                                    $li.css({
-                                        opacity: 1,
-                                        transform: 'translateY(0%)',
-                                        transition: 'all 0.8s var(--title-transition-ease)',
-                                        'transition-delay': i * 0.1 + 0.2 + 's',
-                                    });
-                                }, 10);
-                            });
-                        }, 50);
-
-                        // ✅ 마지막 section 도달 시 fullpage 해제
-                        if (index === totalSections - 1) {
                             setTimeout(() => {
-                                if ($('#section_wrap').data('simpleFullpage')) {
-                                    $('#section_wrap').data('simpleFullpage').destroy();
-                                    $('body, html').css('overflow', 'auto');
-                                }
-                            }, 1300);
-                        }
-                    },
-                });
+                                $title.addClass('active');
+                                $subtitle.addClass('active');
 
-                // ✅ 커서
+                                $title.find('div').each(function (i) {
+                                    $(this).css('transition-delay', i * 0.1 + 's');
+                                });
+
+                                $subtitle.find('div').each(function (i) {
+                                    $(this).css('transition-delay', i * 0.1 + 's');
+                                });
+
+                                $projectInfoItems.each(function (i) {
+                                    const $li = $(this);
+                                    setTimeout(() => {
+                                        $li.css({
+                                            opacity: 1,
+                                            transform: 'translateY(0%)',
+                                            transition: 'all 0.8s var(--title-transition-ease)',
+                                            'transition-delay': i * 0.1 + 0.2 + 's',
+                                        });
+                                    }, 10);
+                                });
+                            }, 50);
+
+                            if (index === totalSections - 1) {
+                                setTimeout(() => {
+                                    if ($('#section_wrap').data('simpleFullpage')) {
+                                        $('#section_wrap').data('simpleFullpage').destroy();
+                                        $('body, html').css('overflow', 'auto');
+                                    }
+                                }, 1300);
+                            }
+                        },
+                    });
+                }
+
+                // ✅ 커서 기능
                 const $cursor = $('.custom-cursor');
                 const $area = $('#cursor-area');
                 let isHovering = false;
@@ -355,7 +368,7 @@
                         }
                     });
 
-                // ✅ project 리스트 hover 시 이미지 슬라이더
+                // ✅ 프로젝트 리스트 hover 시 이미지 슬라이더
                 const $viewer = $('.image-viewer');
                 const $imageSlider = $('.image-slider');
                 const $slideImg = $('.slide-img');
