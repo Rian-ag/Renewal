@@ -16,9 +16,13 @@ em,i {font-style: normal;}
 .detail_visual .cont_inner p i {padding:12px 24px; border:1px solid #fff; border-radius:99px; display:inline-block;}
 
 /* section */
-section {background:#fff; position:relative; z-index:2;}
-section .cont_inner {display:flex;}
-section .cont_inner dl {}
+section {padding:120px 0; background:#fff; position:relative; z-index:2;}
+section .cont_inner {display:flex; justify-content:space-between;}
+section .cont_inner dl {width:calc(100% - 920px)}
 section .cont_inner dl dt {}
-section .cont_inner dl dt button {width:24px; height:24px;}
-section .cont_inner dl dd {}
+section .cont_inner dl dt button {width:24px; height:24px; margin-bottom:40px; background-image:url('../images/common/icon_split.png'); background-size:500px; background-position:-140px -50px; display:block;}
+section .cont_inner dl dt {margin-bottom:40px;}
+section .cont_inner dl dt div strong {font-size:38px; font-weight:800; line-height:120%;}
+section .cont_inner dl dt div p {margin-top:18px; font-size:22px; font-weight:600; line-height:110%;}
+.on_detail_swiper .swiper-container ul {flex-direction:column;}
+.on_detail_swiper .swiper-container ul li {width:120px; height:120px !important;}
