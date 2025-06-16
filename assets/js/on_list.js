@@ -21,7 +21,7 @@
         },
         pagination: {
           el: '.on_list_swiper .swiper-pagination',
-          clickable: true,
+          type: 'fraction',
         }
       });
       console.log('Swiper initialized');

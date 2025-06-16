@@ -91,7 +91,6 @@ img {
 }
 
 /* SECTION */
-
 .simple-fullpage {
     position: relative;
     width: 100%;
@@ -111,6 +110,16 @@ section {
     position: relative;
     height: 100vh;
     overflow: hidden;
+}
+
+section:nth-child(1) {
+    background-color: #000;
+}
+section:nth-child(2) {
+    background-color: #ea1236;
+}
+section:nth-child(3) {
+    background-color: #7ba992;
 }
 
 section.active {

@@ -20,15 +20,24 @@ strong {font-weight:800;;}
 
 /* swiper 영역 */
 .on_list_swiper {margin:0 -30px;}
-.swiper-wrapper {align-items:flex-end;}
-.swiper-slide {border:1px solid red;}
+.swiper-container {position:relative; overflow:visible !important;}
+.swiper-wrapper {align-items:flex-end; z-index:5;}
+.swiper-slide {overflow:hidden;}
 .swiper-slide.swiper-slide-next {height:400px !important;}
 .swiper-slide.swiper-slide-active {width:330px !important; height:546px !important;} 
-.swiper-slide.swiper-slide-active img {height:100%;} 
+.swiper-slide.swiper-slide-active p img {height:100%;} 
 .swiper-slide p {width:100%; height:100%; overflow:hidden;}
-.swiper-slide p img {object-fit:fill; display:block; transition:all 0.3s;}
-.swiper-slide > div {width:100%; margin-top:24px; margin-bottom:150px; position:absolute; position:absolute; left:0; bottom:0; }
-.swiper-slide > div em, .swiper-slide > div > span {font-size:14px; font-weight:700; line-height:140%;}
-.swiper-slide > div em {margin-left:30px; padding:5px 16px; color:#fff; border:1px solid #fff;}
-.swiper-slide > div > span {margin:40px 0 20px 30px; color:#fff; font-weight:400; border:1px; display:block;}
-.swiper-slide > div > div {display:none;}
+.swiper-slide p img {height:100%; object-fit:cover; display:block; }
+.swiper-slide a > div {width:100%; margin-top:24px; margin-bottom:30px; position:absolute; position:absolute; left:0; bottom:0; }
+.swiper-slide a > div em, .swiper-slide a > div > span {font-size:14px; font-weight:700; line-height:140%; display:inline-block; opacity:0; transition:all 0.3s;}
+.swiper-slide a > div em {transform: translateX(-200%);}
+.swiper-slide a > div > span {transform: translateX(200%);}
+.swiper-slide.swiper-slide-active a > div em, .swiper-slide.swiper-slide-active a > div > span {transform: translateX(0%); transition-delay:0.2s; opacity:1;}
+.swiper-slide.swiper-slide-active a > div > span {transition-delay:0.5s;}
+.swiper-slide a > div em {margin-left:30px; padding:5px 16px; color:#fff; border:1px solid #fff;}
+.swiper-slide a > div > span {margin:20px 0 20px 30px; color:#fff; font-weight:400; border:1px; display:block;}
+.swiper-slide a > div > div {display:none;}
+.swiper-slide button {width:50px; height:50px; margin:20px 0 0 30px; background-image:url('../images/common/icon_split.png'); background-repeat:no-repeat; background-size:500px 500px; background-position:0 -100px;}
+.swiper-pagination {width:50px; height:30px; top:-40px; left:76.153846%}
+.swiper-pagination-current, .swiper-pagination-total {margin-right:3px; font-weight:600;}
+.swiper-pagination-total {margin-left:3px;}
