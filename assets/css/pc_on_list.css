@@ -1,0 +1,33 @@
+/* 공통영역 */
+em,i {font-style: normal;}
+.mo {display:none;}
+
+#bottom {padding:28px 30px; position:fixed; right:0; bottom:0; left:0; z-index:100; display:flex; align-items:center; justify-content:space-between;}
+#bottom * {color:#fff; font-size:14px; font-weight:800; letter-spacing:0;}
+#bottom div {display:flex; align-items:center; gap:160px;}
+#bottom .download {display:flex; align-items:center; gap:12px;}
+#bottom .download:after {width:20px; height:20px; background-image:url('/assets/images/common/icon_split.png'); background-position:-50px 0; background-repeat:no-repeat; background-size:500px auto; content:''; display:block;}
+.cont_inner {max-width:1400px; margin:0 auto;}
+strong {font-weight:800;;}
+
+.cont_inner {padding-top:220px;}
+.cont_inner > p {overflow:hidden;}
+.cont_inner > p > strong {font-size:90px; line-height:102%; letter-spacing:-2%; text-align:center; display:block; transform:translateY(100px);}
+.cont_inner > .visual_cont {padding-top:90px;  padding-bottom:200px;;}
+.cont_inner > .visual_cont div {font-size:60px; text-align:center;}
+.cont_inner > .visual_cont div p {margin-top:18px; font-size:30px; font-weight:600;}
+.cont_inner > .visual_cont div p span {opacity:0;}
+
+/* swiper 영역 */
+.swiper-wrapper {flex-wrap:wrap;}
+.swiper-slide {width:33.333%;}
+.swiper-slide:hover p img {transform:scale(1.3);}
+.swiper-slide p {width:440px; height:440px; box-sizing:border-box; overflow:hidden;}
+.swiper-slide p img {object-fit:cover; display:block; transition:all 0.3s;}
+.swiper-slide:first-of-type p img {height:100%;}
+.swiper-slide a > div {margin-top:24px; margin-bottom:150px;}
+.swiper-slide a > div em, .swiper-slide a > div > span {font-size:24px; font-weight:600; line-height:140%; letter-spacing:-1.5%; }
+.swiper-slide a > div > span {margin:40px 0 20px; display:block;}
+.swiper-slide a > div > div {display:flex; gap:5px}
+.swiper-slide a > div i {font-size:18px; font-weight:300; line-height:142%; letter-spacing:-2%;}
+.swiper-pagination {display:none;}
