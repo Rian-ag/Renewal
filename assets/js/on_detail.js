@@ -16,13 +16,43 @@ $(function(){
     /* gsap */
     gsap.registerPlugin(ScrollTrigger);
 
-    ScrollTrigger.create({
-        trigger: ".detail_visual",
-        start: "top top",
-        end: "+=930", // 고정 영역 높이만큼W
-        pin: true,     // pin 고정
-        pinSpacing: false, // 고정 후 공간 안 생기게
-        markers: false // 디버그용 (원할 경우 true로)
+    if(!isMobileCondition()){
+     ScrollTrigger.create({
+      trigger: ".detail_visual",
+      start: "top top",
+      end: "+=930",
+      pin: true,
+      pinSpacing: false,
+      markers: false
+        });
+    } else {
+        // ✅ 모바일일 경우 아무 것도 하지 않음
+        console.log("모바일 환경이므로 ScrollTrigger를 적용하지 않음");
+    }
+
+    $('section .cont_inner > ul > li').each(function (i, el) {
+      const spans = $(el).find('p span');
+
+      gsap.fromTo(spans,
+        {
+          y: 200,
+          opacity: 0,
+        },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1,
+          stagger: 0.4,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: el,
+            start: "50% 70%",
+            end: '100% 90%',
+            toggleActions: "play none none none",
+            // markers: true,
+          }
+        }
+      );
     });
 
     $('.detail_visual em').each(function (index) {
