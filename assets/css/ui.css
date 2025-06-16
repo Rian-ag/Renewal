@@ -35,6 +35,9 @@ header .site_map.active #bottom .download:after {background-position:-100px 0; t
 #bottom .download {display:flex; align-items:center; gap:12px;}
 #bottom .download:after {width:20px; height:20px; background-image:url('/assets/images/common/icon_split.png'); background-position:-50px 0; background-repeat:no-repeat; background-size:500px auto; content:''; display:block;}
 
+/* type2 bottom 추가 */
+#bottom.type2{background-color: #000;position: static;}
+
 /* go admin : hidden menu */
 header #hidden_menu {width:220px; height:70px; background:url('/assets/images/etc/etc_ticket.png') 0 0 no-repeat; position:fixed; top:10px; right:0; z-index:1000; display:flex; align-items:center; justify-content:flex-end; transform:translateX(100%); transition:transform 0.5s ease-in-out;}
 header #hidden_menu.active {transform:translateX(0);}
