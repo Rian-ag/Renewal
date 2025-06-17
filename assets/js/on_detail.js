@@ -1,18 +1,38 @@
 $(function(){
 
-    function isMobileCondition() {
-        const isMobileWidth = window.innerWidth <= 768;
-        const hasMobileDomain = window.location.hostname.includes('m.');
-        return isMobileWidth || hasMobileDomain;
-    }
+  let swiperInstance;
 
-    const swiper = new Swiper('.on_detail_swiper .on_detail.swiper-container', {
-      direction: isMobileCondition() ? 'horizontal' : 'vertical',
-      slidesPerView: isMobileCondition() ? 4 : 3.5,
-      spaceBetween: 8,
-      mousewheel: true,
+  function isMobileCondition () {
+    return window.innerWidth <= 768 || window.location.hostname.includes('m.');
+  }
+
+  function resetSlideInlineStyle () {
+    $('.on_detail_swiper .swiper-slide').each(function () {
+      this.removeAttribute('style');           // Swiper 가 남긴 width, height 제거
     });
+  }
 
+  function initSwiper () {
+    // 1) 기존 인스턴스 파괴
+    if (swiperInstance) swiperInstance.destroy(true, true);
+
+    // 2) 슬라이드 폭 초기화
+    resetSlideInlineStyle();
+
+    // 3) 새 인스턴스 생성
+    const mobile = isMobileCondition();
+    swiperInstance = new Swiper('.on_detail_swiper .on_detail.swiper-container', {
+      direction      : mobile ? 'horizontal' : 'vertical',
+      slidesPerView  : mobile ? 3 : 3.5,      // ← 모바일에서 3장만 보이게
+      spaceBetween   : 8,
+      grabCursor     : true,
+      simulateTouch  : true,
+      touchRatio     : 1,
+    });
+  }
+
+  // 최초 & 리사이즈
+  $(window).on('load resize', initSwiper);
     /* gsap */
     gsap.registerPlugin(ScrollTrigger);
 

@@ -23,12 +23,13 @@ section .cont_inner dl dt button {width:24px; height:24px; margin-bottom:40px; b
 section .cont_inner dl dt {margin-bottom:40px;}
 section .cont_inner dl dt div strong {font-size:38px; font-weight:800; line-height:120%;}
 section .cont_inner dl dt div p {margin-top:18px; font-size:22px; font-weight:600; line-height:110%;}
-.on_detail_swiper .swiper-container ul {flex-direction:column;}
-.on_detail_swiper .swiper-container ul li {width:120px; height:120px !important;}
-.on_detail_swiper .swiper-container ul li p {overflow:hidden;}
+.on_detail_swiper {height: 100px; overflow: visible;}
+.on_detail_swiper .swiper-container .swiper-wrapper {flex-direction:column;}
+.on_detail_swiper .swiper-container .swiper-wrapper .swiper-slide {width:120px !important; height:120px !important;}
+.on_detail_swiper .swiper-container .swiper-wrapper .swiper-slide p {overflow:hidden;}
 section .cont_inner > ul li {margin-bottom:100px;}
 section .cont_inner > ul li * {margin-bottom:40px;}
-section .cont_inner > ul li p {overflow:hidden;}
+.on_detail_swiper .swiper-container ul li p { overflow: hidden; }
 section .cont_inner > ul li p span {font-size:24px; font-weight:400; line-height:140%; display:block; transform:translateY(200px);}
 section .cont_inner > ul li:nth-of-type(1) figure {width:720px;}
 section .cont_inner > ul li:nth-of-type(2) figure {width:648px;}
