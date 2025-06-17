@@ -218,7 +218,7 @@
         <script>
             const project = {
                 title: ['Go deep\nDive in\nWatch on', 'Simple\nClear\nModule', 'Effortless\nChic\nLifestyle'],
-                subTitle: ['CGV\nOn MOBILE', 'HOME &\nSHOPPING', 'LOTTE\nDUTY FREE'],
+                subTitle: ['CGV\nOn MOBILE', 'LOTTE\nDUTY FREE', 'HOME &\nSHOPPING'],
                 industry: ['Commerce', 'Commerce', 'Commerce'],
                 date: ['July, 2025', '2021 - In Progress', '2019 - In Progress'],
                 type: [
@@ -268,20 +268,37 @@
                 function isMobile() {
                     return $(window).width() <= 768;
                 }
+                function slideToCenter(index) {
+                    const viewer = document.querySelector('.thumbnail-viewer');
+                    const offset = 27.85 * index;
+                    viewer.style.transform = `translateX(-${offset}rem)`;
+                }
 
+                function updateThumbnailState(index) {
+                    const thumbnails = document.querySelectorAll('.thumbnail');
+                    thumbnails.forEach((el, i) => {
+                        el.classList.toggle('active', i === index);
+                    });
+                }
                 function initSwiper() {
                     thumbSwiper = new Swiper('.thumbnail-swiper', {
                         slidesPerView: 1,
+                        centeredSlides: true,
                         spaceBetween: 33,
+                        centeredSlides: true,
                         allowTouchMove: false,
                         watchSlidesProgress: true,
                         //slideToClickedSlide: true,
                         on: {
-                            click: function () {
-                                const index = this.clickedIndex;
-                                if (typeof index !== 'undefined') {
-                                    mainSwiper.slideTo(index);
-                                }
+                            init: function () {
+                                const index = this.activeIndex;
+                                updateThumbnailState(index);
+                                slideToCenter(index);
+                            },
+                            slideChange: function () {
+                                const index = this.activeIndex;
+                                updateThumbnailState(index);
+                                slideToCenter(index);
                             },
                         },
                     });

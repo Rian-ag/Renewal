@@ -95,7 +95,7 @@ header {
     width: 18rem !important;
     height: 2px !important;
     left: 50% !important;
-    bottom: 17rem !important;
+    bottom: 20.142dvh !important;
     transform: translateX(-50%) !important;
     z-index: 300 !important;
     background: rgba(255, 255, 255, 0.5);
@@ -103,10 +103,14 @@ header {
 .swiper-scrollbar-drag {
     background-color: #fff;
 }
-
+.heading,
+.thumbnail-swiper {
+    pointer-events: none;
+}
 .heading {
     position: absolute;
-    top: 19rem;
+    /* top: 19rem; */
+    top: 22.51dvh;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -188,7 +192,7 @@ header {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    bottom: 5rem;
+    bottom: 5.924vh;
     color: #fff;
     font-size: 1.8rem;
     font-weight: 700;
