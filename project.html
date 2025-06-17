@@ -1,395 +1,421 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RIAN Section</title>
-    <!-- CSS -->
-    <link rel="stylesheet" href="./assets/css/common.css" />
-    <link rel="stylesheet" href="./assets/css/ui.css" />
-    <!-- <link rel="stylesheet" href="./assets/css/pc_project.css" /> -->
-    <link rel="stylesheet" href="./assets/css/swiper.css" />
-    <link rel="stylesheet" href="./assets/css/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="./assets/css/mo_project.css" />
-    <!-- JS -->
-    <script type="text/javascript" src="./assets/js/jquery-3.7.1.min.js"></script>
-    <script src="./assets/js/gsap.min.js"></script>
-    <script src="./assets/js/common.js"></script>
-    <script src="./assets/js/simplefullpage.js"></script>
-    <script src="./assets//js/swiper-bundle.min.js"></script>
-    <script src="./assets/js/slide.js"></script>
-  </head>
-  <body>
-    <div id="wrap">
-      <!-- header 25-06-12 Edit : jh 헤더 소스 통일 -->
-      <header>
-        <div class="inner">
-          <a href="#none">WORK</a>
-          <h1 onclick="location.href='/'"><img src="./assets/images/common/h1_logo.png" alt="RIAN" /></h1>
-          <button class="btn_ham">site map</button>
-        </div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>RIAN Section</title>
+        <!-- CSS -->
+        <link rel="stylesheet" href="./assets/css/common.css" />
+        <link rel="stylesheet" href="./assets/css/ui.css" />
+        <link rel="stylesheet" href="./assets/css/swiper-bundle.min.css" />
+        <link rel="stylesheet" href="./assets/css/pc_project.css" media="(min-width: 769px)" />
+        <link rel="stylesheet" href="./assets/css/mo_project.css" media="(max-width: 768px)" />
+        <!-- JS -->
+        <script type="text/javascript" src="./assets/js/jquery-3.7.1.min.js"></script>
+        <script src="./assets/js/gsap.min.js"></script>
+        <script src="./assets//js/swiper-bundle.min.js"></script>
+        <script src="./assets/js/simplefullpage.js"></script>
+        <script src="./assets/js/common.js"></script>
+        <script src="./assets/js/slide.js"></script>
+    </head>
+    <body>
+        <div id="wrap">
+            <!-- header 25-06-12 Edit : jh 헤더 소스 통일 -->
+            <header>
+                <div class="inner">
+                    <a href="#none">WORK</a>
+                    <h1 onclick="location.href='/'"><img src="./assets/images/common/h1_logo.png" alt="RIAN" /></h1>
+                    <button class="btn_ham">site map</button>
+                </div>
 
-        <div class="site_map">
-          <ul>
-            <li><a href="/about.html">About</a></li>
-            <li><a href="#none">Work</a></li>
-            <li><a href="#none">What's on</a></li>
-            <li><a href="/project.html">Join Our Team</a></li>
-            <li><a href="/join.html">Contact</a></li>
-          </ul>
-        </div>
-      </header>
-      <!-- //header -->
+                <div class="site_map">
+                    <ul>
+                        <li><a href="/about.html">About</a></li>
+                        <li><a href="#none">Work</a></li>
+                        <li><a href="#none">What's on</a></li>
+                        <li><a href="/project.html">Join Our Team</a></li>
+                        <li><a href="/join.html">Contact</a></li>
+                    </ul>
+                </div>
+            </header>
+            <!-- //header -->
 
-      <div id="cursor-area">
-        <div id="section_wrap">
-          <div class="fullpage-container">
-            <div class="on_list_swiper">
-              <div class="on_list swiper-container">
-                <div class="swiper-wrapper">
-                  <section class="swiper-slide project-section fp-exit"></section>
-                  <section class="swiper-slide project-section fp-exit"></section>
-                  <section class="swiper-slide project-section fp-exit"></section>
-                </div>
-                <div class="heading">
-                  <h1 class="title"></h1>
-                  <h2 class="sub-title"></h2>
-                </div>
-                <div class="thumbnail-container">
-                  <div class="thumbnail-viewer">
-                    <div class="thumbnail">
-                      <img src="./assets/images/project/project1.jpg" alt="" />
+            <div id="cursor-area">
+                <div id="section_wrap">
+                    <div class="fullpage-container">
+                        <!-- 메인 section 슬라이더 -->
+                        <div class="main-swiper swiper-container">
+                            <div class="swiper-wrapper">
+                                <div class="swiper-slide project-section fp-exit"></div>
+                                <div class="swiper-slide project-section fp-exit"></div>
+                                <div class="swiper-slide project-section fp-exit"></div>
+                            </div>
+                            <div class="swiper-scrollbar"></div>
+                        </div>
+                        <!-- heading -->
+                        <div class="heading">
+                            <h1 class="title"></h1>
+                            <h2 class="sub-title"></h2>
+                        </div>
+                        <!-- 썸네일 슬라이더 -->
+                        <div class="thumbnail-swiper swiper-container">
+                            <div class="thumbnail-viewer swiper-wrapper">
+                                <div class="thumbnail swiper-slide">
+                                    <img src="./assets/images/project/project1.jpg" alt="" />
+                                </div>
+                                <div class="thumbnail swiper-slide">
+                                    <img src="./assets/images/project/project2.jpg" alt="" />
+                                </div>
+                                <div class="thumbnail swiper-slide">
+                                    <img src="./assets/images/project/project3.jpg" alt="" />
+                                </div>
+                            </div>
+                        </div>
+                        <ul class="project-info">
+                            <li>
+                                <div>INDUSTRY :</div>
+                                <div class="industry"></div>
+                            </li>
+                            <li>
+                                <div>DATE :</div>
+                                <div class="date"></div>
+                            </li>
+                            <li>
+                                <div>Project Type :</div>
+                                <div class="type"></div>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="thumbnail">
-                      <img src="./assets/images/project/project2.jpg" alt="" />
-                    </div>
-                    <div class="thumbnail">
-                      <img src="./assets/images/project/project3.jpg" alt="" />
-                    </div>
-                  </div>
                 </div>
-                <div class="swiper-scrollbar"></div>
-              </div>
+                <div class="project-viewer" style="background-color: #fff">
+                    <div class="sticky-wrapper">
+                        <div class="image-viewer">
+                            <div class="image-slider">
+                                <img src="./assets/images/project/thumb1.jpg" class="slide-img" />
+                                <img src="./assets/images/project/thumb1.jpg" class="slide-img" />
+                                <img src="./assets/images/project/thumb1.jpg" class="slide-img" />
+                                <img src="./assets/images/project/thumb1.jpg" class="slide-img" />
+                                <img src="./assets/images/project/thumb1.jpg" class="slide-img" />
+                                <img src="./assets/images/project/thumb1.jpg" class="slide-img" />
+                                <img src="./assets/images/project/thumb1.jpg" class="slide-img" />
+                                <img src="./assets/images/project/thumb1.jpg" class="slide-img" />
+                                <img src="./assets/images/project/thumb1.jpg" class="slide-img" />
+                                <img src="./assets/images/project/thumb1.jpg" class="slide-img" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-list">
+                        <div class="project-list__title">
+                            <h2>OUR <br />PROJECT</h2>
+                            <p>We make digital solutions that <br />deliver real results.</p>
+                        </div>
+                        <ul class="lists">
+                            <li class="list-item" data-index="0">
+                                <p>CGV On MOBILE</p>
+                                <ol>
+                                    <li>UI/UX Design</li>
+                                    <li>Mobile Web & App</li>
+                                    <li>PC Web</li>
+                                </ol>
+                            </li>
+                            <li class="list-item" data-index="1">
+                                <p>HOME & SHOPPING</p>
+                                <ol>
+                                    <li>UI/UX Design</li>
+                                    <li>Mobile Web & App</li>
+                                    <li>PC Web</li>
+                                </ol>
+                            </li>
+                            <li class="list-item" data-index="2">
+                                <p>LOTTE DUTY FREE</p>
+                                <ol>
+                                    <li>UI/UX Design</li>
+                                    <li>Mobile Web & App</li>
+                                    <li>PC Web</li>
+                                </ol>
+                            </li>
+                            <li class="list-item" data-index="3">
+                                <p>KB Kookmin Card Tablet</p>
+                                <ol>
+                                    <li>UI/UX Design</li>
+                                    <li>Tablet Web & App</li>
+                                </ol>
+                            </li>
+                            <li class="list-item" data-index="4">
+                                <p>Hyundai Duty Free</p>
+                                <ol>
+                                    <li>UI/UX Design</li>
+                                    <li>Mobile Web & App</li>
+                                    <li>PC Web</li>
+                                </ol>
+                            </li>
+                            <li class="list-item" data-index="5">
+                                <p>HYUNDAI LIVART</p>
+                                <ol>
+                                    <li>UI/UX Design</li>
+                                    <li>Mobile Web & App</li>
+                                    <li>PC Web</li>
+                                </ol>
+                            </li>
+                            <li class="list-item" data-index="6">
+                                <p>SKT T ID ADMIN</p>
+                                <ol>
+                                    <li>UI/UX Design</li>
+                                    <li>Mobile Web & App</li>
+                                    <li>PC Web</li>
+                                    <li>Admin</li>
+                                </ol>
+                            </li>
+                            <li class="list-item" data-index="7">
+                                <p>CJ SEAFOOD</p>
+                                <ol>
+                                    <li>UI/UX Design</li>
+                                    <li>Mobile Web & App</li>
+                                    <li>PC Web</li>
+                                </ol>
+                            </li>
+                            <li class="list-item" data-index="8">
+                                <p>WOORI BANK TABLET BRUNCH</p>
+                                <ol>
+                                    <li>UI/UX Design</li>
+                                    <li>Mobile Web & App</li>
+                                    <li>PC Web</li>
+                                </ol>
+                            </li>
+                            <li class="list-item" data-index="9">
+                                <p>OK CASHBAG</p>
+                                <ol>
+                                    <li>UI/UX Design</li>
+                                    <li>Mobile Web & App</li>
+                                    <li>PC Web</li>
+                                </ol>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
 
-            <ul class="project-info">
-              <li>
-                <div>INDUSTRY :</div>
-                <div class="industry"></div>
-              </li>
-              <li>
-                <div>DATE :</div>
-                <div class="date"></div>
-              </li>
-              <li>
-                <div>Project Type :</div>
-                <div class="type"></div>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="project-viewer" style="background-color: #fff">
-          <div class="sticky-wrapper">
-            <div class="image-viewer">
-              <div class="image-slider">
-                <img src="./assets/images/project/thumb1.jpg" class="slide-img" />
-                <img src="./assets/images/project/thumb1.jpg" class="slide-img" />
-                <img src="./assets/images/project/thumb1.jpg" class="slide-img" />
-                <img src="./assets/images/project/thumb1.jpg" class="slide-img" />
-                <img src="./assets/images/project/thumb1.jpg" class="slide-img" />
-                <img src="./assets/images/project/thumb1.jpg" class="slide-img" />
-                <img src="./assets/images/project/thumb1.jpg" class="slide-img" />
-                <img src="./assets/images/project/thumb1.jpg" class="slide-img" />
-                <img src="./assets/images/project/thumb1.jpg" class="slide-img" />
-                <img src="./assets/images/project/thumb1.jpg" class="slide-img" />
-              </div>
+            <!-- all projects 메뉴  -->
+            <button class="project-list-button">
+                <img src="./assets/images/project/project-menu.svg" alt="" />
+                <span>AII Projects</span>
+            </button>
+            <!-- bottom -->
+            <div id="bottom" class="type2">
+                <div>
+                    <a href="mailto:rianag@rianag.com">RIANAG@RIANAG.COM</a>
+                    <a href="http://daum.net" target="_blank">BLOG</a>
+                </div>
+                <a href="javascript:void(0);" class="download">BROCHURE DOWNLOAD</a>
             </div>
-          </div>
-          <div class="project-list">
-            <div class="project-list__title">
-              <h2>OUR <br />PROJECT</h2>
-              <p>We make digital solutions that <br />deliver real results.</p>
-            </div>
-            <ul class="lists">
-              <li class="list-item" data-index="0">
-                <p>CGV On MOBILE</p>
-                <ol>
-                  <li>UI/UX Design</li>
-                  <li>Mobile Web & App</li>
-                  <li>PC Web</li>
-                </ol>
-              </li>
-              <li class="list-item" data-index="1">
-                <p>HOME & SHOPPING</p>
-                <ol>
-                  <li>UI/UX Design</li>
-                  <li>Mobile Web & App</li>
-                  <li>PC Web</li>
-                </ol>
-              </li>
-              <li class="list-item" data-index="2">
-                <p>LOTTE DUTY FREE</p>
-                <ol>
-                  <li>UI/UX Design</li>
-                  <li>Mobile Web & App</li>
-                  <li>PC Web</li>
-                </ol>
-              </li>
-              <li class="list-item" data-index="3">
-                <p>KB Kookmin Card Tablet</p>
-                <ol>
-                  <li>UI/UX Design</li>
-                  <li>Tablet Web & App</li>
-                </ol>
-              </li>
-              <li class="list-item" data-index="4">
-                <p>Hyundai Duty Free</p>
-                <ol>
-                  <li>UI/UX Design</li>
-                  <li>Mobile Web & App</li>
-                  <li>PC Web</li>
-                </ol>
-              </li>
-              <li class="list-item" data-index="5">
-                <p>HYUNDAI LIVART</p>
-                <ol>
-                  <li>UI/UX Design</li>
-                  <li>Mobile Web & App</li>
-                  <li>PC Web</li>
-                </ol>
-              </li>
-              <li class="list-item" data-index="6">
-                <p>SKT T ID ADMIN</p>
-                <ol>
-                  <li>UI/UX Design</li>
-                  <li>Mobile Web & App</li>
-                  <li>PC Web</li>
-                  <li>Admin</li>
-                </ol>
-              </li>
-              <li class="list-item" data-index="7">
-                <p>CJ SEAFOOD</p>
-                <ol>
-                  <li>UI/UX Design</li>
-                  <li>Mobile Web & App</li>
-                  <li>PC Web</li>
-                </ol>
-              </li>
-              <li class="list-item" data-index="8">
-                <p>WOORI BANK TABLET BRUNCH</p>
-                <ol>
-                  <li>UI/UX Design</li>
-                  <li>Mobile Web & App</li>
-                  <li>PC Web</li>
-                </ol>
-              </li>
-              <li class="list-item" data-index="9">
-                <p>OK CASHBAG</p>
-                <ol>
-                  <li>UI/UX Design</li>
-                  <li>Mobile Web & App</li>
-                  <li>PC Web</li>
-                </ol>
-              </li>
-            </ul>
-          </div>
+            <!-- //bottom -->
+
+            <!-- 커서 -->
+            <div class="custom-cursor">View</div>
         </div>
-      </div>
 
-      <!-- bottom -->
-      <div id="bottom" class="type2">
-        <div>
-          <a href="mailto:rianag@rianag.com">RIANAG@RIANAG.COM</a>
-          <a href="http://daum.net" target="_blank">BLOG</a>
-        </div>
-        <a href="javascript:void(0);" class="download">BROCHURE DOWNLOAD</a>
-      </div>
-      <!-- //bottom -->
+        <!-- Script -->
+        <script>
+            const project = {
+                title: ['Go deep\nDive in\nWatch on', 'Simple\nClear\nModule', 'Effortless\nChic\nLifestyle'],
+                subTitle: ['CGV\nOn MOBILE', 'HOME &\nSHOPPING', 'LOTTE\nDUTY FREE'],
+                industry: ['Commerce', 'Commerce', 'Commerce'],
+                date: ['July, 2025', '2021 - In Progress', '2019 - In Progress'],
+                type: [
+                    'UI/UX Design / Mobile Web&App / PC Web',
+                    'UI/UX Design / Mobile Web&App / PC Web',
+                    'UI/UX Design / Mobile Web&App / PC Web',
+                ],
+            };
 
-      <!-- 커서 -->
-      <div class="custom-cursor">View</div>
-    </div>
+            function updateTitleAndSubtitle(index) {
+                const $title = $('.title');
+                const $subtitle = $('.sub-title');
 
-    <!-- Script -->
-    <script>
-      $(document).ready(function () {
-        const isMobile = window.innerWidth <= 768;
+                const titleLines = project.title[index]
+                    .split('\n')
+                    .map((line) => `<div>${line}</div>`)
+                    .join('');
+                const subtitleLines = project.subTitle[index]
+                    .split('\n')
+                    .map((line) => `<div>${line}</div>`)
+                    .join('');
 
-        const project = {
-          title: ["Go deep\nDive in\nWatch on", "Simple\nClear\nModule", "Effortless\nChic\nLifestyle"],
-          subTitle: ["CGV\nOn MOBILE", "HOME &\nSHOPPING", "LOTTE\nDUTY FREE"],
-          industry: ["Commerce", "Commerce", "Commerce"],
-          date: ["July, 2025", "2021 - In Progress", "2019 - In Progress"],
-          type: ["UI/UX Design / Mobile Web&App / PC Web", "UI/UX Design / Mobile Web&App / PC Web", "UI/UX Design / Mobile Web&App / PC Web"],
-        };
+                $title.removeClass('active').html(titleLines);
+                $subtitle.removeClass('active').html(subtitleLines);
 
-        const $sections = $(".project-section");
-        const $thumbnails = $(".thumbnail");
-        const $thumbnailViewer = $(".thumbnail-viewer");
-        const $industry = $(".industry");
-        const $date = $(".date");
-        const $type = $(".type");
-        const $title = $(".title");
-        const $subtitle = $(".sub-title");
-        const $projectInfoItems = $(".project-info li");
-
-        const totalSections = $sections.length;
-        const formattedTotal = totalSections < 10 ? "0" + totalSections : totalSections;
-
-        if (!isMobile) {
-          // ✅ 데스크탑: fullpage.js 적용
-          const fullpageInstance = $("#section_wrap").simpleFullpage({
-            duration: 800,
-            easing: "ease",
-            parallax: true,
-            keyboard: true,
-            touch: true,
-            navigation: false,
-            on: {
-              init() {
-                $(".fp-navi").remove();
-                $(".fp-arrows").prepend(`
-                  <div class="fp-navi">
-                    <span>01</span>
-                    <em>${formattedTotal}</em>
-                  </div>
-                `);
-              },
-            },
-            afterLoad(index) {
-              const current = index + 1;
-              $(".fp-navi span").text(current < 10 ? "0" + current : current);
-
-              const thumbHeight = $thumbnails.outerHeight();
-              gsap.to($thumbnailViewer, {
-                y: -(index * thumbHeight),
-                duration: 1.2,
-                ease: "power2.out",
-              });
-
-              $thumbnails.removeClass("active");
-              $thumbnails.eq(index).addClass("active");
-
-              $industry.text(project.industry[index]);
-              $date.text(project.date[index]);
-              $type.text(project.type[index]);
-
-              $title.removeClass("active");
-              $subtitle.removeClass("active");
-              $projectInfoItems.css({
-                opacity: 0,
-                transform: "translateY(100%)",
-                transition: "none",
-              });
-
-              const titleLines = project.title[index]
-                .split("\n")
-                .map((line) => `<div>${line}</div>`)
-                .join("");
-
-              const subtitleLines = project.subTitle[index]
-                .split("\n")
-                .map((line) => `<div>${line}</div>`)
-                .join("");
-
-              $title.html(titleLines);
-              $subtitle.html(subtitleLines);
-
-              setTimeout(() => {
-                $title.addClass("active");
-                $subtitle.addClass("active");
-
-                $title.find("div").each(function (i) {
-                  $(this).css("transition-delay", i * 0.1 + "s");
-                });
-
-                $subtitle.find("div").each(function (i) {
-                  $(this).css("transition-delay", i * 0.1 + "s");
-                });
-
-                $projectInfoItems.each(function (i) {
-                  const $li = $(this);
-                  setTimeout(() => {
-                    $li.css({
-                      opacity: 1,
-                      transform: "translateY(0%)",
-                      transition: "all 0.8s var(--title-transition-ease)",
-                      "transition-delay": i * 0.1 + 0.2 + "s",
-                    });
-                  }, 10);
-                });
-              }, 50);
-
-              if (index === totalSections - 1) {
                 setTimeout(() => {
-                  if ($("#section_wrap").data("simpleFullpage")) {
-                    $("#section_wrap").data("simpleFullpage").destroy();
-                    $("body, html").css("overflow", "auto");
-                  }
-                }, 1300);
-              }
-            },
-          });
-        }
+                    $title.addClass('active');
+                    $subtitle.addClass('active');
 
-        // ✅ 커서 기능
-        const $cursor = $(".custom-cursor");
-        const $area = $("#cursor-area");
-        let isHovering = false;
-
-        $area.on("mousemove", function (e) {
-          if (isHovering) {
-            $cursor.css({
-              left: e.clientX + "px",
-              top: e.clientY + "px",
-            });
-          }
-        });
-
-        $area.on("mouseenter", function () {
-          isHovering = true;
-          $cursor.css("opacity", 1);
-        });
-
-        $area.on("mouseleave", function () {
-          isHovering = false;
-          $cursor.css("opacity", 0);
-        });
-
-        $(".title, .project, .project-info, .fp-arrows")
-          .on("mouseenter", function () {
-            $cursor.css("opacity", 0);
-          })
-          .on("mouseleave", function () {
-            if (isHovering) {
-              $cursor.css("opacity", 1);
+                    $title.find('div').each(function (i) {
+                        $(this).css('transition-delay', i * 0.1 + 's');
+                    });
+                    $subtitle.find('div').each(function (i) {
+                        $(this).css('transition-delay', i * 0.1 + 's');
+                    });
+                }, 10);
             }
-          });
 
-        // ✅ 프로젝트 리스트 hover 시 이미지 슬라이더
-        const $viewer = $(".image-viewer");
-        const $imageSlider = $(".image-slider");
-        const $slideImg = $(".slide-img");
+            $(window).on('load', function () {
+                let mainSwiper = null;
+                let thumbSwiper = null;
 
-        $(".list-item").on("mouseenter", function () {
-          const index = $(this).data("index");
-          const slideHeight = $slideImg.height();
+                const $industry = $('.industry');
+                const $date = $('.date');
+                const $type = $('.type');
 
-          gsap.to($imageSlider, {
-            y: -(index * slideHeight),
-            duration: 1.3,
-            ease: "easeInOut",
-          });
+                function isMobile() {
+                    return $(window).width() <= 768;
+                }
 
-          $(this).addClass("active");
-          $viewer.css("opacity", 1);
-        });
+                function initSwiper() {
+                    thumbSwiper = new Swiper('.thumbnail-swiper', {
+                        slidesPerView: 1,
+                        spaceBetween: 33,
+                        allowTouchMove: false,
+                        watchSlidesProgress: true,
+                        //slideToClickedSlide: true,
+                        on: {
+                            click: function () {
+                                const index = this.clickedIndex;
+                                if (typeof index !== 'undefined') {
+                                    mainSwiper.slideTo(index);
+                                }
+                            },
+                        },
+                    });
 
-        $(".list-item").on("mouseleave", function () {
-          $(this).removeClass("active");
-          $viewer.css("opacity", 0);
-        });
-      });
-    </script>
-  </body>
+                    mainSwiper = new Swiper('.main-swiper', {
+                        allowTouchMove: true,
+                        simulateTouch: true,
+                        grabCursor: true,
+                        scrollbar: {
+                            el: '.swiper-scrollbar',
+                            draggable: true,
+                        },
+                        thumbs: {
+                            swiper: thumbSwiper,
+                        },
+                        on: {
+                            init: function () {
+                                const index = this.activeIndex;
+                                updateTitleAndSubtitle(index);
+                                $industry.text(project.industry[index]);
+                                $date.text(project.date[index]);
+                                $type.text(project.type[index]);
+                            },
+                            slideChange: function () {
+                                thumbSwiper.slideTo(this.activeIndex);
+                            },
+                            slideChangeTransitionEnd: function () {
+                                const index = this.activeIndex;
+                                updateTitleAndSubtitle(index);
+                                $industry.text(project.industry[index]);
+                                $date.text(project.date[index]);
+                                $type.text(project.type[index]);
+                            },
+                        },
+                    });
+                }
+
+                function destroySwiper() {
+                    if (mainSwiper) {
+                        mainSwiper.destroy(true, true);
+                        mainSwiper = null;
+                    }
+                    if (thumbSwiper) {
+                        thumbSwiper.destroy(true, true);
+                        thumbSwiper = null;
+                    }
+                }
+
+                function handleLayout() {
+                    if (isMobile()) {
+                        destroySwiper();
+                        initSwiper();
+                    } else {
+                        destroySwiper();
+                        initFullpage();
+                    }
+                }
+
+                function initFullpage() {
+                    const totalSections = $('.project-section').length;
+                    const formattedTotal = totalSections < 10 ? '0' + totalSections : totalSections;
+
+                    $('#section_wrap').simpleFullpage({
+                        duration: 800,
+                        easing: 'ease',
+                        parallax: true,
+                        keyboard: true,
+                        touch: true,
+                        navigation: false,
+                        on: {
+                            init() {
+                                $('.fp-navi').remove();
+                                $('.fp-arrows').prepend(`
+                                        <div class="fp-navi">
+                                            <span>01</span>
+                                            <em>${formattedTotal}</em>
+                                        </div>
+                                    `);
+                            },
+                        },
+                        afterLoad(index) {
+                            const current = index + 1;
+                            $('.fp-navi span').text(current < 10 ? '0' + current : current);
+
+                            const $thumbnailViewer = $('.thumbnail-viewer');
+                            const $thumbnails = $('.thumbnail');
+                            const thumbHeight = $thumbnails.outerHeight();
+
+                            gsap.to($thumbnailViewer, {
+                                y: -(index * thumbHeight),
+                                duration: 1.2,
+                                ease: 'power2.out',
+                            });
+
+                            $thumbnails.removeClass('active').eq(index).addClass('active');
+
+                            $('.industry').text(project.industry[index]);
+                            $('.date').text(project.date[index]);
+                            $('.type').text(project.type[index]);
+                            updateTitleAndSubtitle(index);
+
+                            $('.project-info li').css({
+                                opacity: 0,
+                                transform: 'translateY(100%)',
+                                transition: 'none',
+                            });
+
+                            setTimeout(() => {
+                                $('.project-info li').each(function (i) {
+                                    $(this).css({
+                                        opacity: 1,
+                                        transform: 'translateY(0%)',
+                                        transition: 'all 0.8s var(--title-transition-ease)',
+                                        'transition-delay': i * 0.1 + 0.2 + 's',
+                                    });
+                                });
+                            }, 100);
+
+                            if (index === totalSections - 1) {
+                                setTimeout(() => {
+                                    const plugin = $('#section_wrap').data('simpleFullpage');
+                                    if (plugin && typeof plugin.destroy === 'function') {
+                                        plugin.destroy();
+                                        $('body, html').css('overflow', 'auto');
+                                    }
+                                }, 1300);
+                            }
+                        },
+                    });
+                }
+
+                handleLayout();
+                $(window).on('resize', handleLayout);
+            });
+        </script>
+    </body>
 </html>
