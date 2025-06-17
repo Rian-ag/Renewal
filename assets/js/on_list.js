@@ -1,15 +1,14 @@
   $(function () {
     var swiper;
 
-    // 모바일 조건 1: 화면 너비 768px 이하
     function isMobileWidth() {
       return $(window).width() <= 768;
     }
 
-    // 모바일 조건 2: URL에 m. 도메인 포함
     function isMobileDomain() {
       return window.location.hostname.indexOf('m.') !== -1;
     }
+
 
     // Swiper 초기화
     function initSwiper() {

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIANAG_About</title>
+    <!-- CSS -->
+	<link rel="stylesheet" href="/assets/css/common.css">
+	<link rel="stylesheet" href="/assets/css/ui.css">
+    <link rel="stylesheet" href="/assets/css/swiper.css">
+	<link rel="stylesheet" href="./assets/css/pc_on_list.css" media="(min-width: 769px)">
+	<link rel="stylesheet" href="./assets/css/mo_on_list.css" media="(max-width: 768px)">
+    <script src="/assets/js/jquery-3.7.1.min.js"></script>
+	<script src="/assets/js/common.js" defer></script>
+    <script src="/assets/js/swiper.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+	<script src="./assets/js/on_list.js"></script>
+	<script>
+		$(function(){
+			/* date & time */
+			const today = new Date();
+			const year = String(today.getFullYear()); // YY (연도)
+			const month = today.toLocaleString('en-US', { month: 'short' }); // m (영문 월)
+			const day = String(today.getDate()).padStart(2, '0'); // dd (일)
+
+			const formattedDate = `${year}.${month}.${day}`;
+
+
+			const hours = ('0' + today.getHours()).slice(-2); 
+			const minutes = ('0' + today.getMinutes()).slice(-2);
+			const seconds = ('0' + today.getSeconds()).slice(-2);
+			const formattime = hours + ':' + minutes  + ':' + seconds;
+
+			$('.visual_cont div strong').text(formattime);
+
+			setInterval(function(){
+				const today = new Date();
+				const hours = ('0' + today.getHours()).slice(-2); 
+				const minutes = ('0' + today.getMinutes()).slice(-2);
+				const seconds = ('0' + today.getSeconds()).slice(-2);
+				const formattime = hours + ':' + minutes  + ':' + seconds;
+
+				$('.visual_cont div strong').text(formattime);
+			},1000);
+		})
+	</script>
+
+</head>
+<body>
+    <div id="wrap" class="wrap">
+        <!-- header -->
+		<header class="type_02">
+			<div class="inner">
+				<h1 onclick="location.href='/'"><img src="/assets/images/common/h1_logo.png" alt="RIAN" /></h1>
+				<button class="btn_ham type2">site map</button>
+			</div>
+			<div class="site_map">
+				<ul>
+					<li><a href="/about.html">About</a></li>
+					<li><a href="#none">Work</a></li>
+					<li><a href="#none">What's on</a></li>
+					<li><a href="#none">Join Our Team</a></li>
+					<li><a href="/join.html">Contact</a></li>
+				</ul>
+			</div>
+		</header>
+		<!-- //header -->
+
+		<div class="cont_inner">
+			<p><strong>What’s on</strong></p>
+			<div class="visual_cont">
+				<div>
+					<strong></strong>
+					<p>37.559127°N,<br/> 126.860986°E RIAN, <br/> SEOUL,  KOREA</p>
+				</div>
+			</div>
+			<div class="on_list_swiper">
+				<div class="on_list swiper-container">
+					<ul class="swiper-wrapper">
+						<li class="swiper-slide">
+							<a href="javascript:void(0);">
+								<p><img src="./assets/images/on_list/1.png" alt=""></p>
+								<div>
+									<em>도서</em>
+									<span>
+										사이몬 사이넥의 ‘Start with Why’에서는<br/>
+										우리가 생각하는 목표라고 생각하는 것에서<br/>
+										도 차이가 있으며 좋은 목표가 따로 있다고<br/> 
+										이야기합니다.
+									</span>
+									<div>
+										<i>#StartWithWhy</i>
+										<i>#우리는왜일을하는가</i>
+									</div>
+									<button></button>
+								</div>
+							</a>
+						</li>
+						<li class="swiper-slide">
+							<a href="javascript:void(0);">
+								<p><img src="./assets/images/on_list/2.jpg" alt=""></p>
+								<div>
+									<em>공연</em>
+									<span>
+										비내리던 토요일, 대통령이 없을 때마다 내<br/>
+										한했던, ‘무정부 요정’이라는 콜드플레이의<br/>
+										내한 공연에 다녀왔습니다.
+									</span>
+									<div>
+										<i>#COLDPLAY</i>
+										<i>#사운드와비주얼그리고스토리</i>
+									</div>
+									<button></button>
+								</div>
+							</a>
+						</li>
+						<li class="swiper-slide">
+							<a href="javascript:void(0);">
+								<p><img src="./assets/images/on_list/3.png" alt=""></p>
+								<div>
+									<em>일상</em>
+									<span>
+										회사 뒤편에 증미산, 한때는 염창산이라고<br/> 
+										불렸다는 낮은 산이 있다. 그리고 그 앞으론<br/> 
+										한강이 흐른다. 보고 있으면 답답한 생각이<br/>
+										날아가는 것 같기도.
+
+									</span>
+									<div>
+										<i>#등산아니고_산책</i>
+										<i>#피톤치드</i>
+									</div>
+									<button></button>
+								</div>
+							</a>
+						</li>
+						<li class="swiper-slide">
+							<a href="javascript:void(0);">
+								<p><img src="./assets/images/on_list/4.png" alt=""></p>
+								<div>
+									<em>디자인</em>
+									<span>
+										AI가 디지털 혁신의 코어가 됨에 따라 디자<br/>
+										이너의 역할도 진화의 과정을 거치고 있습<br/>
+										니다. 주요 기술 기업과 대학들은 인간 중심 <br/>
+										AI를 위한 전략들을 제시하고 있습니다.
+									</span>
+									<div>
+										<i>#AI시대</i>
+										<i>#진화하는디자이너의역할</i>
+									</div>
+									<button></button>
+								</div>
+							</a>
+						</li>
+						<li class="swiper-slide">
+							<a href="javascript:void(0);">
+								<p><img src="./assets/images/on_list/5.png" alt=""></p>
+								<div>
+									<em>공연</em>
+									<span>
+										지난 5월 23~25일, 9년만에 한국을 되찾<br/>
+										은 팻 매스니의 내한 공연. 무대에서 세상 자<br/>
+										유로웠고, 그저 관객은 황홀히 끌려 갈 수 밖<br/>
+										에 없던 시간이었다.
+									</span>
+									<div>
+										<i>#PatMetheny</i>
+										<i>#또오세요</i>
+										<i>건강히</i>
+									</div>
+									<button></button>
+								</div>
+							</a>
+						</li>
+						<li class="swiper-slide">
+							<a href="javascript:void(0);">
+								<p><img src="./assets/images/on_list/6.png" alt=""></p>
+								<div>
+									<em>일상</em>
+									<span>
+										염강나들목 터널 앞에 서면 ‘이런데 한강이 <br/>
+										있다고?’ 라는 생각이 들지만 터널을 지나<br/>
+										가자마자 보이는 것은 일상에서 벗어난 <br/>
+										새로운 풍경입니다.
+									</span>
+									<div>
+										<i>#Real한강뷰 </i>
+										<i>힐링타임</i>
+										<i>커피타임</i>
+									</div>
+									<button></button>
+								</div>
+							</a>
+						</li>
+					</ul>
+					<div class="swiper-pagination"></div>
+				</div>
+				<div class="custom-cursor">Drag</div>
+			</div>
+			
+		</div>
+		<!-- bottom -->
+		<div id="bottom">
+			<div>
+				<a href="mailto:rianag@rianag.com">RIANAG@RIANAG.COM</a>
+				<a href="http://daum.net" target="_blank">BLOG</a>
+			</div>
+			<a href="javascript:void(0);" class="download">BROCHURE DOWNLOAD</a>
+		</div>
+		<!-- //bottom -->
+
+
+    </div>
+</body>
+</html>

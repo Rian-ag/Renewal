@@ -9,7 +9,9 @@ header .inner .btn_ham {width:28px; height:28px; font-size:0; background-color:t
 header .inner .btn_ham:before, header .inner .btn_ham:after {width:100%; border-top:5px solid #fff; content:''; position:absolute; left:0; display:block; transition:all 0.25s ease-in-out;}
 header .inner .btn_ham:before {top:6px;}
 header .inner .btn_ham:after {bottom:6px;}
-
+header.type_02 .inner .btn_ham:before, header.type_02 .inner .btn_ham:after {border-top:5px solid #000;}
+header.type_03 .inner a::before {width:20px; height:20px; background-image:url('/assets/images/common/icon_split.png'); background-position:0 -50px; background-repeat:no-repeat; background-size:500px auto; content:''; display:block; transform:rotate(180deg);}
+header.type_03 .inner a::after {display:none;}
 /* site map open */
 header .inner.close a {display:none;}
 header .inner.close .btn_ham:before, header .inner.close .btn_ham:after {border-color:#000; top:50%; bottom:initial; left:50%;}

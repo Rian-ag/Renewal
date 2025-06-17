@@ -19,7 +19,7 @@ $(document).ready(function () {
                         // 메뉴 닫기
                         $siteMap.removeClass('active').addClass('close');
                         $btnHam.parent().removeClass('close');
-
+                        
                         $('header h1 img').attr('src',$('header h1 img').attr('src').replace('_black.png','.png'));
                     }
                 }, (i*300));
