@@ -21,6 +21,9 @@ img {
     max-width: 100%;
     object-fit: cover;
 }
+.sr-only {
+    text-indent: -9999px;
+}
 #wrap {
     position: relative;
     height: 100dvh;
@@ -145,6 +148,12 @@ header {
     display: none;
 }
 
+.project-info {
+    width: 12rem;
+    height: auto;
+    display: none;
+}
+
 /* thumbnail swiper */
 .thumbnail-swiper {
     position: absolute;
@@ -182,10 +191,6 @@ header {
     height: 24.5rem;
 }
 
-.project-info {
-    display: none;
-}
-
 .project-list-button {
     display: flex;
     gap: 8px;
@@ -201,12 +206,100 @@ header {
     z-index: 100;
 }
 
-#bottom {
+/* project list viewer */
+.project-viewer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: #fff;
+    transform: translateY(100%);
+    transition: transform 0.6s ease-in-out;
+    overflow-y: auto;
+}
+.project-viewer header {
+    position: sticky;
+    left: 0;
+    top: 0;
+    height: 8rem;
+    padding: 2.6rem 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-shrink: 0;
+    background-color: #fff;
+}
+.project-viewer header .close {
+    width: 2.6rem;
+    height: 2.6rem;
+    background-image: url('./../images/project/close.svg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    /* background-image: url('./../images/common/icon_split.png');
+    background-size: 500px 500px;
+ */
+    /* text-indent: -9999px; */
+    z-index: 500;
+}
+.project-viewer-scrollable {
+    flex: 1;
+    overflow-y: auto;
+}
+.project-viewer.active {
+    transform: translateY(0);
+}
+
+.project-viewer .sticky-wrapper {
     display: none;
 }
 
-.project-info {
-    width: 12rem;
-    height: auto;
+.project-list {
+    position: relative;
+    padding: 6rem 3rem 3rem;
+    color: #000;
+}
+.project-list__title h2 {
+    font-size: 3.8rem;
+    font-weight: 800;
+    line-height: 110%;
+    letter-spacing: -0.76px;
+}
+.project-list__title p {
+    font-size: 1.6rem;
+    font-weight: 400;
+    line-height: 110%;
+    letter-spacing: -0.32px;
+    margin-top: 1.6rem;
+}
+.lists {
+    margin-top: 6rem;
+}
+
+.lists > .list-item {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    padding: 1.6rem 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+.lists > .list-item > p {
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 102%;
+    letter-spacing: -0.36px;
+}
+.lists > .list-item > ol {
+    display: flex;
+    gap: 0.8rem;
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 102%;
+    letter-spacing: -0.24px;
+}
+/* bottom */
+#bottom {
     display: none;
 }
