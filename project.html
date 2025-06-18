@@ -245,45 +245,6 @@
                 $('body').css('overflow', 'auto');
             });
 
-            // ✅ 이미지 갯수 체크
-            const $imageViewer = $('.image-viewer');
-            const $imageSlider = $('.image-slider');
-            const $imageSlides = $('.slide-img');
-            const imageSlideHeight = 240;
-            const imageSlideCount = $imageSlides.length;
-
-            // ✅ 모바일 여부 확인 함수
-            function isMobile() {
-                return $(window).width() <= 768;
-            }
-
-            // ✅ PC에서만 hover 이벤트 바인딩
-            if (!isMobile()) {
-                $('.list-item')
-                    .on('mouseenter', function () {
-                        const index = $(this).data('index');
-                        $(this).addClass('active');
-
-                        $imageSlider.css('height', imageSlideHeight * imageSlideCount + 'px');
-
-                        // 이미지 뷰어 보여주기
-                        $('.sticky-wrapper').css('display', 'block');
-                        $imageViewer.css({ opacity: 1 });
-                        $('.image-viewer').css({ opacity: 1 });
-
-                        // GSAP로 슬라이드 애니메이션 (위로 이동)
-                        gsap.to($imageSlider, {
-                            y: -(imageSlideHeight * index),
-                            duration: 0.6,
-                            ease: 'expo.out',
-                        });
-                    })
-                    .on('mouseleave', function () {
-                        $(this).removeClass('active');
-                        $imageViewer.css({ opacity: 0 });
-                    });
-            }
-
             /* s:custom cursor */
             const $cursor = $('.custom-cursor');
             const $area = $('#cursor-area');

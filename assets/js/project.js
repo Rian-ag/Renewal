@@ -75,7 +75,6 @@ $(window).on('load', function () {
     const imgSlideHeight = 240;
     const imgTotalSlides = $imgSlides.length;
 
-    // ✅ PC일 때만 .title을 .heading 바깥으로 이동
     if (!isMobile()) {
         // ✅ PC 전용 : 프로젝트 리스트 hover 시 이미지 슬라이드
         $('.list-item')
