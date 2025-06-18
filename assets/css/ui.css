@@ -79,5 +79,4 @@ header #hidden_menu button:after {transform:rotate(135deg);}
   #bottom.type2 .top::after {display:none;}
 
   header .site_map ul {margin-left:10px !important;}
-  header {border:10px solid red;}
 }
