@@ -9,7 +9,7 @@ img { display: block; max-width: 100%; object-fit: cover; }
 #wrap { position: relative; height: 100dvh; } 
 .custom-cursor { display: none; } 
 
-header { height: 8rem; background-color: #1d1617; } 
+header { height: 9.48vh; background-color: #1d1617; } 
 .project-wrapper { display: none; } 
 .swiper-slide_wrap { width: 100vw; height: 100dvh; overflow: hidden; } 
 .fullpage-container { position: relative; } 
