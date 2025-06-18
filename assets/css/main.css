@@ -16,7 +16,7 @@ section.active .parallax-bg {transform:scale(1.2);}
 .fp-dot {width:10px; height:10px; margin:10px 0; background:#ccc; border-radius:50%; cursor:pointer; transition:background 0.3s;}
 .fp-dot.active {background:#333;}
 .fp-arrows {position:fixed; right:30px; bottom:114px; z-index:1; display:flex; align-items:center; flex-direction:column; gap:10px;}
-.fp-arrow {width:28px; height:28px; font-size:0; background-image:url('/rianag/assets/images/common/icon_split.png'); background-position:0 0; background-repeat:no-repeat; background-size:500px auto; border:none; cursor:pointer; display:flex;}
+.fp-arrow {width:28px; height:28px; font-size:0; background-image:url('../images/common/icon_split.png'); background-position:0 0; background-repeat:no-repeat; background-size:500px auto; border:none; cursor:pointer; display:flex;}
 .fp-next {transform:rotate(180deg);}
 .fp-navi {margin-bottom:18px; color:#fff; font-size:24px; font-weight:600; line-height:102%; display:flex; align-items:center; flex-direction:column;}
 .fp-navi em {font-style:normal; display:flex; flex-direction:column; align-items:center;}

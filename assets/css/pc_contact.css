@@ -1,0 +1,24 @@
+/* 공통 */
+.cont_inner {width:1400px; margin:0 auto; padding:200px 0;}
+em,i {font-style: normal;}
+.mo {display:none;}
+
+section {height:100vh;}
+section .cont_inner > p {overflow:hidden;}
+section .cont_inner > p:last-of-type{margin:24px 0 100px;}
+section .cont_inner > p > span {font-size:60px; font-weight:700; line-height:102%; display:block; transition:all 0.5s; transform:translateY(500px); transition-delay:0;}
+section .cont_inner > p > span.active {transform:translateY(0px);}
+section .cont_inner > p > strong {font-size:90px; font-weight:800; display:block; transform:translateY(500px); transition:all 1s;;}
+section .cont_inner > p > strong.active {transform:translateY(0px);}
+section .cont_inner > p > strong br {display:none;}
+section .cont_inner ul {display:flex; gap:150px; overflow:hidden;}
+section .cont_inner ul li {transform:translateY(500px); transition:all 1.5s; }
+section .cont_inner ul li.active {transform:translateY(0px);}
+section .cont_inner ul li span {margin-bottom:24px; color:#808080; font-size:16px; font-weight:400; line-height:102%; display:inline-block;}
+section .cont_inner ul li p {font-size:24px; font-weight:700; line-height:150%;}
+section .cont_inner ul li p button {content:''; width:14px; height:14px; margin-left:6px; background-image:url('../images/common/icon_split.png'); background-size:500px 500px; background-position:-178px -50px; display:inline-block;}
+section .cont_inner ul li > a {margin-top:68px; font-size:14px; font-weight:800; line-height:106%; display:flex; align-items:center; gap:4px;}
+section .cont_inner ul li > a::after {content:''; width:20px; height:20px; background-image:url('../images/common/icon_split.png'); background-size:500px 500px; background-position:-100px -50px; display:inline-block;}
+section .cont_inner ul li em {font-size:16px; font-weight:400; line-height:150%; display:block;}
+section .cont_inner ul li em:last-of-type {margin-top:40px;}
+

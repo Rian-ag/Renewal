@@ -26,7 +26,8 @@ section .cont_inner dl dt div p {margin-top:18px; font-size:22px; font-weight:60
 .swiper-container {width:100%; height:100px; overflow:hidden;}
 .on_detail_swiper .swiper-container .swiper-wrapper {display:flex !important; flex-direction:row;}
 .on_detail_swiper .swiper-container .swiper-wrapper .swiper-slide {width:90px !important; height:90px !important; flex-shrink:0;}
-.on_detail_swiper .swiper-container .swiper-wrapper .swiper-slide p {overflow:hidden;}
+.on_detail_swiper .swiper-container .swiper-wrapper .swiper-slide p.active {height:100%; border:10px solid #fff; box-sizing:border-box; overflow:hidden;}
+
 section .cont_inner > ul li {margin-bottom:40px;}
 section .cont_inner > ul li > * {margin-bottom:40px;}
 section {background-color:#000;}

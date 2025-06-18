@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIANAG_About</title>
+    <!-- CSS -->
+	<link rel="stylesheet" href="/assets/css/common.css">
+	<link rel="stylesheet" href="/assets/css/ui.css">
+
+    <link rel="stylesheet" href="/assets/css/swiper.css">
+    <link rel="stylesheet" href="/assets/css/pc_contact.css" media="(min-width: 769px)">
+    <link rel="stylesheet" href="/assets/css/mo_contact.css" media="(max-width: 768px)">
+
+    <script src="/assets/js/jquery-3.7.1.min.js"></script>
+	<script src="/assets/js/common.js"></script>
+    <script src="/assets/js/swiper.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+</head>
+<body>
+	<div id="wrap">
+		<!-- header -->
+		<header class="type_02">
+			<div class="inner">
+				<h1 onclick="location.href='/'"><img src="/assets/images/common/h1_logo.png" alt="RIAN" /></h1>
+				<button class="btn_ham">site map</button>
+			</div>
+
+			<div class="site_map">
+				<ul>
+					<li><a href="/about.html">About</a></li>
+					<li><a href="#none">Work</a></li>
+					<li><a href="/insight_list.html">What's on</a></li>
+					<li><a href="/project.html">Join Our Team</a></li>
+					<li><a href="/join.html">Contact</a></li>
+				</ul>
+				<!-- bottom -->
+				<div class="bottom">
+					<div>
+						<a href="mailto:rianag@rianag.com">RIANAG@RIANAG.COM</a>
+						<a href="http://daum.net" target="_blank">BLOG</a>
+					</div>
+					<a href="javascript:void(0);" class="download">BROCHURE DOWNLOAD</a>
+				</div>
+				<!-- //bottom -->
+			</div>
+		</header>
+		<!-- //header -->
+
+        <section>
+            <div class="cont_inner">
+                <p><span>Let’s collaborate</span></p>
+                <p><strong>project@<br/>rian.com</strong></p>
+                <ul>
+                    <li>
+                        <span>OFFICE ADRESS</span>
+                        <p>
+                            서울 특별시 강서구 양천로 551-17<br/>
+                            한화비즈메트로 1차 310호,311호
+                            <button></button>
+                        </p>
+                        <a href="">VIEW ON MAPS</a>
+                    </li>
+                    <li>
+                        <span>E-MAIL</span>
+                        <em>프로젝트 및 견적 문의</em>
+                        <p>
+                            project@rian.com
+                            <button></button>
+                        </p>
+
+                        <em>입사지원 및 관련 문의</em>
+                        <p>
+                            recruit@rain.com
+                            <button></button>
+                        </p>
+                    </li>
+                    <li>
+                        <span>TEL</span>
+                        <p>02.2635.3601</p>
+                    </li>
+                    <li>
+                        <span>FAX</span>
+                        <p>02.2635.3602</p>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+
+		<!-- bottom -->
+		<div id="bottom" class="type2">
+            <a href="http://daum.net" target="_blank">BLOG</a>
+            <button class="top">Back to Top</button>
+            <a href="mailto:rianag@rianag.com">RIANAG@RIANAG.COM</a>
+		</div>
+		<!-- //bottom -->
+	</div>
+
+<script>
+    $(function(){
+        setTimeout(function () {
+            $('section .cont_inner > p > span').addClass('active');
+        }, 0);
+        setTimeout(function () {
+            $('section .cont_inner > p > strong').addClass('active');
+        }, 400);
+        setTimeout(function () {
+            $('section .cont_inner ul li').addClass('active');
+        }, 1000);
+
+        $('.top').on('click', function() {
+            $('html, body').animate({ scrollTop: 0 }, 500); // 500은 애니메이션 시간(ms)
+        });
+    })//fn
+</script>
+    
+</body>
+</html>
