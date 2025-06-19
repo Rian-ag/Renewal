@@ -23,6 +23,7 @@ strong {font-weight:800;;}
 .swiper-container {position:relative; overflow:visible !important;}
 .swiper-wrapper {align-items:flex-end; z-index:5;}
 .swiper-slide {overflow:hidden;}
+.swiper-slide {height:400px !important;}
 .swiper-slide.swiper-slide-next {height:400px !important;}
 .swiper-slide.swiper-slide-active {width:330px !important; height:546px !important;} 
 .swiper-slide.swiper-slide-active p img {height:100%;} 
