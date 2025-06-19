@@ -3,31 +3,13 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-        <meta name="keywords" content="이커머스, 웹에이전시, UX, 뉴미디어, 모바일" />
-        <meta name="description" content="애자일 기반의 이커머스와 뉴미디어 분야 UX전문 디지털에이전시" />
-        <meta property="og:url" content="http://www.rianag.com/" />
-        <meta property="og:type" content="website" />
-        <meta property="og:title" content="리앙에이지" />
-        <meta property="og:image" content="http://www.rianag.com/resource/img/rianag.png" />
-        <meta property="og:description" content="이커머스와 뉴미디어 기반의 UX 전문 웹에이전시" />
         <link rel="icon" href="/favicon.png" />
         <title>리앙에이지</title>
-        <link
-            rel="stylesheet"
-            as="style"
-            crossorigin
-            href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
-        />
-        <link rel="stylesheet" href="./assets/css/pc_join.css" />
-
         <!-- CSS -->
         <link rel="stylesheet" href="/assets/css/common.css" />
         <link rel="stylesheet" href="/assets/css/ui.css" />
-
-        <!-- JS -->
-        <script src="/assets/js/jquery-3.7.1.min.js"></script>
-        <script src="/assets/js/common.js"></script>
+        <link rel="stylesheet" href="./assets/css/pc_join.css" media="(min-width: 769px)" />
+        <link rel="stylesheet" href="./assets/css/mo_joing.css" media="(max-width: 768px)" />
     </head>
 
     <body>
@@ -35,7 +17,6 @@
             <!-- header -->
             <header>
                 <div class="inner">
-                    <a href="#none">WORK</a>
                     <h1 onclick="location.href='/'"><img src="/assets/images/common/h1_logo.png" alt="RIAN" /></h1>
                     <button class="btn_ham">site map</button>
                 </div>
@@ -43,7 +24,7 @@
                 <div class="site_map">
                     <ul>
                         <li><a href="/about.html">About</a></li>
-                        <li><a href="#none">Work</a></li>
+                        <li><a hr ef="#none">Work</a></li>
                         <li><a href="#none">What's on</a></li>
                         <li><a href="/project.html">Join Our Team</a></li>
                         <li><a href="/join.html">Contact</a></li>
@@ -52,265 +33,270 @@
             </header>
             <!-- //header -->
 
-            <!-- main -->
-            <section class="section main">
-                <div class="section-wrapper">
-                    <div class="title-wrapper">
-                        <h2 class="title line">We need you</h2>
-                        <strong class="line">recruit@rian.<br />com</strong>
-                    </div>
-                    <div class="sub-wrapper">
-                        <div class="headline">
-                            <p class="tar btt">We make digital solutions</p>
-                            <p class="tal btt">that deliver REAL RESULTS.</p>
+            <div class="section-container">
+                <!-- main -->
+                <section class="section main">
+                    <div class="section-inner">
+                        <div class="title-wrapper">
+                            <h2 class="title line">We need you</h2>
+                            <strong class="line">recruit@rian.<br />com</strong>
                         </div>
-                        <div class="subhead">
-                            <p class="btt">리앙에이지는 국내 최고의 전문가들이 설립한 글로벌 UX 전문기업입니다.</p>
-                            <p class="btt">
-                                e-Commerce, e-Finance, e-Brand 등 온라인 사업분야에서 강한 리더십과 믿음직한
-                                커뮤니케이션 능력을 활용하여 글로벌 비즈니스, 모바일, 컨버전스 분야로 확대해 가고
-                                있습니다.
-                            </p>
+                        <div class="sub-wrapper">
+                            <div class="headline">
+                                <p class="tar btt">We make digital solutions</p>
+                                <p class="tal btt">that deliver REAL RESULTS.</p>
+                            </div>
+                            <div class="subhead">
+                                <p class="btt">리앙에이지는 국내 최고의 전문가들이 설립한 글로벌 UX 전문기업입니다.</p>
+                                <p class="btt">
+                                    e-Commerce, e-Finance, e-Brand 등 온라인 사업분야에서 강한 리더십과 믿음직한
+                                    커뮤니케이션 능력을 활용하여 글로벌 비즈니스, 모바일, 컨버전스 분야로 확대해 가고
+                                    있습니다.
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
+                </section>
 
-            <!-- benefit -->
-            <section class="section benefit">
-                <div class="section-wrapper">
-                    <h2 class="title line">Benefit</h2>
-                    <div class="content btt">
-                        <div class="benefit-container">
-                            <div class="benefit-item">
-                                <img src="./assets/images/main/benefit1.svg" alt="자유로운 휴가제도" />
-                                <strong>자유로운 휴가제도</strong>
-                                <p class="text">
-                                    자유로운 연차 사용(법정 연차 준수), 리프레시 유가, 육아휴직, 산전휴가, 남성
-                                    출산휴가, 각종 경조휴가
-                                </p>
-                            </div>
-                            <div class="benefit-item">
-                                <img src="./assets/images/main/benefit2.svg" alt="다양한 복리후생" />
-                                <strong>다양한 복리후생</strong>
-                                <p class="text">
-                                    생일선물, 명절선물, 각종 경조사 지원금 및 휴가, 부득이한 야근시 저녁식자/야간 교통비
-                                    지급
-                                </p>
-                            </div>
-                            <div class="benefit-item">
-                                <img src="./assets/images/main/benefit3.svg" alt="업무 환경 개선 지원" />
-                                <strong>업무 환경 개선 지원</strong>
-                                <p class="text">
-                                    자율 복장, 고사양 PC 제공, 다향한 간식 및 음료제공 (파견시 복지 운영비 제공)
-                                </p>
-                            </div>
-                        </div>
-                        <div class="benefit-container">
-                            <div class="benefit-item">
-                                <img src="./assets/images/main/benefit4.svg" alt="법적 복리후생" />
-                                <strong>법적 복리후생</strong>
-                                <p class="text">주 5일제 근무, 국민연금, 고용보험, 산재보험, 건강보험, 퇴직연금</p>
-                            </div>
-                            <div class="benefit-item">
-                                <img src="./assets/images/main/benefit5.svg" alt="자기 개발비 지원" />
-                                <strong>자기 개발비 지원</strong>
-                                <p class="text">부서별로 특화된 교육, 온라인 강의 및 도서구입비 지원</p>
-                            </div>
-                            <div class="benefit-item">
-                                <img src="./assets/images/main/benefit6.svg" alt="인재 추천 포상 제도" />
-                                <strong>인재 추천 포상 제도</strong>
-                                <p class="text">인재 추천 보상제도를 통한 우수인재 채용시 <br />인센티브 제공</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="img-wrapper btt">
-                    <img src="./assets/images/main/join_bg.jpg" alt="" />
-                </div>
-            </section>
-
-            <!-- position -->
-            <section class="section position">
-                <div class="section-wrapper">
-                    <h2 class="title line">Position</h2>
-                    <div class="content btt">
-                        <ul class="accordion">
-                            <li class="accordion-item">
-                                <button class="accordion-header">UI·UX Planner</button>
-                                <ol class="accordion-content">
-                                    <li>
-                                        <strong>PM/PL 기획자 (팀장)</strong>
-                                        <p class="text">
-                                            경력 10년이상 <br />프로젝트 PL, PM 유경험 <br />
-                                            부서 협업 원활한 커뮤니케이션 가능자
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <strong>웹/모바일 기획자 (팀원)</strong>
-                                        <p class="text">경력 3년 이상 커머스 및 금융권 UI/UX기획 스토리보드 작성</p>
-                                    </li>
-                                    <li>
-                                        <strong>모집 인원 및 자격 조건</strong>
-                                        <p class="text">
-                                            00명, 학력 무관 <br />
-                                            대형 쇼핑몰 구축 및 운영 경험자 우대 <br />
-                                            영어 가능자 우대 <br />
-                                            오피스툴 활용 능력자 우대 <br />
-                                            제안/기획문서 포트폴리오 첨부 우대
-                                        </p>
-                                    </li>
-                                </ol>
-                            </li>
-                            <li class="accordion-item">
-                                <button class="accordion-header">Designer</button>
-                                <ol class="accordion-content">
-                                    <li>
-                                        <strong>PM/PL 기획자 (팀장)</strong>
-                                        <p class="text">
-                                            경력 10년이상 <br />프로젝트 PL, PM 유경험 <br />
-                                            부서 협업 원활한 커뮤니케이션 가능자
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <strong>웹/모바일 기획자 (팀원)</strong>
-                                        <p class="text">경력 3년 이상 커머스 및 금융권 UI/UX기획 스토리보드 작성</p>
-                                    </li>
-                                    <li>
-                                        <strong>모집 인원 및 자격 조건</strong>
-                                        <p class="text">
-                                            00명, 학력 무관 <br />
-                                            대형 쇼핑몰 구축 및 운영 경험자 우대 <br />
-                                            영어 가능자 우대 <br />
-                                            오피스툴 활용 능력자 우대 <br />
-                                            제안/기획문서 포트폴리오 첨부 우대
-                                        </p>
-                                    </li>
-                                </ol>
-                            </li>
-                            <li class="accordion-item">
-                                <button class="accordion-header">Front-End Developer</button>
-                                <ol class="accordion-content">
-                                    <li>
-                                        <strong>PM/PL 기획자 (팀장)</strong>
-                                        <p class="text">
-                                            경력 10년이상 <br />프로젝트 PL, PM 유경험 <br />
-                                            부서 협업 원활한 커뮤니케이션 가능자
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <strong>웹/모바일 기획자 (팀원)</strong>
-                                        <p class="text">경력 3년 이상 커머스 및 금융권 UI/UX기획 스토리보드 작성</p>
-                                    </li>
-                                    <li>
-                                        <strong>모집 인원 및 자격 조건</strong>
-                                        <p class="text">
-                                            00명, 학력 무관 <br />
-                                            대형 쇼핑몰 구축 및 운영 경험자 우대 <br />
-                                            영어 가능자 우대 <br />
-                                            오피스툴 활용 능력자 우대 <br />
-                                            제안/기획문서 포트폴리오 첨부 우대
-                                        </p>
-                                    </li>
-                                </ol>
-                            </li>
-                            <li class="accordion-item">
-                                <button class="accordion-header">Back-End Developer</button>
-                                <ol class="accordion-content">
-                                    <li>
-                                        <strong>PM/PL 기획자 (팀장)</strong>
-                                        <p class="text">
-                                            경력 10년이상 <br />프로젝트 PL, PM 유경험 <br />
-                                            부서 협업 원활한 커뮤니케이션 가능자
-                                        </p>
-                                    </li>
-                                    <li>
-                                        <strong>웹/모바일 기획자 (팀원)</strong>
-                                        <p class="text">경력 3년 이상 커머스 및 금융권 UI/UX기획 스토리보드 작성</p>
-                                    </li>
-                                    <li>
-                                        <strong>모집 인원 및 자격 조건</strong>
-                                        <p class="text">
-                                            00명, 학력 무관 <br />
-                                            대형 쇼핑몰 구축 및 운영 경험자 우대 <br />
-                                            영어 가능자 우대 <br />
-                                            오피스툴 활용 능력자 우대 <br />
-                                            제안/기획문서 포트폴리오 첨부 우대
-                                        </p>
-                                    </li>
-                                </ol>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Apply Info. -->
-            <section class="section apply">
-                <div class="section-wrapper">
-                    <h2 class="title line">Apply Info.</h2>
-                    <div class="content btt">
-                        <ul class="apply-container">
-                            <li class="apply-item">
-                                <strong>기간 : 25년 1월 ~ 채용 시까지</strong>
-                                <p class="text">
-                                    지원 후 서류전형 결과에 따라 면접을 진행하며 채용 상황에 따라 모집이 자동 마감
-                                    됩니다. <br />지원 후 수시로 면접 일정에 대한 개별 연락이 진행 됩니다.
-                                </p>
-                            </li>
-                            <li class="apply-item">
-                                <strong>이력서 양식</strong>
-                                <p class="text">워드, PPT, PDF등 자유형식</p>
-                            </li>
-                            <li class="apply-item">
-                                <strong>제출서류</strong>
-                                <p class="text">이력서, 자기소개서, 포트폴리오(디자인 지원 시 필수)</p>
-                            </li>
-                            <li class="apply-item">
-                                <strong>접수방법</strong>
-                                <p class="text">
-                                    recruit@rianag.com 으로 메일 발송 <br />또는 잡코리아에서 ‘RIANag’로 검색 후
-                                    채용공고 지원
-                                </p>
-                            </li>
-                            <li class="apply-item">
-                                <strong>문의사항</strong>
-                                <p class="text">02-2635-3601</p>
-                            </li>
-                            <li class="apply-item">
-                                <strong>전형절차</strong>
-                                <ol class="process-container">
-                                    <li>
-                                        <strong class="num">1</strong>
-                                        <p>서류전형</p>
-                                    </li>
-                                    <li>
-                                        <strong class="num">2</strong>
-                                        <p>1차 면접 (실무진 면접)</p>
-                                    </li>
-                                    <li>
-                                        <strong class="num">3</strong>
-                                        <p>2차 면접 (임원 면접)</p>
-                                    </li>
-                                    <li>
-                                        <strong class="num">4</strong>
-                                        <p>최종 합격</p>
-                                    </li>
-                                </ol>
-                                <div class="process-info">
-                                    <p class="text">서류전형 시 제출한 자료는 반납되지 않습니다.</p>
+                <!-- benefit -->
+                <section class="section benefit">
+                    <div class="section-inner">
+                        <h2 class="title line">Benefit</h2>
+                        <div class="content btt">
+                            <div class="benefit-container">
+                                <div class="benefit-item">
+                                    <img src="./assets/images/main/benefit1.svg" alt="자유로운 휴가제도" />
+                                    <strong>자유로운 휴가제도</strong>
                                     <p class="text">
-                                        합격 후 입사 시 추가 서류등 제출이 있습니다. (등본 및 급여통장 사본등)
+                                        자유로운 연차 사용(법정 연차 준수), 리프레시 유가, 육아휴직, 산전휴가, 남성
+                                        출산휴가, 각종 경조휴가
                                     </p>
                                 </div>
-                            </li>
-                        </ul>
+                                <div class="benefit-item">
+                                    <img src="./assets/images/main/benefit2.svg" alt="다양한 복리후생" />
+                                    <strong>다양한 복리후생</strong>
+                                    <p class="text">
+                                        생일선물, 명절선물, 각종 경조사 지원금 및 휴가, 부득이한 야근시 저녁식자/야간
+                                        교통비 지급
+                                    </p>
+                                </div>
+                                <div class="benefit-item">
+                                    <img src="./assets/images/main/benefit3.svg" alt="업무 환경 개선 지원" />
+                                    <strong>업무 환경 개선 지원</strong>
+                                    <p class="text">
+                                        자율 복장, 고사양 PC 제공, 다향한 간식 및 음료제공 (파견시 복지 운영비 제공)
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="benefit-container">
+                                <div class="benefit-item">
+                                    <img src="./assets/images/main/benefit4.svg" alt="법적 복리후생" />
+                                    <strong>법적 복리후생</strong>
+                                    <p class="text">주 5일제 근무, 국민연금, 고용보험, 산재보험, 건강보험, 퇴직연금</p>
+                                </div>
+                                <div class="benefit-item">
+                                    <img src="./assets/images/main/benefit5.svg" alt="자기 개발비 지원" />
+                                    <strong>자기 개발비 지원</strong>
+                                    <p class="text">부서별로 특화된 교육, 온라인 강의 및 도서구입비 지원</p>
+                                </div>
+                                <div class="benefit-item">
+                                    <img src="./assets/images/main/benefit6.svg" alt="인재 추천 포상 제도" />
+                                    <strong>인재 추천 포상 제도</strong>
+                                    <p class="text">인재 추천 보상제도를 통한 우수인재 채용시 <br />인센티브 제공</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </section>
+                    <!-- <div class="img-wrapper btt">
+                        <img src="./assets/images/main/join_bg.jpg" alt="" />
+                    </div> -->
+                </section>
+
+                <!-- position -->
+                <section class="section position">
+                    <div class="section-inner">
+                        <h2 class="title line">Position</h2>
+                        <div class="content btt">
+                            <ul class="accordion">
+                                <li class="accordion-item">
+                                    <button class="accordion-header">UI·UX Planner</button>
+                                    <ol class="accordion-content">
+                                        <li>
+                                            <strong>PM/PL 기획자 (팀장)</strong>
+                                            <p class="text">
+                                                경력 10년이상 <br />프로젝트 PL, PM 유경험 <br />
+                                                부서 협업 원활한 커뮤니케이션 가능자
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <strong>웹/모바일 기획자 (팀원)</strong>
+                                            <p class="text">경력 3년 이상 커머스 및 금융권 UI/UX기획 스토리보드 작성</p>
+                                        </li>
+                                        <li>
+                                            <strong>모집 인원 및 자격 조건</strong>
+                                            <p class="text">
+                                                00명, 학력 무관 <br />
+                                                대형 쇼핑몰 구축 및 운영 경험자 우대 <br />
+                                                영어 가능자 우대 <br />
+                                                오피스툴 활용 능력자 우대 <br />
+                                                제안/기획문서 포트폴리오 첨부 우대
+                                            </p>
+                                        </li>
+                                    </ol>
+                                </li>
+                                <li class="accordion-item">
+                                    <button class="accordion-header">Designer</button>
+                                    <ol class="accordion-content">
+                                        <li>
+                                            <strong>PM/PL 기획자 (팀장)</strong>
+                                            <p class="text">
+                                                경력 10년이상 <br />프로젝트 PL, PM 유경험 <br />
+                                                부서 협업 원활한 커뮤니케이션 가능자
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <strong>웹/모바일 기획자 (팀원)</strong>
+                                            <p class="text">경력 3년 이상 커머스 및 금융권 UI/UX기획 스토리보드 작성</p>
+                                        </li>
+                                        <li>
+                                            <strong>모집 인원 및 자격 조건</strong>
+                                            <p class="text">
+                                                00명, 학력 무관 <br />
+                                                대형 쇼핑몰 구축 및 운영 경험자 우대 <br />
+                                                영어 가능자 우대 <br />
+                                                오피스툴 활용 능력자 우대 <br />
+                                                제안/기획문서 포트폴리오 첨부 우대
+                                            </p>
+                                        </li>
+                                    </ol>
+                                </li>
+                                <li class="accordion-item">
+                                    <button class="accordion-header">Front-End Developer</button>
+                                    <ol class="accordion-content">
+                                        <li>
+                                            <strong>PM/PL 기획자 (팀장)</strong>
+                                            <p class="text">
+                                                경력 10년이상 <br />프로젝트 PL, PM 유경험 <br />
+                                                부서 협업 원활한 커뮤니케이션 가능자
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <strong>웹/모바일 기획자 (팀원)</strong>
+                                            <p class="text">경력 3년 이상 커머스 및 금융권 UI/UX기획 스토리보드 작성</p>
+                                        </li>
+                                        <li>
+                                            <strong>모집 인원 및 자격 조건</strong>
+                                            <p class="text">
+                                                00명, 학력 무관 <br />
+                                                대형 쇼핑몰 구축 및 운영 경험자 우대 <br />
+                                                영어 가능자 우대 <br />
+                                                오피스툴 활용 능력자 우대 <br />
+                                                제안/기획문서 포트폴리오 첨부 우대
+                                            </p>
+                                        </li>
+                                    </ol>
+                                </li>
+                                <li class="accordion-item">
+                                    <button class="accordion-header">Back-End Developer</button>
+                                    <ol class="accordion-content">
+                                        <li>
+                                            <strong>PM/PL 기획자 (팀장)</strong>
+                                            <p class="text">
+                                                경력 10년이상 <br />프로젝트 PL, PM 유경험 <br />
+                                                부서 협업 원활한 커뮤니케이션 가능자
+                                            </p>
+                                        </li>
+                                        <li>
+                                            <strong>웹/모바일 기획자 (팀원)</strong>
+                                            <p class="text">경력 3년 이상 커머스 및 금융권 UI/UX기획 스토리보드 작성</p>
+                                        </li>
+                                        <li>
+                                            <strong>모집 인원 및 자격 조건</strong>
+                                            <p class="text">
+                                                00명, 학력 무관 <br />
+                                                대형 쇼핑몰 구축 및 운영 경험자 우대 <br />
+                                                영어 가능자 우대 <br />
+                                                오피스툴 활용 능력자 우대 <br />
+                                                제안/기획문서 포트폴리오 첨부 우대
+                                            </p>
+                                        </li>
+                                    </ol>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Apply Info. -->
+                <section class="section apply">
+                    <div class="section-inner">
+                        <h2 class="title line">Apply Info.</h2>
+                        <div class="content btt">
+                            <ul class="apply-container">
+                                <li class="apply-item">
+                                    <strong>기간 : 25년 1월 ~ 채용 시까지</strong>
+                                    <p class="text">
+                                        지원 후 서류전형 결과에 따라 면접을 진행하며 채용 상황에 따라 모집이 자동 마감
+                                        됩니다. <br />지원 후 수시로 면접 일정에 대한 개별 연락이 진행 됩니다.
+                                    </p>
+                                </li>
+                                <li class="apply-item">
+                                    <strong>이력서 양식</strong>
+                                    <p class="text">워드, PPT, PDF등 자유형식</p>
+                                </li>
+                                <li class="apply-item">
+                                    <strong>제출서류</strong>
+                                    <p class="text">이력서, 자기소개서, 포트폴리오(디자인 지원 시 필수)</p>
+                                </li>
+                                <li class="apply-item">
+                                    <strong>접수방법</strong>
+                                    <p class="text">
+                                        recruit@rianag.com 으로 메일 발송 <br />또는 잡코리아에서 ‘RIANag’로 검색 후
+                                        채용공고 지원
+                                    </p>
+                                </li>
+                                <li class="apply-item">
+                                    <strong>문의사항</strong>
+                                    <p class="text">02-2635-3601</p>
+                                </li>
+                                <li class="apply-item">
+                                    <strong>전형절차</strong>
+                                    <ol class="process-container">
+                                        <li>
+                                            <strong class="num">1</strong>
+                                            <p>서류전형</p>
+                                        </li>
+                                        <li>
+                                            <strong class="num">2</strong>
+                                            <p>1차 면접 (실무진 면접)</p>
+                                        </li>
+                                        <li>
+                                            <strong class="num">3</strong>
+                                            <p>2차 면접 (임원 면접)</p>
+                                        </li>
+                                        <li>
+                                            <strong class="num">4</strong>
+                                            <p>최종 합격</p>
+                                        </li>
+                                    </ol>
+                                    <div class="process-info">
+                                        <p class="text">서류전형 시 제출한 자료는 반납되지 않습니다.</p>
+                                        <p class="text">
+                                            합격 후 입사 시 추가 서류등 제출이 있습니다. (등본 및 급여통장 사본등)
+                                        </p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
         </div>
+        <!-- JS -->
+        <script src="/assets/js/jquery-3.7.1.min.js"></script>
         <script src="./assets/js/gsap.min.js"></script>
         <script src="./assets/js/ScrollTrigger.min.js"></script>
+        <script src="/assets/js/common.js"></script>
         <script src="./assets/js/accordion.js"></script>
         <script>
             gsap.registerPlugin(ScrollTrigger);
