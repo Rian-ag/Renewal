@@ -5,11 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>RIAN Section</title>
         <!-- CSS -->
-        <link rel="stylesheet" href="./assets/css/common.css" />
-        <link rel="stylesheet" href="./assets/css/ui.css" />
-        <link rel="stylesheet" href="./assets/css/swiper-bundle.min.css" />
-        <link rel="stylesheet" href="./assets/css/pc_project.css" media="(min-width: 769px)" />
-        <link rel="stylesheet" href="./assets/css/mo_project.css" media="(max-width: 768px)" />
+        <link rel="stylesheet" href="/assets/css/common.css" />
+        <link rel="stylesheet" href="/assets/css/ui.css" />
+        <link rel="stylesheet" href="/assets/css/swiper-bundle.min.css" />
+        <link rel="stylesheet" href="/assets/css/pc_project.css" media="(min-width: 769px)" />
+        <link rel="stylesheet" href="/assets/css/mo_project.css" media="(max-width: 768px)" />
     </head>
     <body>
         <div id="wrap">
@@ -17,7 +17,7 @@
             <header>
                 <div class="inner">
                     <a href="#none">WORK</a>
-                    <h1 onclick="location.href='/'"><img src="./assets/images/common/h1_logo.png" alt="RIAN" /></h1>
+                    <h1><img src="/assets/images/common/h1_logo.png" alt="RIAN" /></h1>
                     <button class="btn_ham">site map</button>
                 </div>
 
@@ -59,8 +59,8 @@
                                 <div class="swiper-slide"></div>
                                 <div class="swiper-slide"></div>
                             </div>
-                            <div class="swiper-scrollbar"></div>
                         </div>
+                        <div class="swiper-scrollbar"></div>
                         <div class="contents">
                             <!-- heading -->
                             <div class="heading">
@@ -236,15 +236,16 @@
         </div>
 
         <!-- JS -->
-        <script type="text/javascript" src="./assets/js/jquery-3.7.1.min.js"></script>
-        <script src="./assets/js/gsap.min.js"></script>
-        <script src="./assets//js/swiper-bundle.min.js"></script>
-        <script src="./assets/js/simplefullpage.js"></script>
-        <script src="./assets/js/common.js"></script>
-        <script src="./assets/js/project.js"></script>
+        <script type="text/javascript" src="/assets/js/jquery-3.7.1.min.js"></script>
+        <script src="/assets/js/gsap.min.js"></script>
+        <script src="/assets//js/swiper-bundle.min.js"></script>
+        <script src="/assets/js/simplefullpage.js"></script>
+        <script src="/assets/js/common.js"></script>
+        <script src="/assets/js/project.js"></script>
         <script>
             // all project button event
             $(document).on('click', '.project-list-button', function () {
+                console.log('ddsfds')
                 $('.project-viewer').addClass('active');
                 $('body').css('overflow', 'hidden'); // 스크롤 막기
             });
@@ -252,6 +253,16 @@
             $(document).on('click', '.project-viewer .close', function () {
                 $('.project-viewer').removeClass('active');
                 $('body').css('overflow', 'auto');
+            });
+            // header 메뉴 버튼 클릭 시, #bottom.type3 z-index 변경
+            $('.btn_ham').on('click', function () {
+                const $bottom = $('#bottom.type3');
+                const currentZ = $bottom.css('z-index');
+                if (parseInt(currentZ) === 80) {
+                    $bottom.css('z-index', '');
+                } else {
+                    $bottom.css('z-index', 80);
+                }
             });
 
             /* s:custom cursor */
