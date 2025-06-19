@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIANAG_About</title>
+    <!-- CSS -->
+	<link rel="stylesheet" href="/assets/css/common.css">
+	<link rel="stylesheet" href="/assets/css/ui.css">
+    <link rel="stylesheet" href="/assets/css/swiper.css">
+	<link rel="stylesheet" href="./assets/css/pc_on_detail.css" media="(min-width: 769px)">
+	<link rel="stylesheet" href="./assets/css/mo_on_detail.css" media="(max-width: 768px)">
+    <script src="/assets/js/jquery-3.7.1.min.js"></script>
+	<script src="/assets/js/common.js"></script>
+    <script src="/assets/js/swiper.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+	<script src="./assets/js/on_detail.js"></script>
+	<style>
+		.detail_visual {background-image:url('./assets/images/on_detail/visual_01.png');}
+		@media screen and (max-width:767px) {
+			.detail_visual {background-image:none;}
+		}
+	</style>
+	<script>
+		$(function(){
+			/* date & time */
+			const today = new Date();
+			const year = String(today.getFullYear()); // YY (연도)
+			const month = today.toLocaleString('en-US', { month: 'short' }); // m (영문 월)
+			const day = String(today.getDate()).padStart(2, '0'); // dd (일)
+
+			const formattedDate = `${year}.${month}.${day}`;
+
+
+			const hours = ('0' + today.getHours()).slice(-2); 
+			const minutes = ('0' + today.getMinutes()).slice(-2);
+			const seconds = ('0' + today.getSeconds()).slice(-2);
+			const formattime = hours + ':' + minutes  + ':' + seconds;
+
+			$('.visual_cont div strong').text(formattime);
+
+			setInterval(function(){
+				const today = new Date();
+				const hours = ('0' + today.getHours()).slice(-2); 
+				const minutes = ('0' + today.getMinutes()).slice(-2);
+				const seconds = ('0' + today.getSeconds()).slice(-2);
+				const formattime = hours + ':' + minutes  + ':' + seconds;
+
+				$('.visual_cont div strong').text(formattime);
+			},1000);
+		})
+	</script>
+</head>
+<body>
+    <div id="wrap" class="wrap">
+        <!-- header -->
+		<header class="type_03">
+			<div class="inner">
+				<a href="#none">BACK</a>
+				<h1 onclick="location.href='/'"><img src="/assets/images/common/h1_logo.png" alt="RIAN" /></h1>
+				<button class="btn_ham">site map</button>
+			</div>
+
+			<div class="site_map">
+				<ul>
+					<li><a href="/about.html">About</a></li>
+					<li><a href="#none">Work</a></li>
+					<li><a href="/insight_list.html">What's on</a></li>
+					<li><a href="/project.html">Join Our Team</a></li>
+					<li><a href="/join.html">Contact</a></li>
+				</ul>
+				<!-- bottom -->
+				<div class="bottom">
+					<div>
+						<a href="mailto:rianag@rianag.com">RIANAG@RIANAG.COM</a>
+						<a href="http://daum.net" target="_blank">BLOG</a>
+					</div>
+					<a href="javascript:void(0);" class="download">BROCHURE DOWNLOAD</a>
+				</div>
+				<!-- //bottom -->
+			</div>
+		</header>
+		<!-- //header -->
+
+		<div class="detail_visual">
+			<!-- <div class="dimmed"></div>  -->
+			<div class="cont_inner">
+				<em>도서</em>
+				<ul>
+					<li><span>Start With Why </span></li>
+					<li><span>(by 사이먼 사이넥) Review</span></li>
+				</ul>
+				<p class="pc">
+					<i>#StartWithWhy</i>
+					<i>#우리는왜일을하는가</i>
+				</p>
+			</div>
+		</div>
+		<section>
+			<div class="cont_inner">
+				<dl>
+					<dt class="visual_cont">
+						<a href="./insight_list.html"></a>
+						<div>
+							<strong></strong>
+							<p>37.559127°N,<br/> 126.860986°E RIAN, <br/> SEOUL,  KOREA</p>
+						</div>
+					</dt>
+					<dd>
+						<div class="on_detail_swiper">
+							<div class="on_detail swiper-container">
+								<div class="swiper-wrapper">
+									<div class="swiper-slide">
+										<a href="./insight_view_02.html"><p class="active"><img src="./assets/images/on_detail/sw_01.png" alt=""></p></a>
+									</div>
+									<div class="swiper-slide">
+										<a href="/insight_view_01.html"><p><img src="./assets/images/on_detail/sw_02.png" alt=""></p></a>
+									</div>
+									<div class="swiper-slide">
+										<a href="javascript:void(0);"><p><img src="./assets/images/on_detail/sw_03.png" alt=""></p></a>
+									</div>
+									<div class="swiper-slide">
+										<a href="javascript:void(0);"><p><img src="./assets/images/on_detail/sw_04.png" alt=""></p></a>
+									</div>
+								</div>
+							</div>
+							<div class="custom-cursor">Drag</div>
+						</div>
+					</dd>
+				</dl>
+				<ul>
+					<li>
+						<figure><img src="./assets/images/on_detail/1_1.png" alt=""></figure>
+						<p>
+							<span>
+							사이몬 사이넥의 ‘Start with Why’에서는 우리가 생각하는 목표라고 생각하는 것에서도 차이가 있으며 좋은 목표가 따로<br/> 있다고 이야기합니다.
+							</span>
+						</p>
+						<p>
+							<span>
+							그 목표에 대한 집중 방향을 통해 좋은 목표 세우기와 좋은 리더 되기에 대해 이야기를 합니다.
+							</span>
+						</p>
+						<p>
+							<span>
+								저자는 책의 제목처럼, ‘왜(Why)’를 생각하고 집중하는 목표가 가지는 중요성과 힘에 대해 다양한 사례를 들어 설명합니다.
+							</span>
+						</p>
+					</li>
+					<li>
+						<figure><img src="../assets/images/on_detail/1_2.png" alt=""></figure>
+						<p>
+							<span>
+								‘왜(Why)’에 집중하는 조직과 리더들이 다른 사람들의 감정적인 연결과 신뢰를 형성하여 영향력을 행사할 수 있다고 주장<br/>합니다.
+							</span>
+						</p>
+						<p>
+							<span>
+								사람들이 왜 어떤 행동을 취하는지에 대한 근본적인 동기를 이해하는 것이 중요하다고 강조하며, "Golden Circle"이라는<br/> 개념을 도입하여 왜(Why), 어떻게(How), 그리고 무엇(What)의 질문에 대한 답을 찾는 방법을 제시합니다.
+							</span>
+						</p>
+						<p>
+							<span>
+								이 책에는 ‘왜(Why)’의 관점에서 두 명의 석공에 대한 이야기가 소개되어 있습니다.
+							</span>
+						</p>
+
+					</li>
+					<li>
+						<figure><img src="./assets/images/on_detail/1_3.png" alt=""></figure>
+						<p><span>석공 두 명에게 묻습니다. ‘석공 일이 좋습니까?'</span></p>
+						<p>
+							<span>
+								첫 번째 석공은<br/>
+								‘힘들고 지루한 일입니다. 하지만, 먹고 살라면 어쩔 수 없죠.’라고 대답합니다
+							</span>
+						</p>
+						<p>
+							<span>
+								반면에, 두 번째 석공은 이렇게 답합니다.<br/>
+								‘힘든 일이죠. 사는 동안 완공될지는 모르지만, 내 손으로 대성당을 짓고 있다는 것이 중요합니다.’<br/>
+								"Start with Why"는 ‘왜(Why)’에 집중함으로써 우리는 자신의 비전과 목표에 대한 인내심과 열정을 발견할 수 있으며, <br/>
+								다른 사람들을 영감으로 이끌 수 있는 리더가 되는 방법을 제시합니다.
+							</span>
+						</p>
+					</li>
+					<li>
+						<figure><img src="./assets/images/on_detail/1_4.png" alt=""></figure>
+						<p>
+							<span>
+								애니메이션 ‘원피스’에서 루피가 ‘해적왕이 되겠다.’는 ‘왜(Why)’를 발굴하여 같이 할 동료를 찾아, ‘내 동료가 돼라.’는 <br/>
+								How를 실현했고, ‘원피스를 찾는 모험’이라는 여정의 ‘What’을 하며 루피는 해적왕이 되어가는 과정을 시작하고<br/>
+								유지하는 것과 같습니다.
+							</span>
+						</p>
+						<p>
+							<span>
+								대게, 목적이 없는 출발은 없습니다.
+							</span>
+						</p>
+						<p>
+							<span>
+								하지만, 그 목적이 명확한지, 적확한지에 대해 생각해 볼 수 있는 책입니다.  이 책은 ‘왜(Why)’가 성공의 핵심이라는 점을  <br/>
+								강조하며, 독자들에게 리더십과 조직의 관점에서 새로운 시각과 통찰력을 제공합니다.  <br/>
+ 								‘왜(Why)’에 대한 깊은 이해와 그 원동력을 발견함으로써, 우리는 더욱 의미 있는 삶과 향상된 성과를 이뤄낼 수 있는 길을  <br/>
+								열어갈 수 있습니다.
+							</span>
+						</p>
+					</li>
+					<li class="mo">
+						<p>
+							<i>#StartWithWhy</i>
+							<i>#우리는왜일을하는가</i>
+						</p>
+					</li>
+				</ul>
+			</div>
+		</section>
+
+
+
+        <!-- bottom -->
+		<div id="bottom">
+			<div>
+				<a href="mailto:rianag@rianag.com">RIANAG@RIANAG.COM</a>
+				<a href="http://daum.net" target="_blank">BLOG</a>
+			</div>
+			<a href="javascript:void(0);" class="download">BROCHURE DOWNLOAD</a>
+		</div>
+		<!-- //bottom -->
+
+    </div>
+</body>
+</html>

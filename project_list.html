@@ -85,59 +85,6 @@
                 // scroll 이벤트는 제거, 왜냐하면 hover로만 제어할 거니까
                 // 만약 scroll로도 보여야 한다면 유지하고 조건 병합해야 함
 
-<<<<<<< HEAD
-    <!-- 커서 -->
-    <div class="custom-cursor">View</div>
-    <!-- JS -->
-    <script type="text/javascript" src="./assets/js/jquery-3.7.1.min.js"></script>
-    <script src="./assets/js/gsap.min.js"></script>
-    <script src="./assets/js/ScrollTrigger.min.js"></script>
-    <script src="./assets/js/common.js"></script>
-    <script>
-      $(document).ready(function () {
-        gsap.registerPlugin(ScrollTrigger);
-
-        const projects = gsap.utils.toArray(".project");
-
-        projects.forEach((panel) => {
-          ScrollTrigger.create({
-            trigger: panel,
-            start: "top top",
-            end: "bottom top",
-            pin: true,
-            pinSpacing: false,
-            scrub: true,
-            // markers: true, // 개발 중일 땐 켜도 OK
-          });
-        });
-
-        // 프로젝트 리스트 hover 시 이미지 슬라이드
-        const $viewer = $(".image-viewer");
-        const $imageSlider = $(".image-slider");
-        const $slideImg = $(".slide-img");
-
-        $(".list-item").on("mouseenter", function () {
-          const index = $(this).data("index");
-          const slideHeight = $slideImg.height();
-
-          gsap.to($imageSlider, {
-            y: -(index * slideHeight),
-            duration: 1,
-            ease: "expo.out",
-          });
-
-          $(this).addClass("active");
-          $viewer.css("opacity", 1);
-        });
-
-        $(".list-item").on("mouseleave", function () {
-          $(this).removeClass("active");
-          $viewer.css("opacity", 0);
-        });
-      });
-    </script>
-  </body>
-=======
                 $('.list-item').on('mouseenter', function () {
                     const index = $(this).data('index');
                     const slideHeight = $slideImg.height();
@@ -161,5 +108,4 @@
             });
         </script>
     </body>
->>>>>>> 078f538998d9688150b0408472c229dc0e42cf36
 </html>

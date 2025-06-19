@@ -1,74 +1,83 @@
 $(function(){
+      let swiperInstance;
 
-    function isMobileCondition() {
-        const isMobileWidth = window.innerWidth <= 768;
-        const hasMobileDomain = window.location.hostname.includes('m.');
-        return isMobileWidth || hasMobileDomain;
-    }
+      function isMobile() {
+        return window.innerWidth <= 768 || window.location.hostname.includes('m.');
+      }
 
-    const swiper = new Swiper('.on_detail_swiper .on_detail.swiper-container', {
-      direction: isMobileCondition() ? 'horizontal' : 'vertical',
-      slidesPerView: isMobileCondition() ? 4 : 3.5,
-      spaceBetween: 8,
-      mousewheel: true,
-    });
+      function resetSlideStyle() {
+        $('.on_detail_swiper .swiper-slide').removeAttr('style');
+      }
 
-    /* gsap */
-    gsap.registerPlugin(ScrollTrigger);
+      function initSwiper() {
+        if (swiperInstance) swiperInstance.destroy(true, true);
+        resetSlideStyle();
 
-    if(!isMobileCondition()){
-     ScrollTrigger.create({
-      trigger: ".detail_visual",
-      start: "top top",
-      end: "+=930",
-      pin: true,
-      pinSpacing: false,
-      markers: false
+        swiperInstance = new Swiper('.on_detail.swiper-container', {
+          direction: isMobile() ? 'horizontal' : 'vertical',
+          slidesPerView: isMobile() ? 3 : 3.5,
+          spaceBetween: 8,
+          grabCursor: true,
+          simulateTouch: true,
         });
-    } else {
-        // ✅ 모바일일 경우 아무 것도 하지 않음
-        console.log("모바일 환경이므로 ScrollTrigger를 적용하지 않음");
-    }
+      }
 
-    $('section .cont_inner > ul > li').each(function (i, el) {
-      const spans = $(el).find('p span');
+      // Swiper 적용
+      $(window).on('load resize', initSwiper);
 
-      gsap.fromTo(spans,
-        {
-          y: 200,
-          opacity: 0,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1,
-          stagger: 0.4,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: el,
-            start: "50% 70%",
-            end: '100% 90%',
-            toggleActions: "play none none none",
-            // markers: true,
+      // ScrollTrigger
+      gsap.registerPlugin(ScrollTrigger);
+      if (!isMobile()) {
+        ScrollTrigger.create({
+          trigger: ".detail_visual",
+          start: "top top",
+          end: "+=930",
+          pin: true,
+          pinSpacing: false,
+        });
+      }
+
+      // 텍스트 애니메이션
+      $('section .cont_inner > ul > li').each(function (i, el) {
+        const spans = $(el).find('p span');
+        gsap.fromTo(spans,
+          { y: 200, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            stagger: 0.4,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: el,
+              start: "50% 70%",
+              end: "100% 90%",
+              toggleActions: "play none none none",
+            }
           }
-        }
-      );
-    });
+        );
+      });
 
-    $('.detail_visual em').each(function (index) {
-        const delay = 200 + (index * 400);
-            setTimeout(() => {
-                $(this).addClass('active');
-        }, delay);
-    });
+      // 시계 텍스트 업데이트
+      const updateTime = () => {
+        const now = new Date();
+        const time = now.toLocaleTimeString('ko-KR', { hour12: false });
+        $('dt div strong').text(time);
+      };
+      updateTime();
+      setInterval(updateTime, 1000);
 
-    $('.detail_visual li span').each(function (index) {
-        const delay = 500 + (index * 400);
-            setTimeout(() => {
-                $(this).addClass('active');
-        }, delay);
-    });
+      // 시각적 강조 애니메이션
+      $('.detail_visual em').each(function (index) {
+        setTimeout(() => {
+          $(this).addClass('active');
+        }, 200 + (index * 400));
+      });
 
-
+      $('.detail_visual li span').each(function (index) {
+        setTimeout(() => {
+          $(this).addClass('active');
+        }, 500 + (index * 400));
+      });
 
 })//fn

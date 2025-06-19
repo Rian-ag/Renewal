@@ -3,6 +3,7 @@ $(document).ready(function () {
     const $btnHam = $('header .btn_ham');
     const $siteMap = $('header .site_map');
     const $h1_img = $('header h1 img').attr('src');
+    const $footer = $('#bottom')
     let isAnimating = false; // 클릭 잠금 변수
 
     $btnHam.on('click', function () {
@@ -19,7 +20,7 @@ $(document).ready(function () {
                         // 메뉴 닫기
                         $siteMap.removeClass('active').addClass('close');
                         $btnHam.parent().removeClass('close');
-
+                        
                         $('header h1 img').attr('src',$('header h1 img').attr('src').replace('_black.png','.png'));
                     }
                 }, (i*300));
@@ -30,6 +31,12 @@ $(document).ready(function () {
                 $siteMap.removeClass('close');
                 isAnimating = false;
             });
+
+            setTimeout(function(){
+                $siteMap.find('.bottom').removeClass('active');
+                $siteMap.find('.bottom').children().removeClass('active');
+            },1000)
+
         } else {
             // 메뉴 열기
             $siteMap.addClass('active');
@@ -41,12 +48,30 @@ $(document).ready(function () {
                 $('header h1 img').attr('src',($h1_img.split('.')[0]+'_black.png'));
                 // console.log(h1_img_black);
 
-                for(let i=0; i<$siteMap.find('li').length; i++){
-                    setTimeout(function(){
+                // for(let i=0; i<$siteMap.find('li').length; i++){
+                //     setTimeout(function(){
+                //         $siteMap.find('li').eq(i).addClass('active');
+                //     }, (i*300));
+                // }
+
+                for (let i = 0; i < $siteMap.find('li').length; i++) {
+                    setTimeout(function () {
                         $siteMap.find('li').eq(i).addClass('active');
-                    }, (i*300));
+
+                        // 모든 li 애니메이션 완료 후 .bottom의 자식 요소 순차 등장
+                        if ((i + 1) === $siteMap.find('li').length) {
+                            const $bottomChildren = $siteMap.find('.bottom').children();
+
+                            $bottomChildren.each(function (j) {
+                                setTimeout(() => {
+                                    $(this).addClass('active');
+                                },300); // 자식마다 딜레이
+                            });
+                        }
+                    }, i * 300);
                 }
             });
+
         }
     });
     /* e:sitemap */
@@ -131,5 +156,10 @@ function custom_cursor($cursor, $area, isHovering){
         isHovering = false;
         $cursor.css('opacity', 0);
         $(this).removeClass('hide-cursor');
-    });    
+    });
+    
+    $('#bottom .top').on('click', function() {
+        $('html, body').animate({ scrollTop: 0 }, 500);
+    });
+
 }
