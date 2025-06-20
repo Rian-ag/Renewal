@@ -6,8 +6,8 @@
         <link rel="icon" href="/favicon.png" />
         <title>리앙에이지</title>
         <!-- CSS -->
-        <link rel="stylesheet" href="/assets/css/common.css" />
         <link rel="stylesheet" href="/assets/css/ui.css" />
+        <link rel="stylesheet" href="/assets/css/common.css" />
         <link rel="stylesheet" href="/assets/css/pc_join.css" media="(min-width: 769px)" />
         <link rel="stylesheet" href="/assets/css/mo_join.css" media="(max-width: 768px)" />
     </head>
@@ -15,9 +15,11 @@
     <body>
         <div id="wrap">
             <!-- header -->
-            <header>
+            <header class="type2">
                 <div class="inner">
-                    <h1 onclick="location.href='/'"><img src="/assets/images/common/h1_logo.png" alt="RIAN" /></h1>
+                    <h1 onclick="location.href='/'">
+                        <img src="/assets/images/common/h1_logo_black.png" alt="RIAN" />
+                    </h1>
                     <button class="btn_ham">site map</button>
                 </div>
 
@@ -316,17 +318,10 @@
                 </div>
             </div>
             <!-- bottom -->
-            <div id="bottom" class="type2">
-                <div>
-                    <a href="mailto:rianag@rianag.com">RIANAG@RIANAG.COM</a>
-                    <a href="http://daum.net" target="_blank">BLOG</a>
-                </div>
-                <!-- all projects 메뉴  -->
-                <button class="project-list-button">
-                    <img src="./assets/images/project/project-menu.svg" alt="" />
-                    <span>AII Projects</span>
-                </button>
-                <a href="javascript:void(0);" class="download">BROCHURE DOWNLOAD</a>
+            <div id="bottom" class="type3">
+                <a href="http://daum.net" target="_blank">BLOG</a>
+                <button class="top">Back to Top</button>
+                <a href="mailto:rianag@rianag.com">RIANAG@RIANAG.COM</a>
             </div>
             <!-- //bottom -->
         </div>
@@ -336,7 +331,7 @@
         <script src="/assets/js/ScrollTrigger.min.js"></script>
         <script src="/assets/js/common.js"></script>
         <script src="/assets/js/accordion.js"></script>
-        <script>
+        <!-- <script>
             gsap.registerPlugin(ScrollTrigger);
 
             gsap.utils.toArray('.step-item').forEach((el, i) => {
@@ -373,6 +368,6 @@
                     },
                 });
             });
-        </script>
+        </script> -->
     </body>
 </html>
