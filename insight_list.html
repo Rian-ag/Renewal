@@ -43,6 +43,43 @@
 
 				$('.visual_cont div strong').text(formattime);
 			},1000);
+
+		/* 마우스 커서 관련 */
+		const $cursorDot = $('.custom-cursor.dot-cursor');
+		const $cursorView = $('.custom-cursor.view');
+		const $area = $('.on_list_swiper');
+
+		// 마우스 따라다님
+		$(document).on('mousemove', function (e) {
+			$cursorDot.css({
+				left: e.clientX + 'px',
+				top: e.clientY + 'px'
+			});
+			$cursorView.css({
+				left: e.clientX + 'px',
+				top: e.clientY + 'px'
+			});
+		});
+
+		// 영역 진입 시 커서 부드럽게 커짐
+		$area.on('mouseenter', function () {
+			$cursorDot.css('transform', 'translate(-50%, -50%) scale(0)');
+			$cursorView.css({
+			transform: 'translate(-50%, -50%) scale(1)',
+			opacity: 1
+			});
+		});
+
+		// 영역 이탈 시 커서 부드럽게 작아짐
+		$area.on('mouseleave', function () {
+			$cursorDot.css('transform', 'translate(-50%, -50%) scale(1)');
+			$cursorView.css({
+			transform: 'translate(-50%, -50%) scale(0.5)',
+			opacity: 0
+			});
+		});
+
+			
 		})
 	</script>
 
@@ -108,7 +145,7 @@
 						</li>
 						<li class="swiper-slide">
 							<a href="/insight_view_02.html">
-								<p><img src="/assets/images/on_list/2.jpg" alt=""></p>
+								<p><img src="/assets/images/on_list/2.png" alt=""></p>
 								<div>
 									<em>공연</em>
 									<span>
@@ -167,26 +204,6 @@
 							<a href="javascript:void(0);">
 								<p><img src="/assets/images/on_list/5.png" alt=""></p>
 								<div>
-									<em>공연</em>
-									<span>
-										지난 5월 23~25일, 9년만에 한국을 되찾<br/>
-										은 팻 매스니의 내한 공연. 무대에서 세상 자<br/>
-										유로웠고, 그저 관객은 황홀히 끌려 갈 수 밖<br/>
-										에 없던 시간이었다.
-									</span>
-									<div>
-										<i>#PatMetheny</i>
-										<i>#또오세요</i>
-										<i>건강히</i>
-									</div>
-									<button></button>
-								</div>
-							</a>
-						</li>
-						<li class="swiper-slide">
-							<a href="javascript:void(0);">
-								<p><img src="/assets/images/on_list/6.png" alt=""></p>
-								<div>
 									<em>일상</em>
 									<span>
 										염강나들목 터널 앞에 서면 ‘이런데 한강이 <br/>
@@ -198,6 +215,26 @@
 										<i>#Real한강뷰 </i>
 										<i>힐링타임</i>
 										<i>커피타임</i>
+									</div>
+									<button></button>
+								</div>
+							</a>
+						</li>
+						<li class="swiper-slide">
+							<a href="javascript:void(0);">
+								<p><img src="/assets/images/on_list/6.png" alt=""></p>
+								<div>
+									<em>일상</em>
+									<span>
+										새 한마리가 소리내기 시작해서 새들의 지<br/>
+										저귐으로 다함께 오케스트라를 만들어 낸<br/>
+										다는 내용이었는데.  그 소리를 새벽에 듣게<br/> 
+										되었어요.
+									</span>
+									<div>
+										<i>#숲속의오케스트라 </i>
+										<i>이맛에캠핑</i>
+										<i>몸살주의</i>
 									</div>
 									<button></button>
 								</div>
@@ -217,6 +254,8 @@
             <a href="mailto:rianag@rianag.com">RIANAG@RIANAG.COM</a>
 		</div>
 		<!-- //bottom -->
+		<div class="custom-cursor dot-cursor"></div>
+		<div class="custom-cursor view">View</div>
     </div>
 </body>
 </html>
