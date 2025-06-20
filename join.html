@@ -15,7 +15,7 @@
     <body>
         <div id="wrap">
             <!-- header -->
-            <header class="type2">
+            <header class="type2" style="background-color: #fff">
                 <div class="inner">
                     <h1 onclick="location.href='/'">
                         <img src="/assets/images/common/h1_logo_black.png" alt="RIAN" />
@@ -66,10 +66,9 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="section-container">
                     <!-- benefit -->
-                    <section class="section benefit">
+                    <section class="benefit">
                         <h2 class="title">Benefit</h2>
                         <div class="content">
                             <ul class="benefit-container">
@@ -125,7 +124,7 @@
                         </div>
                     </section>
                     <!-- position -->
-                    <section class="section position">
+                    <section class="position">
                         <h2 class="title">Position</h2>
                         <div class="content">
                             <dl class="board_type_toggle single">
@@ -230,7 +229,7 @@
                         </div>
                     </section>
                     <!-- Apply Info. -->
-                    <section class="section apply">
+                    <section class="apply">
                         <h2 class="title">Apply Info.</h2>
                         <div class="content">
                             <ul class="apply-container">
@@ -317,6 +316,71 @@
                     e.preventDefault();
                     $('html, body').animate({ scrollTop: 0 }, 600);
                 });
+            });
+            gsap.registerPlugin(ScrollTrigger);
+            // title-wrapper: h2, strong
+            gsap.utils.toArray('.title-wrapper > *').forEach((el, i) => {
+                gsap.from(el, {
+                    opacity: 0,
+                    y: 40,
+                    duration: 0.6,
+                    delay: i * 0.2,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 90%',
+                        toggleActions: 'play none none none',
+                    },
+                });
+            });
+
+            // sub-wrapper: .head p, .subhead p 한 줄씩
+            gsap.utils.toArray('.sub-wrapper p').forEach((el, i) => {
+                gsap.from(el, {
+                    opacity: 0,
+                    y: 40,
+                    duration: 0.6,
+                    delay: i * 0.2,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 90%',
+                        toggleActions: 'play none none none',
+                    },
+                });
+            });
+            gsap.utils.toArray('.section-container > section').forEach((section) => {
+                const title = section.querySelector('.title');
+                const content = section.querySelector('.content');
+
+                if (title) {
+                    gsap.from(title, {
+                        opacity: 0,
+                        y: 40,
+                        duration: 0.8,
+                        ease: 'power3.out',
+                        scrollTrigger: {
+                            trigger: section,
+                            start: 'top 80%',
+                            toggleActions: 'play none none none',
+                        },
+                    });
+                }
+
+                if (content) {
+                    gsap.from(content, {
+                        opacity: 0,
+                        y: 40,
+                        duration: 0.8,
+                        delay: 0.2,
+                        ease: 'power3.out',
+                        scrollTrigger: {
+                            trigger: section,
+                            start: 'top 80%',
+                            toggleActions: 'play none none none',
+                        },
+                    });
+                }
             });
         </script>
     </body>
