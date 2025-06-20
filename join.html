@@ -284,27 +284,6 @@
                                             <li><p>최종 합격</p></li>
                                         </ul>
                                     </div>
-                                    <!-- <li class="step-item">
-                                            <p class="step-title">STEP 1</p>
-                                            <div class="step-line"><span class="step-dot"></span></div>
-                                            <p class="step-desc">서류전형</p>
-                                        </li>
-                                        <li class="step-item">
-                                            <p class="step-title">STEP 2</p>
-                                            <div class="step-line"><span class="step-dot"></span></div>
-                                            <p class="step-desc">실무면접</p>
-                                        </li>
-                                        <li class="step-item">
-                                            <p class="step-title">STEP 3</p>
-                                            <div class="step-line"><span class="step-dot"></span></div>
-                                            <p class="step-desc">임원면접 (차장급 이상)</p>
-                                        </li>
-                                        <li class="step-item">
-                                            <p class="step-title">STEP 4</p>
-                                            <div class="step-line"><span class="step-dot"></span></div>
-                                            <p class="step-desc">최종 합격</p>
-                                        </li> -->
-
                                     <div class="process-info">
                                         <p class="text">서류전형 시 제출한 자료는 반납되지 않습니다.</p>
                                         <p class="text">
@@ -318,7 +297,7 @@
                 </div>
             </div>
             <!-- bottom -->
-            <div id="bottom" class="type3">
+            <div id="bottom" class="type3" style="height: 100px">
                 <a href="http://daum.net" target="_blank">BLOG</a>
                 <button class="top">Back to Top</button>
                 <a href="mailto:rianag@rianag.com">RIANAG@RIANAG.COM</a>
@@ -331,43 +310,14 @@
         <script src="/assets/js/ScrollTrigger.min.js"></script>
         <script src="/assets/js/common.js"></script>
         <script src="/assets/js/accordion.js"></script>
-        <!-- <script>
-            gsap.registerPlugin(ScrollTrigger);
-
-            gsap.utils.toArray('.step-item').forEach((el, i) => {
-                const dot = el.querySelector('.step-dot');
-                const desc = el.querySelector('.step-desc');
-                a;
-                gsap.fromTo(
-                    dot,
-                    { scale: 0, opacity: 0 },
-                    {
-                        scale: 1,
-                        opacity: 1,
-                        duration: 0.4,
-                        delay: i * 0.2,
-                        ease: 'back.out(1.7)',
-                        scrollTrigger: {
-                            trigger: el,
-                            start: 'top 85%',
-                            toggleActions: 'play none none none',
-                        },
-                    }
-                );
-
-                gsap.to(desc, {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.6,
-                    delay: 0.2 + i * 0.2,
-                    ease: 'power2.out',
-                    scrollTrigger: {
-                        trigger: el,
-                        start: 'top 85%',
-                        toggleActions: 'play none none none',
-                    },
+        <script>
+            $(function () {
+                // top 버튼 클릭 시 스크롤 위로
+                $('.top').on('click', function (e) {
+                    e.preventDefault();
+                    $('html, body').animate({ scrollTop: 0 }, 600);
                 });
             });
-        </script> -->
+        </script>
     </body>
 </html>
