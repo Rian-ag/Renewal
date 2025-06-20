@@ -27,36 +27,43 @@ $(function(){
 
       // ScrollTrigger
       gsap.registerPlugin(ScrollTrigger);
-      if (!isMobile()) {
-        ScrollTrigger.create({
-          trigger: ".detail_visual",
-          start: "top top",
-          end: "+=930",
-          pin: true,
-          pinSpacing: false,
-        });
-      }
 
-      // 텍스트 애니메이션
-      $('section .cont_inner > ul > li').each(function (i, el) {
-        const spans = $(el).find('p span');
-        gsap.fromTo(spans,
-          { y: 200, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 1,
-            stagger: 0.4,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: el,
-              start: "50% 70%",
-              end: "100% 90%",
-              toggleActions: "play none none none",
-            }
-          }
-        );
-      });
+      // 배경 패럴렉스 효과
+if (!isMobile()) {
+  // .detail_visual pin (fixed처럼 고정됨)
+  ScrollTrigger.create({
+    trigger: ".detail_visual",
+    start: "top top",
+    end: "+=930", // 고정 길이
+    pin: true,
+    pinSpacing: false, // ✅ 공간 없이 겹치게!
+  });
+
+  // 배경 이미지 parallax
+  gsap.to(".parallax-bg", {
+    y: -200,
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".detail_visual",
+      start: "top top",
+      end: "+=930",
+      scrub: true
+    }
+  });
+
+  // 텍스트도 패럴렉스
+  gsap.to(".detail_visual .cont_inner", {
+    y: -100,
+    ease: "none",
+    scrollTrigger: {
+      trigger: ".detail_visual",
+      start: "top top",
+      end: "+=930",
+      scrub: true
+    }
+  });
+}
+
 
       // 시계 텍스트 업데이트
       const updateTime = () => {
