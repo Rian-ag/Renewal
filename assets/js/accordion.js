@@ -1,79 +1,82 @@
 function accordion(_target, evt) {
-    const accordionList = document.querySelectorAll(_target);
+    const accordions = document.querySelectorAll(_target);
 
-    accordionList.forEach((dl) => {
-        const triggers = dl.querySelectorAll('dt > button');
+    accordions.forEach((dl) => {
+        const buttons = dl.querySelectorAll('dt > button');
 
-        triggers.forEach((btn, i) => {
+        buttons.forEach((btn) => {
             btn.addEventListener(evt, () => {
-                const parentDl = btn.closest('dl');
-                const currentDd = btn.parentElement.nextElementSibling;
+                const dd = btn.parentElement.nextElementSibling;
 
-                if (!currentDd) return;
+                if (!dd || dd.classList.contains('animating')) return;
 
-                // 단일 열림
-                if (parentDl.classList.contains('single')) {
-                    parentDl.querySelectorAll('dd.show').forEach((dd) => {
-                        if (dd !== currentDd) {
-                            dd.style.height = dd.scrollHeight + 'px';
-                            requestAnimationFrame(() => {
-                                dd.style.height = '0px';
-                                dd.addEventListener(
-                                    'transitionend',
-                                    () => {
-                                        dd.classList.remove('show');
-                                        dd.style.height = '';
-                                    },
-                                    { once: true }
-                                );
-                            });
-                        }
-                    });
+                const isOpen = dd.classList.contains('show');
 
-                    // 다른 버튼 active 해제
-                    parentDl.querySelectorAll('dt > button.active').forEach((activeBtn) => {
-                        if (activeBtn !== btn) {
-                            activeBtn.classList.remove('active');
+                // 단일 열림일 경우
+                if (dl.classList.contains('single')) {
+                    dl.querySelectorAll('dd.show').forEach((otherDd) => {
+                        if (otherDd !== dd) {
+                            collapse(otherDd);
+                            const otherBtn = otherDd.previousElementSibling.querySelector('button');
+                            if (otherBtn) otherBtn.classList.remove('active');
                         }
                     });
                 }
 
-                // 열려있는 상태이면 닫기
-                if (currentDd.classList.contains('show')) {
+                if (isOpen) {
+                    collapse(dd);
                     btn.classList.remove('active');
-                    currentDd.style.height = currentDd.scrollHeight + 'px';
-                    requestAnimationFrame(() => {
-                        currentDd.style.height = '0px';
-                        currentDd.addEventListener(
-                            'transitionend',
-                            () => {
-                                currentDd.classList.remove('show');
-                                currentDd.style.height = '';
-                            },
-                            { once: true }
-                        );
-                    });
                 } else {
-                    btn.classList.add('active'); // ✅ 여기에만 실행
-                    currentDd.classList.add('show');
-                    currentDd.style.height = 'auto';
-                    const height = currentDd.scrollHeight + 'px';
-                    currentDd.style.height = '0px';
-
-                    requestAnimationFrame(() => {
-                        currentDd.style.height = height;
-                        currentDd.addEventListener(
-                            'transitionend',
-                            () => {
-                                currentDd.style.height = '';
-                            },
-                            { once: true }
-                        );
-                    });
+                    expand(dd);
+                    btn.classList.add('active');
                 }
             });
         });
     });
+
+    function expand(dd) {
+        dd.classList.add('animating');
+        dd.classList.add('show');
+        dd.style.height = 'auto';
+        const height = dd.scrollHeight + 'px';
+        dd.style.height = '0px';
+
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                dd.style.height = height;
+            });
+        });
+
+        dd.addEventListener(
+            'transitionend',
+            () => {
+                dd.style.height = 'auto';
+                dd.classList.remove('animating');
+            },
+            { once: true }
+        );
+    }
+
+    function collapse(dd) {
+        dd.classList.add('animating');
+        dd.style.height = dd.scrollHeight + 'px';
+
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                dd.style.height = '0px';
+            });
+        });
+
+        dd.addEventListener(
+            'transitionend',
+            () => {
+                dd.classList.remove('show');
+                dd.classList.remove('animating');
+                dd.style.height = '';
+            },
+            { once: true }
+        );
+    }
 }
 
 accordion('.board_type_toggle', 'click');
