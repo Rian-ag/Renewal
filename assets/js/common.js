@@ -10,9 +10,9 @@ $(document).ready(function () {
     // 📌 header z-index 조절 함수
     const updateHeaderZIndex = () => {
         if ($siteMap.hasClass('active')) {
-            $header.css('z-index', '999');
+            $header.css({ position: 'relative', 'z-index': '999' });
         } else {
-            $header.css('z-index', '');
+            $header.css('z-index', '').css('position', '');
         }
     };
 
@@ -20,7 +20,11 @@ $(document).ready(function () {
         if (isAnimating) return;
         isAnimating = true;
 
+        const isType2 = $header.hasClass('type2');
+        const isType3 = $header.hasClass('type3');
+
         if ($btnHam.parent().hasClass('close')) {
+            // 닫히는 애니메이션
             for (let i = 0; i < $siteMap.find('li').length; i++) {
                 setTimeout(function () {
                     $siteMap.find('li').eq(i).removeClass('active');
@@ -28,11 +32,21 @@ $(document).ready(function () {
                     if ((i + 1) === $siteMap.find('li').length) {
                         $siteMap.removeClass('active').addClass('close');
                         $btnHam.parent().removeClass('close');
-                        $('header h1 img').attr('src', $('header h1 img').attr('src').replace('_black.png', '.png'));
 
-                        updateHeaderZIndex(); // 📌 z-index 복구
+                        // 📌 .type2: 로고 복원 / .type3: opacity 0
+                        if (isType2) {
+                            $('header h1 img').attr('src', '/assets/images/common/h1_logo_black.png');
+                        } else {
+                            $('header h1 img').attr('src', $h1_img.replace('_black.png', '.png'));
+                        }
+
+                        if (isType3) {
+                            $('header h1 img').css('opacity', '0');
+                        }
+
+                        updateHeaderZIndex();
                     }
-                }, (i * 300));
+                }, i * 300);
             }
 
             $siteMap.one('animationend webkitAnimationEnd oAnimationEnd', function () {
@@ -45,14 +59,24 @@ $(document).ready(function () {
                 $siteMap.find('.bottom').children().removeClass('active');
             }, 1000);
         } else {
+            // 열리는 애니메이션
             $siteMap.addClass('active');
-            updateHeaderZIndex(); // 📌 z-index 999 설정
+            updateHeaderZIndex();
 
             $siteMap.one('animationend webkitAnimationEnd oAnimationEnd', function () {
                 isAnimating = false;
 
                 $btnHam.parent().addClass('close');
-                $('header h1 img').attr('src', ($h1_img.split('.')[0] + '_black.png'));
+
+                if (isType2) {
+                    $('header h1 img').attr('src', '/assets/images/common/h1_logo_black.png');
+                } else {
+                    $('header h1 img').attr('src', ($h1_img.split('.')[0] + '_black.png'));
+                }
+
+                if (isType3) {
+                    $('header h1 img').css('opacity', '1'); // ✅ 애니메이션 끝난 후 opacity 적용
+                }
 
                 for (let i = 0; i < $siteMap.find('li').length; i++) {
                     setTimeout(function () {
