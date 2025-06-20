@@ -15,7 +15,7 @@ function accordion(_target, evt) {
                 if (parentDl.classList.contains('single')) {
                     parentDl.querySelectorAll('dd.show').forEach((dd) => {
                         if (dd !== currentDd) {
-                            dd.style.height = dd.scrollHeight + 'px'; // 현재 높이로 설정 후
+                            dd.style.height = dd.scrollHeight + 'px';
                             requestAnimationFrame(() => {
                                 dd.style.height = '0px';
                                 dd.addEventListener(
@@ -29,11 +29,19 @@ function accordion(_target, evt) {
                             });
                         }
                     });
+
+                    // 다른 버튼 active 해제
+                    parentDl.querySelectorAll('dt > button.active').forEach((activeBtn) => {
+                        if (activeBtn !== btn) {
+                            activeBtn.classList.remove('active');
+                        }
+                    });
                 }
 
-                // 토글
+                // 열려있는 상태이면 닫기
                 if (currentDd.classList.contains('show')) {
-                    currentDd.style.height = currentDd.scrollHeight + 'px'; // 현재 높이 유지
+                    btn.classList.remove('active');
+                    currentDd.style.height = currentDd.scrollHeight + 'px';
                     requestAnimationFrame(() => {
                         currentDd.style.height = '0px';
                         currentDd.addEventListener(
@@ -46,6 +54,7 @@ function accordion(_target, evt) {
                         );
                     });
                 } else {
+                    btn.classList.add('active'); // ✅ 여기에만 실행
                     currentDd.classList.add('show');
                     currentDd.style.height = 'auto';
                     const height = currentDd.scrollHeight + 'px';
@@ -66,3 +75,5 @@ function accordion(_target, evt) {
         });
     });
 }
+
+accordion('.board_type_toggle', 'click');
