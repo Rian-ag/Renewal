@@ -3,15 +3,13 @@
 body { height: 100%; overflow-x: hidden; } 
 body,
 * { font-family: var(--font-main); font-weight: 400; font-style: normal; color: #000; } 
-header .inner a { color: #000; } 
-header .inner .btn_ham:before,
-header .inner .btn_ham:after { border-top: 5px solid #000; } 
-header .inner a:after { display: none; } 
+
 /* 공통 */
 .tar { text-align: right !important; } 
 .tal { text-align: left !important; } 
 
-.layout { width: 1400px; margin: 0 auto; padding-top: 80px; } 
+.layout { width: 100%; max-width: 1400px; margin: 0 auto; padding-top: 80px; } 
+
 .section-container { display: flex; width: 100%; padding: 140px 0; flex-direction: column; gap: 200px; } 
 .title { font-family: 'Plus Jakarta Sans'; font-style: normal; font-size: 60px; font-weight: 700; line-height: 102%; letter-spacing: -1.2px; } 
 /* .char { display: inline-block; opacity: 0; transform: translateY(60px) rotateX(60deg) scale(0.95); transform-origin: center center; will-change: transform, opacity; } */
@@ -43,7 +41,7 @@ header .inner a:after { display: none; }
 .board_type_toggle { border-bottom: 1px solid rgba(0, 0, 0, 0.2); } 
 .board_type_toggle > dt { border-top: 1px solid rgba(0, 0, 0, 0.2); position: relative; height: 106px; display: flex; justify-content: flex-start; align-items: center; } 
 .board_type_toggle > dt > button { position: relative; display: block; width: 100%; height: 100%; color: #000; font-family: 'Plus Jakarta Sans'; font-size: 32px; font-style: normal; font-weight: 700; letter-spacing: -0.64px; cursor: pointer; } 
-.board_type_toggle > dt > button::after { content: ''; position: absolute; width: 20px; height: 20px; right: 0; top: 50%; transform: translateY(-50%); background: url('/assets/images/join/toggle.svg'); transition: all 0.3s ease; } 
+.board_type_toggle > dt > button::after { content: ''; position: absolute; width: 20px; height: 20px; right: 0; top: 50%; transform: translateY(-50%); background: url('/assets/images/join/toggle.svg'); background-repeat: no-repeat; background-position: center; background-size: cover; transition: all 0.3s ease; } 
 .board_type_toggle > dt > button.active::after { transform: translateY(-50%) rotate(180deg); /* 열린 상태: 위로 */}
 .board_type_toggle > dd { height: 0; line-height: 1.5; overflow: hidden; transition: height 0.3s ease; overflow: hidden; } 
 .board_type_toggle > dd > ul { display: flex; flex-direction: column; padding: 40px 0; gap: 40px; color: #464646; } 
@@ -69,7 +67,7 @@ header .inner a:after { display: none; }
 .step-title > li:nth-child(3) { width: 171px; } 
 .step-title > li:nth-child(4) { width: 80px; } 
 .step-line { display: flex; width: calc(100% - 178px); margin: 0 auto; /* transform: translateX(-7px); */}
-.step-line > li { position: relative; flex: 1; height: 1px; background-color: #000; }
+.step-line > li { position: relative; flex: 1; height: 1px; background-color: #000; } 
 .step-line > li:first-child { flex-basis: 113px; } 
 .step-line > li:nth-child(2) { flex-basis: 155px; } 
 .step-line > li:nth-child(3) { flex-basis: 277px; } 
