@@ -307,18 +307,46 @@
         <script type="text/javascript" src="/assets/js/jquery-3.7.1.min.js"></script>
         <script src="/assets/js/gsap.min.js"></script>
         <script src="/assets/js/ScrollTrigger.min.js"></script>
+        <script src="/assets/js/lenis.min.js"></script>
         <script src="/assets/js/common.js"></script>
         <script src="/assets/js/accordion.js"></script>
         <script>
-            $(function () {
-                // top 버튼 클릭 시 스크롤 위로
+            gsap.registerPlugin(ScrollTrigger);
+
+            const isMobile = window.innerWidth <= 768; // ✅ 모바일 조건
+
+            if (!isMobile) {
+                // ✅ PC에서만 Lenis 적용
+                const lenis = new Lenis({
+                    duration: 1.2,
+                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                    smooth: true,
+                    smoothTouch: false,
+                });
+
+                function raf(time) {
+                    lenis.raf(time);
+                    requestAnimationFrame(raf);
+                }
+                requestAnimationFrame(raf);
+
+                // top 버튼 - lenis 사용
+                $('.top').on('click', function (e) {
+                    e.preventDefault();
+                    lenis.scrollTo(0, {
+                        duration: 1,
+                        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                    });
+                });
+            } else {
+                // ✅ 모바일에서는 기본 스크롤 + jQuery fallback
                 $('.top').on('click', function (e) {
                     e.preventDefault();
                     $('html, body').animate({ scrollTop: 0 }, 600);
                 });
-            });
-            gsap.registerPlugin(ScrollTrigger);
-            // title-wrapper: h2, strong
+            }
+
+            // ✅ title-wrapper 안 텍스트 한 줄씩
             gsap.utils.toArray('.title-wrapper > *').forEach((el, i) => {
                 gsap.from(el, {
                     opacity: 0,
@@ -334,7 +362,7 @@
                 });
             });
 
-            // sub-wrapper: .head p, .subhead p 한 줄씩
+            // ✅ sub-wrapper 안 p들 한 줄씩
             gsap.utils.toArray('.sub-wrapper p').forEach((el, i) => {
                 gsap.from(el, {
                     opacity: 0,
@@ -349,6 +377,8 @@
                     },
                 });
             });
+
+            // ✅ 각 section 내부 title, content 애니메이션
             gsap.utils.toArray('.section-container > section').forEach((section) => {
                 const title = section.querySelector('.title');
                 const content = section.querySelector('.content');
