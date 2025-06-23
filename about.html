@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="/assets/css/mo_about.css" media="(max-width: 768px)">
 
     <script src="/assets/js/jquery-3.7.1.min.js"></script>
+	<script src="/assets/js/lazyload.js"></script>
+	<script src="./assets/js/lenis.min.js"></script>
 	<script src="/assets/js/common.js"></script>
     <script src="/assets/js/swiper.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
@@ -22,13 +24,12 @@
 <body>
     <div id="wrap" class="wrap"><!-- 25-06-11 Edit jh : class → id로 수정 -->
         <!-- header -->
-		<header>
+		<header class="pc type2 white">
 			<div class="inner">
 				<a href="#none">WORK</a>
 				<h1 onclick="location.href='/'"><img src="/assets/images/common/h1_logo.png" alt="RIAN" /></h1>
 				<button class="btn_ham">site map</button>
 			</div>
-
             <div class="site_map">
                 <ul>
                     <li><a href="/about.html">About</a></li>
@@ -41,7 +42,35 @@
                 <div class="bottom">
                     <div>
                         <a href="mailto:rianag@rianag.com">RIANAG@RIANAG.COM</a>
-                        <a href="http://daum.net" target="_blank">BLOG</a>
+                        <!-- <a href="http://daum.net" target="_blank">BLOG</a> -->
+                    </div>
+                    <a href="javascript:void(0);" class="download">BROCHURE DOWNLOAD</a>
+                </div>
+                <!-- //bottom -->
+            </div>
+		</header>
+		<!-- //header -->
+
+        <!-- header -->
+		<header class="mo type3 white">
+			<div class="inner">
+				<a href="#none">BACK</a>
+				<h1 onclick="location.href='/'"><img src="/assets/images/common/h1_logo.png" alt="RIAN" /></h1>
+				<button class="btn_ham">site map</button>
+			</div>
+            <div class="site_map">
+                <ul>
+                    <li><a href="/about.html">About</a></li>
+                    <li><a href="/project.html">Work</a></li>
+                    <li><a href="/insight_list.html">What's on</a></li>
+                    <li><a href="/join.html">Join Our Team</a></li>
+                    <li><a href="/contact.html">Contact</a></li>
+                </ul>
+                <!-- bottom -->
+                <div class="bottom">
+                    <div>
+                        <a href="mailto:rianag@rianag.com">RIANAG@RIANAG.COM</a>
+                        <!-- <a href="http://daum.net" target="_blank">BLOG</a> -->
                     </div>
                     <a href="javascript:void(0);" class="download">BROCHURE DOWNLOAD</a>
                 </div>

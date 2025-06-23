@@ -20,17 +20,20 @@
 	<link rel="stylesheet" href="/assets/css/main.css">
 
 	<!-- JS -->
-	<script src="/assets/js/jquery-3.7.1.min.js"></script>
-	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js"></script> -->
+    <script src="/assets/js/jquery-3.7.1.min.js"></script>
+	<script src="/assets/js/lazyload.js"></script>
+	<script src="./assets/js/lenis.min.js"></script>
 	<script src="/assets/js/common.js"></script>
 	<script src="/assets/js/simplefullpage.js"></script>
 
 	<script>
 		$(document).ready(function(){
 			var project = {
-        		'title' : ['CGV', 'LOTTE', 'HOME &', 'KB', 'COLDPLAY'],
-				'slogan' : ['DEEP DIVE SPACE', 'DUTY FREE', 'SHOPPING', 'KOOKMIN\nCARD', 'SOUND, VISUAL, STORY']
+        		'title' : ['CGV', 'LOTTE', 'HOME &', 'KB', 'HYUNDAI','COLDPLAY'],
+				'slogan' : ['DEEP DIVE SPACE', 'DUTY FREE', 'SHOPPING', 'KOOKMIN\nCARD','DUTY FREE', 'SOUND, VISUAL, STORY']
 			};
+			var mixColor = ['#D8FD93','#E90606','#EAC700','#FFFFFF','#FFFFFF','#5BB6EF']
+			var url = ['/works_view_01.html','/works_view_03.html','/works_view_02.html','/works_view_04.html','/works_view_05.html','/insight_view_01.html']
 
 			$('.visual_cont').addClass('active');
 			$('.visual_cont .project').html(project.title[0].replace(/\n/g, '<br>'));
@@ -60,7 +63,7 @@
 					init() {
 						console.log('a : '+current);
 						$('.fp-arrows').prepend(`
-							<div class="fp-navi">
+							<div class="fp-navi pc">
 								<span>${current}</span>
 								<em>${length}</em>
 							</div>
@@ -71,18 +74,52 @@
 					console.log(`Leaving section ${prev} → ${next}`);
 					$('.visual_cont').removeClass('active');
 				},
-				afterLoad: function(index) {
-					console.log(`Now at section ${index}`);
-					$('.fp-navi span').text('0'+(index + 1));
-					setTimeout(function(){
+afterLoad: function(index) {
+	console.log(`Now at section ${index}`);
+	$('.fp-navi span').text('0'+(index + 1));
 
-						$('.visual_cont').addClass('active');
+	// ✅ 화면 너비 체크
+	if (window.innerWidth <= 767) {
+		$('.fp-navi.mo span').text(index + 1); // 앞에 0 없이
 
-						$('.visual_cont .project').html(project.title[index].replace(/\n/g, '<br>'));
-						$('.visual_cont .slogan').html(project.slogan[index].replace(/\n/g, '<br>'));
-					},800);
-				}
+		// ✅ 진행률 계산 및 CSS 변수로 전달 (이 부분 추가)
+		let totalSections = $('section').length;
+		let progress = ((index + 1) / totalSections) * 100;
+		$('.fp-navi.mo i').css('--progress', `${progress}%`);
+	} else {
+		$('.fp-navi.pc span').text(('0' + (index + 1)));
+	}
+
+	setTimeout(function(){
+		$('.visual_cont').addClass('active');
+		$('.visual_cont .project').html(project.title[index].replace(/\n/g, '<br>'));
+		$('.visual_cont .slogan').html(project.slogan[index].replace(/\n/g, '<br>'));
+		$('.visual_cont').css('color', mixColor[index]);
+		$('#section_wrap > p > a').attr('href', url[index])
+	},800);
+}
 			});
+
+			if (window.innerWidth <= 767) {
+				var current = ($('section.active').index() + 1);
+				var length = $('section').length;
+
+				if(length < 10){
+					length = length;
+				}
+
+				if(current < 10){
+					current = current;
+				}
+				
+				$('.fp-arrows').prepend(`
+					<div class="fp-navi mo">
+						<i></i>
+						<span>${current}</span>
+						<em>${length}</em>
+					</div>
+				`);
+			}
 
 			/* date & time */
 			const today = new Date();
@@ -92,7 +129,7 @@
 
 			const formattedDate = `${year}.${month}.${day}`;
 
-			$('.visual_cont div p').text(formattedDate);
+			$('.visual_cont div div p').text(formattedDate);
 
 			const hours = ('0' + today.getHours()).slice(-2); 
 			const minutes = ('0' + today.getMinutes()).slice(-2);
@@ -146,7 +183,7 @@
 		<!-- header -->
 		<header>
 			<div class="inner">
-				<a href="#none">WORK</a>
+				<a href="/project.html">WORK</a>
 				<h1 onclick="location.href='/'"><img src="/assets/images/common/h1_logo.png" alt="RIAN" /></h1>
 				<button class="btn_ham">site map</button>
 			</div>
@@ -163,7 +200,7 @@
 				<div class="bottom">
 					<div>
 						<a href="mailto:rianag@rianag.com">RIANAG@RIANAG.COM</a>
-						<a href="http://daum.net" target="_blank">BLOG</a>
+						<!-- <a href="http://daum.net" target="_blank">BLOG</a> -->
 					</div>
 					<a href="javascript:void(0);" class="download">BROCHURE DOWNLOAD</a>
 				</div>
@@ -186,6 +223,9 @@
 				<div class="parallax-bg" style="background-image: url('/assets/images/main/visual_kb.png');"></div>
 			</section>
 			<section>
+				<div class="parallax-bg" style="background-image: url('/assets/images/main/visual_hyundai.png');"></div>
+			</section>
+			<section>
 				<div class="parallax-bg" style="background-image: url('/assets/images/main/visual_coldplay.png');"></div>
 			</section>
 
@@ -194,16 +234,23 @@
 				<p class="slogan">DEEP DIVE SPACE</p>
 				<div>
 					<strong></strong>
-					<p></p>
+					<div>
+						<em>ⓒ</em>
+						<p></p>
+					</div>
 				</div>
 			</div>
+			<p>
+				<span class="mo">View Detail</span>
+				<a href="" class="mo"></a>
+			</p>
 		</div>
 
 		<!-- bottom -->
 		<div id="bottom">
 			<div>
 				<a href="mailto:rianag@rianag.com">RIANAG@RIANAG.COM</a>
-				<a href="http://daum.net" target="_blank">BLOG</a>
+				<!-- <a href="http://daum.net" target="_blank">BLOG</a> -->
 			</div>
 			<a href="javascript:void(0);" class="download">BROCHURE DOWNLOAD</a>
 		</div>

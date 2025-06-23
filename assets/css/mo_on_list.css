@@ -5,7 +5,7 @@ em,i {font-style: normal;}
 #bottom div {display:flex; align-items:center; gap:160px;}
 #bottom .download {display:flex; align-items:center; gap:12px;}
 #bottom .download:after {width:20px; height:20px; background-image:url('/assets/images/common/icon_split.png'); background-position:-50px 0; background-repeat:no-repeat; background-size:500px auto; content:''; display:block;}
-
+.pc {display:none;}
 .cont_inner {padding:0 30px;}
 strong {font-weight:800;;}
 

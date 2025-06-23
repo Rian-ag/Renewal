@@ -1,6 +1,5 @@
 /* 공통 */
 .cont_inner {margin:0 30px; padding:140px 0 120px;}
-em,i {font-style: normal;}
 .pc {display:none;}
 
 section .cont_inner > p:last-of-type{margin:24px 0 100px;}
