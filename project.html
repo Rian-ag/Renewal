@@ -105,24 +105,9 @@
                     <div class="project-viewer-scrollable">
                         <div class="sticky-wrapper">
                             <div class="image-viewer">
-                                <img class="thumb-img" src="/assets/images/project/thumb1.jpg" />
-                                <img src="/assets/images/project/thumb2.jpg" />
-                                <img src="/assets/images/project/thumb3.jpg" />
-                                <img src="/assets/images/project/thumb4.jpg" />
-                                <img src="/assets/images/project/thumb5.jpg" />
-                                <img src="/assets/images/project/thumb6.jpg" />
-                                <img src="/assets/images/project/thumb7.jpg" />
-                                <img src="/assets/images/project/thumb8.jpg" />
-                                <img src="/assets/images/project/thumb9.jpg" />
-                                <img src="/assets/images/project/thumb10.jpg" />
+                                <img src="/assets/images/project/thumb1.jpg" />
                             </div>
                         </div>
-                        <!-- <div class="sticky-wrapper">
-                        </div> -->
-                        <!-- <div class="sticky-wrapper">
-                            <div class="image-slider">
-                            </div>
-                        </div> -->
                         <div class="project-list">
                             <div class="project-list__title">
                                 <h2>OUR <br />PROJECT</h2>
@@ -1151,11 +1136,13 @@
         <script>
             $(function () {
                 $('.list-item').on('mouseenter', function () {
-                    const imageSrc = $(this).data('image');
-                    $('.image-viewer .thumb-img').attr('src', imageSrc);
+                    const imgSrc = $(this).data('image');
+                    $('.image-viewer img').attr('src', imgSrc);
+                });
+                $('.list-item').on('mouseleave', function () {
+                    $('.image-viewer .active-img').attr('src', '/assets/images/thumb1.jpg'); // 초기 이미지로
                 });
             });
-
             // all project button event
             $(document).on('click', '.project-list-button', function () {
                 $('.project-viewer').addClass('active');
