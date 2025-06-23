@@ -1,6 +1,7 @@
 /* 공통영역 */
 em,i {font-style: normal;}
 .mo {display:none;}
+* {cursor:none;}
 
 #bottom {padding:28px 30px; background:#000; position:fixed; right:0; bottom:0; left:0; z-index:80; display:flex; align-items:center; justify-content:space-between;}
 #bottom * {color:#fff; font-size:14px; font-weight:800; letter-spacing:0;}
@@ -23,7 +24,7 @@ strong {font-weight:800;;}
 .swiper-slide {width:33.333%;}
 .swiper-slide:hover p img {transform:scale(1.3);}
 .swiper-slide p {width:440px; height:440px; box-sizing:border-box; overflow:hidden;}
-.swiper-slide p img {object-fit:cover; display:block; transition:all 0.3s;}
+.swiper-slide p img {object-fit:cover; display:block; transition:all 2.5s;}
 .swiper-slide:first-of-type p img {height:100%;}
 .swiper-slide a > div {margin-top:24px; margin-bottom:150px;}
 .swiper-slide a > div em, .swiper-slide a > div > span {font-size:24px; font-weight:600; line-height:140%; letter-spacing:-1.5%; }
@@ -31,3 +32,10 @@ strong {font-weight:800;;}
 .swiper-slide a > div > div {display:flex; gap:5px}
 .swiper-slide a > div i {font-size:18px; font-weight:300; line-height:142%; letter-spacing:-2%;}
 .swiper-pagination {display:none;}
+
+
+/* 점 커서 */
+.custom-cursor.dot-cursor {width:30px; height:30px; background-color:rgba(94, 94, 94, 0.4); border-radius:50%; position:fixed; z-index:9999; pointer-events:none; transform:translate(-50%, -50%) scale(1); opacity:1;transition:transform 0.5s ease, opacity 0.5s ease;}
+
+/* View 커서 */
+.custom-cursor.view {width:80px; height:80px; color:white; font-size:16px; font-weight:bold; background-color:rgba(94, 94, 94, 0.4); backdrop-filter:blur(10px); position:fixed; pointer-events:none; display:flex; align-items:center; justify-content:center; transform:translate(-50%, -50%) scale(0.5); /* 나갈 때 scale 0.5로 */ opacity:0; z-index:9999; transition:transform 0.5s ease, opacity 0.5s ease;}

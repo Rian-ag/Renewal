@@ -10,9 +10,9 @@ $(document).ready(function () {
     // 📌 header z-index 조절 함수
     const updateHeaderZIndex = () => {
         if ($siteMap.hasClass('active')) {
-            $header.css({ position: 'relative', 'z-index': '999' });
+            $header.css({ 'z-index': '999' });
         } else {
-            $header.css('z-index', '').css('position', '');
+            $header.css('z-index', '')
         }
     };
 
