@@ -78,20 +78,21 @@ $(window).on('load', function () {
     }
 
     // ✅ image-viewer 관련 변수
-    const $imgViewer = $('.image-viewer');
-    const $imgSlider = $('.image-slider');
-    const $imgSlides = $('.slide-img');
-    const imgSlideHeight = 240;
-    const imgTotalSlides = $imgSlides.length;
+    // const $imgViewer = $('.image-viewer');
+    // const $imgSlider = $('.image-slider');
+    // const $imgSlides = $('.slide-img');
+    // const imgSlideHeight = 240;
+    // const imgTotalSlides = $imgSlides.length;
 
     if (!isMobile()) {
         // ✅ PC 전용 : 프로젝트 리스트 hover 시 이미지 슬라이드
         $('.list-item')
             .on('mouseenter', function () {
+                const index = $(this).index(); // ✅ index 정의
                 $(this).addClass('active');
                 // $imgSlider.css('height', imgSlideHeight * imgTotalSlides + 'px');
 
-                // $('.sticky-wrapper').css('display', 'block');
+                $('.sticky-wrapper').css('display', 'block');
                 // $imgViewer.css({ opacity: 1 });
 
                 // gsap.to($imgSlider, {
