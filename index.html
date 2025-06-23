@@ -74,30 +74,30 @@
 					console.log(`Leaving section ${prev} → ${next}`);
 					$('.visual_cont').removeClass('active');
 				},
-afterLoad: function(index) {
-	console.log(`Now at section ${index}`);
-	$('.fp-navi span').text('0'+(index + 1));
+				afterLoad: function(index) {
+					console.log(`Now at section ${index}`);
+					$('.fp-navi span').text('0'+(index + 1));
 
-	// ✅ 화면 너비 체크
-	if (window.innerWidth <= 767) {
-		$('.fp-navi.mo span').text(index + 1); // 앞에 0 없이
+					// ✅ 화면 너비 체크
+					if (window.innerWidth <= 767) {
+						$('.fp-navi.mo span').text(index + 1); // 앞에 0 없이
 
-		// ✅ 진행률 계산 및 CSS 변수로 전달 (이 부분 추가)
-		let totalSections = $('section').length;
-		let progress = ((index + 1) / totalSections) * 100;
-		$('.fp-navi.mo i').css('--progress', `${progress}%`);
-	} else {
-		$('.fp-navi.pc span').text(('0' + (index + 1)));
-	}
+						// ✅ 진행률 계산 및 CSS 변수로 전달 (이 부분 추가)
+						let totalSections = $('section').length;
+						let progress = ((index + 1) / totalSections) * 100;
+						$('.fp-navi.mo i').css('--progress', `${progress}%`);
+					} else {
+						$('.fp-navi.pc span').text(('0' + (index + 1)));
+					}
 
-	setTimeout(function(){
-		$('.visual_cont').addClass('active');
-		$('.visual_cont .project').html(project.title[index].replace(/\n/g, '<br>'));
-		$('.visual_cont .slogan').html(project.slogan[index].replace(/\n/g, '<br>'));
-		$('.visual_cont').css('color', mixColor[index]);
-		$('#section_wrap > p > a').attr('href', url[index])
-	},800);
-}
+					setTimeout(function(){
+						$('.visual_cont').addClass('active');
+						$('.visual_cont .project').html(project.title[index].replace(/\n/g, '<br>'));
+						$('.visual_cont .slogan').html(project.slogan[index].replace(/\n/g, '<br>'));
+						$('.visual_cont').css('color', mixColor[index]);
+						$('#section_wrap > p > a').attr('href', url[index])
+					},800);
+				}
 			});
 
 			if (window.innerWidth <= 767) {
