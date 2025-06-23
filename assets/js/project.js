@@ -1,6 +1,6 @@
 const project = {
     title: ['Go deep\nDive in\nWatch on', 'Simple\nClear\nModule', 'Effortless\nChic\nLifestyle'],
-    subTitle: ['CGV\nOn MOBILE', 'LOTTE\nDUTY FREE', 'HOME &\nSHOPPING'],
+    subTitle: ['CGV\nOn MOBILE', 'LOTTE\nDUTY FREE', 'HOME&\nSHOPPING'],
     industry: ['Commerce', 'Commerce', 'Commerce'],
     date: ['July, 2025', '2021 - In Progress', '2019 - In Progress'],
     type: [
@@ -19,15 +19,25 @@ function updateTitleAndSubtitle(index) {
         .split('\n')
         .map((line) => `<div>${line}</div>`)
         .join('');
-    const subtitleLines = project.subTitle[index]
-        .split('\n')
-        .map((line) => `<div>${line}</div>`)
-        .join('');
+
+    let subtitleLines = '';
+    const raw = project.subTitle[index];
+
+    if (window.innerWidth <= 768) {
+        // ✅ 모바일: 줄바꿈 → 공백, &는 붙여서
+        const compactLine = raw.replace(/\n/g, ' ').replace(/\s*&\s*/g, '&');
+        subtitleLines = `<div>${compactLine}</div>`;
+    } else {
+        // ✅ PC: \n 기준으로 줄 나누되, 2줄까지만 출력
+        const lines = raw.split('\n');
+        const line1 = lines[0] || '';
+        const line2 = (lines[1] || '') + (lines[2] || '');
+        subtitleLines = `<div>${line1}</div><div>${line2}</div>`;
+    }
 
     $title.removeClass('active').html(titleLines);
     $subtitle.removeClass('active').html(subtitleLines);
 
-    // ✅ 초기화
     $projectInfo.find('li').css({
         opacity: 0,
         transform: 'translateY(100%)',
@@ -45,17 +55,16 @@ function updateTitleAndSubtitle(index) {
             $(this).css('transition-delay', i * 0.1 + 's');
         });
 
-        // ✅ .project-info li에 동일한 애니메이션 적용
         $projectInfo.find('li').each(function (i) {
             $(this).css({
                 opacity: 1,
                 transform: 'translateY(0%)',
                 transition: 'all 0.8s cubic-bezier(0.87, 0, 0.13, 1)',
-                // 'transition-delay': i * 0.1 + 's',
             });
         });
     }, 100);
 }
+
 $(window).on('load', function () {
     let mainSwiper = null;
     let thumbSwiper = null;
@@ -79,22 +88,21 @@ $(window).on('load', function () {
         // ✅ PC 전용 : 프로젝트 리스트 hover 시 이미지 슬라이드
         $('.list-item')
             .on('mouseenter', function () {
-                const index = $(this).data('index');
                 $(this).addClass('active');
-                $imgSlider.css('height', imgSlideHeight * imgTotalSlides + 'px');
+                // $imgSlider.css('height', imgSlideHeight * imgTotalSlides + 'px');
 
-                $('.sticky-wrapper').css('display', 'block');
-                $imgViewer.css({ opacity: 1 });
+                // $('.sticky-wrapper').css('display', 'block');
+                // $imgViewer.css({ opacity: 1 });
 
-                gsap.to($imgSlider, {
-                    y: -(imgSlideHeight * index),
-                    duration: 0.6,
-                    ease: 'expo.out',
-                });
+                // gsap.to($imgSlider, {
+                //     y: -(imgSlideHeight * index),
+                //     duration: 0.6,
+                //     ease: 'expo.out',
+                // });
             })
             .on('mouseleave', function () {
                 $(this).removeClass('active');
-                $imgViewer.css({ opacity: 0 });
+                // $imgViewer.css({ opacity: 0 });
             });
     }
 
@@ -115,46 +123,6 @@ $(window).on('load', function () {
         thumbnails.forEach((el, i) => {
             el.classList.toggle('active', i === index);
         });
-    }
-
-    function updateTitleAndSubtitle(index) {
-        const $title = $('.title');
-        const $subtitle = $('.sub-title');
-        const $projectInfo = $('.project-info');
-
-        const titleLines = project.title[index]
-            .split('\n')
-            .map((line) => `<div>${line}</div>`)
-            .join('');
-        const subtitleLines = project.subTitle[index]
-            .split('\n')
-            .map((line) => `<div>${line}</div>`)
-            .join('');
-
-        $title.removeClass('active').html(titleLines);
-        $subtitle.removeClass('active').html(subtitleLines);
-
-        $projectInfo.find('li').css({ opacity: 0, transform: 'translateY(100%)', transition: 'none' });
-
-        setTimeout(() => {
-            $title.addClass('active');
-            $subtitle.addClass('active');
-
-            $title.find('div').each(function (i) {
-                $(this).css('transition-delay', i * 0.1 + 's');
-            });
-            $subtitle.find('div').each(function (i) {
-                $(this).css('transition-delay', i * 0.1 + 's');
-            });
-
-            $projectInfo.find('li').each(function (i) {
-                $(this).css({
-                    opacity: 1,
-                    transform: 'translateY(0%)',
-                    transition: 'all 0.8s cubic-bezier(0.87, 0, 0.13, 1)',
-                });
-            });
-        }, 100);
     }
 
     function initSwiper() {
