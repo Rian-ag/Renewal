@@ -1,4 +1,10 @@
 $(document).ready(function () {
+    /* s:lazyload */
+    lazyLoads();
+    /* e:lazyload */
+    
+    
+    
     /* s:sitemap */
     const $btnHam = $('header .btn_ham');
     const $siteMap = $('header .site_map');
@@ -49,10 +55,10 @@ $(document).ready(function () {
                 }, i * 300);
             }
 
-            $siteMap.one('animationend webkitAnimationEnd oAnimationEnd', function () {
+            setTimeout(function(){
                 $siteMap.removeClass('close');
                 isAnimating = false;
-            });
+            }, $siteMap.find('li').length * 350);
 
             setTimeout(function () {
                 $siteMap.find('.bottom').removeClass('active');
@@ -63,7 +69,7 @@ $(document).ready(function () {
             $siteMap.addClass('active');
             updateHeaderZIndex();
 
-            $siteMap.one('animationend webkitAnimationEnd oAnimationEnd', function () {
+            // $siteMap.one('animationend webkitAnimationEnd oAnimationEnd', function () {
                 isAnimating = false;
 
                 $btnHam.parent().addClass('close');
@@ -92,8 +98,56 @@ $(document).ready(function () {
                         }
                     }, i * 300);
                 }
-            });
+            // });
         }
     });
     /* e:sitemap */
 });
+
+/* s:lazyload for background + image */
+function lazyLoads() {
+	const lazyElements = document.querySelectorAll('.lazy');
+
+	if ('IntersectionObserver' in window) {
+		const observer = new IntersectionObserver((entries, observerSelf) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					const el = entry.target;
+					const original = el.getAttribute('data-src');
+
+					if (!original) return;
+
+					if (el.getAttribute('lazy-type') === 'bg') {
+						// background-image lazyload
+						el.style.backgroundImage = `url('${original}')`;
+					} else if (el.tagName.toLowerCase() === 'img') {
+						// <img> lazyload
+						el.src = original;
+					}
+
+					el.classList.remove('lazy');
+					observerSelf.unobserve(el);
+				}
+			});
+		}, {
+			rootMargin: '0px 0px 200px 0px',
+			threshold: 0.1
+		});
+
+		lazyElements.forEach(el => observer.observe(el));
+	} else {
+		// fallback for older browsers
+		lazyElements.forEach(el => {
+			const original = el.getAttribute('data-src');
+			if (!original) return;
+
+			if (el.getAttribute('lazy-type') === 'bg') {
+				el.style.backgroundImage = `url('${original}')`;
+			} else if (el.tagName.toLowerCase() === 'img') {
+				el.src = original;
+			}
+			el.classList.remove('lazy');
+		});
+	}
+}
+/* e:lazyload */
