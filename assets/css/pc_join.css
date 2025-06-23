@@ -31,8 +31,11 @@ body,
 
 /* benefit */
 .benefit-container { display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap; } 
-.benefit-item { width: calc((100% - 80px) / 3); } 
-.benefit-item > img { display: block; width: 100%; object-fit: cover; } 
+.benefit-item { width: calc((100% - 80px) / 3);
+ cursor: pointer; } 
+.benefit-item .img-wrapper { height: 620px; overflow: hidden; } 
+.benefit-item img { display: block; width: 100%; object-fit: cover; overflow: hidden; transition: transform 0.5s ease; } 
+.benefit-item:hover img { transform: scale(1.15); } 
 .benefit-item > ol { margin-top: 80px; display: flex; flex-direction: column; gap: 60px; } 
 .benefit-item > ol strong { color: #000; font-size: 24px; font-weight: 700; line-height: 150%; letter-spacing: -0.36px; } 
 .benefit-item > ol p { margin-top: 16px; color: #808080; font-size: 16px; line-height: 150%; /* 24px */
