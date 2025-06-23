@@ -347,23 +347,25 @@
             }
 
             // ✅ title-wrapper 안 텍스트 한 줄씩
-            gsap.utils.toArray('.title-wrapper > *').forEach((el, i) => {
-                gsap.from(el, {
-                    opacity: 0,
-                    y: 40,
-                    duration: 0.6,
-                    delay: i * 0.2,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: el,
-                        start: 'top 90%',
-                        toggleActions: 'play none none none',
-                    },
+            $('.title-wrapper')
+                .children()
+                .each(function (i, el) {
+                    gsap.from(el, {
+                        opacity: 0,
+                        y: 40,
+                        duration: 0.6,
+                        delay: i * 0.2,
+                        ease: 'power3.out',
+                        scrollTrigger: {
+                            trigger: el,
+                            start: 'top 90%',
+                            toggleActions: 'play none none none',
+                        },
+                    });
                 });
-            });
 
             // ✅ sub-wrapper 안 p들 한 줄씩
-            gsap.utils.toArray('.sub-wrapper p').forEach((el, i) => {
+            $('.sub-wrapper p').each(function (i, el) {
                 gsap.from(el, {
                     opacity: 0,
                     y: 40,
@@ -379,9 +381,10 @@
             });
 
             // ✅ 각 section 내부 title, content 애니메이션
-            gsap.utils.toArray('.section-container > section').forEach((section) => {
-                const title = section.querySelector('.title');
-                const content = section.querySelector('.content');
+            $('.section-container > section').each(function (_, section) {
+                const $section = $(section);
+                const title = $section.find('.title')[0];
+                const content = $section.find('.content')[0];
 
                 if (title) {
                     gsap.from(title, {
@@ -411,6 +414,34 @@
                         },
                     });
                 }
+            });
+            // 전형절차 step 그룹 순차 등장 (동시에 세 요소씩)
+            const stepTitles = $('.step-title li');
+            const stepDots = $('.step-line .step-dot');
+            const stepDescs = $('.step-desc li');
+
+            const stepTimeline = gsap.timeline({
+                scrollTrigger: {
+                    trigger: '.apply-item .step-list',
+                    start: 'top 90%',
+                    toggleActions: 'play none none none',
+                },
+            });
+
+            stepTitles.each(function (i) {
+                const group = [stepTitles[i], stepDots[i], stepDescs[i]];
+
+                stepTimeline.from(
+                    group,
+                    {
+                        opacity: 0,
+                        y: 30,
+                        duration: 0.5,
+                        ease: 'power3.out',
+                        stagger: 0.05,
+                    },
+                    i * 0.2
+                );
             });
         </script>
     </body>
