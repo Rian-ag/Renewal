@@ -313,38 +313,28 @@
         <script>
             gsap.registerPlugin(ScrollTrigger);
 
-            const isMobile = window.innerWidth <= 768; // ✅ 모바일 조건
+            // ✅ Lenis 전체 공통 적용
+            const lenis = new Lenis({
+                duration: 1.2,
+                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                smooth: true,
+                smoothTouch: false,
+            });
 
-            if (!isMobile) {
-                // ✅ PC에서만 Lenis 적용
-                const lenis = new Lenis({
-                    duration: 1.2,
-                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-                    smooth: true,
-                    smoothTouch: false,
-                });
-
-                function raf(time) {
-                    lenis.raf(time);
-                    requestAnimationFrame(raf);
-                }
+            function raf(time) {
+                lenis.raf(time);
                 requestAnimationFrame(raf);
-
-                // top 버튼 - lenis 사용
-                $('.top').on('click', function (e) {
-                    e.preventDefault();
-                    lenis.scrollTo(0, {
-                        duration: 1,
-                        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-                    });
-                });
-            } else {
-                // ✅ 모바일에서는 기본 스크롤 + jQuery fallback
-                $('.top').on('click', function (e) {
-                    e.preventDefault();
-                    $('html, body').animate({ scrollTop: 0 }, 600);
-                });
             }
+            requestAnimationFrame(raf);
+
+            // top 버튼 - lenis 사용
+            $('.top').on('click', function (e) {
+                e.preventDefault();
+                lenis.scrollTo(0, {
+                    duration: 1,
+                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+                });
+            });
 
             // ✅ title-wrapper 안 텍스트 한 줄씩
             $('.title-wrapper')
