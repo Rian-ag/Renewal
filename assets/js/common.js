@@ -6,13 +6,13 @@ $(document).ready(function () {
     const $footer = $('#bottom');
     const $header = $('header');
     let isAnimating = false; // 클릭 잠금 변수
-
+    lazyLoads();
     // 📌 header z-index 조절 함수
     const updateHeaderZIndex = () => {
         if ($siteMap.hasClass('active')) {
             $header.css({ 'z-index': '999' });
         } else {
-            $header.css('z-index', '')
+            $header.css('z-index', '');
         }
     };
 
@@ -29,7 +29,7 @@ $(document).ready(function () {
                 setTimeout(function () {
                     $siteMap.find('li').eq(i).removeClass('active');
 
-                    if ((i + 1) === $siteMap.find('li').length) {
+                    if (i + 1 === $siteMap.find('li').length) {
                         $siteMap.removeClass('active').addClass('close');
                         $btnHam.parent().removeClass('close');
 
@@ -71,7 +71,7 @@ $(document).ready(function () {
                 if (isType2) {
                     $('header h1 img').attr('src', '/assets/images/common/h1_logo_black.png');
                 } else {
-                    $('header h1 img').attr('src', ($h1_img.split('.')[0] + '_black.png'));
+                    $('header h1 img').attr('src', $h1_img.split('.')[0] + '_black.png');
                 }
 
                 if (isType3) {
@@ -82,7 +82,7 @@ $(document).ready(function () {
                     setTimeout(function () {
                         $siteMap.find('li').eq(i).addClass('active');
 
-                        if ((i + 1) === $siteMap.find('li').length) {
+                        if (i + 1 === $siteMap.find('li').length) {
                             const $bottomChildren = $siteMap.find('.bottom').children();
                             $bottomChildren.each(function (j) {
                                 setTimeout(() => {
@@ -97,3 +97,54 @@ $(document).ready(function () {
     });
     /* e:sitemap */
 });
+
+/* s:lazyload for background + image */
+function lazyLoads() {
+    const lazyElements = document.querySelectorAll('.lazy');
+
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(
+            (entries, observerSelf) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const el = entry.target;
+                        const original = el.getAttribute('data-src');
+
+                        if (!original) return;
+
+                        if (el.getAttribute('lazy-type') === 'bg') {
+                            // background-image lazyload
+                            el.style.backgroundImage = `url('${original}')`;
+                        } else if (el.tagName.toLowerCase() === 'img') {
+                            // <img> lazyload
+                            el.src = original;
+                        }
+
+                        el.classList.remove('lazy');
+                        observerSelf.unobserve(el);
+                    }
+                });
+            },
+            {
+                rootMargin: '0px 0px 200px 0px',
+                threshold: 0.1,
+            }
+        );
+
+        lazyElements.forEach((el) => observer.observe(el));
+    } else {
+        // fallback for older browsers
+        lazyElements.forEach((el) => {
+            const original = el.getAttribute('data-src');
+            if (!original) return;
+
+            if (el.getAttribute('lazy-type') === 'bg') {
+                el.style.backgroundImage = `url('${original}')`;
+            } else if (el.tagName.toLowerCase() === 'img') {
+                el.src = original;
+            }
+            el.classList.remove('lazy');
+        });
+    }
+}
+/* e:lazyload */
