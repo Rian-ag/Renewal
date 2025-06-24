@@ -27,28 +27,89 @@
 	<script src="/assets/js/simplefullpage.js"></script>
 
 	<script>
-		$(document).ready(function(){
+		function replaceDivWithVideo($div, videoSrc) {
+			const video = document.createElement('video');
+			video.src = videoSrc;
+			video.autoplay = true;
+			video.muted = true;
+			video.loop = true;
+			video.playsInline = true;
+			video.setAttribute('muted', ''); // Safari 등 호환성 대응
+			video.style.width = '100%';
+			video.style.height = '100%';
+			video.style.objectFit = 'cover';
+			video.style.position = 'absolute';
+			video.style.top = 0;
+			video.style.left = 0;
+			video.style.zIndex = -1;
+
+			$div.classList.remove('lazyload');
+			$div.innerHTML = '';
+			$div.appendChild(video);
+		}
+
+		function updateLazyloadSrc() {
+			const isMobile = window.innerWidth <= 767;
+
+			document.querySelectorAll('.parallax-bg').forEach(function(el) {
+				const mobileSrc = el.getAttribute('data-src-mobile');
+				const pcSrc = el.getAttribute('data-src');
+				const targetSrc = (isMobile && mobileSrc) ? mobileSrc : pcSrc;
+
+				if (!el.getAttribute('data-src-original')) {
+					el.setAttribute('data-src-original', pcSrc);
+				}
+
+				// 🎯 비디오 섹션 처리
+				if (el.classList.contains('video-bg')) {
+					const video = el.querySelector('video');
+					if (video) {
+						// 이미 비디오가 있는 경우 src만 변경
+						if (video.getAttribute('src') !== targetSrc) {
+							video.setAttribute('src', targetSrc);
+							video.load(); // 변경된 src로 재로딩
+						}
+					} else {
+						// video가 없으면 새로 삽입
+						replaceDivWithVideo(el, targetSrc);
+					}
+				}
+				// 🎯 이미지 lazyload 처리
+				else {
+					el.setAttribute('data-src', targetSrc);
+				}
+			});
+		}
+
+
+		document.addEventListener('DOMContentLoaded', function() {
+			updateLazyloadSrc(); // ✅ src 교체
+			new LazyLoad();      // ✅ 이미지 lazyload 실행
+
+			// ✅ 리사이즈 대응
+		let resizeTimer;
+		window.addEventListener('resize', function () {
+			clearTimeout(resizeTimer);
+			resizeTimer = setTimeout(updateLazyloadSrc, 200);
+		});
+
+			// ✅ 이하 기존 기능 유지
 			var project = {
-        		'title' : ['CGV', 'LOTTE', 'HOME &', 'KB', 'HYUNDAI','COLDPLAY'],
-				'slogan' : ['DEEP DIVE SPACE', 'DUTY FREE', 'SHOPPING', 'KOOKMIN\nCARD','DUTY FREE', 'SOUND, VISUAL, STORY']
+				'title': ['CGV', 'LOTTE', 'HOME &', 'KB', 'HYUNDAI','COLDPLAY'],
+				'slogan': ['DEEP DIVE SPACE', 'DUTY FREE', 'SHOPPING', 'KOOKMIN\nCARD','DUTY FREE', 'SOUND, VISUAL, STORY']
 			};
 			var mixColor = ['#D8FD93','#E90606','#EAC700','#FFFFFF','#FFFFFF','#5BB6EF']
 			var url = ['/works_view_01.html','/works_view_03.html','/works_view_02.html','/works_view_04.html','/works_view_05.html','/insight_view_01.html']
 
-			$('.visual_cont').addClass('active');
-			$('.visual_cont .project').html(project.title[0].replace(/\n/g, '<br>'));
-			$('.visual_cont .slogan').html(project.slogan[0].replace(/\n/g, '<br>'));
+			document.querySelector('.visual_cont').classList.add('active');
+			document.querySelector('.visual_cont .project').innerHTML = project.title[0].replace(/\n/g, '<br>');
+			document.querySelector('.visual_cont .slogan').innerHTML = project.slogan[0].replace(/\n/g, '<br>');
 
-			var current = ($('section.active').index() + 1);
-			var length = $('section').length;
+			var current = document.querySelector('section.active')?.dataset?.index || 1;
+			var length = document.querySelectorAll('section').length;
 
-			if(length < 10){
-				length = '0'+length;
-			}
-
-			if(current < 10){
-				current = '0'+current;
-			}
+			if(length < 10) length = '0'+length;
+			if(current < 10) current = '0'+current;
 
 			$('#section_wrap').simpleFullpage({
 				duration: 1500,
@@ -57,11 +118,8 @@
 				keyboard: true,
 				touch: true,
 				navigation: false,
-				//autoplay:true,
-				//autoplaySpeed: 1000,
 				on: {
 					init() {
-						console.log('a : '+current);
 						$('.fp-arrows').prepend(`
 							<div class="fp-navi pc">
 								<span>${current}</span>
@@ -70,48 +128,35 @@
 						`);
 					}
 				},
-				onLeave: function(prev, next) {
-					console.log(`Leaving section ${prev} → ${next}`);
+				onLeave(prev, next) {
 					$('.visual_cont').removeClass('active');
 				},
-afterLoad: function(index) {
-	console.log(`Now at section ${index}`);
-	$('.fp-navi span').text('0'+(index + 1));
+				afterLoad(index) {
+					const total = $('section').length;
+					const isMobile = window.innerWidth <= 767;
+					const currentIndex = index + 1;
 
-	// ✅ 화면 너비 체크
-	if (window.innerWidth <= 767) {
-		$('.fp-navi.mo span').text(index + 1); // 앞에 0 없이
+					$('.fp-navi span').text((currentIndex < 10 ? '0' : '') + currentIndex);
 
-		// ✅ 진행률 계산 및 CSS 변수로 전달 (이 부분 추가)
-		let totalSections = $('section').length;
-		let progress = ((index + 1) / totalSections) * 100;
-		$('.fp-navi.mo i').css('--progress', `${progress}%`);
-	} else {
-		$('.fp-navi.pc span').text(('0' + (index + 1)));
-	}
+					if (isMobile) {
+						let progress = (currentIndex / total) * 100;
+						$('.fp-navi.mo span').text(currentIndex);
+						$('.fp-navi.mo i').css('--progress', `${progress}%`);
+					}
 
-	setTimeout(function(){
-		$('.visual_cont').addClass('active');
-		$('.visual_cont .project').html(project.title[index].replace(/\n/g, '<br>'));
-		$('.visual_cont .slogan').html(project.slogan[index].replace(/\n/g, '<br>'));
-		$('.visual_cont').css('color', mixColor[index]);
-		$('#section_wrap > p > a').attr('href', url[index])
-	},800);
-}
+					setTimeout(function(){
+						$('.visual_cont').addClass('active');
+						$('.visual_cont .project').html(project.title[index].replace(/\n/g, '<br>'));
+						$('.visual_cont .slogan').html(project.slogan[index].replace(/\n/g, '<br>'));
+						$('.visual_cont').css('color', mixColor[index]);
+						$('#section_wrap > p > a').attr('href', url[index]);
+					}, 800);
+				}
 			});
 
 			if (window.innerWidth <= 767) {
-				var current = ($('section.active').index() + 1);
-				var length = $('section').length;
-
-				if(length < 10){
-					length = length;
-				}
-
-				if(current < 10){
-					current = current;
-				}
-				
+				let current = $('section.active').index() + 1;
+				let length = $('section').length;
 				$('.fp-arrows').prepend(`
 					<div class="fp-navi mo">
 						<i></i>
@@ -121,61 +166,45 @@ afterLoad: function(index) {
 				`);
 			}
 
-			/* date & time */
-			const today = new Date();
-			const year = String(today.getFullYear()); // YY (연도)
-			const month = today.toLocaleString('en-US', { month: 'short' }); // m (영문 월)
-			const day = String(today.getDate()).padStart(2, '0'); // dd (일)
+			// 날짜 및 시간 출력
+			const setTime = () => {
+				const now = new Date();
+				const year = now.getFullYear();
+				const month = now.toLocaleString('en-US', { month: 'short' });
+				const day = String(now.getDate()).padStart(2, '0');
+				const time = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
+				$('.visual_cont div strong').text(time);
+				$('.visual_cont div div p').text(`${year}.${month}.${day}`);
+			};
+			setTime();
+			setInterval(setTime, 1000);
 
-			const formattedDate = `${year}.${month}.${day}`;
-
-			$('.visual_cont div div p').text(formattedDate);
-
-			const hours = ('0' + today.getHours()).slice(-2); 
-			const minutes = ('0' + today.getMinutes()).slice(-2);
-			const seconds = ('0' + today.getSeconds()).slice(-2);
-			const formattime = hours + ':' + minutes  + ':' + seconds;
-
-			$('.visual_cont div strong').text(formattime);
-
-			setInterval(function(){
-				const today = new Date();
-				const hours = ('0' + today.getHours()).slice(-2); 
-				const minutes = ('0' + today.getMinutes()).slice(-2);
-				const seconds = ('0' + today.getSeconds()).slice(-2);
-				const formattime = hours + ':' + minutes  + ':' + seconds;
-
-				$('.visual_cont div strong').text(formattime);
-			},1000);
-
-			/* s:custom cursor */
+			// 커스텀 커서
 			const $cursor = $('.custom-cursor');
 			const $area = $('.parallax-bg');
 			let isHovering = false;
 
 			$area.on('mousemove', function (e) {
 				if (isHovering) {
-				$cursor.css({
-					left: e.clientX + 'px',
-					top: e.clientY + 'px'
-				});
+					$cursor.css({
+						left: e.clientX + 'px',
+						top: e.clientY + 'px'
+					});
 				}
 			});
-
 			$area.on('mouseenter', function () {
 				isHovering = true;
 				$cursor.css('opacity', 1);
 				$(this).addClass('hide-cursor');
 			});
-
 			$area.on('mouseleave', function () {
 				isHovering = false;
 				$cursor.css('opacity', 0);
 				$(this).removeClass('hide-cursor');
 			});
-			/* e:custom cursor */
-    	});
+		});
 	</script>
+
 </head>
 <body>
 
@@ -211,22 +240,27 @@ afterLoad: function(index) {
 
 		<div id="section_wrap">
 			<section class="active">
-				<div class="parallax-bg" style="background-image: url('/assets/images/main/visual_cgv.png');"></div>
+				<div class="parallax-bg video-bg lazyload"
+					data-src="/assets/video/work_cgv_wide.mp4"
+					data-src-mobile="/assets/video/work_cgv_mobile.mp4"></div>
 			</section>
 			<section>
-				<div class="parallax-bg" style="background-image: url('/assets/images/main/visual_lotte.png');"></div>
+				<div class="parallax-bg lazyload" data-src="/assets/images/main/visual_lotte.png" data-src-mobile="/assets/images/main/visual_lotte_mo.png"></div>
 			</section>
 			<section>
-				<div class="parallax-bg" style="background-image: url('/assets/images/main/visual_homen.png');"></div>
+				<div class="parallax-bg lazyload" data-src="/assets/images/main/visual_homen.png" data-src-mobile="/assets/images/main/visual_homen_mo.png"></div>
 			</section>
 			<section>
-				<div class="parallax-bg" style="background-image: url('/assets/images/main/visual_kb.png');"></div>
+				<div class="parallax-bg lazyload" data-src="/assets/images/main/visual_kb.png" data-src-mobile="/assets/images/main/visual_kb_mo.png"></div>
+			</section>
+			<section class="active">
+				<div class="parallax-bg video-bg lazyload"
+					data-src="/assets/video/hy.mp4"
+					data-src-mobile="/assets/video/hy.mp4">
+				</div>
 			</section>
 			<section>
-				<div class="parallax-bg" style="background-image: url('/assets/images/main/visual_hyundai.png');"></div>
-			</section>
-			<section>
-				<div class="parallax-bg" style="background-image: url('/assets/images/main/visual_coldplay.png');"></div>
+				<div class="parallax-bg lazyload" data-src="/assets/images/main/visual_coldplay.png" data-src-mobile="/assets/images/main/visual_coldplay_mo.png"></div>
 			</section>
 
 			<div class="visual_cont">
