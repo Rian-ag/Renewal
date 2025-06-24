@@ -92,7 +92,7 @@ $(window).on('load', function () {
                 $(this).addClass('active');
                 // $imgSlider.css('height', imgSlideHeight * imgTotalSlides + 'px');
 
-                $('.sticky-wrapper').css('display', 'block');
+                // $('.sticky-wrapper').css('display', 'block');
                 // $imgViewer.css({ opacity: 1 });
 
                 // gsap.to($imgSlider, {

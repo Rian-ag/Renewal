@@ -105,24 +105,9 @@
                     <div class="project-viewer-scrollable">
                         <div class="sticky-wrapper">
                             <div class="image-viewer">
-                                <img class="thumb-img" src="/assets/images/project/thumb1.jpg" />
-                                <img src="/assets/images/project/thumb2.jpg" />
-                                <img src="/assets/images/project/thumb3.jpg" />
-                                <img src="/assets/images/project/thumb4.jpg" />
-                                <img src="/assets/images/project/thumb5.jpg" />
-                                <img src="/assets/images/project/thumb6.jpg" />
-                                <img src="/assets/images/project/thumb7.jpg" />
-                                <img src="/assets/images/project/thumb8.jpg" />
-                                <img src="/assets/images/project/thumb9.jpg" />
-                                <img src="/assets/images/project/thumb10.jpg" />
+                                <img src="/assets/images/project/thumb1.jpg" />
                             </div>
                         </div>
-                        <!-- <div class="sticky-wrapper">
-                        </div> -->
-                        <!-- <div class="sticky-wrapper">
-                            <div class="image-slider">
-                            </div>
-                        </div> -->
                         <div class="project-list">
                             <div class="project-list__title">
                                 <h2>OUR <br />PROJECT</h2>
@@ -1149,13 +1134,22 @@
         <script src="/assets/js/common.js"></script>
         <script src="/assets/js/project.js"></script>
         <script>
+            // 이미지 viewer함수
             $(function () {
                 $('.list-item').on('mouseenter', function () {
-                    const imageSrc = $(this).data('image');
-                    $('.image-viewer .thumb-img').attr('src', imageSrc);
+                    // 이미지 뷰어 보여주기
+                    $('.image-viewer').stop(true).fadeIn(300);
+                    // 현재 리스트 아이템의 data-image 속성에서 이미지 경로 받아서 삽입
+                    const imgSrc = $(this).data('image');
+                    $('.image-viewer img').attr('src', imgSrc);
+                });
+                $('.list-item').on('mouseleave', function () {
+                    // 이미지 뷰어 숨기기
+                    $('.image-viewer').stop(true).fadeOut(300);
+                    // 이미지 초기화 (선택사항)
+                    $('.image-viewer .active-img').attr('src', '/assets/images/thumb1.jpg'); // 초기 이미지로
                 });
             });
-
             // all project button event
             $(document).on('click', '.project-list-button', function () {
                 $('.project-viewer').addClass('active');
