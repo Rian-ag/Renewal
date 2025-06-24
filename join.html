@@ -370,6 +370,9 @@
         <script src="/assets/js/common.js"></script>
         <script src="/assets/js/accordion.js"></script>
         <script>
+            $(function () {
+                lazyLoads();
+            });
             gsap.registerPlugin(ScrollTrigger);
 
             // ✅ Lenis 전체 공통 적용
