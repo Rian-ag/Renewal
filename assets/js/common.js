@@ -237,9 +237,10 @@ function initHeaderScrollToggle() {
 }
 /* e:lazyload */
 function goBack() {
-    if (document.referrer && document.referrer !== location.href) {
-      history.back();
-    } else {
-      location.href = '/';
-    }
+  const ref = document.referrer;
+  if (ref && ref.startsWith(location.origin) && ref !== location.href) {
+    location.href = ref;
+  } else {
+    location.href = '/';
+  }
 }
