@@ -49,9 +49,9 @@ img {
     display: none;
 }
 
-header > .inner > h1 {
+/* header > .inner > h1 {
     display: none;
-}
+} */
 
 /* header { height: 9.48vh; background-color: #1d1617; }  */
 .project-wrapper {

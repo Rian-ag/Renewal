@@ -132,6 +132,8 @@ header #hidden_menu button:after {transform:rotate(135deg);}
   header.type3.black .inner a {color:#000;}
   header.type3.black .inner a::before {width:14px; height:13px; background-image:url('/assets/images/common/icon_split.png'); background-position:-115px -114px; background-repeat:no-repeat; background-size:500px auto; content:''; display:block; transform:rotate(0deg);}
   header.type3.black .inner .btn_ham:before, header.type3.black .inner .btn_ham::after {border-top:5px solid #000;}
+  .custom-cursor.dot-cursor {display: none;}
+  header .site_map li a .dash.on {width:50px;}
 }
 
 /* 점 커서 */
