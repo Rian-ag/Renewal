@@ -1,7 +1,31 @@
- gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(ScrollTrigger)
 
 $(document).ready(function () {
-    /* 스와이퍼 */
+
+  // // ✅ 현재 페이지 메뉴 자동 강조 (일반화)
+  // const currentPath = window.location.pathname.replace(/\/$/, '');
+  // $('.site_map a').each(function () {
+  //   const href = $(this).attr('href').replace(/\/$/, '');
+  //   if (href === currentPath) {
+  //     $(this).find('.dash').addClass('on current');
+  //   }
+  // });
+
+  // // ✅ hover 시 .on 추가 / 마우스 벗어날 때 .current 아니면 제거
+  // $('.site_map li').hover(
+  //   function () {
+  //     $(this).find('.dash').addClass('on');
+  //   },
+  //   function () {
+  //     const $dash = $(this).find('.dash');
+  //     if (!$dash.hasClass('current')) {
+  //       $dash.removeClass('on');
+  //     }
+  //   }
+  // );
+  
+  
+  /* 스와이퍼 */
     var option_sec03 = {
         slidesPerView: 4.5,
         spaceBetween:10,
@@ -158,32 +182,6 @@ $(document).ready(function () {
     });
   });
 
-  const $cursor = $('.about_swiper .custom-cursor');
-  const $area = $('.about_swiper');
-  let isHovering = false;
-
-  $(document).on('mousemove', function (e) {
-    if (isHovering) {
-      $cursor.css({
-        left: e.clientX + 'px',
-        top: e.clientY + 'px'
-      });
-    }
-  });
-
-  $area.on('mouseenter', function () {
-    isHovering = true;
-    $cursor.css('opacity', 1);
-    $(this).addClass('hide-cursor');
-  });
-
-  $area.on('mouseleave', function () {
-    isHovering = false;
-    $cursor.css('opacity', 0);
-    $(this).removeClass('hide-cursor');
-  });
-
-
 let animated = false;
 
 function runPartnerAnimation() {
@@ -214,34 +212,6 @@ $(window).on('scroll resize orientationchange', runPartnerAnimation);
 
 // 페이지 로딩 직후도 확인 (모바일 주소창 숨김 전 대응)
 $(document).ready(runPartnerAnimation);
-
-
-
-    const $scroll = $('.about_visual .custom-cursor');
-    const $target = $('.about_visual');
-    let isHover = false;
-
-  $(document).on('mousemove', function (e) {
-    if (isHover) {
-      $scroll.css({
-        left: e.clientX + 'px',
-        top: e.clientY + 'px'
-      });
-    }
-  });
-
-  $target.on('mouseenter', function () {
-    isHover = true;
-    $scroll.css('opacity', 1);
-    $(this).addClass('hide-cursor');
-  });
-
-  $target.on('mouseleave', function () {
-    isHover = false;
-    $scroll.css('opacity', 0);
-    $(this).removeClass('hide-cursor');
-  });
-
 
   /* about_partners hover 이벤트 */
     $('.about_partners li img').each(function () {

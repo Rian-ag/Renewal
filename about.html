@@ -21,22 +21,52 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
     <script src="/assets/js/about.js" defer></script>
 </head>
-<body>
+<body class="fadeout">
     <div id="wrap" class="wrap"><!-- 25-06-11 Edit jh : class → id로 수정 -->
         <!-- header -->
 		<header class="pc type2 white">
 			<div class="inner">
 				<a href="#none">WORK</a>
-				<h1 onclick="location.href='/'"><img src="/assets/images/common/h1_logo.png" alt="RIAN" /></h1>
+				<h1><img src="/assets/images/common/h1_logo.png" alt="RIAN" /></h1>
 				<button class="btn_ham">site map</button>
 			</div>
             <div class="site_map">
                 <ul>
-                    <li><a href="/about.html">About</a></li>
-                    <li><a href="/project.html">Work</a></li>
-                    <li><a href="/insight_list.html">What's on</a></li>
-                    <li><a href="/join.html">Join Our Team</a></li>
-                    <li><a href="/contact.html">Contact</a></li>
+                    <li>
+                        <a href="/about.html">
+                            <span>A</span>
+                            <span class="dash">&nbsp;—&nbsp;</span>
+                            <span>BOUT</span>         
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/project.html">
+                            <span>W</span>
+                            <span class="dash">&nbsp;—&nbsp;</span>
+                            <span>ork</span>    
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/insight_list.html">
+                            <span>What'</span>
+                            <span class="dash">&nbsp;—&nbsp;</span>
+                            <span>s on</span>    
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/join.html">
+                            <span>Join</span>
+                            <span class="dash">&nbsp;—&nbsp;</span>
+                            <span>Our Team</span>   
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/contact.html">
+                            <span>Con</span>
+                            <span class="dash">&nbsp;—&nbsp;</span>
+                            <span>tact</span>   
+                        </a>
+                    </li>
                 </ul>
                 <!-- bottom -->
                 <div class="bottom">
@@ -54,7 +84,7 @@
         <!-- header -->
 		<header class="mo type3 white">
 			<div class="inner">
-				<a href="#none">BACK</a>
+				<a href="#" onclick="if (document.referrer) { history.back(); } else { window.location.href='/' } return false;">BACK</a>
 				<h1 onclick="location.href='/'"><img src="/assets/images/common/h1_logo.png" alt="RIAN" /></h1>
 				<button class="btn_ham">site map</button>
 			</div>
@@ -107,7 +137,7 @@
             </div>
             <em>About</em> -->
             <div class="mo_cursor">Scroll</div>
-            <div class="custom-cursor">Scroll</div>
+            <div class="custom-cursor scroll">Scroll</div>
         </div>
         <section class="about_vision">
             <div class="cont_inner">
@@ -224,7 +254,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="custom-cursor">Drag</div>
+                            <div class="custom-cursor drag">Drag</div>
                         </div>
                         <div>
                             <p>
@@ -334,19 +364,43 @@
                 </ul>
             </div>
         </section>
+        <div class="custom-cursor dot-cursor"></div>
     </div>
     <script>
-        // document.fonts.load('1em "Plus Jakarta Sans"')
-        // .then(() => {
-        //     const $output = $('.about_vision .cont_inner h2');
-        //     const text = $output.text();
-        //     // splitTextByLine(text, $output);
-        //     splitTextByLine(text, $output, { useSpan: true });
-        // })
-        // .catch(() => {
-        //     console.warn('폰트 로딩 실패. fallback 처리');
-        //     // fallback 동작 또는 대체 렌더링
-        // });
+        function customCursorEffect($area, type = 'view') {
+            const $cursorDot = $('.custom-cursor.dot-cursor');
+            const $cursor = $(`.custom-cursor.${type}`);
+
+            // 마우스 따라다님
+            $(document).on('mousemove.customCursor.' + type, function (e) {
+                const x = e.clientX;
+                const y = e.clientY;
+
+                $cursorDot.css({ left: x, top: y });
+                $cursor.css({ left: x, top: y });
+            });
+
+            // 진입 시
+            $area.on('mouseenter.customCursor.' + type, function () {
+                $cursorDot.css('transform', 'translate(-50%, -50%) scale(0)');
+                $cursor.css({
+                transform: 'translate(-50%, -50%) scale(1)',
+                opacity: 1
+                });
+            });
+
+            // 이탈 시
+            $area.on('mouseleave.customCursor.' + type, function () {
+                $cursorDot.css('transform', 'translate(-50%, -50%) scale(1)');
+                $cursor.css({
+                transform: 'translate(-50%, -50%) scale(0.5)',
+                opacity: 0
+                });
+            });
+        }
+        customCursorEffect($('.about_visual'), 'scroll');
+        customCursorEffect($('.about_swiper'), 'drag');  
+
     </script>
 </body>
 </html>

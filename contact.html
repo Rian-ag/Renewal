@@ -13,28 +13,58 @@
     <link rel="stylesheet" href="/assets/css/mo_contact.css" media="(max-width: 768px)">
 
     <script src="/assets/js/jquery-3.7.1.min.js"></script>
-	<script src="/assets/js/common.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js"></script>
+    <script src="/assets/js/lazyload.js"></script>
+    <script src="./assets/js/lenis.min.js"></script>
+    <script src="/assets/js/common.js" defer></script>
     <script src="/assets/js/swiper.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
 </head>
-<body>
+<body class="fadeout">
 	<div id="wrap">
-		<!-- header -->
-		<header class="type2">
-			<div class="inner">
-				<h1 onclick="location.href='/'"><img src="/assets/images/common/h1_logo_black.png" alt="RIAN" /></h1>
-				<button class="btn_ham">site map</button>
-			</div>
-
+      <!-- header -->
+      <header class="pc type2">
+        <div class="inner">
+          <h1 onclick="location.href='/'"><img src="/assets/images/common/h1_logo_black.png" alt="RIAN" /></h1>
+          <button class="btn_ham">site map</button>
+        </div>
             <div class="site_map">
                 <ul>
-                    <li><a href="/about.html">About</a></li>
-                    <li><a href="/project.html">Work</a></li>
-                    <li><a href="/insight_list.html">What's on</a></li>
-                    <li><a href="/join.html">Join Our Team</a></li>
-                    <li><a href="/contact.html">Contact</a></li>
+                    <li>
+                        <a href="/about.html">
+                            <span>A</span>
+                            <span class="dash">&nbsp;—&nbsp;</span>
+                            <span>BOUT</span>         
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/project.html">
+                            <span>W</span>
+                            <span class="dash">&nbsp;—&nbsp;</span>
+                            <span>ork</span>    
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/insight_list.html">
+                            <span>What'</span>
+                            <span class="dash">&nbsp;—&nbsp;</span>
+                            <span>s on</span>    
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/join.html">
+                            <span>Join</span>
+                            <span class="dash">&nbsp;—&nbsp;</span>
+                            <span>Our Team</span>   
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/contact.html">
+                            <span>Con</span>
+                            <span class="dash">&nbsp;—&nbsp;</span>
+                            <span>tact</span>   
+                        </a>
+                    </li>
                 </ul>
                 <!-- bottom -->
                 <div class="bottom">
@@ -46,8 +76,35 @@
                 </div>
                 <!-- //bottom -->
             </div>
-		</header>
-		<!-- //header -->
+      </header>
+      <!-- //header -->
+      <!-- header -->
+      <header class="mo type3 black">
+        <div class="inner">
+          <a href="#" onclick="if (document.referrer) { history.back(); } else { window.location.href='/' } return false;">BACK</a>
+          <h1><img src="/assets/images/common/h1_logo.png" alt="RIAN" /></h1>
+          <button class="btn_ham">site map</button>
+        </div>
+              <div class="site_map">
+                  <ul>
+                      <li><a href="/about.html">About</a></li>
+                      <li><a href="/project.html">Work</a></li>
+                      <li><a href="/insight_list.html">What's on</a></li>
+                      <li><a href="/join.html">Join Our Team</a></li>
+                      <li><a href="/contact.html">Contact</a></li>
+                  </ul>
+                  <!-- bottom -->
+                  <div class="bottom">
+                      <div>
+                          <a href="mailto:rianag@rianag.com">RIANAG@RIANAG.COM</a>
+                          <!-- <a href="http://daum.net" target="_blank">BLOG</a> -->
+                      </div>
+                      <a href="javascript:void(0);" class="download">BROCHURE DOWNLOAD</a>
+                  </div>
+                  <!-- //bottom -->
+              </div>
+      </header>
+      <!-- //header -->
 
         <section>
             <div class="cont_inner">
@@ -101,6 +158,7 @@
             <a href="mailto:rianag@rianag.com">RIANAG@RIANAG.COM</a>
 		</div>
 		<!-- //bottom -->
+        <div class="custom-cursor dot-cursor"></div>
 	</div>
 
 <script>
@@ -118,6 +176,44 @@
         $('.top').on('click', function() {
             $('html, body').animate({ scrollTop: 0 }, 500); // 500은 애니메이션 시간(ms)
         });
+
+
+
+        /* 마우스 커서 관련 */
+			const $cursorDot = $('.custom-cursor.dot-cursor');
+			const $cursorView = $('.custom-cursor.view');
+			const $area = $('.parallax-bg, .visual_cont');
+
+			// 마우스 따라다님
+			$(document).on('mousemove', function (e) {
+				$cursorDot.css({
+				left: e.clientX + 'px',
+				top: e.clientY + 'px'
+				});
+				$cursorView.css({
+				left: e.clientX + 'px',
+				top: e.clientY + 'px'
+				});
+			});
+
+			// 영역 진입 시 커서 부드럽게 커짐
+			$area.on('mouseenter', function () {
+				$cursorDot.css('transform', 'translate(-50%, -50%) scale(0)');
+				$cursorView.css({
+				transform: 'translate(-50%, -50%) scale(1)',
+				opacity: 1
+				});
+			});
+
+			// 영역 이탈 시 커서 부드럽게 작아짐
+			$area.on('mouseleave', function () {
+				$cursorDot.css('transform', 'translate(-50%, -50%) scale(1)');
+				$cursorView.css({
+				transform: 'translate(-50%, -50%) scale(0.5)',
+				opacity: 0
+				});
+			});
+
     })//fn
 </script>
     

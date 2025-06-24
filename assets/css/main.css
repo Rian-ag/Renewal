@@ -55,8 +55,7 @@ section.active .parallax-bg {transform:scale(1.2);}
     .fp-navi span {font-size:16px; font-weight:600; position:absolute; bottom:-20%; transform:rotate(90deg);}
     .fp-navi span::after {content:'/'; margin-left:10px; font-weight:100;}
     .fp-navi i {position: relative;  width: 3px; height: 150px; background: rgba(255, 255, 255, 0.3);}
-    .fp-navi i::after {content: ''; position: absolute; top: 0; left: 0; width: 100%; height: var(--progress, 0%); background: #fff; transition: height 0.8s ease;
-}
+    .fp-navi i::after {content: ''; position: absolute; top: 0; left: 0; width: 100%; height: var(--progress, 0%); background: #fff; transition: height 0.8s ease;}
     .fp-navi em {font-size:16px; font-weight:600; position:absolute; bottom:-35%; transform:rotate(90deg);}
     .fp-navi em:before {display:none;}
 

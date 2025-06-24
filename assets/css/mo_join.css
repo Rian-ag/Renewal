@@ -18,7 +18,8 @@ body,
 * { box-sizing: border-box; } 
 /* 공통 */
 .tar { text-align: right !important; } 
-.tal { text-align: left !important; } 
+.tal { text-align: left !important; }
+.pc {display:none;} 
 
 .layout { width: 100vw; padding-top: 8rem; /* padding: 8rem 3rem 0; */}
 .section-container { display: flex; flex-direction: column; gap: 0; } 

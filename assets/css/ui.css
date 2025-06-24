@@ -1,6 +1,22 @@
 #wrap {position:relative;}
 
-header {position:fixed; top:0; right:0; left:0; z-index:100;}
+
+
+body.fadeout {opacity: 0;transition: opacity 0.5s ease-in-out;}
+
+body.fadein {opacity: 1;transition: opacity 0.5s ease-in-out;}
+
+
+header {position:fixed; top:0; right:0; left:0; z-index:100; transition: transform 0.3s ease;}
+header.hide{transform: translateY(-100%);}
+h1 {cursor:pointer;}
+
+/* 기본 커서 숨기고 사용자 지정 커서 사용 */
+body, * {cursor: none; /* 커서 숨김 */}
+
+/* 예외 처리: header와 site_map 내 요소는 기본 커서(pointer) 사용 */
+header *:hover, header .site_map *:hover {cursor: pointer !important;}
+
 header h1 img {height:24px; display:block;}
 header .inner {padding:26px 30px; position:relative; z-index:91; display:flex; align-items:center; justify-content:space-between;}
 header .inner a {color:#fff; font-size:14px; font-weight:800; letter-spacing:-0.01em; display:flex; align-items:center; gap:4px;}
@@ -21,8 +37,13 @@ header .site_map.active {display:flex;}
 header .site_map.close {animation:close_sitemap 1s forwards;}
 header .site_map ul {margin-left:24%;}
 header .site_map li {overflow:hidden;}
-header .site_map li a {color:#000; font-size:90px; font-weight:800; line-height:120%; opacity:0; display:block; transform:translateY(100%); transition:transform 0.6s ease-in-out, opacity 0.3s;}
+header .site_map li a {color:#000; font-size:90px; font-weight:800; line-height:120%; opacity:0; display:flex; gap:0; transform:translateY(100%); transition:transform 0.6s ease-in-out, opacity 0.3s;}
 header .site_map li.active a {opacity:1; transform:translateY(0);}
+header .site_map li a span {display:inline-block; overflow:hidden;}
+header .site_map li a .dash {width:0; transition:all 0.5s ease-in-out;}
+header .site_map li a .dash.on {width:120px}
+/* .site_map .dash.current {background-color: #000; } */
+
 
 header .site_map .bottom > * {transform: translateY(100px);transition: transform 0.6s ease;}
 header .site_map .bottom > *.active {transform: translateY(0);}
@@ -39,6 +60,8 @@ header .site_map .bottom .download:after {width:20px; height:20px; background-im
 #bottom div {display:flex; align-items:center; gap:160px;}
 #bottom .download {display:flex; align-items:center; gap:12px;}
 #bottom .download:after {width:20px; height:20px; background-image:url('/assets/images/common/icon_split.png'); background-position:-50px 0; background-repeat:no-repeat; background-size:500px auto; content:''; display:block;}
+
+header.hide {transform: translateY(-100%); transition: transform 0.3s ease-in-out;}
 
 
 /* header type2 */
@@ -110,3 +133,9 @@ header #hidden_menu button:after {transform:rotate(135deg);}
   header.type3.black .inner a::before {width:14px; height:13px; background-image:url('/assets/images/common/icon_split.png'); background-position:-115px -114px; background-repeat:no-repeat; background-size:500px auto; content:''; display:block; transform:rotate(0deg);}
   header.type3.black .inner .btn_ham:before, header.type3.black .inner .btn_ham::after {border-top:5px solid #000;}
 }
+
+/* 점 커서 */
+.custom-cursor.dot-cursor {width:20px; height:20px; background-color:rgba(94, 94, 94, 0.4); border-radius:50%; position:fixed; z-index:9999; pointer-events:none; transform:translate(-50%, -50%) scale(1); opacity:1;transition:transform 0.5s ease, opacity 0.5s ease;}
+
+/* View 커서 */
+.custom-cursor.view {width:80px; height:80px; color:white; font-size:16px; font-weight:bold; background-color:rgba(94, 94, 94, 0.4); backdrop-filter:blur(10px); position:fixed; pointer-events:none; display:flex; align-items:center; justify-content:center; transform:translate(-50%, -50%) scale(0.5); /* 나갈 때 scale 0.5로 */ opacity:0; z-index:9999; transition:transform 0.5s ease, opacity 0.5s ease;}

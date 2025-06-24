@@ -2,11 +2,12 @@
 :root { --font-main: 'Pretendard', sans-serif; } 
 body { height: 100%; overflow-x: hidden; } 
 body,
-* { font-family: var(--font-main); font-weight: 400; font-style: normal; color: #000; } 
+* { font-family: var(--font-main); font-style: normal; color: #000; } 
 
 /* 공통 */
 .tar { text-align: right !important; } 
-.tal { text-align: left !important; } 
+.tal { text-align: left !important; }
+.mo {display:none;} 
 
 .layout { width: 100%; max-width: 1400px; margin: 0 auto; padding-top: 80px; } 
 
