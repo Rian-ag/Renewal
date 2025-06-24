@@ -5,7 +5,7 @@ em,i {font-style: normal;}
 #bottom div {display:flex; align-items:center; gap:160px;}
 #bottom .download {display:flex; align-items:center; gap:12px;}
 #bottom .download:after {width:20px; height:20px; background-image:url('/assets/images/common/icon_split.png'); background-position:-50px 0; background-repeat:no-repeat; background-size:500px auto; content:''; display:block;}
-
+.pc {display:none;}
 .cont_inner {padding:0 30px;}
 strong {font-weight:800;;}
 
@@ -26,9 +26,9 @@ strong {font-weight:800;;}
 .swiper-slide {height:400px !important;}
 .swiper-slide.swiper-slide-next {height:400px !important;}
 .swiper-slide.swiper-slide-active {width:330px !important; height:546px !important;} 
-.swiper-slide.swiper-slide-active p img {height:100%;} 
-.swiper-slide p {width:100%; height:100%; overflow:hidden;}
-.swiper-slide p img {height:100%; object-fit:cover; display:block; }
+.swiper-slide.swiper-slide-active section img {height:100%;} 
+.swiper-slide section {width:100%; height:100%; overflow:hidden;}
+.swiper-slide section img {height:100%; object-fit:cover; display:block; }
 .swiper-slide a > div {width:100%; margin-top:24px; margin-bottom:30px; position:absolute; position:absolute; left:0; bottom:0; z-index:2}
 .swiper-slide a > div em, .swiper-slide a > div > span {font-size:14px; font-weight:700; line-height:140%; display:inline-block; opacity:0; transition:all 0.3s;}
 .swiper-slide a > div em {transform: translateX(-200%);}
@@ -47,3 +47,18 @@ strong {font-weight:800;;}
 .swiper-pagination-total {margin-left:3px;}
 
 #bottom {display:none;}
+.swiper-lazy-preloader {
+    width: 24px;
+    height: 24px;
+    margin: 10px auto;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-top-color: #000;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+    transform: rotate(360deg);
+    }
+}

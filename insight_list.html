@@ -5,17 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RIANAG_insight_list</title>
     <!-- CSS -->
-	<link rel="stylesheet" href="/assets/css/common.css">
-	<link rel="stylesheet" href="/assets/css/ui.css">
+    <link rel="stylesheet" href="/assets/css/common.css">
+    <link rel="stylesheet" href="/assets/css/ui.css">
     <link rel="stylesheet" href="/assets/css/swiper.css">
-	<link rel="stylesheet" href="./assets/css/pc_on_list.css" media="(min-width: 769px)">
-	<link rel="stylesheet" href="./assets/css/mo_on_list.css" media="(max-width: 768px)">
+    <link rel="stylesheet" href="./assets/css/pc_on_list.css" media="(min-width: 769px)">
+    <link rel="stylesheet" href="./assets/css/mo_on_list.css" media="(max-width: 768px)">
     <script src="/assets/js/jquery-3.7.1.min.js"></script>
-	<script src="/assets/js/common.js" defer></script>
+    <script src="/assets/js/lazyload.js"></script>
+    <script src="./assets/js/lenis.min.js"></script>
+    <script src="/assets/js/common.js" defer></script>
     <script src="/assets/js/swiper.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
-	<script src="./assets/js/on_list.js"></script>
+    <script src="./assets/js/on_list.js"></script>
 	<script>
 		$(function(){
 			/* date & time */
@@ -86,11 +88,11 @@
 </head>
 <body>
     <div id="wrap" class="wrap">
-        <!-- header -->
-		<header class="type2">
+    <!-- header -->
+		<header class="pc type2">
 			<div class="inner">
 				<h1 onclick="location.href='/'"><img src="/assets/images/common/h1_logo_black.png" alt="RIAN" /></h1>
-				<button class="btn_ham type3">site map</button>
+				<button class="btn_ham">site map</button>
 			</div>
 			<div class="site_map">
 				<ul>
@@ -104,12 +106,39 @@
 				<div class="bottom">
 					<div>
 						<a href="mailto:rianag@rianag.com">RIANAG@RIANAG.COM</a>
-						<a href="http://daum.net" target="_blank">BLOG</a>
+						<!-- <a href="http://daum.net" target="_blank">BLOG</a> -->
 					</div>
 					<a href="javascript:void(0);" class="download">BROCHURE DOWNLOAD</a>
 				</div>
 				<!-- //bottom -->
 			</div>
+		</header>
+		<!-- //header -->
+    <!-- header -->
+		<header class="mo type3 black">
+			<div class="inner">
+				<a href="#none">BACK</a>
+				<h1 onclick="location.href='/'"><img src="/assets/images/common/h1_logo.png" alt="RIAN" /></h1>
+				<button class="btn_ham">site map</button>
+			</div>
+            <div class="site_map">
+                <ul>
+                    <li><a href="/about.html">About</a></li>
+                    <li><a href="/project.html">Work</a></li>
+                    <li><a href="/insight_list.html">What's on</a></li>
+                    <li><a href="/join.html">Join Our Team</a></li>
+                    <li><a href="/contact.html">Contact</a></li>
+                </ul>
+                <!-- bottom -->
+                <div class="bottom">
+                    <div>
+                        <a href="mailto:rianag@rianag.com">RIANAG@RIANAG.COM</a>
+                        <!-- <a href="http://daum.net" target="_blank">BLOG</a> -->
+                    </div>
+                    <a href="javascript:void(0);" class="download">BROCHURE DOWNLOAD</a>
+                </div>
+                <!-- //bottom -->
+            </div>
 		</header>
 		<!-- //header -->
 
@@ -124,123 +153,145 @@
 			<div class="on_list_swiper">
 				<div class="on_list swiper-container">
 					<ul class="swiper-wrapper">
-						<li class="swiper-slide">
-							<a href="/insight_view_01.html">
-								<p><img src="/assets/images/on_list/1.png" alt=""></p>
-								<div>
-									<em>도서</em>
-									<span>
-										사이몬 사이넥의 ‘Start with Why’에서는<br/>
-										우리가 생각하는 목표라고 생각하는 것에서<br/>
-										도 차이가 있으며 좋은 목표가 따로 있다고<br/> 
-										이야기합니다.
-									</span>
-									<div>
-										<i>#StartWithWhy</i>
-										<i>#우리는왜일을하는가</i>
-									</div>
-									<button></button>
-								</div>
-							</a>
-						</li>
-						<li class="swiper-slide">
-							<a href="/insight_view_02.html">
-								<p><img src="/assets/images/on_list/2.png" alt=""></p>
-								<div>
-									<em>공연</em>
-									<span>
-										비내리던 토요일, 대통령이 없을 때마다 내<br/>
-										한했던, ‘무정부 요정’이라는 콜드플레이의<br/>
-										내한 공연에 다녀왔습니다.
-									</span>
-									<div>
-										<i>#COLDPLAY</i>
-										<i>#사운드와비주얼그리고스토리</i>
-									</div>
-									<button></button>
-								</div>
-							</a>
-						</li>
-						<li class="swiper-slide">
-							<a href="javascript:void(0);">
-								<p><img src="/assets/images/on_list/3.png" alt=""></p>
-								<div>
-									<em>일상</em>
-									<span>
-										회사 뒤편에 증미산, 한때는 염창산이라고<br/> 
-										불렸다는 낮은 산이 있다. 그리고 그 앞으론<br/> 
-										한강이 흐른다. 보고 있으면 답답한 생각이<br/>
-										날아가는 것 같기도.
+            <li class="swiper-slide">
+              <a href="/insight_view_01.html">
+                <section>
+                  <img class="swiper-lazy lazy" data-src="/assets/images/on_list/1.png" alt="">
+                  <p class="swiper-lazy-preloader"></p>
+                </section>
+                <div>
+                  <em>도서</em>
+                  <span>
+                    사이몬 사이넥의 ‘Start with Why’에서는<br/>
+                    우리가 생각하는 목표라고 생각하는 것에서<br/>
+                    도 차이가 있으며 좋은 목표가 따로 있다고<br/> 
+                    이야기합니다.
+                  </span>
+                  <div>
+                    <i>#StartWithWhy</i>
+                    <i>#우리는왜일을하는가</i>
+                  </div>
+                  <button></button>
+                </div>
+              </a>
+            </li>
 
-									</span>
-									<div>
-										<i>#등산아니고_산책</i>
-										<i>#피톤치드</i>
-									</div>
-									<button></button>
-								</div>
-							</a>
-						</li>
-						<li class="swiper-slide">
-							<a href="javascript:void(0);">
-								<p><img src="/assets/images/on_list/4.png" alt=""></p>
-								<div>
-									<em>디자인</em>
-									<span>
-										AI가 디지털 혁신의 코어가 됨에 따라 디자<br/>
-										이너의 역할도 진화의 과정을 거치고 있습<br/>
-										니다. 주요 기술 기업과 대학들은 인간 중심 <br/>
-										AI를 위한 전략들을 제시하고 있습니다.
-									</span>
-									<div>
-										<i>#AI시대</i>
-										<i>#진화하는디자이너의역할</i>
-									</div>
-									<button></button>
-								</div>
-							</a>
-						</li>
-						<li class="swiper-slide">
-							<a href="javascript:void(0);">
-								<p><img src="/assets/images/on_list/5.png" alt=""></p>
-								<div>
-									<em>일상</em>
-									<span>
-										염강나들목 터널 앞에 서면 ‘이런데 한강이 <br/>
-										있다고?’ 라는 생각이 들지만 터널을 지나<br/>
-										가자마자 보이는 것은 일상에서 벗어난 <br/>
-										새로운 풍경입니다.
-									</span>
-									<div>
-										<i>#Real한강뷰 </i>
-										<i>힐링타임</i>
-										<i>커피타임</i>
-									</div>
-									<button></button>
-								</div>
-							</a>
-						</li>
-						<li class="swiper-slide">
-							<a href="javascript:void(0);">
-								<p><img src="/assets/images/on_list/6.png" alt=""></p>
-								<div>
-									<em>일상</em>
-									<span>
-										새 한마리가 소리내기 시작해서 새들의 지<br/>
-										저귐으로 다함께 오케스트라를 만들어 낸<br/>
-										다는 내용이었는데.  그 소리를 새벽에 듣게<br/> 
-										되었어요.
-									</span>
-									<div>
-										<i>#숲속의오케스트라 </i>
-										<i>이맛에캠핑</i>
-										<i>몸살주의</i>
-									</div>
-									<button></button>
-								</div>
-							</a>
-						</li>
-					</ul>
+            <li class="swiper-slide">
+              <a href="/insight_view_02.html">
+                <section>
+                  <img class="swiper-lazy lazy" data-src="/assets/images/on_list/2.png" alt="">
+                  <p class="swiper-lazy-preloader"></p>
+                </section>
+                <div>
+                  <em>공연</em>
+                  <span>
+                    비내리던 토요일, 대통령이 없을 때마다 내<br/>
+                    한했던, ‘무정부 요정’이라는 콜드플레이의<br/>
+                    내한 공연에 다녀왔습니다.
+                  </span>
+                  <div>
+                    <i>#COLDPLAY</i>
+                    <i>#사운드와비주얼그리고스토리</i>
+                  </div>
+                  <button></button>
+                </div>
+              </a>
+            </li>
+
+            <li class="swiper-slide">
+              <a href="javascript:void(0);">
+                <section>
+                  <img class="swiper-lazy lazy" data-src="/assets/images/on_list/3.png" alt="">
+                  <p class="swiper-lazy-preloader"></p>
+                </section>
+                <div>
+                  <em>일상</em>
+                  <span>
+                    회사 뒤편에 증미산, 한때는 염창산이라고<br/> 
+                    불렸다는 낮은 산이 있다. 그리고 그 앞으론<br/> 
+                    한강이 흐른다. 보고 있으면 답답한 생각이<br/>
+                    날아가는 것 같기도.
+                  </span>
+                  <div>
+                    <i>#등산아니고_산책</i>
+                    <i>#피톤치드</i>
+                  </div>
+                  <button></button>
+                </div>
+              </a>
+            </li>
+
+            <li class="swiper-slide">
+              <a href="javascript:void(0);">
+                <section>
+                  <img class="swiper-lazy lazy" data-src="/assets/images/on_list/4.png" alt="">
+                  <p class="swiper-lazy-preloader"></p>
+                </section>
+                <div>
+                  <em>디자인</em>
+                  <span>
+                    AI가 디지털 혁신의 코어가 됨에 따라 디자<br/>
+                    이너의 역할도 진화의 과정을 거치고 있습<br/>
+                    니다. 주요 기술 기업과 대학들은 인간 중심 <br/>
+                    AI를 위한 전략들을 제시하고 있습니다.
+                  </span>
+                  <div>
+                    <i>#AI시대</i>
+                    <i>#진화하는디자이너의역할</i>
+                  </div>
+                  <button></button>
+                </div>
+              </a>
+            </li>
+
+            <li class="swiper-slide">
+              <a href="javascript:void(0);">
+                <section>
+                  <img class="swiper-lazy lazy" data-src="/assets/images/on_list/5.png" alt="">
+                  <p class="swiper-lazy-preloader"></p>
+                </section>
+                <div>
+                  <em>일상</em>
+                  <span>
+                    염강나들목 터널 앞에 서면 ‘이런데 한강이 <br/>
+                    있다고?’ 라는 생각이 들지만 터널을 지나<br/>
+                    가자마자 보이는 것은 일상에서 벗어난 <br/>
+                    새로운 풍경입니다.
+                  </span>
+                  <div>
+                    <i>#Real한강뷰</i>
+                    <i>힐링타임</i>
+                    <i>커피타임</i>
+                  </div>
+                  <button></button>
+                </div>
+              </a>
+            </li>
+
+            <li class="swiper-slide">
+              <a href="javascript:void(0);">
+                <section>
+                  <img class="swiper-lazy lazy" data-src="/assets/images/on_list/6.png" alt="">
+                  <p class="swiper-lazy-preloader"></p>
+                </section>
+                <div>
+                  <em>일상</em>
+                  <span>
+                    새 한마리가 소리내기 시작해서 새들의 지<br/>
+                    저귐으로 다함께 오케스트라를 만들어 낸<br/>
+                    다는 내용이었는데.  그 소리를 새벽에 듣게<br/> 
+                    되었습니다.
+                  </span>
+                  <div>
+                    <i>#숲속의오케스트라</i>
+                    <i>이맛에캠핑</i>
+                    <i>몸살주의</i>
+                  </div>
+                  <button></button>
+                </div>
+              </a>
+            </li>
+          </ul>
 					<div class="swiper-pagination"></div>
 				</div>
 				<div class="custom-cursor">Drag</div>
@@ -249,7 +300,7 @@
 		</div>
 		<!-- bottom -->
 		<div id="bottom" class="type3">
-            <a href="http://daum.net" target="_blank">BLOG</a>
+            <!-- <a href="http://daum.net" target="_blank">BLOG</a> -->
             <button class="top">Back to Top</button>
             <a href="mailto:rianag@rianag.com">RIANAG@RIANAG.COM</a>
 		</div>
