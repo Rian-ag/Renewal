@@ -236,3 +236,10 @@ function initHeaderScrollToggle() {
   });
 }
 /* e:lazyload */
+function goBack() {
+    if (document.referrer && document.referrer !== location.href) {
+      history.back();
+    } else {
+      location.href = '/';
+    }
+}
