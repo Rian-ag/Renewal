@@ -1,6 +1,6 @@
 const project = {
     title: ['Go deep\nDive in\nWatch on', 'Simple\nClear\nModule', 'Effortless\nChic\nLifestyle'],
-    subTitle: ['CGV\nOn MOBILE', 'LOTTE\nDUTY FREE', 'HOME&\nSHOPPING'],
+    subTitle: ['CGV\nON MOBILE', 'LOTTE\nDUTY FREE', 'HOME&\nSHOPPING'],
     industry: ['Commerce', 'Commerce', 'Commerce'],
     date: ['July, 2025', '2021 - In Progress', '2019 - In Progress'],
     type: [
