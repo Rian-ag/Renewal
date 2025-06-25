@@ -11,9 +11,9 @@
         <link rel="stylesheet" href="/assets/css/mo_join.css" media="(max-width: 768px)" />
     </head>
 
-<body class="fadeout">
+    <body class="fadeout">
         <div id="wrap">
-            <!-- header -->
+            <!-- header pc -->
             <header class="type2 pc">
                 <div class="inner">
                     <h1 onclick="location.href='/'">
@@ -42,11 +42,11 @@
                 </div>
             </header>
             <!-- //header -->
-
-            <!-- header -->
-            <header class="mo type2">
+            <!-- header mo-->
+            <header class="mo type3 black">
                 <div class="inner">
-                    <a href="#none">BACK</a>
+                    <a href="javascript:void(0);" onclick="goBack();">BACK</a>
+                    <h1 onclick="location.href='/'"><img src="/assets/images/common/h1_logo.png" alt="RIAN" /></h1>
                     <button class="btn_ham">site map</button>
                 </div>
                 <div class="site_map">
@@ -65,39 +65,10 @@
                         </div>
                         <a href="javascript:void(0);" class="download">BROCHURE DOWNLOAD</a>
                     </div>
-                    <a href="javascript:void(0);" class="download">BROCHURE DOWNLOAD</a>
+                    <!-- //bottom -->
                 </div>
-                <!-- //bottom -->
-            </div>
-		</header>
-		<!-- //header -->
-        <!-- header -->
-		<header class="mo type3 black">
-			<div class="inner">
-				<a href="javascript:void(0);" onclick="goBack();">BACK</a>
-				<h1 onclick="location.href='/'"><img src="/assets/images/common/h1_logo.png" alt="RIAN" /></h1>
-				<button class="btn_ham">site map</button>
-			</div>
-            <div class="site_map">
-                <ul>
-                    <li><a href="/about.html">About</a></li>
-                    <li><a href="/project.html">Work</a></li>
-                    <li><a href="/insight_list.html">What's on</a></li>
-                    <li><a href="/join.html">Join Our Team</a></li>
-                    <li><a href="/contact.html">Contact</a></li>
-                </ul>
-                <!-- bottom -->
-                <div class="bottom">
-                    <div>
-                        <a href="mailto:rianag@rianag.com">RIANAG@RIANAG.COM</a>
-                        <!-- <a href="http://daum.net" target="_blank">BLOG</a> -->
-                    </div>
-                    <a href="javascript:void(0);" class="download">BROCHURE DOWNLOAD</a>
-                </div>
-                <!-- //bottom -->
-            </div>
-		</header>
-		<!-- //header -->
+            </header>
+            <!-- //header -->
 
             <div class="layout">
                 <!-- main -->
@@ -365,11 +336,13 @@
                     </section>
                 </div>
             </div>
+            <!-- bottom -->
             <div id="bottom" class="type3" style="height: 100px">
                 <a href="javascript:void(0);">&copy; RIANag INC. All Right Reserved.</a>
                 <button class="top">Back to Top</button>
             </div>
             <!-- //bottom -->
+            <div class="custom-cursor dot-cursor"></div>
         </div>
         <!-- JS -->
         <script type="text/javascript" src="/assets/js/jquery-3.7.1.min.js"></script>
@@ -379,34 +352,8 @@
         <script src="/assets/js/common.js"></script>
         <script src="/assets/js/accordion.js"></script>
         <script>
-            $(function () {
-                lazyLoads();
-            });
+            customCursorEffect();
             gsap.registerPlugin(ScrollTrigger);
-
-            // ✅ Lenis 전체 공통 적용
-            const lenis = new Lenis({
-                duration: 1.2,
-                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-                smooth: true,
-                smoothTouch: false,
-            });
-
-            function raf(time) {
-                lenis.raf(time);
-                requestAnimationFrame(raf);
-            }
-            requestAnimationFrame(raf);
-
-            // top 버튼 - lenis 사용
-            $('.top').on('click', function (e) {
-                e.preventDefault();
-                lenis.scrollTo(0, {
-                    duration: 1,
-                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-                });
-            });
-
             // ✅ title-wrapper 안 텍스트 한 줄씩
             $('.title-wrapper')
                 .children()
