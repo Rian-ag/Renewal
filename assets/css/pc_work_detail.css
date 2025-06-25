@@ -4,7 +4,8 @@
 }
 :root {
     --font-main: 'Pretendard', sans-serif;
-    --font-eng: 'Plus Jakarta Sans';
+    --font-sub: 'Roboto', sans-serif;
+    --font-eng: 'Plus Jakarta Sans', sans-serif;
 }
 body {
     height: 100%;
@@ -34,6 +35,10 @@ span {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background-image: url(/assets/images/work_detail/bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
 }
 
 .visual .title-container {
@@ -53,7 +58,6 @@ span {
     color: #fff;
     line-height: 102%;
     letter-spacing: -0.48px;
-
     transform: translate3d(0, 200px, 0);
     opacity: 0;
     will-change: transform, opacity;
@@ -62,6 +66,7 @@ span {
     margin-top: 48px;
 }
 .visual h2 li {
+    line-height: 1;
     overflow: hidden;
 }
 .visual h2 span {
@@ -71,10 +76,13 @@ span {
     font-weight: 800;
     letter-spacing: -2px;
     color: #fff;
-
+    padding-bottom: 12px;
     transform: translate3d(0, 200px, 0);
     opacity: 0;
     will-change: transform, opacity;
+}
+.visual h2 span br {
+    display: none;
 }
 .project-info {
     position: absolute;
@@ -113,6 +121,11 @@ section {
     position: relative;
     height: 100vh;
 }
+.section-common h3 span,
+.section-common p span {
+    opacity: 0;
+    transform: translate3d(0, 200px, 0);
+}
 .section-common > span {
     position: relative;
     top: 50px;
@@ -149,11 +162,7 @@ section {
     line-height: 120%;
     overflow: hidden;
 }
-.inner-cont > p span {
-    transform: translate3d(0, 200px, 0);
-    opacity: 0;
-    will-change: transform, opacity;
-}
+
 .des-container {
     display: flex;
     gap: 40px;

@@ -1,0 +1,299 @@
+@import url('../css/font.css');
+:root {
+    --font-main: 'Pretendard', sans-serif;
+    --font-sub: 'Roboto', sans-serif;
+    --font-eng: 'Plus Jakarta Sans', sans-serif;
+}
+@media screen and (max-width: 768px) {
+    html {
+        font-size: calc(100vw / 39);
+    }
+}
+
+/* 모바일 터치 최적화 */
+body,
+a,
+button,
+.swiper-slide_wrap,
+.project-viewer {
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+    touch-action: manipulation;
+}
+
+body,
+* {
+    font-family: var(--font-main);
+    font-weight: 400;
+    font-style: normal;
+    color: #000;
+}
+* {
+    box-sizing: border-box;
+}
+
+.pc {
+    display: none;
+}
+
+span {
+    display: block;
+}
+
+/* visual */
+.visual {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    min-height: 100vh;
+    height: 100dvw;
+    background-image: url(/assets/images/work_detail/bg_mo.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+.title-container {
+    position: absolute;
+    top: 16.71dvh;
+    /* left: 3rem; */
+    left: 7.692vw;
+}
+.visual h1 {
+    overflow: hidden;
+}
+.visual h1 span {
+    font-family: 'Plus Jakarta Sans';
+    color: #fff;
+    font-style: normal;
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 110%;
+    letter-spacing: -0.28px;
+    text-transform: uppercase;
+    transform: translate3d(0, 200px, 0);
+    opacity: 0;
+    will-change: transform, opacity;
+}
+.visual h2 {
+    margin-top: 2rem;
+}
+.visual h2 li {
+    line-height: 1.8;
+    overflow: hidden;
+}
+.visual h2 span {
+    padding-bottom: 12px;
+    color: #fff;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 110%;
+    letter-spacing: -0.8px;
+    transform: translate3d(0, 200px, 0);
+    opacity: 0;
+    will-change: transform, opacity;
+}
+.project-card {
+    display: inline-flex;
+    justify-self: center;
+    align-items: center;
+    padding: 1rem;
+    gap: 1.7rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    position: absolute;
+    top: 50%;
+    transform: translateY(5.45dvh);
+    right: 14.358vw;
+}
+.project-card ul {
+    flex: 1;
+    width: 7.8rem;
+}
+.project-card ul li {
+    width: 100%;
+    height: 1rem;
+    align-self: stretch;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.2);
+}
+.project-card ul li + li {
+    width: 4.6rem;
+    margin-top: 4px;
+}
+.clover {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 4.7rem;
+    height: 4.7rem;
+    background-image: url(/assets/images/etc/clover.svg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.clover span {
+    font-family: var(--font-sub);
+    color: #4e4e4e;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 120%;
+    letter-spacing: -0.36px;
+}
+.project-product {
+    position: absolute;
+    left: 7.692vw;
+    bottom: 3.554dvh;
+    display: flex;
+    gap: 1.6rem;
+    align-items: center;
+    justify-content: center;
+    padding: 1.2rem;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(8px);
+}
+.product-img {
+    width: 8rem;
+}
+.product-img img {
+    display: block;
+    width: 100%;
+    height: 8rem;
+}
+.product-info p {
+    color: #fff;
+    text-overflow: ellipsis;
+    font-size: 12px;
+    line-height: 140%;
+    letter-spacing: -0.06px;
+}
+.prices {
+    display: flex;
+    align-items: baseline;
+    margin-top: 1.4rem;
+}
+.product-info strong {
+    color: #fff;
+    font-family: var(--font-sub);
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.product-info span {
+    color: #fff;
+    font-size: 1.4rem;
+    font-weight: 700;
+    line-height: 120%;
+    letter-spacing: -0.14px;
+}
+
+.to-bottom {
+    width: 5rem;
+    height: 5rem;
+    position: absolute;
+    right: 8.205vw;
+    bottom: 3.554dvh;
+    font-size: 0;
+    order: 1;
+    background-image: url(../images/common/icon_split.png);
+    background-size: 500px 500px;
+    background-position: 0 -100px;
+    transform: rotate(90deg);
+}
+.visual-sub {
+    padding: 2.4rem 3rem;
+}
+
+.visual-sub .project-info li {
+    color: #101010;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 102%;
+    letter-spacing: -0.24px;
+}
+.visual-sub .project-info li:not(:first-child) {
+    margin-top: 1.6rem;
+}
+
+/* section-common */
+section {
+    position: relative;
+    background-color: #fff;
+    z-index: 100;
+}
+
+.section-common {
+    padding: 12rem 3rem 6rem;
+    z-index: 50;
+}
+.section-common h3 li {
+    overflow: hidden;
+}
+.section-common h3 span {
+    color: #000;
+    font-family: 'Plus Jakarta Sans';
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 110%;
+    letter-spacing: -0.8px;
+    transform: translate3d(0, 200px, 0);
+    opacity: 0;
+    will-change: transform, opacity;
+}
+.section-common .inner-cont > p {
+    margin-top: 2.4rem;
+    overflow: hidden;
+}
+.section-common .inner-cont > p span {
+    color: #000;
+    font-feature-settings: 'cpsp' on;
+    font-family: var(--font-main);
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 150%;
+    letter-spacing: -0.24px;
+    transform: translate3d(0, 200px, 0);
+    opacity: 0;
+    will-change: transform, opacity;
+}
+.des-container {
+    margin-top: 4.8em;
+}
+.des-container li {
+    margin-top: 3.2rem;
+    font-feature-settings: 'cv03' on, 'cv04' on, 'cv09' on;
+    font-family: var(--font-main);
+}
+.des-container li strong {
+    color: #101010;
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 130%;
+    letter-spacing: -0.4px;
+}
+.des-container li p {
+    margin-top: 0.8rem;
+    color: #000;
+
+    font-size: 1.4rem;
+    font-weight: 400;
+    line-height: 150%;
+    letter-spacing: -0.21px;
+}
+/* footer */
+#work-footer {
+    position: relative;
+    background-color: #000;
+}

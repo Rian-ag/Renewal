@@ -8,14 +8,14 @@
         <link rel="stylesheet" href="/assets/css/common.css" />
         <link rel="stylesheet" href="/assets/css/ui.css" />
         <link rel="stylesheet" href="/assets/css/pc_work_detail.css" media="(min-width: 769px)" />
-        <!-- <link rel="stylesheet" href="/assets/css/mo_work_detail.css" media="(max-width: 768px)" /> -->
+        <link rel="stylesheet" href="/assets/css/mo_work_detail.css" media="(max-width: 768px)" />
     </head>
     <body>
         <div id="wrap" class="wrap">
             <!-- header -->
-            <header class="pc type2 white">
+            <header class="type3 white">
                 <div class="inner">
-                    <a href="#none">WORK</a>
+                    <a href="#none">BACK</a>
                     <h1 onclick="location.href='/'"><img src="/assets/images/common/h1_logo.png" alt="RIAN" /></h1>
                     <button class="btn_ham">site map</button>
                 </div>
@@ -28,7 +28,7 @@
                         <li><a href="/contact.html">Contact</a></li>
                     </ul>
                     <!-- bottom -->
-                    <div class="bottom" style="position: static">
+                    <div class="bottom">
                         <div>
                             <a href="mailto:rianag@rianag.com">RIANAG@RIANAG.COM</a>
                             <!-- <a href="http://daum.net" target="_blank">BLOG</a> -->
@@ -39,12 +39,13 @@
                 </div>
             </header>
             <!-- //header -->
+
             <!-- visual -->
-            <div class="visual lazy" data-src="/assets/images/work_detail/bg.jpg" lazy-type="bg">
+            <div class="visual">
                 <div class="title-container">
                     <h1><span>Home & Shopping</span></h1>
                     <h2>
-                        <ul class="pc-text">
+                        <ul class="pc">
                             <li>
                                 <span>Making Shopping </span>
                             </li>
@@ -55,10 +56,22 @@
                                 <span>More Convenient</span>
                             </li>
                         </ul>
+
+                        <ul class="mo">
+                            <li>
+                                <span>Making Shopping </span>
+                            </li>
+                            <li>
+                                <span>Easier And</span>
+                            </li>
+                            <li>
+                                <span>More </span>
+                            </li>
+                            <li><span> Convenient </span></li>
+                        </ul>
                     </h2>
                 </div>
-
-                <ul class="project-info">
+                <ul class="project-info pc">
                     <li>INDUSTRY : <br />Commerce</li>
                     <li>LAUNCH: <br />2021-In Progress</li>
                     <li>
@@ -66,12 +79,36 @@
                         UI/UX Design/Mobile Web&App/PC Web
                     </li>
                 </ul>
-                <div class="project-product mo"></div>
-                <div class="project-card mo"></div>
+                <div class="project-card mo">
+                    <ul class="lines">
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <div class="clover">
+                        <span>10%</span>
+                    </div>
+                </div>
+                <div class="project-product mo">
+                    <div class="product-img">
+                        <img src="/assets/images/work_detail/thumb.png" alt="도자기 머그컵" />
+                    </div>
+                    <div class="product-info">
+                        <p>[테이블 웨어 기획전] <br />도자기 감상 머그컵 2P</p>
+                        <div class="prices"><strong>16,000</strong><span>원</span></div>
+                    </div>
+                </div>
+                <button class="to-bottom mo">Back to bottom</button>
             </div>
+            <section class="visual-sub mo">
+                <ul class="project-info">
+                    <li>INDUSTRY : Commerce e</li>
+                    <li>LAUNCH : 2021-In Progress</li>
+                    <li>TYPE : UI/UX Design/Mobile Web&App/PC Web</li>
+                </ul>
+            </section>
             <!-- section -->
             <section class="section-common">
-                <span>Objective</span>
+                <span class="pc">Objective</span>
                 <div class="inner-cont">
                     <h3>
                         <ul class="section-title">
@@ -83,6 +120,7 @@
                         <span>핵심 컨텐츠를 담아내는 직관적 스타일과</span>
                         <span>유연한 모듈 구성으로 상품의 몰입도를 높입니다.</span>
                     </p>
+                    <p></p>
                     <ul class="des-container">
                         <li>
                             <strong>MISSION</strong>
@@ -108,23 +146,23 @@
                     </ul>
                 </div>
             </section>
+            <!-- work-footer -->
+            <div id="work-footer">
+                <button class="list-button" area-label="리스트 이동"></button>
+                <a href="javascript:void(0)" class="next">
+                    LOTTE DUTY FREE
+                    <button>next</button>
+                </a>
+            </div>
+            <!-- bottom -->
+            <div id="bottom" class="type3">
+                <!-- <a href="http://daum.net" target="_blank">BLOG</a> -->
+                <a href="mailto:rianag@rianag.com">RIANAG@RIANAG.COM</a>
+                <button class="top">Back to Top</button>
+            </div>
+            <!-- //bottom -->
         </div>
 
-        <!-- work-footer -->
-        <div id="work-footer">
-            <button class="list-button" area-label="리스트 이동"></button>
-            <a href="javascript:void(0)" class="next">
-                LOTTE DUTY FREE
-                <button>next</button>
-            </a>
-        </div>
-        <!-- bottom -->
-        <div id="bottom" class="type3">
-            <!-- <a href="http://daum.net" target="_blank">BLOG</a> -->
-            <a href="mailto:rianag@rianag.com">RIANAG@RIANAG.COM</a>
-            <button class="top">Back to Top</button>
-        </div>
-        <!-- //bottom -->
         <!-- JS -->
         <script type="text/javascript" src="/assets/js/jquery-3.7.1.min.js"></script>
         <script src="/assets/js/lazyload.js"></script>
@@ -133,6 +171,5 @@
         <script src="./assets/js/lenis.min.js"></script>
         <script src="/assets/js/common.js"></script>
         <script src="/assets/js/work_detail.js"></script>
-        <script></script>
     </body>
 </html>
