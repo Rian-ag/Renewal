@@ -15,7 +15,7 @@ h1 {cursor:pointer;}
 body, * {cursor: none; /* 커서 숨김 */}
 
 /* 예외 처리: header와 site_map 내 요소는 기본 커서(pointer) 사용 */
-header *:hover, header .site_map *:hover {cursor: pointer !important;}
+header *:hover, header .site_map *:hover, a {cursor: pointer !important;}
 
 header h1 img {height:24px; display:block;}
 header .inner {padding:26px 30px; position:relative; z-index:91; display:flex; align-items:center; justify-content:space-between;}
@@ -85,8 +85,8 @@ header.type2 a {color:#000;}
 #bottom.type3 > section {width:100%; height:100%; padding:60px 0px; display:flex; align-items:center;}
 #bottom.type3 > section > a {width:100%; font-size:56px; font-weight:400; line-height:102%; text-align:center; display:block;}
 #bottom.type3 > section > button {width:24px; height:24px; background-image:url('/assets/images/common/icon_split.png'); background-position:-60px -115px; background-repeat:no-repeat; background-size:500px auto; display:block;}
-#bottom.type3 > div > button {display:flex; align-items:center; gap:6px;}
-#bottom.type3 > div > button::after {content:''; width:15px; height:15px; background-image:url('../images/common/icon_split.png'); background-size:500px 500px; background-position:-50px -50px; display:inline-block;}
+#bottom.type3 > button {display:flex; align-items:center; gap:6px;}
+#bottom.type3 > button::after {content:''; width:15px; height:15px; background-image:url('../images/common/icon_split.png'); background-size:500px 500px; background-position:-50px -50px; display:inline-block;}
 
 
 /* go admin : hidden menu */
@@ -98,6 +98,22 @@ header #hidden_menu button {width:17px; height:17px; font-size:0; position:absol
 header #hidden_menu button:before, header #hidden_menu button:after {width:100%; margin-top:-1px; border-top:2px solid #000; content:''; position:absolute; top:50%; left:0; display:block;}
 header #hidden_menu button:before {transform:rotate(45deg);}
 header #hidden_menu button:after {transform:rotate(135deg);}
+
+/* 점 커서 */
+.custom-cursor.dot-cursor {width:20px; height:20px; background-color:rgba(94, 94, 94, 0.4); border-radius:50%; position:fixed; z-index:9999; pointer-events:none; transform:translate(-50%, -50%) scale(1); opacity:1;transition:transform 0.5s ease, opacity 0.5s ease;}
+
+/* View 커서 */
+.custom-cursor.view {width:80px; height:80px; color:white; font-size:16px; font-weight:bold; background-color:rgba(94, 94, 94, 0.4); backdrop-filter:blur(10px); position:fixed; pointer-events:none; display:flex; align-items:center; justify-content:center; transform:translate(-50%, -50%) scale(0.5); /* 나갈 때 scale 0.5로 */ opacity:0; z-index:9999; transition:transform 0.5s ease, opacity 0.5s ease;}
+
+/* toast */
+.toast {color:#fff; font-size:16px; font-weight:400; text-align:center; background-color:#000; border-radius:8px; filter: drop-shadow(0px 4px 4px rgba(0,0,0,0.25)); opacity:0; position:fixed; bottom:-50px; left:50%; z-index:100; display:inline-block; transform:translateX(-50%); transition:all 0.35s;}
+.toast.confirm {padding:0 50px 0 40px;}
+.toast.auto {padding:16px 20px;}
+.toast.active {bottom:100px; opacity:0.6;}
+.toast .btn_close {width:20px; height:20px; font-size:0; position:absolute; top:50%; right:20px; display:inline-block; transform:translateY(-50%);}
+.toast .btn_close:before, .toast .btn_close:after {width:15px; border-top:1px solid #333; content:''; position:absolute; top:50%; right:0; display:inline-block;}
+.toast .btn_close:before {transform:rotate(45deg);}
+.toast .btn_close:after {transform:rotate(-45deg);}
 
 @keyframes active_sitemap {
   0% {top:50%; right:50%; bottom:50%; left:50%; opacity:0;}
@@ -134,10 +150,5 @@ header #hidden_menu button:after {transform:rotate(135deg);}
   header.type3.black .inner .btn_ham:before, header.type3.black .inner .btn_ham::after {border-top:5px solid #000;}
   .custom-cursor.dot-cursor {display: none;}
   header .site_map li a .dash.on {width:50px;}
+  .toast {width:calc(100% - 140px);}
 }
-
-/* 점 커서 */
-.custom-cursor.dot-cursor {width:20px; height:20px; background-color:rgba(94, 94, 94, 0.4); border-radius:50%; position:fixed; z-index:9999; pointer-events:none; transform:translate(-50%, -50%) scale(1); opacity:1;transition:transform 0.5s ease, opacity 0.5s ease;}
-
-/* View 커서 */
-.custom-cursor.view {width:80px; height:80px; color:white; font-size:16px; font-weight:bold; background-color:rgba(94, 94, 94, 0.4); backdrop-filter:blur(10px); position:fixed; pointer-events:none; display:flex; align-items:center; justify-content:center; transform:translate(-50%, -50%) scale(0.5); /* 나갈 때 scale 0.5로 */ opacity:0; z-index:9999; transition:transform 0.5s ease, opacity 0.5s ease;}

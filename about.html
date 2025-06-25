@@ -32,41 +32,11 @@
 			</div>
             <div class="site_map">
                 <ul>
-                    <li>
-                        <a href="/about.html">
-                            <span>A</span>
-                            <span class="dash">&nbsp;—&nbsp;</span>
-                            <span>BOUT</span>         
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/project.html">
-                            <span>W</span>
-                            <span class="dash">&nbsp;—&nbsp;</span>
-                            <span>ork</span>    
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/insight_list.html">
-                            <span>What'</span>
-                            <span class="dash">&nbsp;—&nbsp;</span>
-                            <span>s on</span>    
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/join.html">
-                            <span>Join</span>
-                            <span class="dash">&nbsp;—&nbsp;</span>
-                            <span>Our Team</span>   
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/contact.html">
-                            <span>Con</span>
-                            <span class="dash">&nbsp;—&nbsp;</span>
-                            <span>tact</span>   
-                        </a>
-                    </li>
+                    <li><a href="/about.html">About</a></li>
+                    <li><a href="/project.html">Works</a></li>
+                    <li><a href="/insight_list.html">What's on</a></li>
+                    <li><a href="/join.html">Join Our Team</a></li>
+                    <li><a href="/contact.html">Contact</a></li>
                 </ul>
                 <!-- bottom -->
                 <div class="bottom">
@@ -91,7 +61,7 @@
             <div class="site_map">
                 <ul>
                     <li><a href="/about.html">About</a></li>
-                    <li><a href="/project.html">Work</a></li>
+                    <li><a href="/project.html">Works</a></li>
                     <li><a href="/insight_list.html">What's on</a></li>
                     <li><a href="/join.html">Join Our Team</a></li>
                     <li><a href="/contact.html">Contact</a></li>
@@ -142,7 +112,7 @@
         <section class="about_vision">
             <div class="cont_inner">
                 <h2>
-                    <p class="mo_vision">We deliver digital benefit to the world and make digital solutions that deliver real result.</p>
+                    <p class="mo_vision">We deliver digital benefit to the world and make digital solutions that deliver real results.</p>
                     <ul class="pc_vision">
                         <li><span>We deliver digital benefit</span> </li>
                         <li><span>to the world and make digital solutions </span></li>
@@ -296,7 +266,7 @@
         </section>
         <section class="about_partners">
             <div class="cont_inner">
-                <h3>Our partners</h3>
+                <h3>Our Partners</h3>
                 <ul class="pc_list">
                     <li><img src="/assets/images/about/prt_logo/Frame 73.png" alt="홈앤쇼핑"></li>
                     <li><img src="/assets/images/about/prt_logo/Frame 75.png" alt="롯데면세점"></li>
@@ -364,43 +334,23 @@
                 </ul>
             </div>
         </section>
+        <!-- bottom -->
+		<div id="bottom" class="type3">
+            <!-- <a href="http://daum.net" target="_blank">BLOG</a> -->
+            <span>© RIANag INC. All Rights Reserved.</span>
+            <button class="top">Back to Top</button>
+		</div>
         <div class="custom-cursor dot-cursor"></div>
     </div>
     <script>
-        function customCursorEffect($area, type = 'view') {
-            const $cursorDot = $('.custom-cursor.dot-cursor');
-            const $cursor = $(`.custom-cursor.${type}`);
-
-            // 마우스 따라다님
-            $(document).on('mousemove.customCursor.' + type, function (e) {
-                const x = e.clientX;
-                const y = e.clientY;
-
-                $cursorDot.css({ left: x, top: y });
-                $cursor.css({ left: x, top: y });
-            });
-
-            // 진입 시
-            $area.on('mouseenter.customCursor.' + type, function () {
-                $cursorDot.css('transform', 'translate(-50%, -50%) scale(0)');
-                $cursor.css({
-                transform: 'translate(-50%, -50%) scale(1)',
-                opacity: 1
-                });
-            });
-
-            // 이탈 시
-            $area.on('mouseleave.customCursor.' + type, function () {
-                $cursorDot.css('transform', 'translate(-50%, -50%) scale(1)');
-                $cursor.css({
-                transform: 'translate(-50%, -50%) scale(0.5)',
-                opacity: 0
-                });
-            });
-        }
         customCursorEffect($('.about_visual'), 'scroll');
         customCursorEffect($('.about_swiper'), 'drag');  
-
+        window.addEventListener('load', () => {
+            ScrollTrigger.refresh();
+            runGsapScrollAnimations('.about_vision', '.about_vision h2 span', 0.2);
+            runGsapScrollAnimations('.about_awards', '.about_awards h2 span', 0.3);
+            runGsapScrollAnimations('.about_awards', '.about_awards h2 p', 0.2);
+        });
     </script>
 </body>
 </html>

@@ -35,7 +35,7 @@
 			video.muted = true;
 			video.loop = true;
 			video.playsInline = true;
-			video.setAttribute('muted', ''); // Safari 등 호환성 대응
+			video.setAttribute('muted', '');
 			video.style.width = '100%';
 			video.style.height = '100%';
 			video.style.objectFit = 'cover';
@@ -44,11 +44,11 @@
 			video.style.left = 0;
 			video.style.zIndex = -1;
 
+			// 기존 커서 효과 유지 위해 이벤트 타겟 div 자체는 유지
 			$div.classList.remove('lazyload');
-			$div.innerHTML = '';
-			$div.appendChild(video);
+			$div.innerHTML = ''; // 내부 내용 비우고
+			$div.appendChild(video); // video 추가
 		}
-
 		function updateLazyloadSrc() {
 			const isMobile = window.innerWidth <= 767;
 
@@ -61,22 +61,18 @@
 					el.setAttribute('data-src-original', pcSrc);
 				}
 
-				// 🎯 비디오 섹션 처리
+				// 🎯 비디오 처리
 				if (el.classList.contains('video-bg')) {
 					const video = el.querySelector('video');
 					if (video) {
-						// 이미 비디오가 있는 경우 src만 변경
 						if (video.getAttribute('src') !== targetSrc) {
 							video.setAttribute('src', targetSrc);
-							video.load(); // 변경된 src로 재로딩
+							video.load();
 						}
 					} else {
-						// video가 없으면 새로 삽입
 						replaceDivWithVideo(el, targetSrc);
 					}
-				}
-				// 🎯 이미지 lazyload 처리
-				else {
+				} else {
 					el.setAttribute('data-src', targetSrc);
 				}
 			});
@@ -87,7 +83,7 @@
 			updateLazyloadSrc(); // ✅ src 교체
 			new LazyLoad();      // ✅ 이미지 lazyload 실행
 
-			// ✅ 리사이즈 대응
+		// ✅ 리사이즈 대응
 		let resizeTimer;
 		window.addEventListener('resize', function () {
 			clearTimeout(resizeTimer);
@@ -180,66 +176,17 @@
 			setTime();
 			setInterval(setTime, 1000);
 
-			// 커스텀 커서
-			// const $cursor = $('.custom-cursor');
-			// const $area = $('.parallax-bg, .visual_cont');
-			// let isHovering = false;
+			customCursorEffect($('.parallax-bg'), 'view');
+			customCursorEffect($('.visual_cont'), 'view');
+			customCursorEffect($('.video-bg'), 'view');
 
-			// $area.on('mousemove', function (e) {
-			// 	if (isHovering) {
-			// 		$cursor.css({
-			// 			left: e.clientX + 'px',
-			// 			top: e.clientY + 'px'
-			// 		});
-			// 	}
-			// });
-			// $area.on('mouseenter', function () {
-			// 	isHovering = true;
-			// 	$cursor.css('opacity', 1);
-			// 	$(this).addClass('hide-cursor');
-			// });
-			// $area.on('mouseleave', function () {
-			// 	isHovering = false;
-			// 	$cursor.css('opacity', 0);
-			// 	$(this).removeClass('hide-cursor');
-			// });
-
-			/* 마우스 커서 관련 */
-			const $cursorDot = $('.custom-cursor.dot-cursor');
-			const $cursorView = $('.custom-cursor.view');
-			const $area = $('.parallax-bg, .visual_cont');
-
-			// 마우스 따라다님
-			$(document).on('mousemove', function (e) {
-				$cursorDot.css({
-				left: e.clientX + 'px',
-				top: e.clientY + 'px'
-				});
-				$cursorView.css({
-				left: e.clientX + 'px',
-				top: e.clientY + 'px'
-				});
+			// ✅ 페이지 로딩 후 첫 섹션에 커서 보이도록 강제 트리거
+			$(window).on('load', function () {
+				const $firstActive = $('section.active .parallax-bg');
+				if ($firstActive.length > 0) {
+					$firstActive.trigger('mouseenter');
+				}
 			});
-
-			// 영역 진입 시 커서 부드럽게 커짐
-			$area.on('mouseenter', function () {
-				$cursorDot.css('transform', 'translate(-50%, -50%) scale(0)');
-				$cursorView.css({
-				transform: 'translate(-50%, -50%) scale(1)',
-				opacity: 1
-				});
-			});
-
-			// 영역 이탈 시 커서 부드럽게 작아짐
-			$area.on('mouseleave', function () {
-				$cursorDot.css('transform', 'translate(-50%, -50%) scale(1)');
-				$cursorView.css({
-				transform: 'translate(-50%, -50%) scale(0.5)',
-				opacity: 0
-				});
-			});
-
-
 
 		});
 	</script>
@@ -258,41 +205,11 @@
 
             <div class="site_map">
                 <ul>
-                    <li>
-                        <a href="/about.html">
-                            <span>A</span>
-                            <span class="dash">&nbsp;—&nbsp;</span>
-                            <span>BOUT</span>         
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/project.html">
-                            <span>W</span>
-                            <span class="dash">&nbsp;—&nbsp;</span>
-                            <span>ork</span>    
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/insight_list.html">
-                            <span>What'</span>
-                            <span class="dash">&nbsp;—&nbsp;</span>
-                            <span>s on</span>    
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/join.html">
-                            <span>Join</span>
-                            <span class="dash">&nbsp;—&nbsp;</span>
-                            <span>Our Team</span>   
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/contact.html">
-                            <span>Con</span>
-                            <span class="dash">&nbsp;—&nbsp;</span>
-                            <span>tact</span>   
-                        </a>
-                    </li>
+                    <li><a href="/about.html">About</a></li>
+                    <li><a href="/project.html">Works</a></li>
+                    <li><a href="/insight_list.html">What's on</a></li>
+                    <li><a href="/join.html">Join Our Team</a></li>
+                    <li><a href="/contact.html">Contact</a></li>
                 </ul>
                 <!-- bottom -->
                 <div class="bottom">
@@ -311,7 +228,8 @@
 			<section class="active">
 				<div class="parallax-bg video-bg lazyload"
 					data-src="/assets/video/work_cgv_wide.mp4"
-					data-src-mobile="/assets/video/work_cgv_mobile.mp4"></div>
+					data-src-mobile="/assets/video/work_cgv_mobile.mp4">
+				</div>
 			</section>
 			<section>
 				<div class="parallax-bg lazyload" data-src="/assets/images/main/visual_lotte.png" data-src-mobile="/assets/images/main/visual_lotte_mo.png"></div>
@@ -344,7 +262,7 @@
 				</div>
 			</div>
 			<p>
-				<span class="mo">View Detail</span>
+				<span class="mo">VIEW DETAIL</span>
 				<a href="" class="mo"></a>
 			</p>
 		</div>

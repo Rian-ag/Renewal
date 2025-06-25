@@ -174,6 +174,10 @@ $(document).ready(function () {
   });
   /* e:sitemap */
 
+  $('.top').on('click', function() {
+      $('html, body').animate({ scrollTop: 0 }, 500); // 500은 애니메이션 시간(ms)
+  });
+
 });
 
 /* s:lazyload */
@@ -243,4 +247,127 @@ function goBack() {
   } else {
     location.href = '/';
   }
+}
+
+// ✅ 마우스 커서 효과 함수 (모바일 비활성 처리 포함)
+function customCursorEffect($area = null, type = 'view') {
+  const isMobile = window.innerWidth <= 767;
+  const $cursorDot = $('.custom-cursor.dot-cursor');
+  const $cursor = $(`.custom-cursor.${type}`);
+
+  if (isMobile) {
+    // ✅ 모바일이면 커서 숨기고 이벤트 해제
+    $cursorDot.css('display', 'none');
+    $cursor.css('display', 'none');
+    $(document).off('mousemove.customCursor.' + type);
+    if ($area) {
+      $area.off('mouseenter.customCursor.' + type);
+      $area.off('mouseleave.customCursor.' + type);
+    }
+    return;
+  }
+
+  // ✅ PC일 경우만 마우스 따라다니게
+  $(document).on('mousemove.customCursor.' + type, function (e) {
+    const x = e.clientX;
+    const y = e.clientY;
+    $cursorDot.css({ left: x, top: y });
+    $cursor.css({ left: x, top: y });
+  });
+
+  // ✅ hover 효과 처리
+  if ($area && $area.length > 0) {
+    $area.on('mouseenter.customCursor.' + type, function () {
+      $cursorDot.css('transform', 'translate(-50%, -50%) scale(0)');
+      $cursor.css({
+        transform: 'translate(-50%, -50%) scale(1)',
+        opacity: 1
+      });
+    });
+
+    $area.on('mouseleave.customCursor.' + type, function () {
+      $cursorDot.css('transform', 'translate(-50%, -50%) scale(1)');
+      $cursor.css({
+        transform: 'translate(-50%, -50%) scale(0.5)',
+        opacity: 0
+      });
+    });
+  } else {
+    // ❌ hover 대상 없으면 기본 크기만
+    $cursor.css({
+      transform: 'translate(-50%, -50%) scale(0.5)',
+      opacity: 1
+    });
+  }
+}
+
+
+function runGsapScrollAnimations(trigger, target, stagger = 0.2) {
+  const elements = gsap.utils.toArray(target);
+  if (!elements.length) return;
+
+  gsap.timeline({
+    scrollTrigger: {
+      trigger: trigger,
+      start: 'top 90%',
+      end: 'bottom 80%',
+      toggleActions: 'play none none none',
+    }
+  }).fromTo(
+    elements,
+    { y: 200, opacity: 0, force3D: true },
+    {
+      y: 0,
+      opacity: 1,
+      duration: 1.5,
+      ease: 'power2.inOut',
+      stagger: stagger,
+      force3D: true
+    }
+  );
+}
+
+
+// ✅ 텍스트 복사 + 토스트 호출 함수
+function copyTextAndToast(button, message) {
+    const $targetP = $(button).closest('p');
+    const clone = $targetP.clone();
+    clone.find('button').remove(); // 버튼 제거
+    const text = clone.text().trim();
+
+    const temp = $('<textarea>');
+    $('body').append(temp);
+    temp.val(text).select();
+    document.execCommand('copy');
+    temp.remove();
+
+    toast('auto', message, 1500);
+}
+
+// ✅ 토스트 띄우기
+function toast(_type, _message, _time){
+    const _toast = $('.toast');
+    _toast.removeClass('active auto confirm') // 기존 class 제거
+          .addClass('active ' + _type)
+          .html("<span>" + _message + "</span>");
+
+    if (_type === 'auto') {
+        setTimeout(function(){
+            toast_close(_toast);
+        }, _time);
+    } else if (_type === 'confirm') {
+        _toast.append('<a href="#none" onclick="toast_close($(this).parent());" class="btn_close">close</a>');
+        setTimeout(function(){
+            _toast.find('.btn_close').focus();
+        });
+    }
+}
+
+// ✅ 토스트 닫기
+function toast_close(_toast){
+    _toast.attr('class','toast'); // class 초기화
+    setTimeout(function(){
+        $('body').find('[tabindex="-1"]').focus().removeAttr('tabindex');
+        _toast.empty();
+    }, 200);
 }

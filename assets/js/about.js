@@ -1,30 +1,6 @@
 gsap.registerPlugin(ScrollTrigger)
 
 $(document).ready(function () {
-
-  // // ✅ 현재 페이지 메뉴 자동 강조 (일반화)
-  // const currentPath = window.location.pathname.replace(/\/$/, '');
-  // $('.site_map a').each(function () {
-  //   const href = $(this).attr('href').replace(/\/$/, '');
-  //   if (href === currentPath) {
-  //     $(this).find('.dash').addClass('on current');
-  //   }
-  // });
-
-  // // ✅ hover 시 .on 추가 / 마우스 벗어날 때 .current 아니면 제거
-  // $('.site_map li').hover(
-  //   function () {
-  //     $(this).find('.dash').addClass('on');
-  //   },
-  //   function () {
-  //     const $dash = $(this).find('.dash');
-  //     if (!$dash.hasClass('current')) {
-  //       $dash.removeClass('on');
-  //     }
-  //   }
-  // );
-  
-  
   /* 스와이퍼 */
     var option_sec03 = {
         slidesPerView: 4.5,
@@ -48,40 +24,41 @@ $(document).ready(function () {
 
 
     /* gsap 이벤트 */
-    const animatedHeadingSelectors = [
-      '.about_vision h2 span','.about_awards h2 span', '.about_awards h2 p'
-    ];
+    // const animatedHeadingSelectors = [
+    //   '.about_vision h2 span','.about_awards h2 span', '.about_awards h2 p'
+    // ];
 
-    animatedHeadingSelectors.forEach(selector => {
-      const spans = gsap.utils.toArray(selector);
-      if (spans.length > 0) {
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: selector.split(' ')[0],
-            start: 'top 70%',
-            end: '90% 90%',
-            toggleActions: 'play none none none',
-            // markers: true,
-          }
-        });
+    // animatedHeadingSelectors.forEach(selector => {
+    //   const spans = gsap.utils.toArray(selector);
+    //   if (spans.length > 0) {
+    //     const tl = gsap.timeline({
+    //       scrollTrigger: {
+    //         trigger: selector.split(' ')[0],
+    //         start: 'top 70%',
+    //         end: '90% 90%',
+    //         toggleActions: 'play none none none',
+    //         // markers: true,
+    //       }
+    //     });
 
-        tl.fromTo(spans,
-          { y: 200, opacity: 0, force3D: true },
-          { y: 0, opacity: 1, duration: 1.5, stagger: 0.2, ease: 'power2.inOut', force3D: true }
-        );
+    //     tl.fromTo(spans,
+    //       { y: 200, opacity: 0, force3D: true },
+    //       { y: 0, opacity: 1, duration: 1.5, stagger: 0.2, ease: 'power2.inOut', force3D: true }
+    //     );
 
-        if (selector === '.about_awards h2 span') {
-          const texts = gsap.utils.toArray('.about_awards dd > p');
-          if (texts.length > 0) {
-            tl.fromTo(texts,
-              { y: 100, opacity: 0, force3D: true },
-              { y: 0, opacity: 1, duration: 0.5, stagger: 0.05, ease: 'power2.out', force3D: true },
-              '+=0.1'
-            );
-          }
-        }
-      }
-    });
+    //     if (selector === '.about_awards h2 span') {
+    //       const texts = gsap.utils.toArray('.about_awards dd > p');
+    //       if (texts.length > 0) {
+    //         tl.fromTo(texts,
+    //           { y: 100, opacity: 0, force3D: true },
+    //           { y: 0, opacity: 1, duration: 0.5, stagger: 0.05, ease: 'power2.out', force3D: true },
+    //           '+=0.1'
+    //         );
+    //       }
+    //     }
+    //   }
+    // });
+
 
     
     const moVision = document.querySelector('.mo_vision');
@@ -260,11 +237,5 @@ $(document).ready(runPartnerAnimation);
       });
     }
   });
-
-
-  
-
-
-
 });
 

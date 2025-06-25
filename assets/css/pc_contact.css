@@ -2,18 +2,17 @@
 .cont_inner {width:1400px; margin:0 auto; padding:200px 0;}
 em,i {font-style: normal;}
 .mo {display:none;}
-
 section {height:100vh;}
 section .cont_inner > p {overflow:hidden;}
 section .cont_inner > p:last-of-type{margin:24px 0 100px;}
-section .cont_inner > p > span {font-size:60px; font-weight:700; line-height:102%; display:block; transition:all 0.5s; transform:translateY(500px); transition-delay:0;}
-section .cont_inner > p > span.active {transform:translateY(0px);}
-section .cont_inner > p > strong {font-size:90px; font-weight:800; display:block; transform:translateY(500px); transition:all 1s;;}
-section .cont_inner > p > strong.active {transform:translateY(0px);}
+section .cont_inner > p > span {font-size:60px; font-weight:700; line-height:102%; display:block; transition:all 1.1s ease-in-out; transform:translate3d(0, 200px, 0); opacity:0; will-change:transform, opacity; transition-delay:0.3s;   }
+section .cont_inner > p > span.active {transform:translate3d(0, 0, 0); opacity:1;}
+section .cont_inner > p > strong {font-size:90px; font-weight:800; display:block; transform:translate3d(0, 200px, 0); opacity:0; will-change:transform, opacity; transition:all 1.8s ease-in-out; transition-delay:0.7s;}
+section .cont_inner > p > strong.active {transform:translateY(0px); opacity:1;}
 section .cont_inner > p > strong br {display:none;}
 section .cont_inner ul {display:flex; gap:150px; overflow:hidden;}
-section .cont_inner ul li {transform:translateY(500px); transition:all 1.5s; }
-section .cont_inner ul li.active {transform:translateY(0px);}
+section .cont_inner ul li {transform:translate3d(0, 200px, 0); opacity:0; will-change:transform, opacity; transition:all 2s ease-in-out; transition-delay:1.2s; }
+section .cont_inner ul li.active {transform:translateY(0px); opacity:1;}
 section .cont_inner ul li span {margin-bottom:24px; color:#808080; font-size:16px; font-weight:400; line-height:102%; display:inline-block;}
 section .cont_inner ul li p {font-size:24px; font-weight:700; line-height:150%;}
 section .cont_inner ul li p button {content:''; width:14px; height:14px; margin-left:6px; background-image:url('../images/common/icon_split.png'); background-size:500px 500px; background-position:-178px -50px; display:inline-block;}

@@ -52,40 +52,7 @@
 				$('.visual_cont div strong').text(formattime);
 			},1000);
 
-			/* 마우스 커서 관련 */
-			const $cursorDot = $('.custom-cursor.dot-cursor');
-			const $cursorView = $('.custom-cursor.view');
-			const $area = $('.parallax-bg, .visual_cont');
-
-			// 마우스 따라다님
-			$(document).on('mousemove', function (e) {
-				$cursorDot.css({
-				left: e.clientX + 'px',
-				top: e.clientY + 'px'
-				});
-				$cursorView.css({
-				left: e.clientX + 'px',
-				top: e.clientY + 'px'
-				});
-			});
-
-			// 영역 진입 시 커서 부드럽게 커짐
-			$area.on('mouseenter', function () {
-				$cursorDot.css('transform', 'translate(-50%, -50%) scale(0)');
-				$cursorView.css({
-				transform: 'translate(-50%, -50%) scale(1)',
-				opacity: 1
-				});
-			});
-
-			// 영역 이탈 시 커서 부드럽게 작아짐
-			$area.on('mouseleave', function () {
-				$cursorDot.css('transform', 'translate(-50%, -50%) scale(1)');
-				$cursorView.css({
-				transform: 'translate(-50%, -50%) scale(0.5)',
-				opacity: 0
-				});
-			});
+			customCursorEffect(); 
 
 		})
 		
@@ -103,41 +70,11 @@
 
             <div class="site_map">
                 <ul>
-                    <li>
-                        <a href="/about.html">
-                            <span>A</span>
-                            <span class="dash">&nbsp;—&nbsp;</span>
-                            <span>BOUT</span>         
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/project.html">
-                            <span>W</span>
-                            <span class="dash">&nbsp;—&nbsp;</span>
-                            <span>ork</span>    
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/insight_list.html">
-                            <span>What'</span>
-                            <span class="dash">&nbsp;—&nbsp;</span>
-                            <span>s on</span>    
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/join.html">
-                            <span>Join</span>
-                            <span class="dash">&nbsp;—&nbsp;</span>
-                            <span>Our Team</span>   
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/contact.html">
-                            <span>Con</span>
-                            <span class="dash">&nbsp;—&nbsp;</span>
-                            <span>tact</span>   
-                        </a>
-                    </li>
+                    <li><a href="/about.html">About</a></li>
+                    <li><a href="/project.html">Works</a></li>
+                    <li><a href="/insight_list.html">What's on</a></li>
+                    <li><a href="/join.html">Join Our Team</a></li>
+                    <li><a href="/contact.html">Contact</a></li>
                 </ul>
                 <!-- bottom -->
                 <div class="bottom">
@@ -157,8 +94,8 @@
 			<div class="cont_inner">
 				<em>도서</em>
 				<ul>
-					<li><span>Start With Why </span></li>
-					<li><span>(by 사이먼 사이넥) Review</span></li>
+					<li><span>START WITH WHY </span></li>
+					<li><span>(BY 사이먼 사이넥) REVIEW</span></li>
 				</ul>
 				<p class="pc">
 					<i>#StartWithWhy</i>
@@ -292,8 +229,8 @@
 		<!-- bottom -->
 		<div id="bottom" class="type3">
             <!-- <a href="http://daum.net" target="_blank">BLOG</a> -->
+            <span>© RIANag INC. All Rights Reserved.</span>
             <button class="top">Back to Top</button>
-            <a href="mailto:rianag@rianag.com">RIANAG@RIANAG.COM</a>
 		</div>
 		<!-- //bottom -->
 		 <div class="custom-cursor dot-cursor"></div>
