@@ -1,14 +1,14 @@
 // project.js
 
 const project = {
-    title: ['Go deep\nDive in\nWatch on', 'Simple\nClear\nModule', 'Effortless\nChic\nLifestyle'],
+    title: ['Go deep\nDive in\nWatch on', 'Effortless\nChic\nLifestyle', 'Making\nShopping\nConvenient'],
     subTitle: ['CGV\nON MOBILE', 'LOTTE\nDUTY FREE', 'HOME&\nSHOPPING'],
     industry: ['Commerce', 'Commerce', 'Commerce'],
-    date: ['July, 2025', '2021 - In Progress', '2019 - In Progress'],
+    date: ['July, 2025', '2019 - In Preogress', '2021 - In Progress'],
     type: [
-        'UI/UX Design / Mobile Web&App / PC Web',
-        'UI/UX Design / Mobile Web&App / PC Web',
-        'UI/UX Design / Mobile Web&App / PC Web',
+        'UI/UX Design/Mobile Web&App/PC Web',
+        'UI/UX Design/Mobile Web&App/PC Web',
+        'UI/UX Design/Mobile Web&App/PC Web',
     ],
 };
 
@@ -70,6 +70,7 @@ function initListItemBehavior() {
     const $viewerImg = $('.image-viewer img');
     let ticking = false;
 
+    // 스크롤 감지
     $('.project-viewer-scrollable').on('scroll', function () {
         const $this = $(this);
         if (!ticking) {
@@ -105,11 +106,17 @@ function initListItemBehavior() {
         }
     });
 
+    // 마우스 올렸을 때
     $listItems.on('mouseenter', function () {
         $listItems.removeClass('active');
         $(this).addClass('active');
         const imgSrc = $(this).data('image');
         if (imgSrc) $viewerImg.attr('src', imgSrc);
+    });
+
+    // ❗ 마우스가 list 바깥으로 나갔을 때
+    $('.project-viewer-scrollable').on('mouseleave', function () {
+        $listItems.removeClass('active');
     });
 }
 
@@ -124,14 +131,17 @@ $(window).on('load', function () {
     function isMobile() {
         return $(window).width() <= 768;
     }
-
+    // $(document).on('click', '.list-item', function (e) {
+    //     e.preventDefault();
+    // });
     // ✅ 리스트 동적 생성
     $.getJSON('/assets/data/projectList.json', function (data) {
         const $lists = $('.lists');
         data.forEach((item) => {
             const tagsHtml = item.tags.map((tag) => `<li>${tag}</li>`).join('');
             const html = `
-                <a class="list-item" data-image="${item.image}" href="#">
+                     <a class="list-item" data-image="${item.image}" href="${item.link || 'javascript:void(0);'}" 
+                     ${item.link ? 'data-link="true" target="_blank"' : ''}>
                     <div class="animate-wrap">
                         <div class="animate">
                             <div class="ani-top">
