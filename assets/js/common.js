@@ -52,29 +52,106 @@ $(document).ready(function () {
         }, 500); // transition 시간과 동일
     });
 
-    // ✅ 현재 페이지 메뉴 자동 강조 (일반화)
-    const currentPath = window.location.pathname.replace(/\/$/, '');
-    $('.site_map a').each(function () {
-        const href = $(this).attr('href').replace(/\/$/, '');
-        if (href === currentPath) {
-            $(this).find('.dash').addClass('on current');
-        }
-    });
-
-    // ✅ hover 시 .on 추가 / 마우스 벗어날 때 .current 아니면 제거
-    $('.site_map li').hover(
-        function () {
-            $(this).find('.dash').addClass('on');
-        },
-        function () {
-            const $dash = $(this).find('.dash');
-            if (!$dash.hasClass('current')) {
-                $dash.removeClass('on');
-            }
-        }
-    );
-
     /* s:sitemap */
+    // $('header').each(function () {
+    //     const $header = $(this);
+    //     const $btnHam = $header.find('.btn_ham');
+    //     const $siteMap = $header.find('.site_map');
+    //     const $logo = $header.find('h1 img');
+    //     const originalLogoSrc = $logo.attr('src');
+    //     let isAnimating = false;
+
+    //     const updateHeaderZIndex = () => {
+    //         if ($siteMap.hasClass('active')) {
+    //             $header.css({ zIndex: '999' });
+    //         } else {
+    //             $header.css('z-index', '');
+    //         }
+    //     };
+
+    //     $btnHam.on('click', function () {
+    //         if (isAnimating) return;
+    //         isAnimating = true;
+
+    //         const isType2 = $header.hasClass('type2');
+    //         const isType3 = $header.hasClass('type3');
+    //         const isWhite = $header.hasClass('white');
+
+    //         if ($btnHam.parent().hasClass('close')) {
+    //             // 닫힘 처리
+    //             const $items = $siteMap.find('li');
+
+    //             $items.each(function (i) {
+    //                 setTimeout(() => {
+    //                     $(this).removeClass('active');
+
+    //                     if (i === $items.length - 1) {
+    //                         $siteMap.removeClass('active').addClass('close');
+    //                         $btnHam.parent().removeClass('close');
+
+    //                         if (isType2 && isWhite) {
+    //                             $logo.attr('src', originalLogoSrc);
+    //                         } else if (isType2) {
+    //                             $logo.attr('src', '/assets/images/common/h1_logo_black.png');
+    //                         } else {
+    //                             $logo.attr('src', originalLogoSrc.replace('_black.png', '.png'));
+    //                         }
+
+    //                         if (isType3) {
+    //                             $logo.css('opacity', '0');
+    //                         }
+
+    //                         updateHeaderZIndex();
+    //                     }
+    //                 }, i * 300);
+    //             });
+
+    //             setTimeout(() => {
+    //                 $siteMap.removeClass('close');
+    //                 isAnimating = false;
+    //             }, $items.length * 350);
+
+    //             setTimeout(() => {
+    //                 $siteMap.find('.bottom').removeClass('active').children().removeClass('active');
+    //             }, 1000);
+    //         } else {
+    //             // 열림 처리
+    //             $siteMap.addClass('active');
+    //             updateHeaderZIndex();
+    //             isAnimating = false;
+    //             $btnHam.parent().addClass('close');
+
+    //             if (isType2) {
+    //                 $logo.attr('src', '/assets/images/common/h1_logo_black.png');
+    //             } else {
+    //                 $logo.attr('src', originalLogoSrc.split('.')[0] + '_black.png');
+    //             }
+
+    //             if (isType3) {
+    //                 $logo.css('opacity', '1');
+    //             }
+
+    //             const $items = $siteMap.find('li');
+    //             $items.each(function (i) {
+    //                 setTimeout(() => {
+    //                     $(this).addClass('active');
+
+    //                     if (i === $items.length - 1) {
+    //                         $siteMap
+    //                             .find('.bottom')
+    //                             .children()
+    //                             .each(function (j) {
+    //                                 setTimeout(() => {
+    //                                     $(this).addClass('active');
+    //                                 }, 300);
+    //                             });
+    //                     }
+    //                 }, i * 300);
+    //             });
+    //         }
+    //     });
+    // });
+    
     $('header').each(function () {
         const $header = $(this);
         const $btnHam = $header.find('.btn_ham');
@@ -100,42 +177,30 @@ $(document).ready(function () {
             const isWhite = $header.hasClass('white');
 
             if ($btnHam.parent().hasClass('close')) {
-                // 닫힘 처리
-                const $items = $siteMap.find('li');
+                // ✅ 한 번에 닫히는 처리
+                $siteMap.removeClass('active').addClass('close');
+                $siteMap.find('li').removeClass('active');
+                $siteMap.find('.bottom').removeClass('active').children().removeClass('active');
+                $btnHam.parent().removeClass('close');
 
-                $items.each(function (i) {
-                    setTimeout(() => {
-                        $(this).removeClass('active');
+                if (isType2 && isWhite) {
+                    $logo.attr('src', originalLogoSrc);
+                } else if (isType2) {
+                    $logo.attr('src', '/assets/images/common/h1_logo_black.png');
+                } else {
+                    $logo.attr('src', originalLogoSrc.replace('_black.png', '.png'));
+                }
 
-                        if (i === $items.length - 1) {
-                            $siteMap.removeClass('active').addClass('close');
-                            $btnHam.parent().removeClass('close');
+                if (isType3) {
+                    $logo.css('opacity', '0');
+                }
 
-                            if (isType2 && isWhite) {
-                                $logo.attr('src', originalLogoSrc);
-                            } else if (isType2) {
-                                $logo.attr('src', '/assets/images/common/h1_logo_black.png');
-                            } else {
-                                $logo.attr('src', originalLogoSrc.replace('_black.png', '.png'));
-                            }
-
-                            if (isType3) {
-                                $logo.css('opacity', '0');
-                            }
-
-                            updateHeaderZIndex();
-                        }
-                    }, i * 300);
-                });
+                updateHeaderZIndex();
 
                 setTimeout(() => {
                     $siteMap.removeClass('close');
                     isAnimating = false;
-                }, $items.length * 350);
-
-                setTimeout(() => {
-                    $siteMap.find('.bottom').removeClass('active').children().removeClass('active');
-                }, 1000);
+                }, 400); // 닫힘 애니메이션 시간 고려
             } else {
                 // 열림 처리
                 $siteMap.addClass('active');
@@ -159,20 +224,18 @@ $(document).ready(function () {
                         $(this).addClass('active');
 
                         if (i === $items.length - 1) {
-                            $siteMap
-                                .find('.bottom')
-                                .children()
-                                .each(function (j) {
-                                    setTimeout(() => {
-                                        $(this).addClass('active');
-                                    }, 300);
-                                });
+                            $siteMap.find('.bottom').children().each(function (j) {
+                                setTimeout(() => {
+                                    $(this).addClass('active');
+                                }, 300);
+                            });
                         }
                     }, i * 300);
                 });
             }
         });
     });
+    
     /* e:sitemap */
 
     $('.top').on('click', function () {
