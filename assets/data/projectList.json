@@ -2,22 +2,26 @@
     {
         "title": "CGV ON MOBILE",
         "tags": ["COMMERCE", "RESERVATION", "PICKUP STORE"],
-        "image": "/assets/images/project/thumb1.jpg"
+        "image": "/assets/images/project/thumb1.jpg",
+        "link": "/work_detail.html"
     },
     {
         "title": "HOME & SHOPPING",
         "tags": ["COMMERCE", "DISTRIBUTION"],
-        "image": "/assets/images/project/thumb2.jpg"
+        "image": "/assets/images/project/thumb2.jpg",
+        "link": "/work_detail.html"
     },
     {
         "title": "LOTTE DUTY FREE",
         "tags": ["DUTY FREE", "COMMERCE", "DISTRIBUTION"],
-        "image": "/assets/images/project/thumb3.jpg"
+        "image": "/assets/images/project/thumb3.jpg",
+        "link": "/work_detail.html"
     },
     {
         "title": "KB KOOKMIN CARD TABLET",
         "tags": ["MEMBERS", "POINT APP /", "COMMERCE"],
-        "image": "/assets/images/project/thumb4.jpg"
+        "image": "/assets/images/project/thumb4.jpg",
+        "link": "/work_detail.html"
     },
     {
         "title": "GS HOME SHOPPING",
@@ -37,16 +41,190 @@
     {
         "title": "CJ SEAFOOD",
         "tags": ["COMMERCE", "DISTRIBUTION", "FOOD"],
-        "image": "/assets/images/project/thumb8.jpg"
+        "image": "/assets/images/project/thumb8.jpg",
+        "link": "/work_detail.html"
     },
     {
         "title": "SKT, T ID ADMIN",
         "tags": ["MEMBERS", "TELECOM", "ADMIN"],
-        "image": "/assets/images/project/thumb9.jpg"
+        "image": "/assets/images/project/thumb9.jpg",
+        "link": "/work_detail.html"
     },
     {
         "title": "J.ESTINA SHOPPINGMALL",
         "tags": ["COMMERCE", "JEWELRY", "SHOPPING"],
         "image": "/assets/images/project/thumb10.jpg"
+    },
+    {
+        "title": "HYUNDAI DUTY FREE ONLINE MALL",
+        "tags": ["COMMERCE", "DISTRIBUTION", "DUTY FREE", "SHOPPING"],
+        "image": "/assets/images/project/thumb11.jpg"
+    },
+    {
+        "title": "HYUNDAI DUTY FREE ONLINE MALL",
+        "tags": ["COMMERCE", "DISTRIBUTION", "DUTY FREE", "SHOPPING"],
+        "image": "/assets/images/project/thumb12.jpg",
+        "link": "/work_detail.html"
+    },
+    {
+        "title": "SHINSEGAE TV SHOPPINGMALL & VISIBLE ARS",
+        "tags": ["COMMERCE", "SHOPPING"],
+        "image": "/assets/images/project/thumb13.jpg"
+    },
+    {
+        "title": "LOTTE RENTAL BRAND SITE (IR)",
+        "tags": ["COMMERCE", "DISTRIBUTION"],
+        "image": "/assets/images/project/thumb14.jpg"
+    },
+    {
+        "title": "API MARKET PLACE",
+        "tags": ["COMMERCE", "PLATFORM"],
+        "image": "/assets/images/project/thumb15.jpg"
+    },
+    {
+        "title": "DGB CAPITAL",
+        "tags": ["FINANCE", "CAPITAL"],
+        "image": "/assets/images/project/thumb16.jpg"
+    },
+    {
+        "title": "LOTTE CARD MEMBERS & SYSTEM",
+        "tags": ["FINANCE", "MEMBERS", "SYSTEM"],
+        "image": "/assets/images/project/thumb17.jpg"
+    },
+    {
+        "title": "COMMERCE ICT",
+        "tags": ["COMMERCE", "PLATFORM"],
+        "image": "/assets/images/project/thumb18.jpg"
+    },
+    {
+        "title": "LG U+ EMPLOYEE BENEFIT MALL",
+        "tags": ["COMMERCE", "BENEFIT MALL", "SHOPPING"],
+        "image": "/assets/images/project/thumb19.jpg"
+    },
+    {
+        "title": "KOTRA buyKOREA",
+        "tags": ["PUBLIC", "TRADE"],
+        "image": "/assets/images/project/thumb20.jpg"
+    },
+    {
+        "title": "MOBILE POWER COMPANY SEARCH",
+        "tags": ["FINANCE", "CREDIT INFO"],
+        "image": "/assets/images/project/thumb21.jpg"
+    },
+    {
+        "title": "HYUNDAI LIVART WILLIAMS SONOMA",
+        "tags": ["COMMERCE", "FUNITURE"],
+        "image": "/assets/images/project/thumb22.jpg",
+        "link": "/work_detail.html"
+    },
+    {
+        "title": "SK INNOVATION mySUNI INTEGRATED ID",
+        "tags": ["EDUCATION", "MEMBERS"],
+        "image": "/assets/images/project/thumb23.jpg"
+    },
+    {
+        "title": "ABOUT PET PLATFORM",
+        "tags": ["MEMBERS", "PET", "SHOPPING"],
+        "image": "/assets/images/project/thumb24.jpg"
+    },
+    {
+        "title": "EMART ONLINE PLATFORM",
+        "tags": ["COMMERCE", "DISTRIBUTION"],
+        "image": "/assets/images/project/thumb25.jpg"
+    },
+    {
+        "title": "LG HAUSYS SMART COUNSEL SYSTEM",
+        "tags": ["INTERIOR", "COUNSEL"],
+        "image": "/assets/images/project/thumb26.jpg"
+    },
+    {
+        "title": "NEPA OFFICIAL BRAND SITE",
+        "tags": ["FASHION", "BRAND"],
+        "image": "/assets/images/project/thumb27.jpg"
+    },
+    {
+        "title": "CJ LOGISTICS DELIVERY APP FOR EMPLOYEE",
+        "tags": ["DELIVERY", "EMPLOYEE APP"],
+        "image": "/assets/images/project/thumb128jpg"
+    },
+    {
+        "title": "CJ FRESHWAY e COMMERCE PLATFORM",
+        "tags": ["COMMERCE", "DISTRIBUTION"],
+        "image": "/assets/images/project/thumb29.jpg"
+    },
+    {
+        "title": "SK STOA SERVICE & PC PLATFORM",
+        "tags": ["COMMERCE", "DISTRIBUTION"],
+        "image": "/assets/images/project/thumb30.jpg"
+    },
+    {
+        "title": "AMOREPACIFIC AP COMMERCE SYSTEM",
+        "tags": ["COMMERCE", "DISTRIBUTION", "DISTRIBUTION"],
+        "image": "/assets/images/project/thumb31.jpg"
+    },
+    {
+        "title": "LOTTE INTEGRATED BO PLATFORM",
+        "tags": ["COMMERCE", "DISTRIBUTION"],
+        "image": "/assets/images/project/thumb32.jpg"
+    },
+    {
+        "title": "GS RETAIL H&B COMMERCE ‘LALAVLA’",
+        "tags": ["COMMERCE", "DISTRIBUTION"],
+        "image": "/assets/images/project/thumb33.jpg"
+    },
+    {
+        "title": "RENAULT SAMSUNG T-BOX",
+        "tags": ["AUTOMOBILE", "TABLET", "NAVIGATION"],
+        "image": "/assets/images/project/thumb34.jpg"
+    },
+    {
+        "title": "CJ ONS OLIVE YOUNG ONLINE MALL",
+        "tags": ["COMMERCE", "MEMBERS", "SHOPPING"],
+        "image": "/assets/images/project/thumb35.jpg"
+    },
+    {
+        "title": "K-SHOPPING EMC SYSTEM 2.0",
+        "tags": ["COMMERCE", "DISTRIBUTION", "BEAUTY"],
+        "image": "/assets/images/project/thumb36.jpg"
+    },
+    {
+        "title": "SHILLA IPARK DUTY FREE",
+        "tags": ["COMMERCE", "DISTRIBUTION", "DUTY FREE"],
+        "image": "/assets/images/project/thumb37.jpg"
+    },
+    {
+        "title": "IVD MEDICAL DEVICE R&D PLATFORM",
+        "tags": ["EDUCATION", "MEDICAL"],
+        "image": "/assets/images/project/thumb38.jpg"
+    },
+    {
+        "title": "BANDAI MALL",
+        "tags": ["COMMERCE", "DISTRIBUTION", "SHOPPING"],
+        "image": "/assets/images/project/thumb39.jpg"
+    },
+    {
+        "title": "CJ LOGOSHOP",
+        "tags": ["COMMERCE", "DISTRIBUTION"],
+        "image": "/assets/images/project/thumb40.jpg"
+    },
+    {
+        "title": "HYUNDAI HOME SHOPPING VIETNAM",
+        "tags": ["COMMERCE", "DISTRIBUTION", "GLOBAL"],
+        "image": "/assets/images/project/thumb41.jpg"
+    },
+    {
+        "title": "LGCNS HANYOUZAN",
+        "tags": ["COMMERCE", "DISTRIBUTION", "FOOD"],
+        "image": "/assets/images/project/thumb42.jpg"
+    },
+    {
+        "title": "SK PLANET BASKET",
+        "tags": ["COMMERCE", "DISTRIBUTION"],
+        "image": "/assets/images/project/thumb43.jpg"
+    },
+    {
+        "title": "CJ E&M MOVIE VOD SERVICE",
+        "tags": ["ENTERTAINMENT", "MOVIE"],
+        "image": "/assets/images/project/thumb44.jpg"
     }
 ]
