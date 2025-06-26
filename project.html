@@ -22,41 +22,11 @@
 			</div>
             <div class="site_map">
                 <ul>
-                    <li>
-                        <a href="/about.html">
-                            <span>A</span>
-                            <span class="dash">&nbsp;—&nbsp;</span>
-                            <span>BOUT</span>         
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/project.html">
-                            <span>W</span>
-                            <span class="dash">&nbsp;—&nbsp;</span>
-                            <span>ork</span>    
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/insight_list.html">
-                            <span>What'</span>
-                            <span class="dash">&nbsp;—&nbsp;</span>
-                            <span>s on</span>    
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/join.html">
-                            <span>Join</span>
-                            <span class="dash">&nbsp;—&nbsp;</span>
-                            <span>Our Team</span>   
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/contact.html">
-                            <span>Con</span>
-                            <span class="dash">&nbsp;—&nbsp;</span>
-                            <span>tact</span>   
-                        </a>
-                    </li>
+                    <li><a href="/about.html">About</a></li>
+                    <li><a href="/project.html">Works</a></li>
+                    <li><a href="/insight_list.html">What's on</a></li>
+                    <li><a href="/join.html">Join Our Team</a></li>
+                    <li><a href="/contact.html">Contact</a></li>
                 </ul>
                 <!-- bottom -->
                 <div class="bottom">
@@ -80,41 +50,11 @@
 			</div>
             <div class="site_map">
                 <ul>
-                    <li>
-                        <a href="/about.html">
-                            <span>A</span>
-                            <span class="dash">&nbsp;—&nbsp;</span>
-                            <span>BOUT</span>         
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/project.html">
-                            <span>W</span>
-                            <span class="dash">&nbsp;—&nbsp;</span>
-                            <span>ork</span>    
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/insight_list.html">
-                            <span>What'</span>
-                            <span class="dash">&nbsp;—&nbsp;</span>
-                            <span>s on</span>    
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/join.html">
-                            <span>Join</span>
-                            <span class="dash">&nbsp;—&nbsp;</span>
-                            <span>Our Team</span>   
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/contact.html">
-                            <span>Con</span>
-                            <span class="dash">&nbsp;—&nbsp;</span>
-                            <span>tact</span>   
-                        </a>
-                    </li>
+                    <li><a href="/about.html">About</a></li>
+                    <li><a href="/project.html">Works</a></li>
+                    <li><a href="/insight_list.html">What's on</a></li>
+                    <li><a href="/join.html">Join Our Team</a></li>
+                    <li><a href="/contact.html">Contact</a></li>
                 </ul>
                 <!-- bottom -->
                 <div class="bottom">
@@ -1209,7 +1149,10 @@
             <!-- //bottom -->
 
             <!-- 커서 -->
-            <div class="custom-cursor">View</div>
+            <div class="custom-cursor dot-cursor"></div>
+            <div class="custom-cursor view">View</div>
+            <div class="custom-cursor scroll">Scroll</div>
+
         </div>
 
         <!-- JS -->
@@ -1237,6 +1180,9 @@
                     // 이미지 초기화 (선택사항)
                     $('.image-viewer .active-img').attr('src', '/assets/images/thumb1.jpg'); // 초기 이미지로
                 });
+
+                customCursorEffect($('.thumbnail'), 'view');
+                customCursorEffect($('.project-section'), 'scroll');
             });
             // all project button event
             $(document).on('click', '.project-list-button', function () {
@@ -1260,50 +1206,50 @@
             });
 
             /* s:custom cursor */
-            const $cursor = $('.custom-cursor');
-            const $area = $('#cursor-area');
-            let isHovering = false;
-            let isOnArrowOrButton = false;
+            // const $cursor = $('.custom-cursor');
+            // const $area = $('#cursor-area');
+            // let isHovering = false;
+            // let isOnArrowOrButton = false;
 
-            $area.on('mousemove', function (e) {
-                if (isHovering && !isOnArrowOrButton) {
-                    $cursor.css({
-                        left: e.clientX + 'px',
-                        top: e.clientY + 'px',
-                    });
-                }
-            });
+            // $area.on('mousemove', function (e) {
+            //     if (isHovering && !isOnArrowOrButton) {
+            //         $cursor.css({
+            //             left: e.clientX + 'px',
+            //             top: e.clientY + 'px',
+            //         });
+            //     }
+            // });
 
-            $area.on('mouseenter', function () {
-                isHovering = true;
-                if (!isOnArrowOrButton) {
-                    $cursor.css('opacity', 1);
-                }
-            });
+            // $area.on('mouseenter', function () {
+            //     isHovering = true;
+            //     if (!isOnArrowOrButton) {
+            //         $cursor.css('opacity', 1);
+            //     }
+            // });
 
-            $area.on('mouseleave', function () {
-                isHovering = false;
-                $cursor.css('opacity', 0);
-            });
+            // $area.on('mouseleave', function () {
+            //     isHovering = false;
+            //     $cursor.css('opacity', 0);
+            // });
 
             // ✅ 커서 숨길 영역들 지정
-            $(document)
-                .on(
-                    'mouseenter',
-                    '.fp-arrows, .project-list-button, .swiper-scrollbar, .project-info,.heading,.title, button, header',
-                    function () {
-                        isOnArrowOrButton = true;
-                        $cursor.css('opacity', 0);
-                    }
-                )
-                .on(
-                    'mouseleave',
-                    '.fp-arrows, .project-list-button, .swiper-scrollbar, .project-info,.heading,.title, button, header',
-                    function () {
-                        isOnArrowOrButton = false;
-                        if (isHovering) $cursor.css('opacity', 1); // 다시 보이게
-                    }
-                );
+            // $(document)
+            //     .on(
+            //         'mouseenter',
+            //         '.fp-arrows, .project-list-button, .swiper-scrollbar, .project-info,.heading,.title, button, header',
+            //         function () {
+            //             isOnArrowOrButton = true;
+            //             $cursor.css('opacity', 0);
+            //         }
+            //     )
+            //     .on(
+            //         'mouseleave',
+            //         '.fp-arrows, .project-list-button, .swiper-scrollbar, .project-info,.heading,.title, button, header',
+            //         function () {
+            //             isOnArrowOrButton = false;
+            //             if (isHovering) $cursor.css('opacity', 1); // 다시 보이게
+            //         }
+            //     );
             /* e:custom cursor */
         </script>
     </body>
