@@ -1,0 +1,52 @@
+[
+    {
+        "title": "CGV ON MOBILE",
+        "tags": ["COMMERCE", "RESERVATION", "PICKUP STORE"],
+        "image": "/assets/images/project/thumb1.jpg"
+    },
+    {
+        "title": "HOME & SHOPPING",
+        "tags": ["COMMERCE", "DISTRIBUTION"],
+        "image": "/assets/images/project/thumb2.jpg"
+    },
+    {
+        "title": "LOTTE DUTY FREE",
+        "tags": ["DUTY FREE", "COMMERCE", "DISTRIBUTION"],
+        "image": "/assets/images/project/thumb3.jpg"
+    },
+    {
+        "title": "KB KOOKMIN CARD TABLET",
+        "tags": ["MEMBERS", "POINT APP /", "COMMERCE"],
+        "image": "/assets/images/project/thumb4.jpg"
+    },
+    {
+        "title": "GS HOME SHOPPING",
+        "tags": ["COMMERCE", "DISTRIBUTION", "SHOPPING"],
+        "image": "/assets/images/project/thumb5.jpg"
+    },
+    {
+        "title": "GS RETAIL PLC APP, YOGIYO",
+        "tags": ["COMMERCE", "DISTRIBUTION", "DELIVERY"],
+        "image": "/assets/images/project/thumb6.jpg"
+    },
+    {
+        "title": "DGB LIFE INSURANCE IT SYSTEM",
+        "tags": ["FINANCE", "INSURANCE", "SYSTEM"],
+        "image": "/assets/images/project/thumb7.jpg"
+    },
+    {
+        "title": "CJ SEAFOOD",
+        "tags": ["COMMERCE", "DISTRIBUTION", "FOOD"],
+        "image": "/assets/images/project/thumb8.jpg"
+    },
+    {
+        "title": "SKT, T ID ADMIN",
+        "tags": ["MEMBERS", "TELECOM", "ADMIN"],
+        "image": "/assets/images/project/thumb9.jpg"
+    },
+    {
+        "title": "J.ESTINA SHOPPINGMALL",
+        "tags": ["COMMERCE", "JEWELRY", "SHOPPING"],
+        "image": "/assets/images/project/thumb10.jpg"
+    }
+]
