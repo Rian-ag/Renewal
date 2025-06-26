@@ -1,12 +1,14 @@
+// project.js
+
 const project = {
-    title: ['Go deep\nDive in\nWatch on', 'Simple\nClear\nModule', 'Effortless\nChic\nLifestyle'],
+    title: ['Go deep\nDive in\nWatch on', 'Effortless\nChic\nLifestyle', 'Making\nShopping\nConvenient'],
     subTitle: ['CGV\nON MOBILE', 'LOTTE\nDUTY FREE', 'HOME&\nSHOPPING'],
     industry: ['Commerce', 'Commerce', 'Commerce'],
-    date: ['July, 2025', '2021 - In Progress', '2019 - In Progress'],
+    date: ['July, 2025', '2019 - In Preogress', '2021 - In Progress'],
     type: [
-        'UI/UX Design / Mobile Web&App / PC Web',
-        'UI/UX Design / Mobile Web&App / PC Web',
-        'UI/UX Design / Mobile Web&App / PC Web',
+        'UI/UX Design/Mobile Web&App/PC Web',
+        'UI/UX Design/Mobile Web&App/PC Web',
+        'UI/UX Design/Mobile Web&App/PC Web',
     ],
 };
 
@@ -24,11 +26,9 @@ function updateTitleAndSubtitle(index) {
     const raw = project.subTitle[index];
 
     if (window.innerWidth <= 768) {
-        // ✅ 모바일: 줄바꿈 → 공백, &는 붙여서
         const compactLine = raw.replace(/\n/g, ' ').replace(/\s*&\s*/g, '&');
         subtitleLines = `<div>${compactLine}</div>`;
     } else {
-        // ✅ PC: \n 기준으로 줄 나누되, 2줄까지만 출력
         const lines = raw.split('\n');
         const line1 = lines[0] || '';
         const line2 = (lines[1] || '') + (lines[2] || '');
@@ -65,6 +65,61 @@ function updateTitleAndSubtitle(index) {
     }, 100);
 }
 
+function initListItemBehavior() {
+    const $listItems = $('.list-item');
+    const $viewerImg = $('.image-viewer img');
+    let ticking = false;
+
+    // 스크롤 감지
+    $('.project-viewer-scrollable').on('scroll', function () {
+        const $this = $(this);
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                let minDiff = Infinity;
+                let $closest = null;
+                const containerTop = $this.offset().top;
+                const containerHeight = $this.height();
+                const centerY = containerTop + containerHeight / 2;
+
+                $listItems.each(function () {
+                    const $el = $(this);
+                    const offset = $el.offset().top;
+                    const height = $el.outerHeight();
+                    const middle = offset + height / 2;
+                    const diff = Math.abs(centerY - middle);
+                    if (diff < minDiff) {
+                        minDiff = diff;
+                        $closest = $el;
+                    }
+                });
+
+                if ($closest) {
+                    $listItems.removeClass('active');
+                    $closest.addClass('active');
+                    const imgSrc = $closest.data('image');
+                    if (imgSrc) $viewerImg.attr('src', imgSrc);
+                }
+
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+
+    // 마우스 올렸을 때
+    $listItems.on('mouseenter', function () {
+        $listItems.removeClass('active');
+        $(this).addClass('active');
+        const imgSrc = $(this).data('image');
+        if (imgSrc) $viewerImg.attr('src', imgSrc);
+    });
+
+    // ❗ 마우스가 list 바깥으로 나갔을 때
+    $('.project-viewer-scrollable').on('mouseleave', function () {
+        $listItems.removeClass('active');
+    });
+}
+
 $(window).on('load', function () {
     let mainSwiper = null;
     let thumbSwiper = null;
@@ -76,36 +131,37 @@ $(window).on('load', function () {
     function isMobile() {
         return $(window).width() <= 768;
     }
+    // $(document).on('click', '.list-item', function (e) {
+    //     e.preventDefault();
+    // });
+    // ✅ 리스트 동적 생성
+    $.getJSON('/assets/data/projectList.json', function (data) {
+        const $lists = $('.lists');
+        data.forEach((item) => {
+            const tagsHtml = item.tags.map((tag) => `<li>${tag}</li>`).join('');
+            const html = `
+                     <a class="list-item" data-image="${item.image}" href="${item.link || 'javascript:void(0);'}" 
+                     ${item.link ? 'data-link="true" target="_blank"' : ''}>
+                    <div class="animate-wrap">
+                        <div class="animate">
+                            <div class="ani-top">
+                                <p>${item.title}</p>
+                                <ol>${tagsHtml}</ol>
+                            </div>
+                            <div class="ani-bottom">
+                                <p>${item.title}</p>
+                                <ol>${tagsHtml}</ol>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-dark"></div>
+                </a>
+            `;
+            $lists.append(html);
+        });
 
-    // ✅ image-viewer 관련 변수
-    // const $imgViewer = $('.image-viewer');
-    // const $imgSlider = $('.image-slider');
-    // const $imgSlides = $('.slide-img');
-    // const imgSlideHeight = 240;
-    // const imgTotalSlides = $imgSlides.length;
-
-    if (!isMobile()) {
-        // ✅ PC 전용 : 프로젝트 리스트 hover 시 이미지 슬라이드
-        $('.list-item')
-            .on('mouseenter', function () {
-                const index = $(this).index(); // ✅ index 정의
-                $(this).addClass('active');
-                // $imgSlider.css('height', imgSlideHeight * imgTotalSlides + 'px');
-
-                // $('.sticky-wrapper').css('display', 'block');
-                // $imgViewer.css({ opacity: 1 });
-
-                // gsap.to($imgSlider, {
-                //     y: -(imgSlideHeight * index),
-                //     duration: 0.6,
-                //     ease: 'expo.out',
-                // });
-            })
-            .on('mouseleave', function () {
-                $(this).removeClass('active');
-                // $imgViewer.css({ opacity: 0 });
-            });
-    }
+        if (!isMobile()) initListItemBehavior();
+    });
 
     function slideToCenter(index) {
         const viewer = document.querySelector('.thumbnail-viewer');
@@ -259,4 +315,21 @@ $(window).on('load', function () {
 
     handleLayout();
     $(window).on('resize', handleLayout);
+
+    // ✅ 프로젝트 뷰어 열기/닫기 처리
+    $(document).on('click', '.project-list-button', function () {
+        $('.project-viewer').addClass('active');
+        const firstImgSrc = $('.list-item').first().data('image');
+        $('.image-viewer img').attr('src', firstImgSrc);
+        if (window.lenis) window.lenis.stop();
+        $('.project-viewer').on('wheel touchmove', function (e) {
+            e.stopPropagation();
+        });
+    });
+
+    $(document).on('click', '.project-viewer .close', function () {
+        $('.project-viewer').removeClass('active');
+        if (window.lenis) window.lenis.start();
+        $('.project-viewer').off('wheel touchmove');
+    });
 });

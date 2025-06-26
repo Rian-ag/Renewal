@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="/assets/css/mo_join.css" media="(max-width: 768px)" />
     </head>
 
-<body class="fadeout">
+    <body class="fadeout">
         <div id="wrap">
         <!-- header -->
 		<header class="pc type2">
@@ -33,7 +33,7 @@
                         <a href="/contact.html">RIANAG@RIANAG.COM</a>
                         <!-- <a href="http://daum.net" target="_blank">BLOG</a> -->
                     </div>
-                    <a href="javascript:void(0);" class="download">BROCHURE DOWNLOAD</a>
+                    <!-- //bottom -->
                 </div>
                 <!-- //bottom -->
             </div>
@@ -333,6 +333,7 @@
                     </section>
                 </div>
             </div>
+            <!-- bottom -->
             <div id="bottom" class="type3" style="height: 100px">
                 <a href="javascript:void(0);">&copy; RIANag INC. All Right Reserved.</a>
                 <button class="top">Back to Top</button>
@@ -353,30 +354,6 @@
                 customCursorEffect();
             });
             gsap.registerPlugin(ScrollTrigger);
-
-            // ✅ Lenis 전체 공통 적용
-            const lenis = new Lenis({
-                duration: 1.2,
-                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-                smooth: true,
-                smoothTouch: false,
-            });
-
-            function raf(time) {
-                lenis.raf(time);
-                requestAnimationFrame(raf);
-            }
-            requestAnimationFrame(raf);
-
-            // top 버튼 - lenis 사용
-            $('.top').on('click', function (e) {
-                e.preventDefault();
-                lenis.scrollTo(0, {
-                    duration: 1,
-                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-                });
-            });
-
             // ✅ title-wrapper 안 텍스트 한 줄씩
             $('.title-wrapper')
                 .children()
