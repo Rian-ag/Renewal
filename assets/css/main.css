@@ -5,11 +5,12 @@ section {height:100vh; position:relative; overflow:hidden;}
 section.auto-height {height:auto !important; overflow-y:auto; overflow-x:hidden;}
 .scrollable {height:100vh; overflow-y:auto;}
 .visual_cont {mix-blend-mode:difference; transition: color 0.8s ease; isolation: isolate;}
+.visual_cont li {overflow: hidden;}
 .visual_cont .project, .visual_cont .slogan {opacity:0; display:block; transition:all 0.8s ease-in-out;}
 .visual_cont .slogan {transition-delay:0.2s;}
-.visual_cont .project {transform:translateX(-100%);}
-.visual_cont .slogan {transform:translateX(100%);}
-.visual_cont.active .project, .visual_cont.active .slogan {opacity:1; transform:translateX(0);}
+.visual_cont .project, .visual_cont .slogan {transform:translate3d(0, 200px, 0); opacity:0; will-change:transform, opacity;}
+/* .visual_cont .slogan {transform:translate3d(0, 200px, 0); opacity:0; will-change:transform, opacity;} */
+.visual_cont.active .project, .visual_cont.active .slogan {opacity:1; transform: translate3d(0, 0, 0);}
 .parallax-bg {background-size:cover; background-position:center; position:absolute; top:0; left:0; right:0; bottom:0; z-index:-1; transition:transform 3s ease}
 section.active .parallax-bg {transform:scale(1.2);}
 .fp-nav {position:fixed; top:50%; right:30px; transform:translateY(-50%); z-index:1;}
@@ -22,9 +23,9 @@ section.active .parallax-bg {transform:scale(1.2);}
 .fp-navi em {font-style:normal; display:flex; flex-direction:column; align-items:center;}
 .fp-navi em:before {height:77px; margin:10px auto; border-left:1px solid rgba(255,255,255,0.6); content:''; display:block;}
 .visual_cont {color:#fff; font-size:100px; font-weight:800; line-height:102%; position:fixed; bottom:137px; left:30px; z-index:1;}
-.visual_cont > div > div {display:flex;}
+.visual_cont > .time > div {display:flex;}
 .mo {display:none;}
-.visual_cont > div {text-transform:uppercase;}
+.visual_cont > .time {text-transform:uppercase;}
 
 .video-bg {width:100%; height:100vh; position:relative; overflow: hidden;}
 .video-bg video {width:100%; height:100%;object-fit:cover; display: block;}
@@ -36,7 +37,7 @@ section.active .parallax-bg {transform:scale(1.2);}
     .visual_cont {font-size:40px; font-weight:800; line-height:102%;}
     #section_wrap > p {position:fixed; z-index: 100; bottom:40px; left:30px; display:flex; align-items:center; gap:10px;}
     #section_wrap > p > span, #section_wrap > p > a {color:#fff !important; mix-blend-mode:normal !important; background-color:rgba(0, 0, 0, 0.001);}
-    #section_wrap > span {margin-right:10px; font-size:14px; font-weight:800; vertical-align:text-top; display:inline-block;}
+    #section_wrap span {margin-right:10px; font-size:14px; font-weight:800; vertical-align:text-top; display:inline-block;}
     #section_wrap > p > a {width:50px; height:50px; background-image:url('../images/common/icon_split.png'); background-repeat:no-repeat; background-size:500px 500px; background-position:0 -100px; display:inline-block;}
     .fp-arrows {top:100px;}
     .fp-arrow {display:none;}

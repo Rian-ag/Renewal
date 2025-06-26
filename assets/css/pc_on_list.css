@@ -16,8 +16,12 @@ strong {font-weight:800;;}
 .cont_inner > p > strong {font-size:90px; line-height:102%; letter-spacing:-2%; text-align:center; display:block; transform:translateY(100px);}
 .cont_inner > .visual_cont {padding-top:90px;  padding-bottom:200px;;}
 .cont_inner > .visual_cont div {font-size:60px; text-align:center;}
-.cont_inner > .visual_cont div p {margin-top:18px; font-size:30px; font-weight:600;}
-.cont_inner > .visual_cont div p span {opacity:0;}
+.cont_inner > .visual_cont div p {margin-top:18px; font-size:30px; font-weight:600; overflow:hidden;}
+.cont_inner > .visual_cont div p br {display:none;}
+.cont_inner > .visual_cont div p span {display:block; opacity:0; transform:translateY(100px); transition:all 1s; transition-delay:0.2s;}
+/* 나타날 때 */
+.visual_cont div p span.animated {opacity:1; transform:translateY(0);}
+
 
 /* swiper 영역 */
 .swiper-wrapper {flex-wrap:wrap;}
@@ -27,8 +31,8 @@ strong {font-weight:800;;}
 .swiper-slide section img {object-fit:cover; display:block; transition:all 2.5s;}
 .swiper-slide:first-of-type section img {height:100%;}
 .swiper-slide a > div {margin-top:24px; margin-bottom:150px;}
-.swiper-slide a > div em, .swiper-slide a > div > span {font-size:24px; font-weight:600; line-height:140%; letter-spacing:-1.5%; }
-.swiper-slide a > div > span {margin:40px 0 20px; display:block;}
+.swiper-slide a > div > p em, .swiper-slide a > div > p > span {font-size:24px; font-weight:600; line-height:140%; letter-spacing:-1.5%; }
+.swiper-slide a > div > p span {margin:40px 0 20px; display:block;}
 .swiper-slide a > div > div {display:flex; gap:5px}
 .swiper-slide a > div i {font-size:18px; font-weight:300; line-height:142%; letter-spacing:-2%;}
 .swiper-pagination {display:none;}

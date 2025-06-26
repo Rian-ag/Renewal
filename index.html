@@ -170,8 +170,8 @@
 				const month = now.toLocaleString('en-US', { month: 'short' });
 				const day = String(now.getDate()).padStart(2, '0');
 				const time = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
-				$('.visual_cont div strong').text(time);
-				$('.visual_cont div div p').text(`${year}.${month}.${day}`);
+				$('.visual_cont .time strong').text(time);
+				$('.visual_cont .time div p').text(`${year}.${month}.${day}`);
 			};
 			setTime();
 			setInterval(setTime, 1000);
@@ -198,7 +198,7 @@
 		<!-- header -->
 		<header>
 			<div class="inner">
-				<a href="/project.html">Works</a>
+				<a href="/project.html">WORKS</a>
 				<h1><img src="/assets/images/common/h1_logo.png" alt="RIAN" /></h1>
 				<button class="btn_ham">site map</button>
 			</div>
@@ -214,7 +214,7 @@
                 <!-- bottom -->
                 <div class="bottom">
                     <div>
-                        <a href="mailto:rianag@rianag.com">RIANAG@RIANAG.COM</a>
+                        <a href="/contact.html">RIANAG@RIANAG.COM</a>
                         <!-- <a href="http://daum.net" target="_blank">BLOG</a> -->
                     </div>
                     <a href="javascript:void(0);" class="download">BROCHURE DOWNLOAD</a>
@@ -250,17 +250,17 @@
 				<div class="parallax-bg lazyload" data-src="/assets/images/main/visual_coldplay.png" data-src-mobile="/assets/images/main/visual_coldplay_mo.png"></div>
 			</section>
 
-			<div class="visual_cont">
-				<strong class="project">CGV</strong>
-				<p class="slogan">DEEP DIVE SPACE</p>
-				<div>
+			<ul class="visual_cont">
+				<li><strong class="project">CGV</strong></li>
+				<li><p class="slogan">DEEP DIVE SPACE</p></li>
+				<li class="time">
 					<strong></strong>
 					<div>
 						<em>ⓒ</em>
 						<p></p>
 					</div>
-				</div>
-			</div>
+				</li>
+			</ul>
 			<p>
 				<span class="mo">VIEW DETAIL</span>
 				<a href="" class="mo"></a>
@@ -270,7 +270,7 @@
 		<!-- bottom -->
 		<div id="bottom">
 			<div>
-				<a href="mailto:rianag@rianag.com">RIANAG@RIANAG.COM</a>
+				<a href="/contact.html">RIANAG@RIANAG.COM</a>
 				<!-- <a href="http://daum.net" target="_blank">BLOG</a> -->
 			</div>
 			<a href="javascript:void(0);" class="download">BROCHURE DOWNLOAD</a>

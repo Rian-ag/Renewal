@@ -4,8 +4,6 @@ $(document).ready(function () {
   lazyLoads();
   /* e:lazyload */
   
-  /* header스크롤 */
-  initHeaderScrollToggle()
 
   // ✅ Lenis 전체 공통 적용
   const lenis = new Lenis({
@@ -219,26 +217,114 @@ function lazyLoads() {
   }
 }
 
+// function initHeaderScrollToggle() {
+//   let lastScrollTop = 0;
+//   const delta = 5;
+//   const $Header = $('header');
+
+//   $(window).on('scroll.headerToggle', function () {
+//     if ($('.site_map.active').length > 0) return;
+
+//     const st = $(this).scrollTop();
+//     if (Math.abs(lastScrollTop - st) <= delta) return;
+
+//     const isMobile = window.innerWidth <= 767;
+
+//     if (st > lastScrollTop && st > 100) {
+//       $Header.addClass('hide');
+//       if (isMobile) {
+//         $Header.removeClass('on');
+//       }
+//     } else {
+//       $Header.removeClass('hide');
+//       if (isMobile) {
+//         $Header.addClass('on');
+
+//         // ✅ 스크롤 맨 위이면 on 제거
+//         if (st <= 5) {
+//           $Header.removeClass('on');
+//         }
+//       }
+//     }
+
+//     lastScrollTop = st;
+//     console.log('scrollTop:', st);
+//   });
+// }
+
 function initHeaderScrollToggle() {
   let lastScrollTop = 0;
   const delta = 5;
-  const $Header = $('header.pc, header.mo');
+  const $Headers = $('header');
+  const $Logo = $Headers.find('h1 img');
+  const originalSrc = $Logo.attr('src');
+  const whitekSrc = originalSrc.replace('_black.png', '.png');  // 원래 로고 복귀용
+  const blacSrc = originalSrc.replace('.png', '_black.png');    // black 로고 버전
 
   $(window).on('scroll.headerToggle', function () {
-    if ($('.site_map.active').length > 0) return; // 메뉴 열림 중이면 무시
+    if ($('.site_map.active').length > 0) return;
 
     const st = $(this).scrollTop();
     if (Math.abs(lastScrollTop - st) <= delta) return;
 
+    const isMobile = window.innerWidth <= 767;
+
+    // ✅ 공통: header hide 처리
     if (st > lastScrollTop && st > 100) {
-      $Header.addClass('hide'); // 아래로 스크롤 → 숨김
+      $Headers.addClass('hide');
+      if (isMobile) $Headers.removeClass('on');
     } else {
-      $Header.removeClass('hide'); // 위로 스크롤 → 보임
+      $Headers.removeClass('hide');
+      if (isMobile) {
+        $Headers.addClass('on');
+        if (st <= 1) $Headers.removeClass('on');
+      }
+    }
+
+    // ✅ scrollTop 5 이하일 때 초기화 (모든 기기 공통)
+    if (st <= 5) {
+      if (!isMobile) {
+        $Headers.removeClass('wh bl');
+        $Logo.attr('src', originalSrc);
+      }
+      lastScrollTop = st;
+      return;
+    }
+
+    // ✅ 태블릿/PC만 섹션 스타일 처리
+    if (!isMobile) {
+      let matched = false;
+
+      $('.dark-section, .light-section').each(function () {
+        const $section = $(this);
+        const top = $section.offset().top;
+        const bottom = top + $section.outerHeight();
+
+        if (st >= top && st < bottom) {
+          matched = true;
+
+          if ($section.hasClass('dark-section')) {
+            $Headers.removeClass('bl').addClass('wh');
+            $Logo.attr('src', whitekSrc);
+          } else if ($section.hasClass('light-section')) {
+            $Headers.removeClass('wh').addClass('bl');
+            $Logo.attr('src', blacSrc);
+          }
+        }
+      });
+
+      // ✅ 섹션과 매칭되는 게 없으면 초기화 없이 그대로 유지
+      if (!matched) {
+        $Headers.removeClass('wh bl');
+        $Logo.attr('src', originalSrc);
+      }
     }
 
     lastScrollTop = st;
   });
 }
+
+
 /* e:lazyload */
 function goBack() {
   const ref = document.referrer;
@@ -371,3 +457,5 @@ function toast_close(_toast){
         _toast.empty();
     }, 200);
 }
+
+
