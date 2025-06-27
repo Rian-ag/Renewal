@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIANAG_insight_view_04</title>
+    <!-- CSS -->
+	<link rel="stylesheet" href="/assets/css/common.css">
+	<link rel="stylesheet" href="/assets/css/ui.css">
+    <link rel="stylesheet" href="/assets/css/swiper.css">
+	<link rel="stylesheet" href="./assets/css/pc_on_detail.css" media="(min-width: 769px)">
+	<link rel="stylesheet" href="./assets/css/mo_on_detail.css" media="(max-width: 768px)">
+    <script src="/assets/js/jquery-3.7.1.min.js"></script>
+	<script src="/assets/js/lazyload.js"></script>
+	<script src="./assets/js/lenis.min.js"></script>
+	<script src="/assets/js/common.js" defer></script>
+    <script src="/assets/js/swiper.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+	<script src="./assets/js/on_detail.js"></script>
+
+	<script>
+		$(function () {
+			let prevTime = '';
+
+			function updateClock() {
+				const now = new Date();
+
+				const hh = String(now.getHours()).padStart(2, '0');
+				const mm = String(now.getMinutes()).padStart(2, '0');
+				const ss = String(now.getSeconds()).padStart(2, '0');
+				const formatted = `${hh}:${mm}:${ss}`;
+
+				const $target = $('.visual_cont div strong');
+				const current = $target.text();
+
+				// ✅ 현재 텍스트가 한글이 섞인 경우 강제로 되돌림
+				if (!/^\d{2}:\d{2}:\d{2}$/.test(current) || formatted !== prevTime) {
+				$target.text(formatted);
+				prevTime = formatted;
+				}
+
+				requestAnimationFrame(updateClock);
+			}
+			initHeaderScrollToggle()
+			updateClock();
+			customCursorEffect();
+		});
+	</script>
+		<style>
+		.detail_visual {background-image:url('./assets/images/on_detail/visual_07.png');}
+		section .cont_inner > ul li:nth-of-type(1) figure,  section .cont_inner > ul li:nth-of-type(3) figure{width:930px;}
+		.pt_60 {padding-top:60px;}
+		@media screen and (max-width:767px) {
+			.detail_visual {background-image:none;}
+		}
+	</style>
+</head>
+<body class="fadeout">
+    <div id="wrap" class="wrap">
+        <!-- header -->
+		<header class="type3">
+			<div class="inner">
+				<a href="javascript:void(0);" onclick="goBack();">BACK</a>
+				<h1><img src="/assets/images/common/h1_logo.png" alt="RIAN" /></h1>
+				<button class="btn_ham">site map</button>
+			</div>
+
+            <div class="site_map">
+                <ul>
+                    <li><a href="/about.html">About</a></li>
+                    <li><a href="/project.html">Works</a></li>
+                    <li><a href="/insight_list.html">What's on</a></li>
+                    <li><a href="/join.html">Join Our Team</a></li>
+                    <li><a href="/contact.html">Contact</a></li>
+                </ul>
+                <!-- bottom -->
+                <div class="bottom">
+                    <div>
+                        <a href="/contact.html">RIANAG@RIANAG.COM</a>
+                        <!-- <a href="http://daum.net" target="_blank">BLOG</a> -->
+                    </div>
+                    <a href="javascript:void(0);" class="download">BROCHURE DOWNLOAD</a>
+                </div>
+                <!-- //bottom -->
+            </div>
+		</header>
+		<!-- //header -->
+
+		<div class="detail_visual">
+			<div class="cont_inner">
+				<em>일상</em>
+				<ul>
+					<li><span>이 맛에</span></li>
+					<li><span>캠핑 하는 건가요?</span></li>
+				</ul>
+				<p class="pc">
+					<i>#숲속의오케스트라</i>
+					<i>#이맛에캠핑</i>
+					<i>#몸살주의</i>
+				</p>
+			</div>
+		</div>
+		<section class="light-section">
+			<div class="cont_inner">
+				<dl>
+					<dt class="visual_cont">
+						<a href="./insight_list.html"></a>
+						<div>
+							<strong></strong>
+							<p>37.559127°N,<br/> 126.860986°E RIAN, <br/> SEOUL,  KOREA</p>
+						</div>
+					</dt>
+					<dd>
+						<div class="on_detail_swiper">
+							<div class="on_detail swiper-container">
+								<div class="swiper-wrapper">
+									<div class="swiper-slide">
+										<a href="/insight_view_02.html"><p class="active"><img src="/assets/images/on_detail/sw_05.png" alt=""></p></a>
+									</div>
+									<div class="swiper-slide">
+										<a href="/insight_view_01.html"><p><img src="/assets/images/on_detail/sw_02.png" alt=""></p></a>
+									</div>
+									<div class="swiper-slide">
+										<a href="javascript:void(0);"><p><img src="/assets/images/on_detail/sw_03.png" alt=""></p></a>
+									</div>
+									<div class="swiper-slide">
+										<a href="javascript:void(0);"><p><img src="/assets/images/on_detail/sw_04.png" alt=""></p></a>
+									</div>
+								</div>
+							</div>
+							<div class="custom-cursor">Drag</div>
+						</div>
+					</dd>
+				</dl>
+				<ul>
+					<li>
+						<figure><img class="lazy" data-src="/assets/images/on_detail/7_1.png" alt=""></figure>
+						<p>
+							<span>
+								사실 저는 캠핑을 왜 하는지 매력을 그다지 느끼지 못하는 사람입니다 ㅎㅎ<br/>
+								그런데 이번에 어쩌다보니 글램핑이나 카라반이 아닌 진짜 텐트에서 먹고 자고 하는 캠핑을 하게됐네요.
+							</span>
+						</p>
+						<p>
+							<span>
+								쨍쨍 내리쬐는 해를 받으며 땀을 뻘뻘 흘리면서 텐트를 치고. 삼시세끼 손수 다 만들어서 다같이 나눠먹고.<br/>
+								저녁에는 캠프파이어를 하면서 마시멜로를 굽고 불멍까지..<br/>
+								텐트에 몸을 누이고 불편하게 자다가 이른 새벽에 눈을 뜨게 됐어요.
+							</span>
+						</p>
+					</li>
+					<li>
+						<figure><img class="lazy" data-src="/assets/images/on_detail/7_2.png" alt=""></figure>
+						<p>
+							<span>
+								예전에 아이에게 읽어준 동화책이 있는데 숲 속 오케스트라라는 책이었어요.
+							</span>
+						</p>
+						<p>
+							<span>
+								새 한마리가 소리내기 시작해서 다른 새들이 하나 둘 자기의 소리를 내고 해가 찬란히 뜰때 쯤 새들의 지저귐으로 다함께<br/>
+								오케스트라를 만들어 낸다는 내용이었는데.
+							</span>
+						</p>
+						<p>
+							<span>
+								그 소리를 새벽에 듣게 되었어요. 이른 새벽에 들었던 그 소리만으로 캠핑의 불편함을 싹 날리는 힐링이었어요.<br/>
+								이 맛에 캠핑하는 걸까요?
+							</span>
+						</p>
+					</li>
+
+					<li class="mo">
+						<p>
+							<i>#숲속의오케스트라</i>
+							<i>#이맛에캠핑?</i>
+							<i>#몸살주의</i>
+						</p>
+					</li>
+				</ul>
+			</div>
+		</section>
+
+
+
+		<!-- bottom -->
+		<div id="bottom" class="type3">
+            <!-- <a href="http://daum.net" target="_blank">BLOG</a> -->
+            <span>© RIANag INC. All Rights Reserved.</span>
+            <button class="top">Back to Top</button>
+		</div>
+		<!-- //bottom -->
+		<div class="custom-cursor dot-cursor"></div>
+    </div>
+</body>
+</html>

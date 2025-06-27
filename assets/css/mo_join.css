@@ -105,5 +105,5 @@ body { height: 100%; font-family: var(--font-main); font-weight: 400; font-style
 .step-desc > li:last-child::after { display: none; } 
 .step-desc > li > p { position: absolute; bottom: 0; font-size: 1.4rem; line-height: 150%; letter-spacing: -0.21px; font-family: var(--font-main); } 
 /* bottom */
-#bottom { padding: 0 3rem; } 
-#bottom a { color: #d9d9d9; font-size: 1.2rem; font-weight: 700; line-height: 148%; } 
+/* #bottom { padding: 0 3rem; } 
+#bottom a { color: #d9d9d9; font-size: 1.2rem; font-weight: 700; line-height: 148%; }  */

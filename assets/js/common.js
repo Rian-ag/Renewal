@@ -41,15 +41,25 @@ $(document).ready(function () {
     $('a[href]:not([href^="#"]):not([target="_blank"])').on('click', function (e) {
         const href = $(this).attr('href');
 
-        // 자바스크립트 링크는 제외
-        if (href === 'javascript:void(0);' || href.startsWith('javascript:')) return;
+        // ✅ 자바스크립트 링크 제외
+        if (
+            href === 'javascript:void(0);' ||
+            href.startsWith('javascript:')
+        ) return;
 
-        e.preventDefault(); // 즉시 이동 막기
+        // ✅ tel: 또는 mailto:는 브라우저 기본 동작으로 처리 (절대 막지 않기)
+        if (
+            href.startsWith('tel:') ||
+            href.startsWith('mailto:')
+        ) return;
+
+        // ✅ 나머지 일반 링크만 페이드 아웃 처리
+        e.preventDefault();
         $('body').removeClass('fadein').addClass('fadeout');
 
         setTimeout(function () {
             window.location.href = href;
-        }, 500); // transition 시간과 동일
+        }, 500);
     });
 
     /* s:sitemap */
@@ -526,3 +536,17 @@ function toast_close(_toast) {
 }
 
 
+// function animateScaleTarget($area, scaleFrom = 1.2, scaleTo = 1, duration = 1.5, delay = 0, withFade = false) {
+//     if (!$area || $area.length === 0) return;
+
+//     gsap.set($area, { scale: scaleFrom, opacity: withFade ? 0 : 1 });
+
+//     gsap.to($area, {
+//         scale: scaleTo,
+//         opacity: withFade ? 1 : undefined,
+//         duration: duration,
+//         delay: delay,
+//         ease: "power3.out"
+//     });
+//     console.log('big')
+// }

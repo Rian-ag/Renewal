@@ -23,6 +23,7 @@
     <script src="/assets/js/jquery-3.7.1.min.js"></script>
 	<script src="/assets/js/lazyload.js"></script>
 	<script src="./assets/js/lenis.min.js"></script>
+	<script src="/assets/js/gsap.min.js"></script>
 	<script src="/assets/js/common.js"></script>
 	<script src="/assets/js/simplefullpage.js"></script>
 
@@ -49,6 +50,7 @@
 			$div.innerHTML = ''; // 내부 내용 비우고
 			$div.appendChild(video); // video 추가
 		}
+
 		function updateLazyloadSrc() {
 			const isMobile = window.innerWidth <= 767;
 
@@ -149,6 +151,7 @@
 						$('#section_wrap > p > a').attr('href', url[index]);
 					}, 800);
 				}
+
 			});
 
 			if (window.innerWidth <= 767) {
@@ -187,9 +190,10 @@
 					$firstActive.trigger('mouseenter');
 				}
 			});
-
 		});
 	</script>
+
+
 
 </head>
 <body class="fadeout">

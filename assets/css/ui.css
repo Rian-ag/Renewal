@@ -55,9 +55,10 @@ header .site_map .bottom > div {display:flex; gap:160px;}
 header .site_map .bottom .download {display:flex; align-items:center; gap:12px;}
 header .site_map .bottom .download:after {width:20px; height:20px; background-image:url('/assets/images/common/icon_split.png'); background-position:-100px 0; background-repeat:no-repeat; background-size:500px auto; content:''; display:block;}
 
-#bottom {padding:28px 30px; position:fixed; right:0; bottom:0; left:0; z-index:100; display:flex; align-items:center; justify-content:space-between;}
-#bottom * {color:#fff; font-size:14px; font-weight:800; letter-spacing:0;}
-#bottom span {font-size:12px; font-weight:700; line-height:148%;}
+#bottom {padding:38px 60px; position:fixed; right:0; bottom:0; left:0; z-index:100; display:flex; align-items:center; justify-content:space-between;}
+#bottom * {color:#fff; font-size:14px; font-weight:800;}
+#bottom span {font-size:16px; font-weight:700; line-height:148%;}
+#bottom  button {font-size:18px; font-weight:800; line-height:150%;}
 #bottom div {display:flex; align-items:center; gap:160px;}
 #bottom .download {display:flex; align-items:center; gap:12px;}
 #bottom .download:after {width:20px; height:20px; background-image:url('/assets/images/common/icon_split.png'); background-position:-50px 0; background-repeat:no-repeat; background-size:500px auto; content:''; display:block;}
@@ -133,6 +134,7 @@ header #hidden_menu button:after {transform:rotate(135deg);}
 } */
 
 @media screen and (max-width:767px) {
+  #bottom {padding:25px 30px;}
   #bottom.type3 a[href="mailto:rianag@rianag.com"] {font-size:12px; font-weight:700; line-height:148%; order:0;}
   #bottom.type3 a[href="http://daum.net"] {display:none;}
   #bottom.type3 .top {width:50px; height:50px; font-size:0; order:1; background-image:url('../images/common/icon_split.png'); background-size:500px 500px; background-position:0 -100px; transform:rotate(-90deg);}
@@ -155,4 +157,9 @@ header #hidden_menu button:after {transform:rotate(135deg);}
   header .site_map li a .dash.on {width:50px;}
   .toast {width:calc(100% - 140px);}
   header.on {background:rgba(0,0,0,0.5)}
+  #bottom span {font-size:12px;}
+}
+
+@media screen and (min-width: 769px) and (max-width: 1919px) {
+    .cont_inner {width:100% !important; padding-left:30px; padding-right:30px; box-sizing: border-box;}
 }

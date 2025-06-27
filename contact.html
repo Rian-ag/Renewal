@@ -88,7 +88,7 @@
                             한화비즈메트로 1차 310호,311호
                             <button onclick="copyTextAndToast(this, '주소가 복사되었습니다.')"></button>
                         </p>
-                        <a href="#">VIEW ON MAPS</a>
+                        <a href="javascript:void(0);" class="map">VIEW ON MAPS</a>
                     </li>
                     <li>
                         <span>E-MAIL</span>
@@ -106,7 +106,7 @@
                     </li>
                     <li>
                         <span>TEL</span>
-                        <p>02.2635.3601</p>
+                        <p><a class="tel" href="tel:0226353601">02.2635.3601</a></p>
                     </li>
                     <li>
                         <span>FAX</span>
@@ -134,22 +134,44 @@
         <!-- //toast -->
 	</div>
 
-<script>
-    $(function(){
-        setTimeout(function () {
-            $('section .cont_inner > p > span').addClass('active');
-        }, 0);
-        setTimeout(function () {
-            $('section .cont_inner > p > strong').addClass('active');
-        }, 400);
-        setTimeout(function () {
-            $('section .cont_inner ul li').addClass('active');
-        }, 1000);
-        customCursorEffect()
-        /* header스크롤 */
-        initHeaderScrollToggle()
-    })//fn
-</script>
+    <script>
+        $(function(){
+            setTimeout(function () {
+                $('section .cont_inner > p > span').addClass('active');
+            }, 0);
+            setTimeout(function () {
+                $('section .cont_inner > p > strong').addClass('active');
+            }, 400);
+            setTimeout(function () {
+                $('section .cont_inner ul li').addClass('active');
+            }, 1000);
+            customCursorEffect()
+            /* header스크롤 */
+            initHeaderScrollToggle()
+            customCursorEffect();
+
+            $('.tel').on('click', function (e) {
+                const href = $(this).attr('href');
+
+                // ✅ href가 tel:이 아니면 막는다 (안 쓸 수도 있음)
+                if (!href.startsWith('tel:')) {
+                    e.preventDefault();
+                }
+
+                // ✅ tel:일 경우엔 아무것도 하지 않고 브라우저에 맡긴다
+                // => return; 도 불필요하니 아예 함수 내부에 아무 동작도 하지 않게 두는 것이 제일 안전합니다.
+            });
+
+            $('.map').on('click', function () {
+                const isMobile = window.innerWidth <= 768;
+                const url = isMobile
+                ? 'https://m.place.naver.com/place/654854931/location?filter=location&selected_place_id=654854931'
+                : 'https://map.naver.com/p/entry/place/654854931?c=15.00,0,0,0,dh&placePath=/home?from=map&from=map&fromPanelNum=1&additionalHeight=76&timestamp=202506251720&locale=ko&svcName=map_pcv5&fromPanelNum=1&additionalHeight=76&timestamp=202506251709&locale=ko&svcName=map_pcv5';
+                
+                window.open(url, '_blank');
+            });
+        })//fn
+    </script>
     
 </body>
 </html>
