@@ -4,8 +4,8 @@ body { height: 100%; color: #000; font-family: var(--font-main); font-weight: 40
 /* 공통 */
 .mo { display: none; } 
 .tar { text-align: right !important; } 
-.tal { text-align: left !important; }
-.mo {display:none;} 
+.tal { text-align: left !important; } 
+.mo { display: none; } 
 
 .layout { width: 100%; max-width: 1400px; margin: 0 auto; padding-top: 80px; } 
 
@@ -84,8 +84,3 @@ body { height: 100%; color: #000; font-family: var(--font-main); font-weight: 40
 .step-desc > li::after { content: ''; position: absolute; right: 0; top: 0; width: 1px; height: 67px; background: #e6e6e6; } 
 .step-desc > li:last-child::after { display: none; } 
 .step-desc > li > p { position: absolute; bottom: 0; font-size: 22px; line-height: 150%; letter-spacing: -0.33px; } 
-
-/* bottom */
-#bottom a { color: #d9d9d9; font-family: 'Plus Jakarta Sans'; font-size: 16px; font-weight: 700; line-height: 148%; } 
-#bottom .top { position: relative; color: #fff; font-family: 'Plus Jakarta Sans'; font-size: 18px; font-weight: 800; line-height: 150%; } 
-#bottom .top::after { content: ''; position: absolute; top: 50%; transform: translateY(-50%); right: -23px; width: 15px; height: 15px; background-image: url(/assets/images/common/icon_split.png); background-repeat: no-repeat; background-size: 500px 500px; background-position: -50px -50px; } 
