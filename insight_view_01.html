@@ -25,36 +25,33 @@
 		}
 	</style>
 	<script>
-		$(function(){
-			/* date & time */
-			const today = new Date();
-			const year = String(today.getFullYear()); // YY (연도)
-			const month = today.toLocaleString('en-US', { month: 'short' }); // m (영문 월)
-			const day = String(today.getDate()).padStart(2, '0'); // dd (일)
+		$(function () {
+			let prevTime = '';
 
-			const formattedDate = `${year}.${month}.${day}`;
+			function updateClock() {
+				const now = new Date();
 
+				const hh = String(now.getHours()).padStart(2, '0');
+				const mm = String(now.getMinutes()).padStart(2, '0');
+				const ss = String(now.getSeconds()).padStart(2, '0');
+				const formatted = `${hh}:${mm}:${ss}`;
 
-			const hours = ('0' + today.getHours()).slice(-2); 
-			const minutes = ('0' + today.getMinutes()).slice(-2);
-			const seconds = ('0' + today.getSeconds()).slice(-2);
-			const formattime = hours + ':' + minutes  + ':' + seconds;
+				const $target = $('.visual_cont div strong');
+				const current = $target.text();
 
-			$('.visual_cont div strong').text(formattime);
+				// ✅ 현재 텍스트가 한글이 섞인 경우 강제로 되돌림
+				if (!/^\d{2}:\d{2}:\d{2}$/.test(current) || formatted !== prevTime) {
+				$target.text(formatted);
+				prevTime = formatted;
+				}
 
-			setInterval(function(){
-				const today = new Date();
-				const hours = ('0' + today.getHours()).slice(-2); 
-				const minutes = ('0' + today.getMinutes()).slice(-2);
-				const seconds = ('0' + today.getSeconds()).slice(-2);
-				const formattime = hours + ':' + minutes  + ':' + seconds;
+				requestAnimationFrame(updateClock);
+			}
 
-				$('.visual_cont div strong').text(formattime);
-			},1000);
-
-			customCursorEffect(); 
-
-		})
+			updateClock();
+			customCursorEffect();
+			initHeaderScrollToggle()
+		});
 		
 	</script>
 </head>
@@ -79,7 +76,7 @@
                 <!-- bottom -->
                 <div class="bottom">
                     <div>
-                        <a href="mailto:rianag@rianag.com">RIANAG@RIANAG.COM</a>
+                        <a href="/contact.html">RIANAG@RIANAG.COM</a>
                         <!-- <a href="http://daum.net" target="_blank">BLOG</a> -->
                     </div>
                     <a href="javascript:void(0);" class="download">BROCHURE DOWNLOAD</a>
@@ -103,7 +100,7 @@
 				</p>
 			</div>
 		</div>
-		<section>
+		<section class="light-section">
 			<div class="cont_inner">
 				<dl>
 					<dt class="visual_cont">
@@ -137,10 +134,10 @@
 				</dl>
 				<ul>
 					<li>
-						<figure><img class="lazy" data-src="assets/images/on_detail/1_1.png" alt=""></figure>
+						<figure><img class="lazy" data-src="/assets/images/on_detail/1_1.png" alt=""></figure>
 						<p>
 							<span>
-							사이몬 사이넥의 ‘Start with Why’에서는 우리가 생각하는 목표라고 생각하는 것에서도 차이가 있으며 좋은 목표가 따로<br/> 있다고 이야기합니다.
+							사이몬 사이넥의 ‘Start with Why’에서는 우리가 생각하는 목표라고 생각하는 것에서도 차이가 있으며 좋은 목표가 따로 있다고 이야기합니다.
 							</span>
 						</p>
 						<p>
@@ -155,15 +152,15 @@
 						</p>
 					</li>
 					<li>
-						<figure><img class="lazy" data-src="assets/images/on_detail/1_2.png" alt=""></figure>
+						<figure><img class="lazy" data-src="/assets/images/on_detail/1_2.png" alt=""></figure>
 						<p>
 							<span>
-								‘왜(Why)’에 집중하는 조직과 리더들이 다른 사람들의 감정적인 연결과 신뢰를 형성하여 영향력을 행사할 수 있다고 주장<br/>합니다.
+								‘왜(Why)’에 집중하는 조직과 리더들이 다른 사람들의 감정적인 연결과 신뢰를 형성하여 영향력을 행사할 수 있다고 주장합니다.
 							</span>
 						</p>
 						<p>
 							<span>
-								사람들이 왜 어떤 행동을 취하는지에 대한 근본적인 동기를 이해하는 것이 중요하다고 강조하며, "Golden Circle"이라는<br/> 개념을 도입하여 왜(Why), 어떻게(How), 그리고 무엇(What)의 질문에 대한 답을 찾는 방법을 제시합니다.
+								사람들이 왜 어떤 행동을 취하는지에 대한 근본적인 동기를 이해하는 것이 중요하다고 강조하며, "Golden Circle"이라는 개념을 도입하여 왜(Why), 어떻게(How), 그리고 무엇(What)의 질문에 대한 답을 찾는 방법을 제시합니다.
 							</span>
 						</p>
 						<p>
@@ -174,7 +171,7 @@
 
 					</li>
 					<li>
-						<figure><img class="lazy" data-src="assets/images/on_detail/1_3.png" alt=""></figure>
+						<figure><img class="lazy" data-src="/assets/images/on_detail/1_3.png" alt=""></figure>
 						<p><span>석공 두 명에게 묻습니다. ‘석공 일이 좋습니까?'</span></p>
 						<p>
 							<span>
@@ -192,7 +189,7 @@
 						</p>
 					</li>
 					<li>
-						<figure><img class="lazy" data-src="assets/images/on_detail/1_4.png" alt=""></figure>
+						<figure><img class="lazy" data-src="/assets/images/on_detail/1_4.png" alt=""></figure>
 						<p>
 							<span>
 								애니메이션 ‘원피스’에서 루피가 ‘해적왕이 되겠다.’는 ‘왜(Why)’를 발굴하여 같이 할 동료를 찾아, ‘내 동료가 돼라.’는 <br/>
@@ -209,7 +206,7 @@
 							<span>
 								하지만, 그 목적이 명확한지, 적확한지에 대해 생각해 볼 수 있는 책입니다.  이 책은 ‘왜(Why)’가 성공의 핵심이라는 점을  <br/>
 								강조하며, 독자들에게 리더십과 조직의 관점에서 새로운 시각과 통찰력을 제공합니다.  <br/>
- 								‘왜(Why)’에 대한 깊은 이해와 그 원동력을 발견함으로써, 우리는 더욱 의미 있는 삶과 향상된 성과를 이뤄낼 수 있는 길을  <br/>
+ 								‘왜(Why)’에 대한 깊은 이해와 그 원동력을 발견함으로써, 우리는 더욱 의미 있는 삶과 향상된 성과를 이뤄낼 수 있는 길을 
 								열어갈 수 있습니다.
 							</span>
 						</p>

@@ -20,34 +20,32 @@
 	<script src="./assets/js/on_detail.js"></script>
 
 	<script>
-		$(function(){
-			/* date & time */
-			const today = new Date();
-			const year = String(today.getFullYear()); // YY (연도)
-			const month = today.toLocaleString('en-US', { month: 'short' }); // m (영문 월)
-			const day = String(today.getDate()).padStart(2, '0'); // dd (일)
+		$(function () {
+			let prevTime = '';
 
-			const formattedDate = `${year}.${month}.${day}`;
+			function updateClock() {
+				const now = new Date();
 
+				const hh = String(now.getHours()).padStart(2, '0');
+				const mm = String(now.getMinutes()).padStart(2, '0');
+				const ss = String(now.getSeconds()).padStart(2, '0');
+				const formatted = `${hh}:${mm}:${ss}`;
 
-			const hours = ('0' + today.getHours()).slice(-2); 
-			const minutes = ('0' + today.getMinutes()).slice(-2);
-			const seconds = ('0' + today.getSeconds()).slice(-2);
-			const formattime = hours + ':' + minutes  + ':' + seconds;
+				const $target = $('.visual_cont div strong');
+				const current = $target.text();
 
-			$('.visual_cont div strong').text(formattime);
+				// ✅ 현재 텍스트가 한글이 섞인 경우 강제로 되돌림
+				if (!/^\d{2}:\d{2}:\d{2}$/.test(current) || formatted !== prevTime) {
+				$target.text(formatted);
+				prevTime = formatted;
+				}
 
-			setInterval(function(){
-				const today = new Date();
-				const hours = ('0' + today.getHours()).slice(-2); 
-				const minutes = ('0' + today.getMinutes()).slice(-2);
-				const seconds = ('0' + today.getSeconds()).slice(-2);
-				const formattime = hours + ':' + minutes  + ':' + seconds;
-
-				$('.visual_cont div strong').text(formattime);
-			},1000);
-			customCursorEffect(); 
-		})
+				requestAnimationFrame(updateClock);
+			}
+			initHeaderScrollToggle()
+			updateClock();
+			customCursorEffect();
+		});
 	</script>
 		<style>
 		.detail_visual {background-image:url('./assets/images/on_detail/visual_02.png');}
@@ -77,7 +75,7 @@
                 <!-- bottom -->
                 <div class="bottom">
                     <div>
-                        <a href="mailto:rianag@rianag.com">RIANAG@RIANAG.COM</a>
+                        <a href="/contact.html">RIANAG@RIANAG.COM</a>
                         <!-- <a href="http://daum.net" target="_blank">BLOG</a> -->
                     </div>
                     <a href="javascript:void(0);" class="download">BROCHURE DOWNLOAD</a>
@@ -100,7 +98,7 @@
 				</p>
 			</div>
 		</div>
-		<section>
+		<section class="light-section">
 			<div class="cont_inner">
 				<dl>
 					<dt class="visual_cont">
@@ -137,20 +135,17 @@
 						<figure><img class="lazy" data-src="/assets/images/on_detail/1.png" alt=""></figure>
 						<p>
 							<span>
-							비내리던 토요일, 대통령이 없을 때마다 내한했던,<br>
- 							‘무정부 요정’이라는 콜드플레이의 내한 공연에 다녀왔습니다.
+							비내리던 토요일, 대통령이 없을 때마다 내한했던, ‘무정부 요정’이라는 콜드플레이의 내한 공연에 다녀왔습니다.
 							</span>
 						</p>
 						<p>
 							<span>
-							10년 이상 좋아했던 밴드의 공연이라 설레지 않을 수 없었습니다.<br/>
-							낮엔 비가 추적추적 내리고 있었습니다. ‘공연땐그칠거야’ 하면서 고양 종합운동장으로 달려갔습니다.
+								10년 이상 좋아했던 밴드의 공연이라 설레지 않을 수 없었습니다. 낮엔 비가 추적추적 내리고 있었습니다. ‘공연땐그칠거야’ 하면서 고양 종합운동장으로 달려갔습니다.
 							</span>
 						</p>
 						<p>
 							<span>
-								콜드플레이는 당연히 음악이 좋은 밴드지만, 공연은 단순히 좋은 음악을 보여주는 데 그치지 않고,<br/> 
-								공연전문가라고 느껴질만큰 색다른 면이 있었습니다.
+								콜드플레이는 당연히 음악이 좋은 밴드지만, 공연은 단순히 좋은 음악을 보여주는 데 그치지 않고, 공연전문가라고 느껴질만큰 색다른 면이 있었습니다.
 							</span>
 						</p>
 						<p><span>비주얼효과와 퍼포먼스, 게스트들과 어우러져 하나의 스토리를 담아냈습니다.</span></p>
@@ -159,9 +154,8 @@
 						<figure><img class="lazy" data-src="/assets/images/on_detail/2.png" alt=""></figure>
 						<p>
 							<span>
-								때마침 비가 멈추고, 콜드플레이가 공연을 하기 전에 게스트들이 등장했습니다. <br/>
-								엘리아나와 트와이스가 그 주인공입니다. 공연시작 전 두시간가까이 콜드플레이의 공연을 예열하며,<br/>
-								멋진 무대를 보여주었습니다.
+								때마침 비가 멈추고, 콜드플레이가 공연을 하기 전에 게스트들이 등장했습니다. 엘리아나와 트와이스가 그 주인공입니다.<br/> 
+								공연시작 전 두시간가까이 콜드플레이의 공연을 예열하며, 멋진 무대를 보여주었습니다.
 							</span>
 						</p>
 						<p>
@@ -172,19 +166,15 @@
 						</p>
 						<p>
 							<span>
-								그리고, 이전에도 몇번K-POP과의 콜라보레이션을 진행했던 콜드플레이는<br/>
-								트와이스를 게스트로 불렀습니다.<br/>
-								아이돌 무대를 평소에 잘 보지않았지만, 트와이스는 열정적이었고, 아름답고 화려했습니다
+								그리고, 이전에도 몇번K-POP과의 콜라보레이션을 진행했던 콜드플레이는 트와이스를 게스트로 불렀습니다.<br/>
+								아이돌 무대를 평소에 잘 보지않았지만, 트와이스는 열정적이었고, 아름답고 화려했습니다.
 							</span>
 						</p>
-
-					</li>
-					<li>
-						<figure><img class="lazy" data-src="/assets/images/on_detail/3.png" alt=""></figure>
-						<p><span>콜드플레이의 공연중에는또하나의 게스트, BTS의 진(Jin)이 등장합니다.</span></p>
 						<p>
 							<span>
-								공연중에  콜드플레이는 팬들의 플랜카드를 읽어주는 시간을 갖습니다. 그리고, 그중에한명BTS의 <br/>진(Jin)을 발견하고, 그를 무대로 초대합니다.
+								콜드플레이의 공연중에는또하나의 게스트, BTS의 진(Jin)이 등장합니다.<br/>
+								공연중에  콜드플레이는 팬들의 플랜카드를 읽어주는 시간을 갖습니다. <br/>
+								그리고, 그중에한명BTS의 진(Jin)을 발견하고, 그를 무대로 초대합니다.
 							</span>
 						</p>
 						<p>
@@ -193,19 +183,20 @@
 								단순한 게스트가 아닌 게스트로 스토리를 만드는 형식이 새롭고 즐거웠습니다. 
 							</span>
 						</p>
+
 					</li>
 					<li>
 						<figure><img class="lazy" data-src="/assets/images/on_detail/4.png" alt=""></figure>
 						<p>
 							<span>
 								그리고 비주얼 퍼포먼스도 남달랐습니다.<br/>
-								콜드플레이는 공연 시작 전 LED 팔찌와 문글래스라는 안경을 나눠주었는데, LED팔찌는 음악의 리듬
-								<br/>에 맞춰 색깔이 바뀌고, 리듬을 타기도 하고, 관객석에 하트를 만들기도 했습니다
+								콜드플레이는 공연 시작 전 LED 팔찌와 문글래스라는 안경을 나눠주었는데, LED팔찌는 음악의 리듬에 맞춰 색깔이 <br/> 바뀌
+								고, 리듬을 타기도 하고, 관객석에 하트를 만들기도 했습니다.
 							</span>
 						</p>
 						<p>
 							<span>
-								문글래스는 빛의 왜곡을 이용한 일종의 썬글라스 형태로 안경을 썼을때 조명을 하트나<br/> 
+								문글래스는 빛의 왜곡을 이용한 일종의 썬글라스 형태로 안경을 썼을때 조명을 하트나 <br/>
 								다이아몬드 형태로 보이게 합니다.
 							</span>
 						</p>
@@ -216,6 +207,32 @@
 							</span>
 						</p>
 					</li>
+					<li>
+						<figure><img class="lazy" data-src="/assets/images/on_detail/5.png" alt=""></figure>
+						<p>
+							<span>
+								콜드플레이는 환경운동가로서의 면모도 보여줍니다. 생분해 가능한 식물성 소재로 만들어진 LED를 사용하고, 재활용 소재
+								로 만들어진 무대장치 등을 사용하며,<br/>
+								공연 중 환경 활동에 대한 기부 등을 디스플레이로 보여주며, 지구의 보호에 진심인 콜드플레이를 알아갈 수 있었습니다.</span></p>
+						<p>
+							<span>
+								수많은 명곡을 열창했습니다. Viva La Vida, Paradaise, Yellow, A Full of Sky, Something Just Like this, Fix You 많
+								은 곡들을 연주하고, 열창하며 콜드플레이만의 스토리를 담아냈습니다.
+							</span>
+						</p>
+					</li>
+					<li>
+						<figure><img class="lazy" data-src="/assets/images/on_detail/3.png" alt=""></figure>
+						<p>
+							<span>
+								게스트, 그리고, 무대장치, 그리고, LED팔찌, 문글래스와 같은 소품, 환경보호 메시지,  색색깔 커다란 풍선 등 치밀한 준비
+								와 연출로 콜드플레이만의 스토리를 담아내는 것이 인상깊었습니다.<br/>
+								그리고, 콜드플레이의 공연을 함께하며 오늘 하루가 내 삶의 또 하나의 멋진 날로 남았습니다.<br/>
+								가끔은 멋진 음악과 공연을 통해 일상에서 영감을 얻고 새롭고 신선한 경험을 해보는 것은 어떨까요?
+							</span>
+						</p>
+					</li>
+
 					<li class="mo">
 						<p>
 							<i>#COLDPLAY</i>
