@@ -2,6 +2,7 @@
 .cont_inner {width:1400px; margin:0 auto;}
 em,i {font-style: normal;}
 .mo {display:none;}
+body {overflow:hidden;}
 #wrap {overflow:visible;}
 
 /* detail_visual */
