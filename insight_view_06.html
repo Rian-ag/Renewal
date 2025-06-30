@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIANAG_insight_view_06</title>
+    <!-- CSS -->
+	<link rel="stylesheet" href="/assets/css/common.css">
+	<link rel="stylesheet" href="/assets/css/ui.css">
+    <link rel="stylesheet" href="/assets/css/swiper.css">
+	<link rel="stylesheet" href="./assets/css/pc_on_detail.css" media="(min-width: 769px)">
+	<link rel="stylesheet" href="./assets/css/mo_on_detail.css" media="(max-width: 768px)">
+    <script src="/assets/js/jquery-3.7.1.min.js"></script>
+	<script src="/assets/js/lazyload.js"></script>
+	<script src="./assets/js/lenis.min.js"></script>
+	<script src="/assets/js/common.js" defer></script>
+    <script src="/assets/js/swiper.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+	<script src="./assets/js/on_detail.js"></script>
+
+	<script>
+		$(function () {
+			let prevTime = '';
+
+			function updateClock() {
+				const now = new Date();
+
+				const hh = String(now.getHours()).padStart(2, '0');
+				const mm = String(now.getMinutes()).padStart(2, '0');
+				const ss = String(now.getSeconds()).padStart(2, '0');
+				const formatted = `${hh}:${mm}:${ss}`;
+
+				const $target = $('.visual_cont div strong');
+				const current = $target.text();
+
+				// ✅ 현재 텍스트가 한글이 섞인 경우 강제로 되돌림
+				if (!/^\d{2}:\d{2}:\d{2}$/.test(current) || formatted !== prevTime) {
+				$target.text(formatted);
+				prevTime = formatted;
+				}
+
+				requestAnimationFrame(updateClock);
+			}
+			initHeaderScrollToggle()
+			updateClock();
+			customCursorEffect();
+		});
+	</script>
+		<style>
+		.detail_visual {background-image:url('./assets/images/on_detail/vi_06.png');}
+		@media screen and (min-width: 769px) {
+			section .cont_inner > ul li:nth-of-type(1) figure,  section .cont_inner > ul li:nth-of-type(3) figure{width:930px !important;}
+		}
+	</style>
+</head>
+<body class="fadeout">
+    <div id="wrap" class="wrap">
+        <!-- header -->
+		<header class="type3">
+			<div class="inner">
+				<a href="javascript:void(0);" onclick="goBack();">BACK</a>
+				<h1><img src="/assets/images/common/h1_logo.png" alt="RIAN" /></h1>
+				<button class="btn_ham">site map</button>
+			</div>
+
+            <div class="site_map">
+                <ul>
+                    <li><a href="/about.html">About</a></li>
+                    <li><a href="/project.html">Works</a></li>
+                    <li><a href="/insight_list.html">What's on</a></li>
+                    <li><a href="/join.html">Join Our Team</a></li>
+                    <li><a href="/contact.html">Contact</a></li>
+                </ul>
+                <!-- bottom -->
+                <div class="bottom">
+                    <div>
+                        <a href="/contact.html">RIANAG@RIANAG.COM</a>
+                        <!-- <a href="http://daum.net" target="_blank">BLOG</a> -->
+                    </div>
+                    <a href="javascript:void(0);" class="download">BROCHURE DOWNLOAD</a>
+                </div>
+                <!-- //bottom -->
+            </div>
+		</header>
+		<!-- //header -->
+
+		<div class="detail_visual">
+			<div class="cont_inner">
+				<em>일상</em>
+				<ul>
+					<li><span>터널 하나만 지나면 나오는</span></li>
+					<li><span>새로운 풍경..</span></li>
+				</ul>
+				<p class="pc">
+					<i>#Real한강뷰</i>
+					<i>#힐링타임</i>
+					<i>#커피타임</i>
+				</p>
+			</div>
+		</div>
+		<section class="light-section">
+			<div class="cont_inner">
+				<dl>
+					<dt class="visual_cont">
+						<a href="./insight_list.html"></a>
+						<div>
+							<strong></strong>
+							<p>37.559127°N,<br/> 126.860986°E RIAN, <br/> SEOUL,  KOREA</p>
+						</div>
+					</dt>
+					<dd>
+						<div class="on_detail_swiper">
+							<div class="on_detail swiper-container">
+								<div class="swiper-wrapper">
+									<div class="swiper-slide">
+										<a href="/insight_view_06.html"><p class="active"><img src="/assets/images/on_detail/sw6.png" alt=""></p></a>
+									</div>
+									<div class="swiper-slide">
+										<a href="/insight_view_07.html"><p><img src="/assets/images/on_detail/sw7.png" alt=""></p></a>
+									</div>
+									<div class="swiper-slide">
+										<a href="/insight_view_08.html"><p><img src="/assets/images/on_detail/sw8.png" alt=""></p></a>
+									</div>
+									<div class="swiper-slide">
+										<a href="/insight_view_01.html"><p><img src="/assets/images/on_detail/sw1.png" alt=""></p></a>
+									</div>
+									<div class="swiper-slide">
+										<a href="/insight_view_02.html"><p><img src="/assets/images/on_detail/sw2.png" alt=""></p></a>
+									</div>
+									<div class="swiper-slide">
+										<a href="/insight_view_03.html"><p><img src="/assets/images/on_detail/sw3.png" alt=""></p></a>
+									</div>
+									<div class="swiper-slide">
+										<a href="/insight_view_04.html"><p><img src="/assets/images/on_detail/sw4.png" alt=""></p></a>
+									</div>
+									<div class="swiper-slide">
+										<a href="/insight_view_05.html"><p><img src="/assets/images/on_detail/sw5.png" alt=""></p></a>
+									</div>
+								</div>
+							</div>
+							<div class="custom-cursor">Drag</div>
+						</div>
+					</dd>
+				</dl>
+				<ul>
+					<li>
+						<figure><img class="lazy" data-src="/assets/images/on_detail/6_1.png" alt=""></figure>
+						<p>
+							<span>
+							점심 식사 후 노곤한 몸을 이끌고,<br/>
+							모니터 화면만을 보면서 무미건조해진 눈을 위해, <br/>
+							점심시간을 이용해 잠시 잠깐의 힐링 하고 싶을 때가 있잖아요.<br/>
+							오전 11시 30분<br/>
+							가벼운 마음으로 1층에서 커피 한 잔을<br/>
+							사서 가벼운 마음으로 염강나들목 향해 걸어 갑니다
+							</span>
+						</p>
+					</li>
+					<li>
+						<figure><img class="lazy" data-src="/assets/images/on_detail/6_2.png" alt=""></figure>
+						<p>
+							<span>
+								한 눈에 다 담을 수 없는 탁 트인 한강뷰
+							</span>
+						</p>
+						<p>
+							<span>
+								터널을 빠져나오자마자 부는 강바람이<br/>
+								무거웠던 마음까지 가볍게 날려주는 기분입니다.
+							</span>
+						</p>
+						<p>
+							<span>
+								멀리서 들려오는 자전거 소리 마저 배경음악처럼 들리는 오후<br/>
+								누구에게나 이런 잠깐의 힐링,<br/>
+								필요하잖아요.
+							</span>
+						</p>
+					</li>
+					<li class="mo">
+						<p>
+							<i>#Real한강뷰</i>
+							<i>#힐링타임</i>
+							<i>#커피타임</i>
+						</p>
+					</li>
+				</ul>
+			</div>
+		</section>
+
+
+
+		<!-- bottom -->
+		<div id="bottom" class="type3">
+            <!-- <a href="http://daum.net" target="_blank">BLOG</a> -->
+            <span>© RIANag INC. All Rights Reserved.</span>
+            <button class="top">Back to Top</button>
+		</div>
+		<!-- //bottom -->
+		<div class="custom-cursor dot-cursor"></div>
+    </div>
+</body>
+</html>
