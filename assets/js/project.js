@@ -12,6 +12,23 @@ const project = {
     ],
 };
 
+let mainSwiper = null;
+let thumbSwiper = null;
+
+const $industry = $('.industry');
+const $date = $('.date');
+const $type = $('.type');
+
+function isMobile() {
+    return $(window).width() <= 768;
+}
+function updateThumbnailState(index) {
+    const thumbnails = document.querySelectorAll('.thumbnail');
+    thumbnails.forEach((el, i) => {
+        el.classList.toggle('active', i === index);
+    });
+}
+
 function updateTitleAndSubtitle(index) {
     const $title = $('.title');
     const $subtitle = $('.sub-title');
@@ -73,6 +90,101 @@ function updateProjectInfo(index) {
     $('.fp-dot').removeClass('active');
     $(`.fp-dot[data-index="${index}"]`).addClass('active');
     $('.fp-navi.pc span').text((index + 1).toString().padStart(2, '0'));
+}
+
+function slideToCenter(index) {
+    const viewer = document.querySelector('.thumbnail-viewer');
+    const thumbnails = document.querySelectorAll('.thumbnail');
+    if (!viewer || thumbnails.length === 0) return;
+
+    const target = thumbnails[index];
+    const slideWidth = target.offsetWidth;
+    const gap = parseFloat(getComputedStyle(thumbnails[0]).marginRight || 0);
+    const offset = (slideWidth + gap) * index;
+    viewer.style.transform = `translateX(-${offset}px)`;
+}
+function initThumbnailSwiper() {
+    thumbSwiper = new Swiper('.thumbnail-swiper', {
+        slidesPerView: 1,
+        centeredSlides: true,
+        spaceBetween: 33,
+        allowTouchMove: false,
+        watchSlidesProgress: true,
+        on: {
+            init: function () {
+                const index = this.activeIndex;
+                updateThumbnailState(index);
+                slideToCenter(index);
+            },
+            slideChange: function () {
+                const index = this.activeIndex;
+                updateThumbnailState(index);
+                slideToCenter(index);
+            },
+        },
+    });
+}
+
+function initMainSwiper() {
+    const swiperOptions = {
+        allowTouchMove: true,
+        simulateTouch: true,
+        grabCursor: true,
+        scrollbar: {
+            el: '.swiper-scrollbar',
+            draggable: true,
+        },
+        on: {
+            init: function () {
+                const index = this.activeIndex;
+                updateTitleAndSubtitle(index);
+                $industry.text(project.industry[index]);
+                $date.text(project.date[index]);
+                $type.text(project.type[index]);
+            },
+            slideChange: function () {
+                thumbSwiper?.slideTo(this.activeIndex);
+            },
+            slideChangeTransitionEnd: function () {
+                const index = this.activeIndex;
+                updateTitleAndSubtitle(index);
+                $industry.text(project.industry[index]);
+                $date.text(project.date[index]);
+                $type.text(project.type[index]);
+            },
+        },
+    };
+
+    // ✅ thumbSwiper가 존재할 때만 thumbs 옵션 추가
+    if (thumbSwiper) {
+        swiperOptions.thumbs = { swiper: thumbSwiper };
+    }
+
+    mainSwiper = new Swiper('.main-swiper', swiperOptions);
+}
+
+function destroySwiper() {
+    if (mainSwiper) {
+        mainSwiper.destroy(true, true);
+        mainSwiper = null;
+    }
+    if (thumbSwiper) {
+        thumbSwiper.destroy(true, true);
+        thumbSwiper = null;
+    }
+}
+let prevIsMobile = isMobile();
+
+function handleLayout() {
+    destroySwiper(); // mainSwiper, thumbSwiper 모두 destroy
+
+    initThumbnailSwiper(); // ✅ 항상 썸네일 Swiper는 초기화
+
+    if (isMobile()) {
+        initMainSwiper(); // ✅ 모바일에서만 mainSwiper 사용
+    } else {
+        initFullpage(); // ✅ PC에서는 fullpage 사용
+    }
 }
 
 function initListItemBehavior() {
@@ -192,8 +304,22 @@ $(window).on('load', function () {
             $lists.append(html);
         });
 
-        if (window.innerWidth > 768) initListItemBehavior();
+        if (!isMobile()) initListItemBehavior();
     });
 
-    initFullpage();
+    handleLayout();
+    $(window).on('resize', handleLayout);
+});
+
+$(document).on('click', '.project-list-button', function () {
+    if (isMobile()) {
+        $('.project-viewer').addClass('active');
+        $('body').css('overflow', 'hidden'); // 스크롤 막기
+    }
+});
+$(document).on('click', '.project-viewer .close', function () {
+    if (isMobile()) {
+        $('.project-viewer').removeClass('active');
+        $('body').css('overflow', 'auto');
+    }
 });
