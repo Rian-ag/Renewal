@@ -260,7 +260,16 @@ function initFullpage() {
             <em>${sections.length.toString().padStart(2, '0')}</em>
         </div>
     `);
-
+ ScrollTrigger.create({
+        trigger: '.project-viewer',
+        start: 'top center', // 또는 'top bottom'도 가능
+        onEnter: () => {
+            $('#bottom').css('background', '#000');
+        },
+        onLeaveBack: () => {
+            $('#bottom').css('background', 'transparent'); // 필요시 원래대로
+        },
+    });
     function scrollToSection(index) {
         if (index < 0 || index >= sections.length) return;
         currentIndex = index;
