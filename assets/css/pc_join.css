@@ -7,7 +7,10 @@ body { height: 100%; color: #000; font-family: var(--font-main); font-weight: 40
 .tal { text-align: left !important; } 
 .mo { display: none; } 
 
-.layout { width: 100%; max-width: 1400px; margin: 0 auto; padding-top: 80px; } 
+.layout { width: 100%; max-width: 1400px; margin: 0 auto; padding-top: 80px;} 
+@media (max-width: 1480px){
+    .layout{max-width: 100%;padding: 0 40px;}
+}
 
 .section-container { display: flex; width: 100%; padding: 140px 0; flex-direction: column; gap: 200px; } 
 .title { font-family: 'Plus Jakarta Sans'; font-size: 60px; font-weight: 700; line-height: 102%; letter-spacing: -1.2px; } 
@@ -30,7 +33,7 @@ body { height: 100%; color: #000; font-family: var(--font-main); font-weight: 40
 /* benefit */
 .benefit-container { display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap; } 
 .benefit-item { width: calc((100% - 80px) / 3); cursor: pointer; } 
-.benefit-item .img-wrapper { height: 620px; overflow: hidden; } 
+.benefit-item .img-wrapper { overflow: hidden; } 
 .benefit-item img { display: block; width: 100%; object-fit: cover; overflow: hidden; transition: transform 0.5s ease; } 
 .benefit-item:hover img { transform: scale(1.15); } 
 .benefit-item > ol { margin-top: 80px; display: flex; flex-direction: column; gap: 60px; } 
