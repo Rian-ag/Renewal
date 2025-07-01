@@ -1,14 +1,22 @@
 @import url('../css/font.css');* { box-sizing: border-box; } 
 :root { --font-main: 'Pretendard', sans-serif; } 
-body { height: 100%; color: #000; font-family: var(--font-main); font-weight: 400; overflow-x: hidden; } 
+html,
+body { overflow: auto; } 
+#wrap { overflow: auto; } 
+body { height: 100%; color: #000; font-family: var(--font-main); font-weight: 400; } 
 /* 공통 */
 .mo { display: none; } 
 .tar { text-align: right !important; } 
 .tal { text-align: left !important; } 
 .mo { display: none; } 
-
+* { word-break: keep-all; } 
 .layout { width: 100%; max-width: 1400px; margin: 0 auto; padding-top: 80px; } 
-
+@media (max-width: 1480px){
+ .layout { max-width: 100%; padding: 0 40px; } 
+ }
+@media (max-width: 1000px) { 
+ .layout { width: 1000px;} 
+ }
 .section-container { display: flex; width: 100%; padding: 140px 0; flex-direction: column; gap: 200px; } 
 .title { font-family: 'Plus Jakarta Sans'; font-size: 60px; font-weight: 700; line-height: 102%; letter-spacing: -1.2px; } 
 .content { margin-top: 100px; } 
@@ -28,10 +36,11 @@ body { height: 100%; color: #000; font-family: var(--font-main); font-weight: 40
 .main .sub-wrapper p + p { margin-top: 16px; } 
 
 /* benefit */
-.benefit-container { display: flex; justify-content: space-between; gap: 40px; flex-wrap: wrap; } 
-.benefit-item { width: calc((100% - 80px) / 3); cursor: pointer; } 
-.benefit-item .img-wrapper { height: 620px; overflow: hidden; } 
-.benefit-item img { display: block; width: 100%; object-fit: cover; overflow: hidden; transition: transform 0.5s ease; } 
+.benefit-container { display: flex; justify-content: space-between; gap: 40px; flex-wrap: nowrap; } 
+.benefit-item { width: 440px; min-width: 280px; cursor: pointer; } 
+.benefit-item .img-wrapper { overflow: hidden; } 
+.benefit-item img { display: block; width: 100%; object-fit: cover; transition: transform 0.5s ease; } 
+
 .benefit-item:hover img { transform: scale(1.15); } 
 .benefit-item > ol { margin-top: 80px; display: flex; flex-direction: column; gap: 60px; } 
 .benefit-item > ol strong { color: #000; font-size: 24px; font-weight: 700; line-height: 150%; letter-spacing: -0.36px; } 
@@ -43,7 +52,7 @@ body { height: 100%; color: #000; font-family: var(--font-main); font-weight: 40
 .board_type_toggle > dt > button { position: relative; display: block; width: 100%; height: 100%; color: #000; font-family: 'Plus Jakarta Sans'; font-size: 32px; font-weight: 700; letter-spacing: -0.64px; cursor: pointer; } 
 .board_type_toggle > dt > button::after { content: ''; position: absolute; width: 20px; height: 20px; right: 0; top: 50%; transform: translateY(-50%); background: url('/assets/images/join/toggle.svg'); background-repeat: no-repeat; background-position: center; background-size: cover; transition: all 0.3s ease; } 
 .board_type_toggle > dt > button.active::after { transform: translateY(-50%) rotate(180deg); /* 열린 상태: 위로 */}
-.board_type_toggle > dd { height: 0; line-height: 1.5; overflow: hidden; transition: height 0.3s ease; overflow: hidden; } 
+.board_type_toggle > dd { height: 0; line-height: 1.5; transition: height 0.3s ease; overflow: hidden; } 
 .board_type_toggle > dd > ul { display: flex; flex-direction: column; padding: 40px 0; gap: 40px; color: #464646; } 
 .board_type_toggle > dd > ul > li > strong { font-size: 24px; font-weight: 700; line-height: 130%; letter-spacing: -0.36px; } 
 .board_type_toggle > dd > ul > li > strong + p { margin-top: 16px; } 

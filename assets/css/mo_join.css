@@ -22,6 +22,7 @@ body { height: 100%; font-family: var(--font-main); font-weight: 400; font-style
 .tal { text-align: left !important; } 
 .pc { display: none; } 
 
+* { word-break: keep-all; } 
 .layout { width: 100vw; padding-top: 8rem; /* padding: 8rem 3rem 0; */}
 .section-container { display: flex; flex-direction: column; gap: 0; } 
 .section-container > section { padding-bottom: 16rem; } 
@@ -36,8 +37,7 @@ body { height: 100%; font-family: var(--font-main); font-weight: 400; font-style
 .main .title-wrapper h2 { font-size: 3.2rem; font-weight: 700; line-height: 102%; letter-spacing: -0.64px; } 
 .main .title-wrapper strong { display: block; margin-top: 2rem; font-size: 4.8rem; font-weight: 800; line-height: 102%; letter-spacing: -0.96px; } 
 .main .title-wrapper strong br { display: block; } 
-/* .main .sub-wrapper .head { margin-top: 12rem; font-size: 2.4rem; } 
-.main .sub-wrapper .head > p { font-family: 'Plus Jakarta Sans'; font-weight: 700; line-height: 130%; letter-spacing: -0.48px; } */
+
 .main .sub-wrapper .subhead { margin-top: 4rem; } 
 .main .sub-wrapper .subhead p { font-family: var(--font-main); color: #808080; font-feature-settings: 'cpsp' on; font-size: 1.6rem; line-height: 150%; } 
 .main .sub-wrapper p + p { margin-top: 1.6rem; } 
@@ -58,7 +58,7 @@ body { height: 100%; font-family: var(--font-main); font-weight: 400; font-style
 .board_type_toggle > dt { border-top: 1px solid rgba(0, 0, 0, 0.2); position: relative; height: 8rem; display: flex; justify-content: flex-start; align-items: center; } 
 .board_type_toggle > dt > button { position: relative; display: block; width: 100%; height: 100%; color: #000; font-family: 'Plus Jakarta Sans'; font-size: 2rem; font-style: normal; font-weight: 700; letter-spacing: -0.64px; cursor: pointer; } 
 .board_type_toggle > dt > button::after { content: ''; position: absolute; width: 2rem; height: 2rem; right: 0; top: 50%; transform: translateY(-50%); background: url('/assets/images/join/toggle.svg'); background-repeat: no-repeat; background-position: center; background-size: cover; transition: all 0.3s ease; } 
-.board_type_toggle > dt > button.active::after { transform: translateY(-50%) rotate(180deg); /* 열린 상태: 위로 */}
+.board_type_toggle > dt > button.active::after { transform: translateY(-50%) rotate(180deg);}
 .board_type_toggle > dd { height: 0; line-height: 1.5; overflow: hidden; transition: height 0.3s ease; overflow: hidden; } 
 .board_type_toggle > dd > ul { display: flex; flex-direction: column; padding: 4rem 0; gap: 4rem; } 
 .board_type_toggle > dd > ul > li > strong { font-size: 2rem; font-weight: 700; line-height: 130%; letter-spacing: -0.3px; color: #464646; } 
@@ -104,6 +104,4 @@ body { height: 100%; font-family: var(--font-main); font-weight: 400; font-style
 .step-desc > li::after { content: ''; position: absolute; right: 0; top: 0; width: 1px; height: 6rem; background: #e6e6e6; } 
 .step-desc > li:last-child::after { display: none; } 
 .step-desc > li > p { position: absolute; bottom: 0; font-size: 1.4rem; line-height: 150%; letter-spacing: -0.21px; font-family: var(--font-main); } 
-/* bottom */
-/* #bottom { padding: 0 3rem; } 
-#bottom a { color: #d9d9d9; font-size: 1.2rem; font-weight: 700; line-height: 148%; }  */
+

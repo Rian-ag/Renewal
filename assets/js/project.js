@@ -90,6 +90,19 @@ function updateProjectInfo(index) {
     $('.fp-dot').removeClass('active');
     $(`.fp-dot[data-index="${index}"]`).addClass('active');
     $('.fp-navi.pc span').text((index + 1).toString().padStart(2, '0'));
+
+    // ✅ PC에서도 썸네일 위치 이동 및 상태 갱신
+    const $thumbnailViewer = $('.thumbnail-viewer');
+    const $thumbnails = $('.thumbnail');
+    const thumbHeight = $thumbnails.outerHeight();
+
+    gsap.to($thumbnailViewer, {
+        y: -(index * thumbHeight),
+        duration: 0.6,
+        ease: 'ease',
+    });
+
+    $thumbnails.removeClass('active').eq(index).addClass('active');
 }
 
 function slideToCenter(index) {
@@ -103,7 +116,8 @@ function slideToCenter(index) {
     const offset = (slideWidth + gap) * index;
     viewer.style.transform = `translateX(-${offset}px)`;
 }
-function initThumbnailSwiper() {
+
+function initSwiper() {
     thumbSwiper = new Swiper('.thumbnail-swiper', {
         slidesPerView: 1,
         centeredSlides: true,
@@ -123,16 +137,17 @@ function initThumbnailSwiper() {
             },
         },
     });
-}
 
-function initMainSwiper() {
-    const swiperOptions = {
+    mainSwiper = new Swiper('.main-swiper', {
         allowTouchMove: true,
         simulateTouch: true,
         grabCursor: true,
         scrollbar: {
             el: '.swiper-scrollbar',
             draggable: true,
+        },
+        thumbs: {
+            swiper: thumbSwiper,
         },
         on: {
             init: function () {
@@ -143,7 +158,7 @@ function initMainSwiper() {
                 $type.text(project.type[index]);
             },
             slideChange: function () {
-                thumbSwiper?.slideTo(this.activeIndex);
+                thumbSwiper.slideTo(this.activeIndex);
             },
             slideChangeTransitionEnd: function () {
                 const index = this.activeIndex;
@@ -153,14 +168,7 @@ function initMainSwiper() {
                 $type.text(project.type[index]);
             },
         },
-    };
-
-    // ✅ thumbSwiper가 존재할 때만 thumbs 옵션 추가
-    if (thumbSwiper) {
-        swiperOptions.thumbs = { swiper: thumbSwiper };
-    }
-
-    mainSwiper = new Swiper('.main-swiper', swiperOptions);
+    });
 }
 
 function destroySwiper() {
@@ -173,17 +181,15 @@ function destroySwiper() {
         thumbSwiper = null;
     }
 }
-let prevIsMobile = isMobile();
+// let prevIsMobile = isMobile();
 
 function handleLayout() {
-    destroySwiper(); // mainSwiper, thumbSwiper 모두 destroy
-
-    initThumbnailSwiper(); // ✅ 항상 썸네일 Swiper는 초기화
-
     if (isMobile()) {
-        initMainSwiper(); // ✅ 모바일에서만 mainSwiper 사용
+        destroySwiper();
+        initSwiper();
     } else {
-        initFullpage(); // ✅ PC에서는 fullpage 사용
+        destroySwiper();
+        initFullpage();
     }
 }
 
@@ -254,7 +260,16 @@ function initFullpage() {
             <em>${sections.length.toString().padStart(2, '0')}</em>
         </div>
     `);
-
+ ScrollTrigger.create({
+        trigger: '.project-viewer',
+        start: 'top center', // 또는 'top bottom'도 가능
+        onEnter: () => {
+            $('#bottom').css('background', '#000');
+        },
+        onLeaveBack: () => {
+            $('#bottom').css('background', 'transparent'); // 필요시 원래대로
+        },
+    });
     function scrollToSection(index) {
         if (index < 0 || index >= sections.length) return;
         currentIndex = index;
