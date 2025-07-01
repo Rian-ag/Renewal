@@ -76,7 +76,7 @@
       }
 
       isScrolling = true;
-      const height = $(window).height(); // 브라우저 높이
+      const height = window.innerHeight;// 브라우저 높이
       const moveY = -index * height;     // 이동할 Y 위치 계산
 
       // ✅ 현재 섹션 기준 index → 이전 섹션: index - 1, 다음 섹션: index + 1

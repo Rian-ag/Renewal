@@ -1,7 +1,7 @@
-#wrap {position:relative;}
+#wrap {height:100%; position:relative; overflow: hidden;}
 
 
-
+html, body {padding:0; margin:0; height:100%; overflow:hidden; overscroll-behavior-y:none; touch-action:none;}
 body.fadeout {opacity: 0;transition: opacity 0.5s ease-in-out;}
 
 body.fadein {opacity: 1;transition: opacity 0.5s ease-in-out;}
