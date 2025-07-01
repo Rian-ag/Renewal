@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIANAG_insight_view_05</title>
+    <!-- CSS -->
+	<link rel="stylesheet" href="/assets/css/common.css">
+	<link rel="stylesheet" href="/assets/css/ui.css">
+    <link rel="stylesheet" href="/assets/css/swiper.css">
+	<link rel="stylesheet" href="./assets/css/pc_on_detail.css" media="(min-width: 769px)">
+	<link rel="stylesheet" href="./assets/css/mo_on_detail.css" media="(max-width: 768px)">
+    <script src="/assets/js/jquery-3.7.1.min.js"></script>
+	<script src="/assets/js/lazyload.js"></script>
+	<script src="./assets/js/lenis.min.js"></script>
+	<script src="/assets/js/common.js" defer></script>
+    <script src="/assets/js/swiper.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+	<script src="./assets/js/on_detail.js"></script>
+
+	<script>
+		$(function () {
+			let prevTime = '';
+
+			function updateClock() {
+				const now = new Date();
+
+				const hh = String(now.getHours()).padStart(2, '0');
+				const mm = String(now.getMinutes()).padStart(2, '0');
+				const ss = String(now.getSeconds()).padStart(2, '0');
+				const formatted = `${hh}:${mm}:${ss}`;
+
+				const $target = $('.visual_cont div strong');
+				const current = $target.text();
+
+				// ✅ 현재 텍스트가 한글이 섞인 경우 강제로 되돌림
+				if (!/^\d{2}:\d{2}:\d{2}$/.test(current) || formatted !== prevTime) {
+				$target.text(formatted);
+				prevTime = formatted;
+				}
+
+				requestAnimationFrame(updateClock);
+			}
+			initHeaderScrollToggle()
+			updateClock();
+			customCursorEffect();
+		});
+	</script>
+		<style>
+		.detail_visual {background-image:url('./assets/images/on_detail/vi_05.png');}
+		@media screen and (min-width: 769px) {
+			section .cont_inner > ul li:nth-of-type(1) figure,  section .cont_inner > ul li:nth-of-type(3) figure{width:930px !important;}
+		}
+	</style>
+</head>
+<body class="fadeout">
+    <div id="wrap" class="wrap">
+        <!-- header -->
+		<header class="type3">
+			<div class="inner">
+				<a href="javascript:void(0);" onclick="goBack();">BACK</a>
+				<h1><img src="/assets/images/common/h1_logo.png" alt="RIAN" /></h1>
+				<button class="btn_ham">site map</button>
+			</div>
+
+            <div class="site_map">
+                <ul>
+                    <li><a href="/about.html">About</a></li>
+                    <li><a href="/project.html">Works</a></li>
+                    <li><a href="/insight_list.html">What's on</a></li>
+                    <li><a href="/join.html">Join Our Team</a></li>
+                    <li><a href="/contact.html">Contact</a></li>
+                </ul>
+                <!-- bottom -->
+                <div class="bottom">
+                    <div>
+                        <a href="/contact.html">RIANAG@RIANAG.COM</a>
+                        <!-- <a href="http://daum.net" target="_blank">BLOG</a> -->
+                    </div>
+                    <a href="javascript:void(0);" class="download">BROCHURE DOWNLOAD</a>
+                </div>
+                <!-- //bottom -->
+            </div>
+		</header>
+		<!-- //header -->
+
+		<div class="detail_visual">
+			<div class="cont_inner">
+				<em>일상</em>
+				<ul>
+					<li><span>Pat Metheny,</span></li>
+					<li><span>노장이 아닌 거장의 공연</span></li>
+				</ul>
+				<p class="pc">
+					<i>#PatMetheny</i>
+					<i>#또오세요</i>
+					<i>#건강히</i>
+				</p>
+			</div>
+		</div>
+		<section class="light-section">
+			<div class="cont_inner">
+				<dl>
+					<dt class="visual_cont">
+						<a href="./insight_list.html"></a>
+						<div>
+							<strong></strong>
+							<p>37.559127°N,<br/> 126.860986°E RIAN, <br/> SEOUL,  KOREA</p>
+						</div>
+					</dt>
+					<dd>
+						<div class="on_detail_swiper">
+							<div class="on_detail swiper-container">
+								<div class="swiper-wrapper">
+									<div class="swiper-slide">
+										<a href="/insight_view_05.html"><p class="active"><img src="/assets/images/on_detail/sw5.png" alt=""></p></a>
+									</div>
+									<div class="swiper-slide">
+										<a href="/insight_view_06.html"><p><img src="/assets/images/on_detail/sw6.png" alt=""></p></a>
+									</div>
+									<div class="swiper-slide">
+										<a href="/insight_view_07.html"><p><img src="/assets/images/on_detail/sw7.png" alt=""></p></a>
+									</div>
+									<div class="swiper-slide">
+										<a href="/insight_view_08.html"><p><img src="/assets/images/on_detail/sw8.png" alt=""></p></a>
+									</div>
+									<div class="swiper-slide">
+										<a href="/insight_view_01.html"><p><img src="/assets/images/on_detail/sw1.png" alt=""></p></a>
+									</div>
+									<div class="swiper-slide">
+										<a href="/insight_view_02.html"><p><img src="/assets/images/on_detail/sw2.png" alt=""></p></a>
+									</div>
+									<div class="swiper-slide">
+										<a href="/insight_view_03.html"><p><img src="/assets/images/on_detail/sw3.png" alt=""></p></a>
+									</div>
+									<div class="swiper-slide">
+										<a href="/insight_view_04.html"><p><img src="/assets/images/on_detail/sw4.png" alt=""></p></a>
+									</div>
+								</div>
+							</div>
+							<div class="custom-cursor">Drag</div>
+						</div>
+					</dd>
+				</dl>
+				<ul>
+					<li>
+						<figure><img class="lazy" data-src="/assets/images/on_detail/5_1.png" alt=""></figure>
+						<p>
+							<span>
+							지난 5월 23~25일, 9년만에 한국을 되찾은 팻 매스니의 내한 공연. 
+							</span>
+						</p>
+						<p>
+							<span>
+								아마도 한국인이라면 전영혁의 음악세계라는 라디오 프로에서 들었던 The truth will always be, 로 그의 음악을 처음 접했을 확률이 높을 것 같은데, 실은 그는 여태까지 53장의 앨범을 내었다고 한다. (내게는 약 5장 정도의 앨범이 있는데, 10%도 안되는 보유율이라니…!)
+							</span>
+						</p>
+						<p>
+							<span>
+								올 해 70세인 팻 메스니의 공연은 1시간 30분으로 공지 되어 있었는데, 실제 공연은 커튼콜을 무려 4번을 받으면서 2시간 40분이라는 시간이 훅 지나갔다.
+							</span>
+						</p>
+					</li>
+					<li>
+						<figure><img class="lazy" data-src="/assets/images/on_detail/5_2.png" alt=""></figure>
+						<p>
+							<span>
+								그의 시그니쳐 기타 피카소도 실물로 알현하고, 기타 신디사이저도 나타났다.<br/>
+								공연을 위해 기타만 한 열대는 족히 들고 온 게 아닌가 싶은데, 이 외에도 마치 음악 실험실 같은 오케스트리온이라는 자동 연주 머신들 까지… 세션 없이 단독 공연을 왔지만 정신 없이 꽉 꽉 채운 그의 음악 세월을 파노라마처럼 보여준 2시간 40분의 공연은 그야말로 놀랍다는 말로도 모자랐다.
+							</span>
+						</p>
+						<p>
+							<span>
+								공자는 70세는 종심 (從心), 즉 마음 내키는 대로 해도 법도에 어긋나지 않았다더니, 팻 매스니 역시 무대에서 세상 자유로웠고, 그저 관객은 황홀히 끌려 갈 수 밖에 없던 시간이었다.
+							</span>
+						</p>
+					</li>
+
+					<li class="mo">
+						<p>
+							<i>#PatMetheny</i>
+							<i>#또오세요</i>
+							<i>#건강히</i>
+						</p>
+					</li>
+				</ul>
+			</div>
+		</section>
+
+
+
+		<!-- bottom -->
+		<div id="bottom" class="type3">
+            <!-- <a href="http://daum.net" target="_blank">BLOG</a> -->
+            <span>© RIANag INC. All Rights Reserved.</span>
+            <button class="top">Back to Top</button>
+		</div>
+		<!-- //bottom -->
+		<div class="custom-cursor dot-cursor"></div>
+    </div>
+</body>
+</html>
