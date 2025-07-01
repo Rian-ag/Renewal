@@ -25,7 +25,7 @@ body {overflow:hidden;}
 /* section */
 section {padding:120px 0 40px; background:#fff; position:relative; z-index:2;}
 section .cont_inner {display:flex; justify-content:space-between;}
-section .cont_inner dl {width:calc(100% - 930px); height:500px; position:sticky; top:100px; background: #fff;}
+section .cont_inner dl {height:100%; position:sticky; top:100px; background: #fff;}
 section .cont_inner dl dt a {width:24px; height:24px; margin-bottom:40px; background-image:url('../images/common/icon_split.png'); background-size:500px; background-position:-140px -50px; display:block;}
 section .cont_inner dl dt {margin-bottom:40px;}
 section .cont_inner dl dt div strong {font-size:38px; font-weight:800; line-height:120%;}
