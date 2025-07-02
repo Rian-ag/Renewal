@@ -1,5 +1,4 @@
-// project.js
-
+// ✅ 프로젝트 기본 정보 데이터
 const project = {
     title: ['Go deep\nDive in\nWatch on', 'Effortless\nChic\nLifestyle', 'Making\nShopping\nConvenient'],
     subTitle: ['CGV\nON MOBILE', 'LOTTE\nDUTY FREE', 'HOME&\nSHOPPING'],
@@ -12,6 +11,19 @@ const project = {
     ],
 };
 
+// ✅ 전역 Swiper 인스턴스 및 정보 DOM 캐싱
+let mainSwiper = null;
+let thumbSwiper = null;
+
+const $industry = $('.industry');
+const $date = $('.date');
+const $type = $('.type');
+
+// ✅ 모바일 여부 판단 유틸 함수
+function isMobile() {
+    return $(window).width() <= 768;
+}
+// ✅ 타이틀 및 서브타이틀 텍스트 업데이트 함수
 function updateTitleAndSubtitle(index) {
     const $title = $('.title');
     const $subtitle = $('.sub-title');
@@ -65,6 +77,34 @@ function updateTitleAndSubtitle(index) {
     }, 100);
 }
 
+// ✅ 이미지 or 비디오 경로에 따라 .image-viewer 업데이트 함수
+function updateImageViewer(mediaPath) {
+    const $viewer = $('.image-viewer');
+    $viewer.empty(); // 기존 이미지나 영상 제거
+
+    if (mediaPath.endsWith('.mp4')) {
+        const video = document.createElement('video');
+        video.src = mediaPath;
+        video.autoplay = true;
+        video.loop = true;
+        video.muted = true;
+        video.playsInline = true;
+        video.style.width = '100%';
+        video.style.height = '100%';
+        video.style.objectFit = 'cover';
+        $viewer.append(video);
+    } else {
+        const img = document.createElement('img');
+        img.src = mediaPath;
+        img.alt = 'project image';
+        img.style.width = '100%';
+        img.style.height = '100%';
+        img.style.objectFit = 'cover';
+        $viewer.append(img);
+    }
+}
+
+// ✅ 리스트 hover/scroll 시 image-viewer 이미지 변경 및 active 처리 함수
 function initListItemBehavior() {
     const $listItems = $('.list-item');
     const $viewerImg = $('.image-viewer img');
@@ -111,8 +151,16 @@ function initListItemBehavior() {
         $listItems.removeClass('active');
         $(this).addClass('active');
         const imgSrc = $(this).data('image');
-        if (imgSrc) $viewerImg.attr('src', imgSrc);
+        if (imgSrc) updateImageViewer(imgSrc); // ✅
     });
+
+    // 스크롤 감지 후 중앙 항목 감지 시
+    if ($closest) {
+        $listItems.removeClass('active');
+        $closest.addClass('active');
+        const imgSrc = $closest.data('image');
+        if (imgSrc) updateImageViewer(imgSrc); // ✅
+    }
 
     // ❗ 마우스가 list 바깥으로 나갔을 때
     $('.project-viewer-scrollable').on('mouseleave', function () {
@@ -120,28 +168,171 @@ function initListItemBehavior() {
     });
 }
 
-$(window).on('load', function () {
-    let mainSwiper = null;
-    let thumbSwiper = null;
+// ✅ 프로젝트 swiper 초기화 및 썸네일 관리 함수
+function initSwiper() {
+    thumbSwiper = new Swiper('.thumbnail-swiper', {
+        slidesPerView: 1,
+        centeredSlides: true,
+        spaceBetween: 33,
+        allowTouchMove: false,
+        watchSlidesProgress: true,
+        on: {
+            init: function () {
+                const index = this.activeIndex;
+                updateThumbnailState(index);
+                slideToCenter(index);
+            },
+            slideChange: function () {
+                const index = this.activeIndex;
+                updateThumbnailState(index);
+                slideToCenter(index);
+            },
+        },
+    });
 
-    const $industry = $('.industry');
-    const $date = $('.date');
-    const $type = $('.type');
+    mainSwiper = new Swiper('.main-swiper', {
+        allowTouchMove: true,
+        simulateTouch: true,
+        grabCursor: true,
+        scrollbar: {
+            el: '.swiper-scrollbar',
+            draggable: true,
+        },
+        thumbs: {
+            swiper: thumbSwiper,
+        },
+        on: {
+            init: function () {
+                const index = this.activeIndex;
+                updateTitleAndSubtitle(index);
+                $industry.text(project.industry[index]);
+                $date.text(project.date[index]);
+                $type.text(project.type[index]);
+            },
+            slideChange: function () {
+                thumbSwiper.slideTo(this.activeIndex);
+            },
+            slideChangeTransitionEnd: function () {
+                const index = this.activeIndex;
+                updateTitleAndSubtitle(index);
+                $industry.text(project.industry[index]);
+                $date.text(project.date[index]);
+                $type.text(project.type[index]);
+            },
+        },
+    });
+}
 
-    function isMobile() {
-        return $(window).width() <= 768;
+// ✅ swiper 내부 썸네일 상태 업데이트
+function updateThumbnailState(index) {
+    const thumbnails = document.querySelectorAll('.thumbnail');
+    thumbnails.forEach((el, i) => {
+        el.classList.toggle('active', i === index);
+    });
+}
+
+// ✅ swiper 썸네일을 가운데로 이동
+function slideToCenter(index) {
+    const viewer = document.querySelector('.thumbnail-viewer');
+    const thumbnails = document.querySelectorAll('.thumbnail');
+    if (!viewer || thumbnails.length === 0) return;
+
+    const target = thumbnails[index];
+    const slideWidth = target.offsetWidth;
+    const gap = parseFloat(getComputedStyle(thumbnails[0]).marginRight || 0);
+    const offset = (slideWidth + gap) * index;
+    viewer.style.transform = `translateX(-${offset}px)`;
+}
+
+// ✅ swiper 제거 함수
+function destroySwiper() {
+    if (mainSwiper) {
+        mainSwiper.destroy(true, true);
+        mainSwiper = null;
     }
-    // $(document).on('click', '.list-item', function (e) {
-    //     e.preventDefault();
-    // });
-    // ✅ 리스트 동적 생성
+    if (thumbSwiper) {
+        thumbSwiper.destroy(true, true);
+        thumbSwiper = null;
+    }
+}
+
+// ✅ 전체 레이아웃 핸들링 (모바일/PC 구분)
+function handleLayout() {
+    if (isMobile()) {
+        destroySwiper();
+        initSwiper();
+    } else {
+        destroySwiper();
+        initFullpage();
+    }
+}
+
+// ✅ fullpage.js 초기화 함수
+function initFullpage() {
+    const totalSections = $('.project-section').length;
+    const formattedTotal = totalSections < 10 ? '0' + totalSections : totalSections;
+
+    $('#section_wrap').simpleFullpage({
+        duration: 800,
+        easing: 'easeInOutExpo',
+        parallax: true,
+        keyboard: true,
+        touch: true,
+        navigation: false,
+        on: {
+            init() {
+                $('.fp-navi').remove();
+                $('.fp-arrows').prepend(`
+                        <div class="fp-navi">
+                            <span>01</span>
+                            <em>${formattedTotal}</em>
+                        </div>
+                    `);
+            },
+        },
+        afterLoad(index) {
+            const current = index + 1;
+            $('.fp-navi span').text(current < 10 ? '0' + current : current);
+
+            const $thumbnailViewer = $('.thumbnail-viewer');
+            const $thumbnails = $('.thumbnail');
+            const thumbHeight = $thumbnails.outerHeight();
+
+            gsap.to($thumbnailViewer, {
+                y: -(index * thumbHeight),
+                duration: 0.6,
+                ease: 'ease',
+            });
+
+            $thumbnails.removeClass('active').eq(index).addClass('active');
+
+            $('.industry').text(project.industry[index]);
+            $('.date').text(project.date[index]);
+            $('.type').text(project.type[index]);
+            updateTitleAndSubtitle(index);
+
+            if (index === totalSections - 1) {
+                setTimeout(() => {
+                    const plugin = $('#section_wrap').data('simpleFullpage');
+                    if (plugin && typeof plugin.destroy === 'function') {
+                        plugin.destroy();
+                        $('body, html').css('overflow', 'auto');
+                    }
+                }, 500);
+            }
+        },
+    });
+}
+
+// ✅ 리스트 JSON 로딩 및 리스트 동적 생성
+function loadProjectList() {
+    const $lists = $('.lists');
     $.getJSON('/assets/data/projectList.json', function (data) {
-        const $lists = $('.lists');
         data.forEach((item) => {
             const tagsHtml = item.tags.map((tag) => `<li>${tag}</li>`).join('');
             const html = `
-                     <a class="list-item" data-image="${item.image}" href="${item.link || 'javascript:void(0);'}" 
-                     ${item.link ? 'data-link="true" target="_blank"' : ''}>
+                <a class="list-item" data-image="${item.image}" href="${item.link || 'javascript:void(0);'}" 
+                   ${item.link ? 'data-link="true" target="_blank"' : ''}>
                     <div class="animate-wrap">
                         <div class="animate">
                             <div class="ani-top">
@@ -162,174 +353,33 @@ $(window).on('load', function () {
 
         if (!isMobile()) initListItemBehavior();
     });
+}
 
-    function slideToCenter(index) {
-        const viewer = document.querySelector('.thumbnail-viewer');
-        const thumbnails = document.querySelectorAll('.thumbnail');
-        if (!viewer || thumbnails.length === 0) return;
+// ✅ 프로젝트 뷰어 열기 함수
+function openProjectViewer() {
+    $('.project-viewer').addClass('active');
+    const firstImgSrc = $('.list-item').first().data('image');
+    updateImageViewer(firstImgSrc);
+    if (window.lenis) window.lenis.stop();
+    $('.project-viewer').on('wheel touchmove', function (e) {
+        e.stopPropagation();
+    });
+}
 
-        const target = thumbnails[index];
-        const slideWidth = target.offsetWidth;
-        const gap = parseFloat(getComputedStyle(thumbnails[0]).marginRight || 0);
-        const offset = (slideWidth + gap) * index;
-        viewer.style.transform = `translateX(-${offset}px)`;
-    }
+// ✅ 프로젝트 뷰어 닫기 함수
+function closeProjectViewer() {
+    $('.project-viewer').removeClass('active');
+    if (window.lenis) window.lenis.start();
+    $('.project-viewer').off('wheel touchmove');
+}
 
-    function updateThumbnailState(index) {
-        const thumbnails = document.querySelectorAll('.thumbnail');
-        thumbnails.forEach((el, i) => {
-            el.classList.toggle('active', i === index);
-        });
-    }
-
-    function initSwiper() {
-        thumbSwiper = new Swiper('.thumbnail-swiper', {
-            slidesPerView: 1,
-            centeredSlides: true,
-            spaceBetween: 33,
-            allowTouchMove: false,
-            watchSlidesProgress: true,
-            on: {
-                init: function () {
-                    const index = this.activeIndex;
-                    updateThumbnailState(index);
-                    slideToCenter(index);
-                },
-                slideChange: function () {
-                    const index = this.activeIndex;
-                    updateThumbnailState(index);
-                    slideToCenter(index);
-                },
-            },
-        });
-
-        mainSwiper = new Swiper('.main-swiper', {
-            allowTouchMove: true,
-            simulateTouch: true,
-            grabCursor: true,
-            scrollbar: {
-                el: '.swiper-scrollbar',
-                draggable: true,
-            },
-            thumbs: {
-                swiper: thumbSwiper,
-            },
-            on: {
-                init: function () {
-                    const index = this.activeIndex;
-                    updateTitleAndSubtitle(index);
-                    $industry.text(project.industry[index]);
-                    $date.text(project.date[index]);
-                    $type.text(project.type[index]);
-                },
-                slideChange: function () {
-                    thumbSwiper.slideTo(this.activeIndex);
-                },
-                slideChangeTransitionEnd: function () {
-                    const index = this.activeIndex;
-                    updateTitleAndSubtitle(index);
-                    $industry.text(project.industry[index]);
-                    $date.text(project.date[index]);
-                    $type.text(project.type[index]);
-                },
-            },
-        });
-    }
-
-    function destroySwiper() {
-        if (mainSwiper) {
-            mainSwiper.destroy(true, true);
-            mainSwiper = null;
-        }
-        if (thumbSwiper) {
-            thumbSwiper.destroy(true, true);
-            thumbSwiper = null;
-        }
-    }
-
-    function handleLayout() {
-        if (isMobile()) {
-            destroySwiper();
-            initSwiper();
-        } else {
-            destroySwiper();
-            initFullpage();
-        }
-    }
-
-    function initFullpage() {
-        const totalSections = $('.project-section').length;
-        const formattedTotal = totalSections < 10 ? '0' + totalSections : totalSections;
-
-        $('#section_wrap').simpleFullpage({
-            duration: 800,
-            easing: 'easeInOutExpo',
-            parallax: true,
-            keyboard: true,
-            touch: true,
-            navigation: false,
-            on: {
-                init() {
-                    $('.fp-navi').remove();
-                    $('.fp-arrows').prepend(`
-                        <div class="fp-navi">
-                            <span>01</span>
-                            <em>${formattedTotal}</em>
-                        </div>
-                    `);
-                },
-            },
-            afterLoad(index) {
-                const current = index + 1;
-                $('.fp-navi span').text(current < 10 ? '0' + current : current);
-
-                const $thumbnailViewer = $('.thumbnail-viewer');
-                const $thumbnails = $('.thumbnail');
-                const thumbHeight = $thumbnails.outerHeight();
-
-                gsap.to($thumbnailViewer, {
-                    y: -(index * thumbHeight),
-                    duration: 0.6,
-                    ease: 'ease',
-                });
-
-                $thumbnails.removeClass('active').eq(index).addClass('active');
-
-                $('.industry').text(project.industry[index]);
-                $('.date').text(project.date[index]);
-                $('.type').text(project.type[index]);
-                updateTitleAndSubtitle(index);
-
-                if (index === totalSections - 1) {
-                    setTimeout(() => {
-                        const plugin = $('#section_wrap').data('simpleFullpage');
-                        if (plugin && typeof plugin.destroy === 'function') {
-                            plugin.destroy();
-                            $('body, html').css('overflow', 'auto');
-                        }
-                    }, 500);
-                }
-            },
-        });
-    }
-
+// ✅ 전체 초기화
+$(window).on('load', function () {
+    loadProjectList();
     handleLayout();
     $(window).on('resize', handleLayout);
-
-    // ✅ 프로젝트 뷰어 열기/닫기 처리
-    $(document).on('click', '.project-list-button', function () {
-        $('.project-viewer').addClass('active');
-        const firstImgSrc = $('.list-item').first().data('image');
-        $('.image-viewer img').attr('src', firstImgSrc);
-        if (window.lenis) window.lenis.stop();
-        $('.project-viewer').on('wheel touchmove', function (e) {
-            e.stopPropagation();
-        });
-    });
-
-    $(document).on('click', '.project-viewer .close', function () {
-        $('.project-viewer').removeClass('active');
-        if (window.lenis) window.lenis.start();
-        $('.project-viewer').off('wheel touchmove');
-    });
 });
+
+// ✅ 이벤트 바인딩
+$(document).on('click', '.project-list-button', openProjectViewer);
+$(document).on('click', '.project-viewer .close', closeProjectViewer);
