@@ -25,9 +25,11 @@ body {
 span {
     display: block;
 }
-/* #wrap{
-    overflow: auto;
-} */
+@media (max-width: 1000px) {
+    .layout {
+        width: 1000px;
+    }
+}
 /* visual */
 .visual {
     position: fixed;
@@ -43,7 +45,7 @@ span {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .visual .title-container {
@@ -52,7 +54,7 @@ span {
     flex-direction: column;
     justify-content: center;
     padding-left: 184px;
-    min-width: 1000px;
+    /* min-width: 1000px; */
 }
 @media (max-width: 1200px) {
     .visual .title-container {
@@ -60,6 +62,7 @@ span {
     }
 }
 .visual h1 {
+    padding: 4px 0;
     overflow: hidden;
 }
 .visual h1 span {
@@ -136,7 +139,8 @@ section {
 }
 .section-common {
     position: relative;
-    height: 100vh;
+    /* height: 100vh; */
+    overflow-x: auto;
 }
 .section-common h3 span,
 .section-common p span {
@@ -154,10 +158,15 @@ section {
 }
 .section-common .inner-cont {
     width: 100%;
-    max-width: 1440px;
+    width: 1440px;
     margin: 0 auto;
 }
-
+@media (max-width: 1480px) {
+    .section-common .inner-cont {
+        max-width: 100%;
+        padding: 0 40px;
+    }
+}
 .section-title {
     margin-top: 142px;
 }
