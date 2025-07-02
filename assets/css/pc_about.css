@@ -65,7 +65,7 @@ path {stroke:white; stroke-width:2; fill:rgba(255, 255, 255, 0); stroke-linecap:
 /* about_partners */
 .mo_list {display:none !important;}
 .about_partners {padding-top:160px; background:#000;}
-.about_partners .cont_inner {padding-bottom:140px;; margin-bottom:0;}
+.about_partners .cont_inner {margin-top:0; padding-bottom:140px;; margin-bottom:0;}
 .about_partners h3 {margin-bottom:100px; color:#fff;}
 .about_partners ul {display:flex; flex-wrap:wrap; align-items:center;}
 .about_partners ul li {width:25%; padding:20px; text-align:center; box-sizing:border-box;}
