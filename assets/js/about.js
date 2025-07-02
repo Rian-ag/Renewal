@@ -119,12 +119,36 @@ $(document).ready(function () {
     });
   });
 
+let animated = false;
+
+function runPartnerAnimation() {
+    if (animated) return;
+
+    const $section = $('.about_partners');
+    const sectionTop = $section.offset().top;
+    const scrollBottom = $(window).scrollTop() + $(window).height() * 0.7;
+
+    // 영역 진입 시 실행
+    if (scrollBottom > sectionTop) {
+        animated = true;
+
+        // 모바일 or PC 리스트 중 현재 보이는 것만 animate
+        const $visibleList = $('.about_partners .pc_list:visible li, .about_partners .mo_list:visible li');
+
+        $visibleList.each(function (i) {
+            const that = $(this);
+            setTimeout(() => {
+                that.addClass('animate');
+            }, i * 150); // 순차적 실행
+        });
+    }
+}
 
 // scroll과 resize에 바인딩
-$(window).on('scroll resize orientationchange');
+$(window).on('scroll resize orientationchange', runPartnerAnimation);
 
 // 페이지 로딩 직후도 확인 (모바일 주소창 숨김 전 대응)
-// $(document).ready(runPartnerAnimation);
+$(document).ready(runPartnerAnimation);
 
   /* about_partners hover 이벤트 */
     $('.about_partners li img').each(function () {
@@ -174,27 +198,7 @@ $(window).on('scroll resize orientationchange');
     }
   });
 
-  const partners = [
-    "홈앤쇼핑", "롯데면세점", "신라면세점", "이마트", "신세계", "신세계쇼핑", "GS리테일", "리바트", "SK플래닛", "SK스토아",
-    "더현대", "나이스평가정보", "DGB캐피탈", "ABL생명", "미래에셋", "캐논", "비씨카드", "롯데카드", "롯데홈쇼핑", "롯데하이마트",
-    "CJ오쇼핑", "대한통운", "CJ프레시웨이", "올리브영", "KB국민카드", "IBK기업은행", "우리은행", "랄라블라", "KSHOPPING", "Bshopping"
-  ];
-
-  const pcFilenames = [
-    "Frame 73.png", "Frame 75.png", "Frame 96.png", "Frame 95.png", "Frame 74.png", "Frame 97.png", "Frame 76.png", "Frame 79.png",
-    "Frame 93.png", "Frame 84.png", "Frame 77.png", "Frame 98.png", "Frame 85.png", "Frame 101.png", "Frame 92.png", "Frame 99.png",
-    "Frame 91.png", "Frame 102.png", "Frame 86.png", "Frame 81.png", "Frame 78.png", "Frame 87.png", "Frame 103.png", "Frame 80.png",
-    "Frame 83.png", "Frame 90.png", "Frame 94.png", "Frame 89.png", "Frame 82.png", "Frame 88.png"
-  ];
-
-  const $pcList = $('.pc_list');
-  const $moList = $('.mo_list');
-
-  partners.forEach((altText, index) => {
-    $pcList.append(`<li><img src="/assets/images/about/prt_logo/${pcFilenames[index]}" alt="${altText}"></li>`);
-    $moList.append(`<li><img src="/assets/images/about/mo_prt_logo/${index + 1}.png" alt="${altText}"></li>`);
-  });
-
+  
 
 });
 
