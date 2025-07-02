@@ -260,7 +260,7 @@ function initFullpage() {
             <em>${sections.length.toString().padStart(2, '0')}</em>
         </div>
     `);
- ScrollTrigger.create({
+    ScrollTrigger.create({
         trigger: '.project-viewer',
         start: 'top center', // 또는 'top bottom'도 가능
         onEnter: () => {
@@ -292,8 +292,6 @@ function initFullpage() {
 }
 
 $(window).on('load', function () {
-    if (window.lenis) window.lenis.stop();
-
     $.getJSON('/assets/data/projectList.json', function (data) {
         const $lists = $('.lists');
         data.forEach((item) => {

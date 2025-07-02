@@ -17,8 +17,8 @@ img { display: block; max-width: 100%; }
 
 /* section */
 .main-swiper { display: none; } 
-.project-wrapper { position: relative; overflow: visible;}
-.project-section { position: relative; height: 100vh;}
+.project-wrapper { position: relative; overflow: visible; } 
+.project-section { position: relative; height: 100vh; } 
 .project-section:nth-child(1) { background-color: #000; } 
 .project-section:nth-child(2) { background-color: #ea1236; } 
 .project-section:nth-child(3) { background-color: #8ddfaf; } 
@@ -26,13 +26,11 @@ img { display: block; max-width: 100%; }
 .contents { position: fixed; width: 100%; max-width: clamp(768px, 61.4062vw, 1179px); height: auto; top: 50%; left: 50%; transform: translate(calc(-50% + 2.5px), -50%); display: flex; align-items: flex-end; justify-content: flex-end; gap: 1.5625vw; z-index: 1; } 
 
 .thumbnail-swiper { position: relative; width: 560px; width: clamp(420px, 29.1666vw, 560px); aspect-ratio: 1 / 1; overflow: hidden; z-index: 1; } 
-.thumbnail-viewer { position: relative; flex-direction: column; 
- will-change: transform; } 
+.thumbnail-viewer { position: relative; flex-direction: column; will-change: transform; } 
 .thumbnail { width: 100%; overflow: hidden; transition-property: var(--title-transition-property); transition-duration: var(--title-transition-duration); transition-timing-function: var(--title-transition-ease); pointer-events: none; } 
 .thumbnail.active { opacity: 1; transform: scale(1); pointer-events: auto; } 
 .heading { min-width: 120px; } 
-.title { position: absolute; top: 2.2rem; left: 2.575vw; 
- /* font-size: 128px; */
+.title { position: absolute; top: 2.2rem; left: 2.575vw; /* font-size: 128px; */
  font-size: clamp(64px, 6.6666vw, 128px); font-weight: 700; line-height: 102%; color: #fff; overflow: hidden; z-index: 2; } 
 
 .sub-title { padding-bottom: 8px; color: #fff; text-align: right; font-size: clamp(20px, 1.25vw, 24px); font-weight: 800; line-height: 110%; letter-spacing: -0.48px; overflow: hidden; z-index: 2; } 
@@ -40,17 +38,15 @@ img { display: block; max-width: 100%; }
 .sub-title > div { opacity: 0; transform: translateY(100%); transition-property: var(--title-transition-property); transition-duration: var(--title-transition-duration); transition-timing-function: var(--title-transition-ease); } 
 .title.active > div,
 .sub-title.active > div { opacity: 1; transform: translateY(0); } 
-.project-info { display: flex; padding-bottom: 8px; flex-direction: column; align-items: flex-start; justify-content: space-between; gap: 3.4408vh; z-index: 3; /* flex-shrink: 0; */
- padding-bottom: 8px; } 
+.project-info { display: flex; padding-bottom: 8px; flex-direction: column; align-items: flex-start; justify-content: space-between; gap: 3.4408vh; z-index: 3; padding-bottom: 8px; } 
 .project-info > li { transition-property: var(--title-transition-property); transition-duration: var(--title-transition-duration); transition-timing-function: var(--title-transition-ease); font-size: 1.4rem; } 
 .project-info li.active { opacity: 1; transform: translateY(0); } 
 .project-info > li > div { color: #fff; font-size: clamp(12px, 0.7292vw, 14px); font-weight: 700; line-height: 102%; letter-spacing: -0.28px; } 
 
 /* project-viewer */
 .project-viewer { position: relative; background: #fff; overflow-y: auto; z-index: 30; } 
-.project-viewer header { position: sticky; left: 0; top: 0; height: 80px; padding: 0px 30px; display: flex; align-items: center; justify-content: flex-end; /* flex-shrink: 0; */
- background-color: #fff; } 
-.project-viewer header .close { width: 28px; height: 28px; background-image: url('./../images/project/close.svg'); background-repeat: no-repeat; background-size: cover; background-position: center; z-index: 5; } 
+.project-viewer header { display: none; /* position: sticky; left: 0; top: 0; height: 80px; padding: 0px 30px; display: flex; align-items: center; justify-content: flex-end; */}
+.project-viewer header .close { display: none; /* width: 28px; height: 28px; background-image: url('./../images/project/close.svg'); background-repeat: no-repeat; background-size: cover; background-position: center; z-index: 5; */}
 .project-viewer-scrollable { /* overflow-y: visible !important; */
  position: relative; } 
 .project-viewer.active { transform: translateY(0); } 
