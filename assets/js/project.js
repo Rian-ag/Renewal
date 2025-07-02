@@ -351,6 +351,11 @@ function loadProjectList() {
             $lists.append(html);
         });
 
+        // ✅ data-link가 있는 list-item에 custom cursor "view" 효과 적용
+        $('.list-item[data-link="true"]').each(function () {
+            customCursorEffect($(this), 'view');
+        });
+
         if (!isMobile()) initListItemBehavior();
     });
 }

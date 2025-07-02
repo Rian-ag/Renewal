@@ -20,9 +20,6 @@ img { display: block; max-width: 100%; object-fit: cover; }
 #wrap { position: relative; height: 100dvh; } 
 .custom-cursor { display: none; } 
 
-/* header > .inner > h1 { display: none; } */
-
-/* header { height: 9.48vh; background-color: #1d1617; } */
 .project-wrapper { display: none; } 
 .swiper-slide_wrap { width: 100vw; height: 100dvh; overflow: hidden; } 
 .fullpage-container { position: relative; } 
@@ -73,9 +70,11 @@ img { display: block; max-width: 100%; object-fit: cover; }
 .project-list__title p { font-size: 1.6rem; font-weight: 400; line-height: 110%; letter-spacing: -0.32px; margin-top: 1.6rem; } 
 .lists { margin-top: 6rem; } 
 .lists > .list-item { display: block; padding: 1.6rem 0; border-bottom: 1px solid rgba(0, 0, 0, 0.1); } 
-.lists > .list-item .ani-top { } 
+
 .ani-bottom { display: none; } 
-.lists > .list-item p { font-size: 1.8rem; font-weight: 700; line-height: 102%; letter-spacing: -0.36px; } 
+.lists > .list-item p { display: flex; justify-content: space-between; font-size: 1.8rem; font-weight: 700; line-height: 102%; letter-spacing: -0.36px; } 
+
+.list-item[data-link='true'] p::after { content: ''; margin-top: 3px; width: 8px; height: 8px; background-color: #fc3232; border-radius: 50%; } 
 .ani-top ol { display: flex; margin-top: 1.2rem; gap: 0.8rem; font-size: 1.2rem; font-weight: 400; line-height: 102%; letter-spacing: -0.24px; } 
 /* bottom */
 #bottom { display: none; } 
