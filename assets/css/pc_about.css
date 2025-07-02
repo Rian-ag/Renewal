@@ -68,7 +68,7 @@ path {stroke:white; stroke-width:2; fill:rgba(255, 255, 255, 0); stroke-linecap:
 .about_partners .cont_inner {padding-bottom:140px;; margin-bottom:0;}
 .about_partners h3 {margin-bottom:100px; color:#fff;}
 .about_partners ul {display:flex; flex-wrap:wrap; align-items:center;}
-.about_partners ul li {width:25%; padding:20px; text-align:center; box-sizing:border-box;  opacity:0; transform:translateY(50px); transition:opacity 0.3s ease;}
+.about_partners ul li {width:25%; padding:20px; text-align:center; box-sizing:border-box;}
 .about_partners ul li {opacity:1;}
 .about_partners ul li img {width:100%;}
 .about_awards .cont_inner dl dd dl {width:80%; padding:50px 0; border-bottom:1px solid #E9E9E9;}
