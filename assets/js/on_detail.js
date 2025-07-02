@@ -33,7 +33,7 @@ $(function () {
       scale: 1.5,
       transformOrigin: "center center"
     });
-
+    const viewHeight = window.innerHeight;
     // 스케일 애니메이션 (5초간)
     gsap.to(".detail_visual", {
       scale: 1,
@@ -44,7 +44,7 @@ $(function () {
         ScrollTrigger.create({
           trigger: ".detail_visual",
           start: "top top",
-          end: "+=930",
+          end: `+=${viewHeight}`, // 100vh 만큼 고정
           pin: true,
           pinSpacing: false,
         });
@@ -56,7 +56,7 @@ $(function () {
           scrollTrigger: {
             trigger: ".detail_visual",
             start: "top top",
-            end: "+=930",
+            end: `+=${viewHeight}`, // 100vh 만큼 고정
             scrub: true
           }
         });
@@ -68,7 +68,7 @@ $(function () {
           scrollTrigger: {
             trigger: ".detail_visual",
             start: "top top",
-            end: "+=930",
+            end: `+=${viewHeight}`, // 100vh 만큼 고정
             scrub: true
           }
         });

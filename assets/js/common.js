@@ -61,106 +61,6 @@ $(document).ready(function () {
             window.location.href = href;
         }, 500);
     });
-
-    /* s:sitemap */
-    // $('header').each(function () {
-    //     const $header = $(this);
-    //     const $btnHam = $header.find('.btn_ham');
-    //     const $siteMap = $header.find('.site_map');
-    //     const $logo = $header.find('h1 img');
-    //     const originalLogoSrc = $logo.attr('src');
-    //     let isAnimating = false;
-
-    //     const updateHeaderZIndex = () => {
-    //         if ($siteMap.hasClass('active')) {
-    //             $header.css({ zIndex: '999' });
-    //         } else {
-    //             $header.css('z-index', '');
-    //         }
-    //     };
-
-    //     $btnHam.on('click', function () {
-    //         if (isAnimating) return;
-    //         isAnimating = true;
-
-    //         const isType2 = $header.hasClass('type2');
-    //         const isType3 = $header.hasClass('type3');
-    //         const isWhite = $header.hasClass('white');
-
-    //         if ($btnHam.parent().hasClass('close')) {
-    //             // 닫힘 처리
-    //             const $items = $siteMap.find('li');
-
-    //             $items.each(function (i) {
-    //                 setTimeout(() => {
-    //                     $(this).removeClass('active');
-
-    //                     if (i === $items.length - 1) {
-    //                         $siteMap.removeClass('active').addClass('close');
-    //                         $btnHam.parent().removeClass('close');
-
-    //                         if (isType2 && isWhite) {
-    //                             $logo.attr('src', originalLogoSrc);
-    //                         } else if (isType2) {
-    //                             $logo.attr('src', '/assets/images/common/h1_logo_black.png');
-    //                         } else {
-    //                             $logo.attr('src', originalLogoSrc.replace('_black.png', '.png'));
-    //                         }
-
-    //                         if (isType3) {
-    //                             $logo.css('opacity', '0');
-    //                         }
-
-    //                         updateHeaderZIndex();
-    //                     }
-    //                 }, i * 300);
-    //             });
-
-    //             setTimeout(() => {
-    //                 $siteMap.removeClass('close');
-    //                 isAnimating = false;
-    //             }, $items.length * 350);
-
-    //             setTimeout(() => {
-    //                 $siteMap.find('.bottom').removeClass('active').children().removeClass('active');
-    //             }, 1000);
-    //         } else {
-    //             // 열림 처리
-    //             $siteMap.addClass('active');
-    //             updateHeaderZIndex();
-    //             isAnimating = false;
-    //             $btnHam.parent().addClass('close');
-
-    //             if (isType2) {
-    //                 $logo.attr('src', '/assets/images/common/h1_logo_black.png');
-    //             } else {
-    //                 $logo.attr('src', originalLogoSrc.split('.')[0] + '_black.png');
-    //             }
-
-    //             if (isType3) {
-    //                 $logo.css('opacity', '1');
-    //             }
-
-    //             const $items = $siteMap.find('li');
-    //             $items.each(function (i) {
-    //                 setTimeout(() => {
-    //                     $(this).addClass('active');
-
-    //                     if (i === $items.length - 1) {
-    //                         $siteMap
-    //                             .find('.bottom')
-    //                             .children()
-    //                             .each(function (j) {
-    //                                 setTimeout(() => {
-    //                                     $(this).addClass('active');
-    //                                 }, 300);
-    //                             });
-    //                     }
-    //                 }, i * 300);
-    //             });
-    //         }
-    //     });
-    // });
     
     $('header').each(function () {
         const $header = $(this);
@@ -189,9 +89,11 @@ $(document).ready(function () {
             if ($btnHam.parent().hasClass('close')) {
                 // ✅ 한 번에 닫히는 처리
                 $siteMap.removeClass('active').addClass('close');
+                $('body').css('overflow', ''); // ✅ body 스크롤 다시 활성화
                 $siteMap.find('li').removeClass('active');
                 $siteMap.find('.bottom').removeClass('active').children().removeClass('active');
                 $btnHam.parent().removeClass('close');
+                console.log('hihi')
 
                 if (isType2 && isWhite) {
                     $logo.attr('src', originalLogoSrc);
@@ -214,6 +116,7 @@ $(document).ready(function () {
             } else {
                 // 열림 처리
                 $siteMap.addClass('active');
+                 $('body').css('overflow', 'hidden'); // ✅ 스크롤 비활성화
                 updateHeaderZIndex();
                 isAnimating = false;
                 $btnHam.parent().addClass('close');

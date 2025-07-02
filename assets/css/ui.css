@@ -55,7 +55,7 @@ header .site_map .bottom > div {display:flex; gap:160px;}
 header .site_map .bottom .download {display:flex; align-items:center; gap:12px;}
 header .site_map .bottom .download:after {width:20px; height:20px; background-image:url('/assets/images/common/icon_split.png'); background-position:-100px 0; background-repeat:no-repeat; background-size:500px auto; content:''; display:block;}
 
-#bottom {padding:38px 60px; position:fixed; right:0; bottom:0; left:0; z-index:100; display:flex; align-items:center; justify-content:space-between;}
+#bottom {padding:38px 30px; position:fixed; right:0; bottom:0; left:0; z-index:100; display:flex; align-items:center; justify-content:space-between;}
 #bottom * {color:#fff; font-size:14px; font-weight:800;}
 #bottom span {font-size:16px; font-weight:700; line-height:148%;}
 #bottom  button {font-size:18px; font-weight:800; line-height:150%;}

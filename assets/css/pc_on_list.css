@@ -34,7 +34,7 @@ strong {font-weight:800;;}
 .swiper-slide a > div > p em, .swiper-slide a > div > p > span {font-size:24px; font-weight:600; line-height:140%; letter-spacing:-1.5%; }
 .swiper-slide a > div > p {padding-right:1.875rem;}
 .swiper-slide a > div > p span {margin:40px 0 20px; display:block; white-space:normal; word-break:keep-all;}
-.swiper-slide a > div > div {display:flex; gap:5px}
+.swiper-slide a > div > div {display:flex; gap:5px; flex-wrap:wrap;}
 .swiper-slide a > div i {font-size:18px; font-weight:300; line-height:142%; letter-spacing:-2%;}
 .swiper-pagination {display:none;}
 
