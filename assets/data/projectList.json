@@ -2,274 +2,275 @@
     {
         "title": "CGV ON MOBILE",
         "tags": ["COMMERCE", "RESERVATION", "PICKUP STORE"],
-        "image": "/assets/images/project/thumb1.jpg"
+        "image": "/assets/images/project_list/cgv.jpg",
+        "link": "/work_detail.html"
     },
     {
         "title": "HOME & SHOPPING",
         "tags": ["COMMERCE", "DISTRIBUTION"],
-        "image": "/assets/images/project/thumb2.jpg",
+        "image": "/assets/images/project_list/hns.jpg",
         "link": "/work_detail.html"
     },
     {
         "title": "LOTTE DUTY FREE",
         "tags": ["DUTY FREE", "COMMERCE", "DISTRIBUTION"],
-        "image": "/assets/images/project/thumb3.jpg",
+        "image": "/assets/images/project_list/lotte_dutyfree.jpg",
         "link": "/work_detail.html"
     },
     {
         "title": "OK CASHBAG",
         "tags": ["MEMBERS", "POINT APP", "COMMERCE"],
-        "image": "/assets/images/project/thumb4.jpg"
+        "image": "/assets/images/project_list/okcashbag.jpg"
     },
     {
         "title": "GS HOME SHOPPING",
         "tags": ["COMMERCE", "DISTRIBUTION", "SHOPPING"],
-        "image": "/assets/images/project/thumb5.jpg"
+        "image": "/assets/images/project_list/GS_hs.jpg"
     },
     {
         "title": "GS RETAIL PLC APP, YOGIYO",
-        "tags": ["COMMERCE", "DISTRIBUTION", "DELIVERY"],
-        "image": "/assets/images/project/thumb6.jpg"
+        "tags": ["COMMERCE", "DISTRIBUTION", "DELIV ERY"],
+        "image": "/assets/images/project_list/GSretail_PLC.jpg"
     },
     {
         "title": "DGB LIFE INSURANCE IT SYSTEM",
         "tags": ["FINANCE", "INSURANCE", "SYSTEM"],
-        "image": "/assets/images/project/thumb7.jpg"
+        "image": "/assets/images/project_list/DGBlife.jpg"
     },
     {
         "title": "LOTTE DUTY FREE ISHOP OF SINGAPORE CHANHI AIRPORT",
         "tags": ["DUTY FREE ", "COMMERCE ", "SHOPPING"],
-        "image": "/assets/images/project/thumb8.jpg"
+        "image": "/assets/images/project_list/lotte_ishopChangi.jpg"
     },
     {
         "title": "KYOBOBOOK MOBILE SEARCH",
         "tags": ["COMMERCE ", "BOOK STORE"],
-        "image": "/assets/images/project/thumb9.jpg"
+        "image": "/assets/images/project_list/Kyobobook.jpg"
     },
     {
         "title": "GS RETAIL, YOGIYO PUBLISHING",
         "tags": ["COMMERCE", "DELIVERY"],
-        "image": "/assets/images/project/thumb10.jpg"
+        "image": "/assets/images/project_list/GSretail_Yogiyo.jpg"
     },
     {
         "title": "KB KOOKMIN CARD TABLET ODS",
         "tags": ["FINANCE ", "CREDIT CARD"],
-        "image": "/assets/images/project/thumb11.jpg",
+        "image": "/assets/images/project_list/KB_Card.jpg",
         "link": "/work_detail.html"
     },
     {
         "title": "CJ SEAFOOD",
         "tags": ["COMMERCE", "DISTRIBUTION", "FOOD"],
-        "image": "/assets/images/project/thumb12.jpg",
+        "image": "/assets/images/project_list/CJ_Seafood.jpg",
         "link": "/work_detail.html"
     },
     {
         "title": "SKT, T ID ADMIN",
         "tags": ["MEMBERS ", "TELECOM ", "ADMIN"],
-        "image": "/assets/images/project/thumb13.jpg",
+        "image": "/assets/images/project_list/SKT_TID.jpg",
         "link": "/work_detail.html"
     },
     {
         "title": "J.ESTINA SHOPPINGMALL",
         "tags": ["COMMERCE", "JEWELRY", "SHOPPING"],
-        "image": "/assets/images/project/thumb14.jpg"
+        "image": "/assets/images/project_list/jestina.jpg"
     },
     {
-        "title": "HYUNDAI DUTY FREE ONLINE MALL",
+        "title": "HYUNDAI DUTY FREE ONL INE MALL",
         "tags": ["COMMERCE", "DISTRIBUTION", "DUTY FREE", "SHOPPING"],
-        "image": "/assets/images/project/thumb15.jpg",
+        "image": "/assets/video/HD_dutyfree.mp4",
         "link": "/work_detail.html"
     },
     {
         "title": "SHINSEGAE TV SHOPPINGMALL & VISIBLE ARS",
         "tags": ["COMMERCE", "SHOPPING"],
-        "image": "/assets/images/project/thumb16.jpg"
+        "image": "/assets/images/project_list/SSG_TVs.jpg"
     },
     {
         "title": "LOTTE RENTAL BRAND SITE (IR) ",
         "tags": ["COMMERCE", "DISTRIBUTION"],
-        "image": "/assets/images/project/thumb17.jpg"
+        "image": "/assets/images/project_list/lotte_rent.jpg"
     },
     {
         "title": "API MARKET PLACE",
         "tags": ["COMMERCE", "PLATFORM"],
-        "image": "/assets/images/project/thumb18.jpg"
+        "image": "/assets/images/project_list/API.jpg"
     },
     {
         "title": "DGB CAPITAL",
-        "tags": ["FINANCE", "CAPITAL"],
-        "image": "/assets/images/project/thumb19.jpg"
+        "tags": ["FINANCE", "C APITAL"],
+        "image": "/assets/images/project_list/DGBcapital.jpg"
     },
     {
         "title": "LOTTE CARD MEMBERS & SYSTEM",
         "tags": ["FINANCE", "MEMBERS", "SYSTEM"],
-        "image": "/assets/images/project/thumb20.jpg"
+        "image": "/assets/images/project_list/lottecard.jpg"
     },
     {
         "title": "COMMERCE ICT",
         "tags": ["COMMERCE", "PLATFORM"],
-        "image": "/assets/images/project/thumb21.jpg"
+        "image": "/assets/images/project_list/Commerce_ICT.jpg"
     },
     {
         "title": "LG U+ EMPLOYEE BENEFIT MALL",
         "tags": ["COMMERCE", "BENEFIT MALL", "SHOPPING"],
-        "image": "/assets/images/project/thumb22.jpg"
+        "image": "/assets/images/project_list/LG_Uplus_Mall.jpg"
     },
     {
         "title": "KOTRA buyKOREA",
         "tags": ["PUBLIC", "TRADE"],
-        "image": "/assets/images/project/thumb23.jpg"
+        "image": "/assets/images/project_list/KOTRA.jpg"
     },
     {
-        "title": "MOBILE POWER COMPANY SEARCH",
+        "title": "MOBILE POWER COMP ANY SEARCH",
         "tags": ["FINANCE", "CREDIT INFO."],
-        "image": "/assets/images/project/thumb24.jpg"
+        "image": "/assets/images/project_list/Mobile_Power_company.jpg"
     },
     {
         "title": "MIRAE ASSET LIFE INSURANCE e-DOCUMENT WALLET",
         "tags": ["FINANCE", "INSURANCE"],
-        "image": "/assets/images/project/thumb25.jpg"
+        "image": "/assets/images/project_list/miraeasset_life.jpg"
     },
     {
         "title": "WOORI BANK TABLET BRUNCH",
         "tags": ["FINANCE", "BANK"],
-        "image": "/assets/images/project/thumb26.jpg",
+        "image": "/assets/images/project_list/wooribank_tablet.jpg",
         "link": "/work_detail.html"
     },
     {
         "title": "IBK SMART ON",
         "tags": ["FINANCE", "BANK"],
-        "image": "/assets/images/project/thumb27.jpg"
+        "image": "/assets/images/project_list/IBK_smarton.jpg"
     },
     {
         "title": "HYUNDAI LIVART WILLIAMS SONOMA",
         "tags": ["COMMERCE", "FUNITURE"],
-        "image": "/assets/images/project/thumb28.jpg",
+        "image": "/assets/images/project_list/LIVART_Williams Sonoma.jpg",
         "link": "/work_detail.html"
     },
     {
         "title": "SK INNOVATION mySUNI INTEGRATED ID ",
         "tags": ["EDUCATION", "MEMBERS"],
-        "image": "/assets/images/project/thumb29.jpg"
+        "image": "/assets/images/project_list/SK_mySUNI.jpg"
     },
     {
         "title": "ABOUT PET PLATFORM",
         "tags": ["MEMBERS", "PET", "SHOPPING"],
-        "image": "/assets/images/project/thumb30.jpg"
+        "image": "/assets/images/project_list/about_pet.jpg"
     },
     {
         "title": "EMART ONLINE PLATFORM",
         "tags": ["COMMERCE", "DISTRIBUTION"],
-        "image": "/assets/images/project/thumb31.jpg"
+        "image": "/assets/images/project_list/Emart_Online.jpg"
     },
     {
         "title": "LG HAUSYS SMART COUNSEL SYSTEM",
         "tags": ["INTERIOR", "COUNSEL"],
-        "image": "/assets/images/project/thumb32.jpg"
+        "image": "/assets/images/project_list/LGhausys.jpg"
     },
     {
         "title": "NEPA OFFICIAL BRAND SITE",
         "tags": ["FASHION", "BRAND"],
-        "image": "/assets/images/project/thumb33.jpg"
+        "image": "/assets/images/project_list/NEPA.jpg"
     },
     {
         "title": "CJ LOGISTICS DELIVERY APP FOR EMPLOYEE",
         "tags": ["DELIVERY", "EMPLOYEE APP"],
-        "image": "/assets/images/project/thumb34.jpg"
+        "image": "/assets/images/project_list/CJlogistics.jpg"
     },
     {
         "title": "CJ FRESHWAY e COMMERCE PLATFORM",
         "tags": ["COMMERCE", "DISTRIBUTION"],
-        "image": "/assets/images/project/thumb35.jpg"
+        "image": "/assets/images/project_list/CJfreshway.jpg"
     },
     {
         "title": "SK STOA SERVICE & PC PLATFORM",
         "tags": ["COMMERCE", "DISTRIBUTION "],
-        "image": "/assets/images/project/thumb36.jpg"
+        "image": "/assets/images/project_list/SKstoa.jpg "
     },
     {
         "title": "LOTTE HOTEL STORE",
         "tags": ["COMMERCE", "TRAVEL"],
-        "image": "/assets/images/project/thumb37.jpg"
+        "image": "/assets/images/project_list/lottehotel.jpg"
     },
     {
         "title": "AMOREPACIFIC AP COMMERCE SYSTEM",
         "tags": ["COMMERCE", "DISTRIBUTION", "BEAUTY"],
-        "image": "/assets/images/project/thumb38.jpg"
+        "image": "/assets/images/project_list/amorepacific.jpg"
     },
     {
         "title": "LOTTE INTEGRATED BO PLATFORM",
         "tags": ["COMMERCE", "DISTRIBUTION"],
-        "image": "/assets/images/project/thumb39.jpg"
+        "image": "/assets/images/project_list/lotteBO.jpg"
     },
     {
         "title": "GS RETAIL H&B COMMERCE ‘LALAVLA’",
         "tags": ["COMMERCE", "DISTRIBUTION"],
-        "image": "/assets/images/project/thumb40.jpg"
+        "image": "/assets/images/project_list/GSlalavla.jpg"
     },
     {
         "title": "RENAULT SAMSUNG T-BOX",
         "tags": ["AUTOMOBILE", "TABLET", "NAVIGATION"],
-        "image": "/assets/images/project/thumb41.jpg"
+        "image": "/assets/images/project_list/samsungTbox.jpg"
     },
     {
         "title": "ALLIANZ (ABL) LIFE INSURANCE BRAND SITE",
         "tags": ["FINANCE", "INSURANCE"],
-        "image": "/assets/images/project/thumb42.jpg"
+        "image": "/assets/images/project_list/ABLlife.jpg"
     },
     {
         "title": "CJ ONS OLIVE YOUNG ONLINE MALL",
         "tags": ["COMMERCE", "MEMBERS", "SHOPPING"],
-        "image": "/assets/images/project/thumb43.jpg"
+        "image": "/assets/images/project_list/CJoliveyong.jpg"
     },
     {
         "title": "K-SHOPPING EMC SYSTEM 2.0",
         "tags": ["COMMERCE", "DISTRIBUTION", "BEAUTY"],
-        "image": "/assets/images/project/thumb44.jpg"
+        "image": "/assets/images/project_list/Kshop.jpg"
     },
     {
         "title": "SHILLA IPARK DUTY FREE",
         "tags": ["COMMERCE", "DISTRIBUTION", "DUTY FREE"],
-        "image": "/assets/images/project/thumb45.jpg"
+        "image": "/assets/images/project_list/Shilla_Duty_Free.jpg"
     },
     {
         "title": "DAEWOO SECURITIES FNGENII CONTENTS",
         "tags": ["FINANCE", "SECURITIES"],
-        "image": "/assets/images/project/thumb46.jpg"
+        "image": "/assets/images/project_list/daewoo_fngenii.jpg "
     },
     {
         "title": "IVD MEDICAL DEVICE R&D PLATFORM",
         "tags": ["EDUCATION", "MEDICAL"],
-        "image": "/assets/images/project/thumb47.jpg"
+        "image": "/assets/images/project_list/IVD_Medical.jpg"
     },
     {
         "title": "BANDAI MALL",
         "tags": ["COMMERCE", "DISTRIBUTION", "SHOPPING "],
-        "image": "/assets/images/project/thumb48.jpg"
+        "image": "/assets/images/project_list/Bandai_Mall.jpg"
     },
     {
         "title": "CJ LOGOSHOP",
         "tags": ["COMMERCE", "DISTRIBUTION"],
-        "image": "/assets/images/project/thumb49.jpg"
+        "image": "/assets/images/project_list/CJ_Logoshop.jpg"
     },
     {
         "title": "HYUNDAI HOME SHOPPING VIETNAM ",
         "tags": ["COMMERCE", "DISTRIBUTION", "GLOBAL"],
-        "image": "/assets/images/project/thumb50.jpg"
+        "image": "/assets/images/project_list/HYUNDAI_Homeshopping_Vet.jpg"
     },
     {
         "title": "LGCNS HANYOUZAN",
         "tags": ["COMMERCE", "DISTRIBUTION", "FOOD"],
-        "image": "/assets/images/project/thumb51.jpg"
+        "image": "/assets/images/project_list/LG_CNS.jpg"
     },
     {
         "title": "SK PLANET BASKET",
         "tags": ["COMMERCE", "DISTRIBUTION"],
-        "image": "/assets/images/project/thumb52.jpg"
+        "image": "/assets/images/project_list/SK_PLANET.jpg"
     },
     {
         "title": "CJ E&M MOVIE VOD SERVICE",
         "tags": ["ENTERTAINMENT ", "MOVIE"],
-        "image": "/assets/images/project/thumb53.jpg"
+        "image": "/assets/images/project_list/CJ_EM.jpg"
     }
 ]
