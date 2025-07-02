@@ -7,10 +7,7 @@
     --font-sub: 'Roboto', sans-serif;
     --font-eng: 'Plus Jakarta Sans', sans-serif;
 }
-body {
-    height: 100%;
-    overflow-x: hidden;
-}
+
 body,
 * {
     font-family: var(--font-main);
@@ -18,16 +15,25 @@ body,
     font-style: normal;
     color: #000;
 }
+
+body {
+    height: 100%;
+}
 .mo {
     display: none !important;
 }
 span {
     display: block;
 }
+@media (max-width: 1000px) {
+    .layout {
+        width: 1000px;
+    }
+}
 /* visual */
 .visual {
-    position: relative;
-    width: 100%;
+    position: fixed;
+    width: 100vw;
     height: 100vh;
     color: #fff;
     padding: 0 30px;
@@ -38,6 +44,7 @@ span {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
+    /* overflow: hidden; */
 }
 
 .visual .title-container {
@@ -46,8 +53,15 @@ span {
     flex-direction: column;
     justify-content: center;
     padding-left: 184px;
+    /* min-width: 1000px; */
+}
+@media (max-width: 1200px) {
+    .visual .title-container {
+        padding-left: 0;
+    }
 }
 .visual h1 {
+    padding: 4px 0;
     overflow: hidden;
 }
 .visual h1 span {
@@ -69,13 +83,14 @@ span {
     overflow: hidden;
 }
 .visual h2 span {
-    font-family: 'Plus Jakarta Sans';
+    padding-bottom: 12px;
     font-size: 100px;
+    font-family: 'Plus Jakarta Sans';
+    /* font-size: clamp(80px, 5.2083vw, 100px); */
     line-height: 102%;
     font-weight: 800;
     letter-spacing: -2px;
     color: #fff;
-    padding-bottom: 12px;
     transform: translate3d(0, 200px, 0);
     opacity: 0;
     will-change: transform, opacity;
@@ -98,6 +113,11 @@ span {
     margin-top: auto;
     margin-bottom: 0;
 }
+@media (max-width: 1200px) {
+    .project-info {
+        padding-left: 0;
+    }
+}
 .project-info > li {
     /* flex: 1 0 0; */
 }
@@ -118,7 +138,8 @@ section {
 }
 .section-common {
     position: relative;
-    height: 100vh;
+    /* height: 100vh; */
+    overflow-x: auto;
 }
 .section-common h3 span,
 .section-common p span {
@@ -136,10 +157,15 @@ section {
 }
 .section-common .inner-cont {
     width: 100%;
-    max-width: 1440px;
+    width: 1440px;
     margin: 0 auto;
 }
-
+@media (max-width: 1480px) {
+    .section-common .inner-cont {
+        max-width: 100%;
+        padding: 0 40px;
+    }
+}
 .section-title {
     margin-top: 142px;
 }
@@ -190,12 +216,13 @@ section {
     letter-spacing: -0.27px;
 }
 #work-footer {
+    position: relative;
     display: flex;
     align-items: center;
     position: relative;
-    color: #fff;
     height: 229px;
     padding: 82px 60px 67px;
+    color: #fff;
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
     background-color: #000;
 }
@@ -211,12 +238,9 @@ section {
 }
 
 #work-footer .next {
-    margin-left: 610px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 60px;
-    color: #fff;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     font-feature-settings: 'cpsp' on;
     font-family: 'Plus Jakarta Sans';
     font-size: 56px;

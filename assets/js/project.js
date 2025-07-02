@@ -1,5 +1,4 @@
-gsap.registerPlugin(ScrollToPlugin);
-
+// ✅ 프로젝트 기본 정보 데이터
 const project = {
     title: ['Go deep\nDive in\nWatch on', 'Effortless\nChic\nLifestyle', 'Making\nShopping\nConvenient'],
     subTitle: ['CGV\nON MOBILE', 'LOTTE\nDUTY FREE', 'HOME&\nSHOPPING'],
@@ -12,6 +11,7 @@ const project = {
     ],
 };
 
+// ✅ 전역 Swiper 인스턴스 및 정보 DOM 캐싱
 let mainSwiper = null;
 let thumbSwiper = null;
 
@@ -19,16 +19,11 @@ const $industry = $('.industry');
 const $date = $('.date');
 const $type = $('.type');
 
+// ✅ 모바일 여부 판단 유틸 함수
 function isMobile() {
     return $(window).width() <= 768;
 }
-function updateThumbnailState(index) {
-    const thumbnails = document.querySelectorAll('.thumbnail');
-    thumbnails.forEach((el, i) => {
-        el.classList.toggle('active', i === index);
-    });
-}
-
+// ✅ 타이틀 및 서브타이틀 텍스트 업데이트 함수
 function updateTitleAndSubtitle(index) {
     const $title = $('.title');
     const $subtitle = $('.sub-title');
@@ -65,15 +60,15 @@ function updateTitleAndSubtitle(index) {
         $title.addClass('active');
         $subtitle.addClass('active');
 
-        $title.find('div').each((i, el) => {
-            $(el).css('transition-delay', i * 0.1 + 's');
+        $title.find('div').each(function (i) {
+            $(this).css('transition-delay', i * 0.1 + 's');
         });
-        $subtitle.find('div').each((i, el) => {
-            $(el).css('transition-delay', i * 0.1 + 's');
+        $subtitle.find('div').each(function (i) {
+            $(this).css('transition-delay', i * 0.1 + 's');
         });
 
-        $projectInfo.find('li').each((i, el) => {
-            $(el).css({
+        $projectInfo.find('li').each(function (i) {
+            $(this).css({
                 opacity: 1,
                 transform: 'translateY(0%)',
                 transition: 'all 0.8s cubic-bezier(0.87, 0, 0.13, 1)',
@@ -82,41 +77,98 @@ function updateTitleAndSubtitle(index) {
     }, 100);
 }
 
-function updateProjectInfo(index) {
-    $('.industry').text(project.industry[index]);
-    $('.date').text(project.date[index]);
-    $('.type').text(project.type[index]);
-    updateTitleAndSubtitle(index);
-    $('.fp-dot').removeClass('active');
-    $(`.fp-dot[data-index="${index}"]`).addClass('active');
-    $('.fp-navi.pc span').text((index + 1).toString().padStart(2, '0'));
+// ✅ 이미지 or 비디오 경로에 따라 .image-viewer 업데이트 함수
+function updateImageViewer(mediaPath) {
+    const $viewer = $('.image-viewer');
+    $viewer.empty(); // 기존 이미지나 영상 제거
 
-    // ✅ PC에서도 썸네일 위치 이동 및 상태 갱신
-    const $thumbnailViewer = $('.thumbnail-viewer');
-    const $thumbnails = $('.thumbnail');
-    const thumbHeight = $thumbnails.outerHeight();
+    if (mediaPath.endsWith('.mp4')) {
+        const video = document.createElement('video');
+        video.src = mediaPath;
+        video.autoplay = true;
+        video.loop = true;
+        video.muted = true;
+        video.playsInline = true;
+        video.style.width = '100%';
+        video.style.height = '100%';
+        video.style.objectFit = 'cover';
+        $viewer.append(video);
+    } else {
+        const img = document.createElement('img');
+        img.src = mediaPath;
+        img.alt = 'project image';
+        img.style.width = '100%';
+        img.style.height = '100%';
+        img.style.objectFit = 'cover';
+        $viewer.append(img);
+    }
+}
 
-    gsap.to($thumbnailViewer, {
-        y: -(index * thumbHeight),
-        duration: 0.6,
-        ease: 'ease',
+// ✅ 리스트 hover/scroll 시 image-viewer 이미지 변경 및 active 처리 함수
+function initListItemBehavior() {
+    const $listItems = $('.list-item');
+    const $viewerImg = $('.image-viewer img');
+    let ticking = false;
+
+    // 스크롤 감지
+    $('.project-viewer-scrollable').on('scroll', function () {
+        const $this = $(this);
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                let minDiff = Infinity;
+                let $closest = null;
+                const containerTop = $this.offset().top;
+                const containerHeight = $this.height();
+                const centerY = containerTop + containerHeight / 2;
+
+                $listItems.each(function () {
+                    const $el = $(this);
+                    const offset = $el.offset().top;
+                    const height = $el.outerHeight();
+                    const middle = offset + height / 2;
+                    const diff = Math.abs(centerY - middle);
+                    if (diff < minDiff) {
+                        minDiff = diff;
+                        $closest = $el;
+                    }
+                });
+
+                if ($closest) {
+                    $listItems.removeClass('active');
+                    $closest.addClass('active');
+                    const imgSrc = $closest.data('image');
+                    if (imgSrc) $viewerImg.attr('src', imgSrc);
+                }
+
+                ticking = false;
+            });
+            ticking = true;
+        }
     });
 
-    $thumbnails.removeClass('active').eq(index).addClass('active');
+    // 마우스 올렸을 때
+    $listItems.on('mouseenter', function () {
+        $listItems.removeClass('active');
+        $(this).addClass('active');
+        const imgSrc = $(this).data('image');
+        if (imgSrc) updateImageViewer(imgSrc); // ✅
+    });
+
+    // 스크롤 감지 후 중앙 항목 감지 시
+    if ($closest) {
+        $listItems.removeClass('active');
+        $closest.addClass('active');
+        const imgSrc = $closest.data('image');
+        if (imgSrc) updateImageViewer(imgSrc); // ✅
+    }
+
+    // ❗ 마우스가 list 바깥으로 나갔을 때
+    $('.project-viewer-scrollable').on('mouseleave', function () {
+        $listItems.removeClass('active');
+    });
 }
 
-function slideToCenter(index) {
-    const viewer = document.querySelector('.thumbnail-viewer');
-    const thumbnails = document.querySelectorAll('.thumbnail');
-    if (!viewer || thumbnails.length === 0) return;
-
-    const target = thumbnails[index];
-    const slideWidth = target.offsetWidth;
-    const gap = parseFloat(getComputedStyle(thumbnails[0]).marginRight || 0);
-    const offset = (slideWidth + gap) * index;
-    viewer.style.transform = `translateX(-${offset}px)`;
-}
-
+// ✅ 프로젝트 swiper 초기화 및 썸네일 관리 함수
 function initSwiper() {
     thumbSwiper = new Swiper('.thumbnail-swiper', {
         slidesPerView: 1,
@@ -171,6 +223,28 @@ function initSwiper() {
     });
 }
 
+// ✅ swiper 내부 썸네일 상태 업데이트
+function updateThumbnailState(index) {
+    const thumbnails = document.querySelectorAll('.thumbnail');
+    thumbnails.forEach((el, i) => {
+        el.classList.toggle('active', i === index);
+    });
+}
+
+// ✅ swiper 썸네일을 가운데로 이동
+function slideToCenter(index) {
+    const viewer = document.querySelector('.thumbnail-viewer');
+    const thumbnails = document.querySelectorAll('.thumbnail');
+    if (!viewer || thumbnails.length === 0) return;
+
+    const target = thumbnails[index];
+    const slideWidth = target.offsetWidth;
+    const gap = parseFloat(getComputedStyle(thumbnails[0]).marginRight || 0);
+    const offset = (slideWidth + gap) * index;
+    viewer.style.transform = `translateX(-${offset}px)`;
+}
+
+// ✅ swiper 제거 함수
 function destroySwiper() {
     if (mainSwiper) {
         mainSwiper.destroy(true, true);
@@ -181,8 +255,8 @@ function destroySwiper() {
         thumbSwiper = null;
     }
 }
-// let prevIsMobile = isMobile();
 
+// ✅ 전체 레이아웃 핸들링 (모바일/PC 구분)
 function handleLayout() {
     if (isMobile()) {
         destroySwiper();
@@ -193,113 +267,71 @@ function handleLayout() {
     }
 }
 
-function initListItemBehavior() {
-    const $listItems = $('.list-item');
-    const $viewerImg = $('.image-viewer img');
-    let ticking = false;
-
-    $('.project-viewer-scrollable').on('scroll', function () {
-        if (!ticking) {
-            requestAnimationFrame(() => {
-                let minDiff = Infinity;
-                let $closest = null;
-                const centerY = window.innerHeight / 2;
-
-                $listItems.each(function () {
-                    const $el = $(this);
-                    const offset = $el.offset().top;
-                    const height = $el.outerHeight();
-                    const middle = offset + height / 2;
-                    const diff = Math.abs(centerY - middle);
-                    if (diff < minDiff) {
-                        minDiff = diff;
-                        $closest = $el;
-                    }
-                });
-
-                if ($closest) {
-                    $listItems.removeClass('active');
-                    $closest.addClass('active');
-                    const imgSrc = $closest.data('image');
-                    if (imgSrc) $viewerImg.attr('src', imgSrc);
-                }
-
-                ticking = false;
-            });
-            ticking = true;
-        }
-    });
-
-    $listItems.on('mouseenter', function () {
-        $listItems.removeClass('active');
-        $(this).addClass('active');
-        const imgSrc = $(this).data('image');
-        if (imgSrc) $viewerImg.attr('src', imgSrc);
-    });
-
-    $('.project-viewer-scrollable').on('mouseleave', function () {
-        $listItems.removeClass('active');
-    });
-}
-
+// ✅ fullpage.js 초기화 함수
 function initFullpage() {
-    const sections = gsap.utils.toArray('.project-section');
-    let currentIndex = 0;
-    updateProjectInfo(0);
+    const totalSections = $('.project-section').length;
+    const formattedTotal = totalSections < 10 ? '0' + totalSections : totalSections;
 
-    const $container = $('#section_wrap');
-    const $arrowWrap = $('<div class="fp-arrows"></div>');
-    const $prevBtn = $('<button class="fp-arrow fp-prev">↑</button>');
-    const $nextBtn = $('<button class="fp-arrow fp-next">↓</button>');
-    $arrowWrap.append($prevBtn, $nextBtn);
-    $container.append($arrowWrap);
-
-    $arrowWrap.prepend(`
-        <div class="fp-navi pc">
-            <span>01</span>
-            <em>${sections.length.toString().padStart(2, '0')}</em>
-        </div>
-    `);
- ScrollTrigger.create({
-        trigger: '.project-viewer',
-        start: 'top center', // 또는 'top bottom'도 가능
-        onEnter: () => {
-            $('#bottom').css('background', '#000');
+    $('#section_wrap').simpleFullpage({
+        duration: 800,
+        easing: 'easeInOutExpo',
+        parallax: true,
+        keyboard: true,
+        touch: true,
+        navigation: false,
+        on: {
+            init() {
+                $('.fp-navi').remove();
+                $('.fp-arrows').prepend(`
+                        <div class="fp-navi">
+                            <span>01</span>
+                            <em>${formattedTotal}</em>
+                        </div>
+                    `);
+            },
         },
-        onLeaveBack: () => {
-            $('#bottom').css('background', 'transparent'); // 필요시 원래대로
+        afterLoad(index) {
+            const current = index + 1;
+            $('.fp-navi span').text(current < 10 ? '0' + current : current);
+
+            const $thumbnailViewer = $('.thumbnail-viewer');
+            const $thumbnails = $('.thumbnail');
+            const thumbHeight = $thumbnails.outerHeight();
+
+            gsap.to($thumbnailViewer, {
+                y: -(index * thumbHeight),
+                duration: 0.6,
+                ease: 'ease',
+            });
+
+            $thumbnails.removeClass('active').eq(index).addClass('active');
+
+            $('.industry').text(project.industry[index]);
+            $('.date').text(project.date[index]);
+            $('.type').text(project.type[index]);
+            updateTitleAndSubtitle(index);
+
+            if (index === totalSections - 1) {
+                setTimeout(() => {
+                    const plugin = $('#section_wrap').data('simpleFullpage');
+                    if (plugin && typeof plugin.destroy === 'function') {
+                        plugin.destroy();
+                        $('body, html').css('overflow', 'auto');
+                    }
+                }, 500);
+            }
         },
-    });
-    function scrollToSection(index) {
-        if (index < 0 || index >= sections.length) return;
-        currentIndex = index;
-        gsap.to(window, {
-            scrollTo: { y: window.innerHeight * index },
-            duration: 1,
-            ease: 'power2.inOut',
-            onComplete: () => updateProjectInfo(index),
-        });
-    }
-
-    $prevBtn.on('click', () => scrollToSection(currentIndex - 1));
-    $nextBtn.on('click', () => scrollToSection(currentIndex + 1));
-
-    window.addEventListener('wheel', (e) => {
-        if (gsap.isTweening(window)) return;
-        if (e.deltaY > 0) scrollToSection(currentIndex + 1);
-        else scrollToSection(currentIndex - 1);
     });
 }
 
-$(window).on('load', function () {
-    if (window.lenis) window.lenis.stop();
-
+// ✅ 리스트 JSON 로딩 및 리스트 동적 생성
+function loadProjectList() {
+    const $lists = $('.lists');
     $.getJSON('/assets/data/projectList.json', function (data) {
-        const $lists = $('.lists');
         data.forEach((item) => {
             const tagsHtml = item.tags.map((tag) => `<li>${tag}</li>`).join('');
             const html = `
-                <a class="list-item" data-image="${item.image}" href="${item.link || 'javascript:void(0);'}"
+                <a class="list-item" data-image="${item.image}" href="${item.link || 'javascript:void(0);'}" 
                    ${item.link ? 'data-link="true" target="_blank"' : ''}>
                     <div class="animate-wrap">
                         <div class="animate">
@@ -319,22 +351,40 @@ $(window).on('load', function () {
             $lists.append(html);
         });
 
+        // ✅ data-link가 있는 list-item에 custom cursor "view" 효과 적용
+        $('.list-item[data-link="true"]').each(function () {
+            customCursorEffect($(this), 'view');
+        });
+
         if (!isMobile()) initListItemBehavior();
     });
+}
 
+// ✅ 프로젝트 뷰어 열기 함수
+function openProjectViewer() {
+    $('.project-viewer').addClass('active');
+    const firstImgSrc = $('.list-item').first().data('image');
+    updateImageViewer(firstImgSrc);
+    if (window.lenis) window.lenis.stop();
+    $('.project-viewer').on('wheel touchmove', function (e) {
+        e.stopPropagation();
+    });
+}
+
+// ✅ 프로젝트 뷰어 닫기 함수
+function closeProjectViewer() {
+    $('.project-viewer').removeClass('active');
+    if (window.lenis) window.lenis.start();
+    $('.project-viewer').off('wheel touchmove');
+}
+
+// ✅ 전체 초기화
+$(window).on('load', function () {
+    loadProjectList();
     handleLayout();
     $(window).on('resize', handleLayout);
 });
 
-$(document).on('click', '.project-list-button', function () {
-    if (isMobile()) {
-        $('.project-viewer').addClass('active');
-        $('body').css('overflow', 'hidden'); // 스크롤 막기
-    }
-});
-$(document).on('click', '.project-viewer .close', function () {
-    if (isMobile()) {
-        $('.project-viewer').removeClass('active');
-        $('body').css('overflow', 'auto');
-    }
-});
+// ✅ 이벤트 바인딩
+$(document).on('click', '.project-list-button', openProjectViewer);
+$(document).on('click', '.project-viewer .close', closeProjectViewer);
