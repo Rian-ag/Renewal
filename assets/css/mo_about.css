@@ -43,7 +43,8 @@ em {display:none;}
 .about_vision .cont_inner dl dd dl {width:100%; margin-bottom:80px; display:flex; flex-direction:column;}
 .about_vision .cont_inner dl dd dl dt {display:flex; flex-direction:column; gap:8px;}
 .about_vision .cont_inner dl dd dl dd p:first-of-type {margin-bottom:16px;}
-.about_vision .cont_inner .one dd {opacity:0; transform:translateX(100px); }
+.about_vision .cont_inner .one dd {overflow:hidden;}
+.about_vision .cont_inner .one dd strong {opacity:0; transform:translateY(100px); }
 .about_vision .cont_inner .two dd dl {opacity:0;}
 .about_vision .cont_inner .two br {display:none;}
 
@@ -69,6 +70,8 @@ em {display:none;}
 .about_awards .cont_inner > dl > dd > div p:last-of-type {margin-bottom:0;}
 .about_awards .cont_inner > dl > dd > div p span{color:#808080; font-size:10px; font-weight:400; }
 .about_swiper {position: relative;}
+.about_awards .cont_inner dl dd h2 p {overflow:hidden;}
+.about_awards .cont_inner dl dd h2 p strong {font-size:40px; font-weight:700;}
 
 /* about_partners */
 .pc_list {display:none !important;}

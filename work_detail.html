@@ -146,22 +146,19 @@
                     </ul>
                 </div>
             </section>
-            <!-- work-footer -->
-            <div id="work-footer">
-                <button class="list-button" area-label="리스트 이동"></button>
-                <a href="javascript:void(0)" class="next">
-                    LOTTE DUTY FREE
-                    <button>next</button>
-                </a>
-            </div>
             <!-- bottom -->
             <div id="bottom" class="type3">
+                <section>
+                    <button></button>
+                    <a href="">KB Kookmin Card TABLET</a>
+                </section>
                 <!-- <a href="http://daum.net" target="_blank">BLOG</a> -->
-                <a href="mailto:rianag@rianag.com">RIANAG@RIANAG.COM</a>
+                <span>© RIANag INC. All Rights Reserved.</span>
                 <button class="top">Back to Top</button>
             </div>
             <!-- //bottom -->
              <div class="custom-cursor dot-cursor"></div>
+             <div class="custom-cursor next">Next</div>
         </div>
 
         <!-- JS -->
@@ -175,7 +172,7 @@
         <script>
             $(function () {
                 lazyLoads();
-                customCursorEffect();
+                customCursorEffect($('#bottom > section > a'), 'next');
             });
         </script>
     </body>

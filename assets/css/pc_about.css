@@ -39,7 +39,8 @@ path {stroke:white; stroke-width:2; fill:rgba(255, 255, 255, 0); stroke-linecap:
 .about_vision .cont_inner > dl dd {display:flex; flex-wrap:wrap; justify-content:space-between;}
 .about_vision .cont_inner dl dd dl {width:40%; margin-bottom:140px; display:flex; flex-direction:column;}
 .about_vision .cont_inner dl dd dl dd p:first-of-type {margin-bottom:16px;}
-.about_vision .cont_inner .one dd {opacity:0; transform:translateX(100px); }
+.about_vision .cont_inner .one dd {overflow:hidden;}
+.about_vision .cont_inner .one dd strong {opacity:0; transform:translateY(100px); }
 .about_vision .cont_inner .two dd dl {opacity:0;}
 
 /* about_awards */

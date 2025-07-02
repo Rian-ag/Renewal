@@ -83,7 +83,6 @@ $(document).ready(function () {
       );
     }
 
-
     gsap.timeline({
         scrollTrigger:{
             trigger:'.about_vision .one',
@@ -93,7 +92,7 @@ $(document).ready(function () {
             // markers:true,
         }
     })
-    .to('.about_vision .one dd',{x:'0px', duration:1, ease:'none', opacity:1},0.2)
+    .to('.about_vision .one dd strong',{y:'0px', duration:1, ease:'none', opacity:1},0.2)
 
     gsap.timeline({
         scrollTrigger:{

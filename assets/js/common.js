@@ -89,7 +89,7 @@ $(document).ready(function () {
             if ($btnHam.parent().hasClass('close')) {
                 // ✅ 한 번에 닫히는 처리
                 $siteMap.removeClass('active').addClass('close');
-                $('body').css('overflow', ''); // ✅ body 스크롤 다시 활성화
+                $('body, html').css('overflow', ''); // ✅ body 스크롤 다시 활성화
                 $siteMap.find('li').removeClass('active');
                 $siteMap.find('.bottom').removeClass('active').children().removeClass('active');
                 $btnHam.parent().removeClass('close');
@@ -116,7 +116,7 @@ $(document).ready(function () {
             } else {
                 // 열림 처리
                 $siteMap.addClass('active');
-                 $('body').css('overflow', 'hidden'); // ✅ 스크롤 비활성화
+                 $('body, html').css('overflow', 'hidden'); // ✅ 스크롤 비활성화
                 updateHeaderZIndex();
                 isAnimating = false;
                 $btnHam.parent().addClass('close');
