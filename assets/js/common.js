@@ -8,22 +8,46 @@ $(document).ready(function () {
     /* header스크롤 */
     initHeaderScrollToggle();
 
-    // ✅ Lenis 전체 공통 적용
-    const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        smooth: true,
-        smoothTouch: false,
-    });
+    // // ✅ Lenis 전체 공통 적용
+    // const lenis = new Lenis({
+    //     duration: 1.2,
+    //     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    //     smooth: true,
+    //     smoothTouch: false,
+    // });
 
-    // 다른 페이이지에서 제어
-    window.lenis = lenis;
+    // // 다른 페이이지에서 제어
+    // window.lenis = lenis;
 
-    function raf(time) {
-        lenis.raf(time);
+    // function raf(time) {
+    //     lenis.raf(time);
+    //     requestAnimationFrame(raf);
+    // }
+    // requestAnimationFrame(raf);
+
+
+        // Lenis 제외 페이지 설정
+    const lenisExcludePages = ['/project.html'];
+    const currentPath = window.location.pathname;
+
+    // Lenis 실행 (제외 페이지가 아니고, Lenis가 로드된 경우만)
+    if (typeof Lenis !== 'undefined' && !lenisExcludePages.includes(currentPath)) {
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smooth: true,
+            smoothTouch: false,
+        });
+
+        window.lenis = lenis;
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
         requestAnimationFrame(raf);
     }
-    requestAnimationFrame(raf);
+
 
     // 예: 로고 클릭 시
     $('h1 img').on('click', function (e) {
