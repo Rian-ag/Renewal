@@ -1,13 +1,59 @@
 // ✅ 프로젝트 기본 정보 데이터
 const project = {
-    title: ['Go deep\nDive in\nWatch on', 'Effortless\nChic\nLifestyle', 'Making\nShopping\nConvenient'],
-    subTitle: ['CGV\nON MOBILE', 'LOTTE\nDUTY FREE', 'HOME&\nSHOPPING'],
-    industry: ['Commerce', 'Commerce', 'Commerce'],
-    date: ['July, 2025', '2019 - In Preogress', '2021 - In Progress'],
+    title: [
+        'Go deep\nDive in\nWatch on',
+        'Effortless\nChic\nLifestyle',
+        'Enjoy\nA new\nHappiness',
+        'Simple\n& Easy\nConsulting',
+        'Concise\nApproach\nFor customer',
+        'Find style\nShare\nThe space',
+        'Convenient\nIndexing\nFor developers',
+        'Brand with\nVisual\nEmphasis',
+        'Touch\nOptimized\nTablet UI',
+    ],
+    subTitle: [
+        'CGV\nON MOBILE',
+        'LOTTE\nDUTY FREE',
+        'HOME&\nSHOPPING',
+        'KB Kookmin\nCard TABLET',
+        'HYUNDAI\nDUTY F REE',
+        'HYUNDAI\nLIVART',
+        'SKT\nT ID ADMIN',
+        'CJ\nSEAFOOD',
+        'WOORI BANK\nTABLET BRUNCH',
+    ],
+    industry: [
+        'Commerce',
+        'Commerce',
+        'Commerce',
+        'Finance',
+        'Commerce',
+        'Commerce',
+        'Telecommunication',
+        'Commerce',
+        'Finance',
+    ],
+    date: [
+        'July, 2025',
+        '2019 - In Preogress',
+        '2021 - In Progress',
+        'September, 2022',
+        '2021 - In Progress',
+        'January, 2021',
+        'September, 2021',
+        'December, 2022',
+        'March, 2020',
+    ],
     type: [
         'UI/UX Design/Mobile Web&App/PC Web',
         'UI/UX Design/Mobile Web&App/PC Web',
         'UI/UX Design/Mobile Web&App/PC Web',
+        'UI/UX Design/Tablet Web & App',
+        'UI/UX Design/Mobile Web&App/PC Web',
+        'UI/UX Design/Mobile Web&App/PC Web',
+        'UI/UX Design/Mobile Web&App/PC Web/ Admin',
+        'UI/UX Design/Mobile Web&App/PC Web',
+        'UI/UX Design/Mobile Web&App/Tablet',
     ],
 };
 
@@ -190,37 +236,56 @@ function initSwiper() {
         },
     });
 
-    mainSwiper = new Swiper('.main-swiper', {
-        allowTouchMove: true,
-        simulateTouch: true,
-        grabCursor: true,
-        scrollbar: {
-            el: '.swiper-scrollbar',
-            draggable: true,
+  mainSwiper = new Swiper('.main-swiper', {
+    scrollbar: {
+        el: '.swiper-scrollbar',
+        draggable: true,
+    },
+    thumbs: {
+        swiper: thumbSwiper,
+    },
+    on: {
+        init: function () {
+            const index = this.activeIndex;
+            updateTitleAndSubtitle(index);
+            $industry.text(project.industry[index]);
+            $date.text(project.date[index]);
+            $type.text(project.type[index]);
         },
-        thumbs: {
-            swiper: thumbSwiper,
+        slideChange: function () {
+            thumbSwiper.slideTo(this.activeIndex);
         },
-        on: {
-            init: function () {
-                const index = this.activeIndex;
-                updateTitleAndSubtitle(index);
-                $industry.text(project.industry[index]);
-                $date.text(project.date[index]);
-                $type.text(project.type[index]);
-            },
-            slideChange: function () {
-                thumbSwiper.slideTo(this.activeIndex);
-            },
-            slideChangeTransitionEnd: function () {
-                const index = this.activeIndex;
-                updateTitleAndSubtitle(index);
-                $industry.text(project.industry[index]);
-                $date.text(project.date[index]);
-                $type.text(project.type[index]);
-            },
+        slideChangeTransitionEnd: function () {
+            const index = this.activeIndex;
+            updateTitleAndSubtitle(index);
+            $industry.text(project.industry[index]);
+            $date.text(project.date[index]);
+            $type.text(project.type[index]);
         },
-    });
+        // 맨 끝 slide 드래그 막기 
+        touchMove: function (e) {
+            const swiper = this;
+            const isFirst = swiper.activeIndex === 0;
+            const isLast = swiper.activeIndex === swiper.slides.length - 1;
+
+            // 드래그 방향 확인
+            const diff = swiper.touches.currentX - swiper.touches.startX;
+
+            // 왼쪽으로 드래그 중인데 첫 번째 슬라이드일 때 → 막기
+            if (isFirst && diff > 0) {
+                e.preventDefault();
+                e.stopImmediatePropagation?.();
+            }
+
+            // 오른쪽으로 드래그 중인데 마지막 슬라이드일 때 → 막기
+            if (isLast && diff < 0) {
+                e.preventDefault();
+                e.stopImmediatePropagation?.();
+            }
+        }
+    }
+});
+
 }
 
 // ✅ swiper 내부 썸네일 상태 업데이트
