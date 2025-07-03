@@ -10,7 +10,7 @@
 .pc_vision li {text-align:right; overflow:hidden;}
 .pc_vision li:last-of-type {text-align:left;}
 .pc_vision li span {display:block; transform:translate3d(0, 200px, 0); opacity:0; will-change:transform, opacity;}
-.cont_inner {max-width:1400px; margin:110px auto 160px;}
+.cont_inner {width:1440px; margin:110px auto 160px; padding:0 20px;}
 h2 {font-size:78px; font-weight:700;}
 h3 {font-size:32px; font-weight:700;}
 section dl {display:flex;}

@@ -8,7 +8,7 @@ em,i {font-style: normal;}
 #bottom div {display:flex; align-items:center; gap:160px;}
 #bottom .download {display:flex; align-items:center; gap:12px;}
 #bottom .download:after {width:20px; height:20px; background-image:url('/assets/images/common/icon_split.png'); background-position:-50px 0; background-repeat:no-repeat; background-size:500px auto; content:''; display:block;}
-.cont_inner {max-width:1400px; margin:0 auto;}
+.cont_inner {width:1440px; max-width:100%; margin:0 auto; padding:0 20px;}
 strong {font-weight:800;;}
 
 .cont_inner {padding-top:220px;}
