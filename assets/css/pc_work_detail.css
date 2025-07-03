@@ -37,7 +37,6 @@ span {
     height: 100vh;
     color: #fff;
     padding: 0 30px;
-    background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: center;

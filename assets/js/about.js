@@ -22,45 +22,6 @@ $(document).ready(function () {
         scrub: false
     });
 
-
-    /* gsap 이벤트 */
-    // const animatedHeadingSelectors = [
-    //   '.about_vision h2 span','.about_awards h2 span', '.about_awards h2 p'
-    // ];
-
-    // animatedHeadingSelectors.forEach(selector => {
-    //   const spans = gsap.utils.toArray(selector);
-    //   if (spans.length > 0) {
-    //     const tl = gsap.timeline({
-    //       scrollTrigger: {
-    //         trigger: selector.split(' ')[0],
-    //         start: 'top 70%',
-    //         end: '90% 90%',
-    //         toggleActions: 'play none none none',
-    //         // markers: true,
-    //       }
-    //     });
-
-    //     tl.fromTo(spans,
-    //       { y: 200, opacity: 0, force3D: true },
-    //       { y: 0, opacity: 1, duration: 1.5, stagger: 0.2, ease: 'power2.inOut', force3D: true }
-    //     );
-
-    //     if (selector === '.about_awards h2 span') {
-    //       const texts = gsap.utils.toArray('.about_awards dd > p');
-    //       if (texts.length > 0) {
-    //         tl.fromTo(texts,
-    //           { y: 100, opacity: 0, force3D: true },
-    //           { y: 0, opacity: 1, duration: 0.5, stagger: 0.05, ease: 'power2.out', force3D: true },
-    //           '+=0.1'
-    //         );
-    //       }
-    //     }
-    //   }
-    // });
-
-
-    
     const moVision = document.querySelector('.mo_vision');
     if (moVision) {
       gsap.fromTo(moVision,
@@ -83,7 +44,6 @@ $(document).ready(function () {
       );
     }
 
-
     gsap.timeline({
         scrollTrigger:{
             trigger:'.about_vision .one',
@@ -93,7 +53,7 @@ $(document).ready(function () {
             // markers:true,
         }
     })
-    .to('.about_vision .one dd',{x:'0px', duration:1, ease:'none', opacity:1},0.2)
+    .to('.about_vision .one dd strong',{y:'0px', duration:1, ease:'none', opacity:1},0.2)
 
     gsap.timeline({
         scrollTrigger:{
@@ -237,5 +197,8 @@ $(document).ready(runPartnerAnimation);
       });
     }
   });
+
+  
+
 });
 

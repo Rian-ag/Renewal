@@ -8,22 +8,46 @@ $(document).ready(function () {
     /* header스크롤 */
     initHeaderScrollToggle();
 
-    // ✅ Lenis 전체 공통 적용
-    const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        smooth: true,
-        smoothTouch: false,
-    });
+    // // ✅ Lenis 전체 공통 적용
+    // const lenis = new Lenis({
+    //     duration: 1.2,
+    //     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+    //     smooth: true,
+    //     smoothTouch: false,
+    // });
 
-    // 다른 페이이지에서 제어
-    window.lenis = lenis;
+    // // 다른 페이이지에서 제어
+    // window.lenis = lenis;
 
-    function raf(time) {
-        lenis.raf(time);
+    // function raf(time) {
+    //     lenis.raf(time);
+    //     requestAnimationFrame(raf);
+    // }
+    // requestAnimationFrame(raf);
+
+
+        // Lenis 제외 페이지 설정
+    const lenisExcludePages = ['/project.html'];
+    const currentPath = window.location.pathname;
+
+    // Lenis 실행 (제외 페이지가 아니고, Lenis가 로드된 경우만)
+    if (typeof Lenis !== 'undefined' && !lenisExcludePages.includes(currentPath)) {
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smooth: true,
+            smoothTouch: false,
+        });
+
+        window.lenis = lenis;
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
         requestAnimationFrame(raf);
     }
-    requestAnimationFrame(raf);
+
 
     // 예: 로고 클릭 시
     $('h1 img').on('click', function (e) {
@@ -89,7 +113,7 @@ $(document).ready(function () {
             if ($btnHam.parent().hasClass('close')) {
                 // ✅ 한 번에 닫히는 처리
                 $siteMap.removeClass('active').addClass('close');
-                $('body').css('overflow', ''); // ✅ body 스크롤 다시 활성화
+                $('body, html').css('overflow', ''); // ✅ body 스크롤 다시 활성화
                 $siteMap.find('li').removeClass('active');
                 $siteMap.find('.bottom').removeClass('active').children().removeClass('active');
                 $btnHam.parent().removeClass('close');
@@ -98,9 +122,9 @@ $(document).ready(function () {
                 if (isType2 && isWhite) {
                     $logo.attr('src', originalLogoSrc);
                 } else if (isType2) {
-                    $logo.attr('src', '/assets/images/common/h1_logo_black.png');
+                    $logo.attr('src', toBlackLogo(originalLogoSrc));
                 } else {
-                    $logo.attr('src', originalLogoSrc.replace('_black.png', '.png'));
+                    $logo.attr('src', toWhiteLogo(originalLogoSrc));
                 }
 
                 if (isType3) {
@@ -116,15 +140,15 @@ $(document).ready(function () {
             } else {
                 // 열림 처리
                 $siteMap.addClass('active');
-                 $('body').css('overflow', 'hidden'); // ✅ 스크롤 비활성화
+                 $('body, html').css('overflow', 'hidden'); // ✅ 스크롤 비활성화
                 updateHeaderZIndex();
                 isAnimating = false;
                 $btnHam.parent().addClass('close');
 
                 if (isType2) {
-                    $logo.attr('src', '/assets/images/common/h1_logo_black.png');
+                    $logo.attr('src', toBlackLogo(originalLogoSrc)); // ✅
                 } else {
-                    $logo.attr('src', originalLogoSrc.split('.')[0] + '_black.png');
+                    $logo.attr('src', toBlackLogo(originalLogoSrc));
                 }
 
                 if (isType3) {
@@ -198,49 +222,14 @@ function lazyLoads() {
     }
 }
 
-// function initHeaderScrollToggle() {
-//   let lastScrollTop = 0;
-//   const delta = 5;
-//   const $Header = $('header');
-
-//   $(window).on('scroll.headerToggle', function () {
-//     if ($('.site_map.active').length > 0) return;
-
-//     const st = $(this).scrollTop();
-//     if (Math.abs(lastScrollTop - st) <= delta) return;
-
-//     const isMobile = window.innerWidth <= 767;
-
-//     if (st > lastScrollTop && st > 100) {
-//       $Header.addClass('hide');
-//       if (isMobile) {
-//         $Header.removeClass('on');
-//       }
-//     } else {
-//       $Header.removeClass('hide');
-//       if (isMobile) {
-//         $Header.addClass('on');
-
-//         // ✅ 스크롤 맨 위이면 on 제거
-//         if (st <= 5) {
-//           $Header.removeClass('on');
-//         }
-//       }
-//     }
-
-//     lastScrollTop = st;
-//     console.log('scrollTop:', st);
-//   });
-// }
-
 function initHeaderScrollToggle() {
   let lastScrollTop = 0;
   const delta = 5;
   const $Headers = $('header');
   const $Logo = $Headers.find('h1 img');
   const originalSrc = $Logo.attr('src');
-  const whitekSrc = originalSrc.replace('_black.png', '.png');  // 원래 로고 복귀용
-  const blacSrc = originalSrc.replace('.png', '_black.png');    // black 로고 버전
+  const whitekSrc = toWhiteLogo(originalSrc);  // 원래 로고 복귀용
+  const blacSrc = toBlackLogo(originalSrc);;    // black 로고 버전
 
   $(window).on('scroll.headerToggle', function () {
     if ($('.site_map.active').length > 0) return;
@@ -438,18 +427,10 @@ function toast_close(_toast) {
     }, 200);
 }
 
+function toBlackLogo(src) {
+  return src.includes('_black.png') ? src : src.replace('.png', '_black.png');
+}
 
-// function animateScaleTarget($area, scaleFrom = 1.2, scaleTo = 1, duration = 1.5, delay = 0, withFade = false) {
-//     if (!$area || $area.length === 0) return;
-
-//     gsap.set($area, { scale: scaleFrom, opacity: withFade ? 0 : 1 });
-
-//     gsap.to($area, {
-//         scale: scaleTo,
-//         opacity: withFade ? 1 : undefined,
-//         duration: duration,
-//         delay: delay,
-//         ease: "power3.out"
-//     });
-//     console.log('big')
-// }
+function toWhiteLogo(src) {
+  return src.replace('_black.png', '.png');
+}
