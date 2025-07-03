@@ -1,6 +1,5 @@
 :root { --font-main: 'Pretendard', sans-serif; } 
 body { color: #000; font-weight: 400; } 
-#wrap { min-width: 1440px;} 
 /* 공통 */
 .mo { display: none; } 
 .tar { text-align: right !important; } 
@@ -8,6 +7,7 @@ body { color: #000; font-weight: 400; }
 .mo { display: none; } 
 * { box-sizing: border-box; word-break: keep-all; } 
 
+#wrap { min-width: 1440px;} 
 #layout { min-width: 1440px; } 
 section { width: 1400px; margin: 0 auto;} 
 .section-container { display: flex; width: 100%; padding: 140px 0; flex-direction: column; gap: 200px; } 
