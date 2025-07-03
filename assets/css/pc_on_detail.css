@@ -1,9 +1,10 @@
 /* 공통 */
-.cont_inner {width:1400px; margin:0 auto;}
+/* .cont_inner {width:1400px; margin:0 auto;} */
 em,i {font-style: normal;}
 .mo {display:none;}
-body {overflow:hidden;}
+body {overflow:visible;}
 #wrap {overflow:visible;}
+.cont_inner {max-width:1440px; width:100%; margin:0 auto; padding:0px 20px;}
 
 /* detail_visual */
 
@@ -23,7 +24,7 @@ body {overflow:hidden;}
 .detail_visual .cont_inner p i {padding:12px 24px; border:1px solid #fff; border-radius:99px; display:inline-block;}
 
 /* section */
-section {padding:120px 0 40px; background:#fff; position:relative; z-index:2;}
+section {padding:120px 0 40px; background:#fff; position:relative; z-index:2; }
 section .cont_inner {display:flex; justify-content:space-between;}
 section .cont_inner dl {height:100%; position:sticky; top:100px; background: #fff;}
 section .cont_inner dl dt a {width:24px; height:24px; margin-bottom:40px; background-image:url('../images/common/icon_split.png'); background-size:500px; background-position:-140px -50px; display:block;}
