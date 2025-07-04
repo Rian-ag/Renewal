@@ -2,12 +2,12 @@ gsap.registerPlugin(ScrollTrigger);
 
 $(document).ready(function () {
     const isMobile = window.innerWidth <= 768;
-
+    const viewHeight = window.innerHeight;
     // 📌 Visual pin 고정
     ScrollTrigger.create({
         trigger: '.wrap',
         start: 'top top',
-        end: '+=400%',
+        end: `+=${viewHeight}`,
         pin: '.visual',
         pinSpacing: false,
         scrub: false,
@@ -20,8 +20,6 @@ $(document).ready(function () {
 
     // ✅ visual 진입 시 scale + 텍스트 애니메이션 (PC만)
     if (!isMobile) {
-        const viewHeight = window.innerHeight;
-
         // 초기 스케일 설정
         gsap.set('.visual', {
             scale: 1.5,
@@ -33,12 +31,12 @@ $(document).ready(function () {
 
         tl.to('.visual', {
             scale: 1,
-            duration: 3,
+            duration: 4,
             ease: 'power3.out',
         });
 
         tl.fromTo(
-            [...visualH1, ...visualH2],
+            [...visualH2],
             { y: 200, opacity: 0, force3D: true },
             {
                 y: 0,
@@ -71,7 +69,7 @@ $(document).ready(function () {
             scrollTrigger: {
                 trigger: '.visual',
                 start: 'top top',
-                end: '+=100vh',
+                end: `+=${viewHeight}`,
                 scrub: true,
             },
         });
