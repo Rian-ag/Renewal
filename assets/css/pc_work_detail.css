@@ -5,13 +5,18 @@ body { font-weight: 400; color: #000; }
 .mo { display: none !important; } 
 span { display: block; } 
 
-#wrap { min-width: 1440px; } 
-#layout { min-width: 1440px; } 
+/* #wrap { min-width: 1440px; } 
+#layout { min-width: 1440px; } */
+/* 1066px 이하 스크롤 */
+@media (max-width: 1066px){
+ #wrap { min-width: 1066px; /* 공통 넣고 삭제예정 */}
+ #layout { width: 1066px; } 
+ }
 /* visual */
-.visual { position: fixed; width: 100vw; height: 100vh; color: #fff; padding: 0 30px; display: flex; flex-direction: column; justify-content: center; background-image: url(/assets/images/work_detail/bg.jpg); background-size: cover; background-repeat: no-repeat; background-position: center center; } 
-.visual .title-container { width: 1354px; height: 100%; margin: 0 auto; position: relative; display: flex; flex-direction: column; justify-content: center; } 
-.visual h1 { padding: 4px 0; overflow: hidden; } 
-.visual h1 span { font-family: 'Plus Jakarta Sans'; font-size: 24px; font-weight: 800; color: #fff; line-height: 102%; letter-spacing: -0.48px; transform: translate3d(0, 200px, 0); opacity: 0; will-change: transform, opacity; } 
+.visual { position: fixed; width: 100vw; height: 100vh; color: #fff; /* padding: 0 30px; */
+ display: flex; flex-direction: column; justify-content: center; background-image: url(/assets/images/work_detail/bg.jpg); background-size: cover; background-repeat: no-repeat; background-position: center center; } 
+.visual .title-container { width: 100%; max-width: 1414px; height: 100%; padding: 0 30px; margin: 0 auto; position: relative; display: flex; flex-direction: column; justify-content: center; } 
+.visual h1 { font-family: 'Plus Jakarta Sans'; font-size: 24px; font-weight: 800; color: #fff; line-height: 102%; letter-spacing: -0.48px; } 
 .visual h2 { margin-top: 48px; } 
 .visual h2 li { line-height: 1; overflow: hidden; } 
 .visual h2 span { padding-bottom: 12px; font-size: 100px; font-family: 'Plus Jakarta Sans'; line-height: 102%; font-weight: 800; letter-spacing: -2px; color: #fff; transform: translate3d(0, 200px, 0); opacity: 0; will-change: transform, opacity; } 
@@ -25,8 +30,8 @@ section { background-color: #fff; }
 .section-common h3 span,
 .section-common p span { opacity: 0; transform: translate3d(0, 200px, 0); } 
 .section-common > span { position: relative; top: 50px; left: 60px; font-family: 'Plus Jakarta Sans'; font-size: 24px; font-weight: 700; line-height: 100%; } 
-.section-common .inner-cont { width: 1400px; margin: 0 auto; } 
-.section-title { margin-top: 142px; } 
+.section-common .inner-cont { position: relative; width: 100%; max-width: 1460px; padding: 92px 30px 232px; margin: 0 auto; } 
+.section-title { } 
 .section-title li { overflow: hidden; } 
 .section-title li span { font-feature-settings: 'cpsp' on; font-family: 'Plus Jakarta Sans'; font-size: 128px; font-weight: 700; line-height: 102%; } 
 .inner-cont > p { margin-top: 48px; font-feature-settings: 'cpsp' on; font-size: 32px; font-weight: 700; line-height: 120%; overflow: hidden; } 
