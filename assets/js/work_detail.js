@@ -73,18 +73,6 @@ $(document).ready(function () {
                 scrub: true,
             },
         });
-
-        // ✅ 배경 패럴럭스 (선택)
-        gsap.to('.parallax-bg', {
-            y: -200,
-            ease: 'none',
-            scrollTrigger: {
-                trigger: '.visual',
-                start: 'top top',
-                end: `+=${viewHeight}`,
-                scrub: true,
-            },
-        });
     } else {
         // ✅ 모바일: scrollTrigger 기반 순차 애니메이션
         if ((visualH1.length > 0 || visualH2.length > 0) && projectInfoItems.length > 0) {
