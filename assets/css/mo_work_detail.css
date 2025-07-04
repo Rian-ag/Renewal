@@ -25,9 +25,7 @@ span { display: block; }
 
 .title-container { position: absolute; top: 16.71dvh; /* left: 3rem; */
  left: 7.692vw; } 
-.visual h1 { padding: 2px 0; overflow: hidden; } 
-.visual h1 span { font-family: 'Plus Jakarta Sans'; color: #fff; font-style: normal; font-size: 1.4rem; font-weight: 700; line-height: 110%; letter-spacing: -0.28px; /* text-transform: uppercase; */
- transform: translate3d(0, 200px, 0); opacity: 0; will-change: transform, opacity; } 
+.visual h1  { font-family: 'Plus Jakarta Sans'; color: #fff; font-style: normal; font-size: 1.4rem; font-weight: 700; line-height: 110%; letter-spacing: -0.28px; } 
 .visual h2 { margin-top: 2rem; } 
 .visual h2 li { line-height: 1.8; overflow: hidden; } 
 .visual h2 span { padding-bottom: 12px; color: #fff; font-family: 'Plus Jakarta Sans'; font-size: 4rem; font-weight: 700; line-height: 110%; letter-spacing: -0.8px; transform: translate3d(0, 200px, 0); opacity: 0; will-change: transform, opacity; } 
