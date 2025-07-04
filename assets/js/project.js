@@ -179,13 +179,6 @@ function initListItemBehavior() {
                     }
                 });
 
-                if ($closest) {
-                    $listItems.removeClass('active');
-                    $closest.addClass('active');
-                    const imgSrc = $closest.data('image');
-                    if (imgSrc) $viewerImg.attr('src', imgSrc);
-                }
-
                 ticking = false;
             });
             ticking = true;
@@ -199,14 +192,6 @@ function initListItemBehavior() {
         const imgSrc = $(this).data('image');
         if (imgSrc) updateImageViewer(imgSrc); // ✅
     });
-
-    // 스크롤 감지 후 중앙 항목 감지 시
-    if ($closest) {
-        $listItems.removeClass('active');
-        $closest.addClass('active');
-        const imgSrc = $closest.data('image');
-        if (imgSrc) updateImageViewer(imgSrc); // ✅
-    }
 
     // ❗ 마우스가 list 바깥으로 나갔을 때
     $('.project-viewer-scrollable').on('mouseleave', function () {
@@ -236,56 +221,55 @@ function initSwiper() {
         },
     });
 
-  mainSwiper = new Swiper('.main-swiper', {
-    scrollbar: {
-        el: '.swiper-scrollbar',
-        draggable: true,
-    },
-    thumbs: {
-        swiper: thumbSwiper,
-    },
-    on: {
-        init: function () {
-            const index = this.activeIndex;
-            updateTitleAndSubtitle(index);
-            $industry.text(project.industry[index]);
-            $date.text(project.date[index]);
-            $type.text(project.type[index]);
+    mainSwiper = new Swiper('.main-swiper', {
+        scrollbar: {
+            el: '.swiper-scrollbar',
+            draggable: true,
         },
-        slideChange: function () {
-            thumbSwiper.slideTo(this.activeIndex);
+        thumbs: {
+            swiper: thumbSwiper,
         },
-        slideChangeTransitionEnd: function () {
-            const index = this.activeIndex;
-            updateTitleAndSubtitle(index);
-            $industry.text(project.industry[index]);
-            $date.text(project.date[index]);
-            $type.text(project.type[index]);
+        on: {
+            init: function () {
+                const index = this.activeIndex;
+                updateTitleAndSubtitle(index);
+                $industry.text(project.industry[index]);
+                $date.text(project.date[index]);
+                $type.text(project.type[index]);
+            },
+            slideChange: function () {
+                thumbSwiper.slideTo(this.activeIndex);
+            },
+            slideChangeTransitionEnd: function () {
+                const index = this.activeIndex;
+                updateTitleAndSubtitle(index);
+                $industry.text(project.industry[index]);
+                $date.text(project.date[index]);
+                $type.text(project.type[index]);
+            },
+            // 맨 끝 slide 드래그 막기
+            touchMove: function (e) {
+                const swiper = this;
+                const isFirst = swiper.activeIndex === 0;
+                const isLast = swiper.activeIndex === swiper.slides.length - 1;
+
+                // 드래그 방향 확인
+                const diff = swiper.touches.currentX - swiper.touches.startX;
+
+                // 왼쪽으로 드래그 중인데 첫 번째 슬라이드일 때 → 막기
+                if (isFirst && diff > 0) {
+                    e.preventDefault();
+                    e.stopImmediatePropagation?.();
+                }
+
+                // 오른쪽으로 드래그 중인데 마지막 슬라이드일 때 → 막기
+                if (isLast && diff < 0) {
+                    e.preventDefault();
+                    e.stopImmediatePropagation?.();
+                }
+            },
         },
-        // 맨 끝 slide 드래그 막기 
-        touchMove: function (e) {
-            const swiper = this;
-            const isFirst = swiper.activeIndex === 0;
-            const isLast = swiper.activeIndex === swiper.slides.length - 1;
-
-            // 드래그 방향 확인
-            const diff = swiper.touches.currentX - swiper.touches.startX;
-
-            // 왼쪽으로 드래그 중인데 첫 번째 슬라이드일 때 → 막기
-            if (isFirst && diff > 0) {
-                e.preventDefault();
-                e.stopImmediatePropagation?.();
-            }
-
-            // 오른쪽으로 드래그 중인데 마지막 슬라이드일 때 → 막기
-            if (isLast && diff < 0) {
-                e.preventDefault();
-                e.stopImmediatePropagation?.();
-            }
-        }
-    }
-});
-
+    });
 }
 
 // ✅ swiper 내부 썸네일 상태 업데이트
