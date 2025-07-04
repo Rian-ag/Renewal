@@ -1,29 +1,7 @@
 gsap.registerPlugin(ScrollTrigger);
 
 $(document).ready(function () {
-
-    // ✅ Lenis
-    // const lenis = new Lenis({
-    //     duration: 1.2,
-    //     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    //     smooth: true,
-    //     smoothTouch: false,
-    // });
-
-    // function raf(time) {
-    //     lenis.raf(time);
-    //     requestAnimationFrame(raf);
-    // }
-    // requestAnimationFrame(raf);
-
-    // // 🔝 Top 버튼
-    // $('.top').on('click', function (e) {
-    //     e.preventDefault();
-    //     lenis.scrollTo(0, {
-    //         duration: 1,
-    //         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    //     });
-    // });
+    const isMobile = window.innerWidth <= 768;
 
     // 📌 Visual pin 고정
     ScrollTrigger.create({
@@ -35,16 +13,83 @@ $(document).ready(function () {
         scrub: false,
     });
 
-    // ✅ .visual h1,h2 -> project-info 순차 애니메이션
+    // ✅ .visual h1,h2 -> project-info 요소 수집
     const visualH1 = gsap.utils.toArray('.visual h1 span');
     const visualH2 = gsap.utils.toArray('.visual h2 span');
     const projectInfoItems = gsap.utils.toArray('.project-info li');
 
-    const isMobile = window.innerWidth <= 768;
+    // ✅ visual 진입 시 scale + 텍스트 애니메이션 (PC만)
+    if (!isMobile) {
+        const viewHeight = window.innerHeight;
 
-    if ((visualH1.length > 0 || visualH2.length > 0) && projectInfoItems.length > 0) {
-        if (isMobile) {
-            // 📱 모바일: project-info는 별도 타임라인, trigger: .visual-sub
+        // 초기 스케일 설정
+        gsap.set('.visual', {
+            scale: 1.5,
+            transformOrigin: 'center center',
+        });
+
+        // ✅ 통합된 타임라인: scale → 텍스트 등장
+        const tl = gsap.timeline();
+
+        tl.to('.visual', {
+            scale: 1,
+            duration: 3,
+            ease: 'power3.out',
+        });
+
+        tl.fromTo(
+            [...visualH1, ...visualH2],
+            { y: 200, opacity: 0, force3D: true },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 1,
+                stagger: 0.15,
+                ease: 'power2.out',
+                force3D: true,
+            },
+            '<+0.8'
+        );
+
+        tl.fromTo(
+            projectInfoItems,
+            { opacity: 0, force3D: true },
+            {
+                opacity: 1,
+                duration: 1,
+                stagger: 0.2,
+                ease: 'power2.out',
+                force3D: true,
+            },
+            '<+1'
+        );
+
+        // ✅ 텍스트 패럴럭스 (.title-container)
+        gsap.to('.visual .title-container', {
+            y: -100,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '.visual',
+                start: 'top top',
+                end: '+=100vh',
+                scrub: true,
+            },
+        });
+
+        // ✅ 배경 패럴럭스 (선택)
+        gsap.to('.parallax-bg', {
+            y: -200,
+            ease: 'none',
+            scrollTrigger: {
+                trigger: '.visual',
+                start: 'top top',
+                end: `+=${viewHeight}`,
+                scrub: true,
+            },
+        });
+    } else {
+        // ✅ 모바일: scrollTrigger 기반 순차 애니메이션
+        if ((visualH1.length > 0 || visualH2.length > 0) && projectInfoItems.length > 0) {
             gsap.timeline({
                 scrollTrigger: {
                     trigger: '.visual',
@@ -81,42 +126,6 @@ $(document).ready(function () {
                     force3D: true,
                 }
             );
-        } else {
-            // 💻 데스크탑: h1 + h2 + project-info 같은 타임라인
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: '.visual',
-                    start: 'top 90%',
-                    toggleActions: 'play none none none',
-                },
-            });
-
-            tl.fromTo(
-                [...visualH1, ...visualH2],
-                { y: 200, opacity: 0, force3D: true },
-                {
-                    y: 0,
-                    opacity: 1,
-                    duration: 1,
-                    stagger: 0.15,
-                    ease: 'power2.out',
-                    force3D: true,
-                },
-                0
-            );
-
-            tl.fromTo(
-                projectInfoItems,
-                { opacity: 0, force3D: true },
-                {
-                    opacity: 1,
-                    duration: 1,
-                    stagger: 0.2,
-                    ease: 'power2.out',
-                    force3D: true,
-                },
-                0.6
-            );
         }
     }
 
@@ -131,11 +140,9 @@ $(document).ready(function () {
                 trigger: '.section-common',
                 start: 'top 90%',
                 toggleActions: 'play none none none',
-                // markers: true,
             },
         });
 
-        // 동시에 시작할 그룹
         tl.fromTo(
             [...sectionH3, ...sectionP],
             { y: 200, opacity: 0, force3D: true },
@@ -147,7 +154,7 @@ $(document).ready(function () {
                 ease: 'power2.out',
                 force3D: true,
             },
-            0 // 타임라인 0초에 시작
+            0
         );
 
         tl.fromTo(
