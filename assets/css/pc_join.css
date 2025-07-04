@@ -1,16 +1,18 @@
 :root { --font-main: 'Pretendard', sans-serif; } 
 body { color: #000; font-weight: 400; } 
-/* 공통 */
+
 .mo { display: none; } 
 .tar { text-align: right !important; } 
 .tal { text-align: left !important; } 
 .mo { display: none; } 
 * { box-sizing: border-box; word-break: keep-all; } 
 
-#wrap { min-width: 1440px;} 
-#layout { min-width: 1440px; } 
-section { width: 1400px; margin: 0 auto;} 
-* { word-break: keep-all; } 
+#layout { width: 100%; max-width: 1500px; padding: 0 30px; margin: 0 auto; } 
+
+@media (max-width: 1066px){
+ #wrap { min-width: 1066px; /* 공통 넣고 삭제예정 */}
+ #layout { width: 1066px; } 
+ }
 
 .section-container { display: flex; width: 100%; padding: 140px 0; flex-direction: column; gap: 200px; } 
 .title { font-family: 'Plus Jakarta Sans'; font-size: 60px; font-weight: 700; line-height: 102%; letter-spacing: -1.2px; } 
@@ -18,7 +20,7 @@ section { width: 1400px; margin: 0 auto;}
 .text { font-family: var(--font-main); color: #808080; font-size: 16px; line-height: 150%; letter-spacing: -0.24px; } 
 
 /* main */
-.main { width: 1400px; margin: 0 auto; padding: 70px 0 90px; } 
+.main { margin: 0 auto; padding: 70px 0 90px; } 
 .main .title-wrapper { padding-top: 200px; } 
 .main .title-wrapper h2 { font-size: 60px; font-weight: 700; line-height: 102%; letter-spacing: -1.2px; } 
 .main .title-wrapper strong { margin-top: 23px; font-size: 90px; font-weight: 700; line-height: 102%; letter-spacing: -1.2px; } 
@@ -31,15 +33,20 @@ section { width: 1400px; margin: 0 auto;}
 .main .sub-wrapper p + p { margin-top: 16px; } 
 
 /* benefit */
-.benefit-container { display: flex; gap: 40px; flex-wrap: nowrap; } 
-.benefit-item { width: 440px; } 
+.benefit-container { display: flex; gap: 40px; justify-content: space-between; } 
+
+@media (max-width: 1066px){
+ .benefit-container { gap: 28px; } 
+ .benefit-item { width: calc((100% - 56px) / 3); } 
+ }
+.benefit-item { width: calc((100% - 80px) / 3); } 
 .benefit-item .img-wrapper { overflow: hidden; } 
 .benefit-item img { display: block; width: 100%; object-fit: cover; transition: transform 0.5s ease; } 
-
 .benefit-item:hover img { transform: scale(1.15); } 
 .benefit-item > ol { margin-top: 80px; display: flex; flex-direction: column; gap: 60px; } 
 .benefit-item > ol strong { font-family: var(--font-main); color: #000; font-size: 24px; font-weight: 700; line-height: 150%; letter-spacing: -0.36px; } 
 .benefit-item > ol p { font-family: var(--font-main); margin-top: 16px; color: #808080; font-size: 16px; line-height: 150%; letter-spacing: -0.24px; } 
+
 /* accordion */
 .board_type_toggle { border-bottom: 1px solid rgba(0, 0, 0, 0.2); } 
 .board_type_toggle > dt { border-top: 1px solid rgba(0, 0, 0, 0.2); position: relative; height: 106px; display: flex; justify-content: flex-start; align-items: center; } 
