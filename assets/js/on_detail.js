@@ -27,54 +27,56 @@ $(function () {
   gsap.registerPlugin(ScrollTrigger);
 
   // ✅ 페이지 진입 시 scale 애니메이션 + 이후 pin
-  if (!isMobile()) {
-    // 초기 스케일 설정
-    gsap.set(".detail_visual", {
-      scale: 1.5,
-      transformOrigin: "center center"
-    });
-    const viewHeight = window.innerHeight;
-    // 스케일 애니메이션 (5초간)
-    gsap.to(".detail_visual", {
-      scale: 1,
-      duration: 4,
-      ease: "power3.out",
-      onComplete: function () {
-        // ScrollTrigger 고정 처리
-        ScrollTrigger.create({
+if (!isMobile()) {
+  const viewHeight = window.innerHeight;
+
+  // 초기 스케일 설정
+  gsap.set(".detail_visual > img", {
+    scale: 1.5,
+    transformOrigin: "center center"
+  });
+
+  // 이미지 스케일 애니메이션
+  gsap.to(".detail_visual > img", {
+    scale: 1,
+    duration: 4,
+    ease: "power3.out",
+    onComplete: function () {
+      // ScrollTrigger pin 처리 (부모 .detail_visual 기준으로 고정)
+      ScrollTrigger.create({
+        trigger: ".detail_visual",
+        start: "top top",
+        end: `+=${viewHeight}`,
+        pin: true,
+        pinSpacing: false
+      });
+
+      // 배경 Parallax (parallax-bg가 있을 경우)
+      gsap.to(".parallax-bg", {
+        y: -200,
+        ease: "none",
+        scrollTrigger: {
           trigger: ".detail_visual",
           start: "top top",
-          end: `+=${viewHeight}`, // 100vh 만큼 고정
-          pin: true,
-          pinSpacing: false,
-        });
+          end: `+=${viewHeight}`,
+          scrub: true
+        }
+      });
 
-        // 배경 Parallax
-        gsap.to(".parallax-bg", {
-          y: -200,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".detail_visual",
-            start: "top top",
-            end: `+=${viewHeight}`, // 100vh 만큼 고정
-            scrub: true
-          }
-        });
-
-        // 텍스트 Parallax
-        gsap.to(".detail_visual .cont_inner", {
-          y: -100,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".detail_visual",
-            start: "top top",
-            end: `+=${viewHeight}`, // 100vh 만큼 고정
-            scrub: true
-          }
-        });
-      }
-    });
-  }
+      // 텍스트 Parallax
+      gsap.to(".detail_visual .cont_inner", {
+        y: -100,
+        ease: "none",
+        scrollTrigger: {
+          trigger: ".detail_visual",
+          start: "top top",
+          end: `+=${viewHeight}`,
+          scrub: true
+        }
+      });
+    }
+  });
+}
 
   // 시계 텍스트 업데이트
   const updateTime = () => {
