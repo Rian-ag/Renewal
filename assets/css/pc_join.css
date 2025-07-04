@@ -7,7 +7,7 @@ body { color: #000; font-weight: 400; }
 .mo { display: none; } 
 * { box-sizing: border-box; word-break: keep-all; } 
 
-#layout { width: 100%; max-width: 1500px; padding: 0 30px; margin: 0 auto; } 
+#layout { width: 100%; max-width: 1460px; padding: 0 30px; margin: 0 auto; } 
 
 @media (max-width: 1066px){
  #wrap { min-width: 1066px; /* 공통 넣고 삭제예정 */}
