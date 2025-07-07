@@ -27,8 +27,8 @@ section { background-color: #fff; }
 .section-common h3 span,
 .section-common p span { opacity: 0; transform: translate3d(0, 200px, 0); } 
 .section-common > span { position: relative; top: 50px; left: 60px; font-family: 'Plus Jakarta Sans'; font-size: 24px; font-weight: 700; line-height: 100%; } 
-.section-common .inner-cont { width: 1400px; margin: 0 auto; } 
-.section-title { margin-top: 142px; } 
+.section-common .inner-cont { position: relative; width: 100%; max-width: 1460px; padding: 92px 30px 232px; margin: 0 auto; } 
+.section-title { } 
 .section-title li { overflow: hidden; } 
 .section-title li span { font-feature-settings: 'cpsp' on; font-family: 'Plus Jakarta Sans'; font-size: 128px; font-weight: 700; line-height: 127%; } 
 .inner-cont > p { margin-top: 48px; font-feature-settings: 'cpsp' on; font-size: 32px; font-weight: 700; line-height: 120%; overflow: hidden; } 
