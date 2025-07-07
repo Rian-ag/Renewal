@@ -2,7 +2,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 $(document).ready(function () {
     const $visualImg = $('.visual img');
-    const originalSrc = $visualImg.attr('src'); // 최초 이미지 src 저장
+    const originalSrc = $visualImg.attr('data-src'); // 최초 이미지 src 저장
     const mobileSrc = originalSrc.replace(/\.png$/, '_mo.png');
 
     function isMobileView() {
@@ -10,11 +10,11 @@ $(document).ready(function () {
     }
 
     function updateVisualImageSrc() {
-        const currentSrc = $visualImg.attr('src');
+        const currentSrc = $visualImg.attr('data-src');
         if (isMobileView() && currentSrc !== mobileSrc) {
-            $visualImg.attr('src', mobileSrc);
+            $visualImg.attr('data-src', mobileSrc);
         } else if (!isMobileView() && currentSrc !== originalSrc) {
-            $visualImg.attr('src', originalSrc);
+            $visualImg.attr('data-src', originalSrc);
         }
     }
 
