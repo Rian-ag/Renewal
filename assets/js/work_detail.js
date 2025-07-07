@@ -1,50 +1,37 @@
 gsap.registerPlugin(ScrollTrigger);
 
 $(document).ready(function () {
+    const $visualImg = $('.visual img');
+    const originalSrc = $visualImg.attr('src'); // 최초 이미지 src 저장
+    const mobileSrc = originalSrc.replace(/\.png$/, '_mo.png');
 
-    // ✅ Lenis
-    // const lenis = new Lenis({
-    //     duration: 1.2,
-    //     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    //     smooth: true,
-    //     smoothTouch: false,
-    // });
+    function isMobileView() {
+        return window.innerWidth <= 768;
+    }
 
-    // function raf(time) {
-    //     lenis.raf(time);
-    //     requestAnimationFrame(raf);
-    // }
-    // requestAnimationFrame(raf);
+    function updateVisualImageSrc() {
+        const currentSrc = $visualImg.attr('src');
+        if (isMobileView() && currentSrc !== mobileSrc) {
+            $visualImg.attr('src', mobileSrc);
+        } else if (!isMobileView() && currentSrc !== originalSrc) {
+            $visualImg.attr('src', originalSrc);
+        }
+    }
 
-    // // 🔝 Top 버튼
-    // $('.top').on('click', function (e) {
-    //     e.preventDefault();
-    //     lenis.scrollTo(0, {
-    //         duration: 1,
-    //         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    //     });
-    // });
+    // 초기 이미지 적용
+    updateVisualImageSrc();
 
-    // 📌 Visual pin 고정
-    ScrollTrigger.create({
-        trigger: '.wrap',
-        start: 'top top',
-        end: '+=400%',
-        pin: '.visual',
-        pinSpacing: false,
-        scrub: false,
-    });
+    // 리사이즈 시 이미지 교체
+    $(window).on('resize', updateVisualImageSrc);
 
-    // ✅ .visual h1,h2 -> project-info 순차 애니메이션
+    // 애니메이션 요소 정의
     const visualH1 = gsap.utils.toArray('.visual h1 span');
     const visualH2 = gsap.utils.toArray('.visual h2 span');
     const projectInfoItems = gsap.utils.toArray('.project-info li');
 
-    const isMobile = window.innerWidth <= 768;
-
     if ((visualH1.length > 0 || visualH2.length > 0) && projectInfoItems.length > 0) {
-        if (isMobile) {
-            // 📱 모바일: project-info는 별도 타임라인, trigger: .visual-sub
+        if (isMobileView()) {
+            // 📱 모바일
             gsap.timeline({
                 scrollTrigger: {
                     trigger: '.visual',
@@ -82,13 +69,29 @@ $(document).ready(function () {
                 }
             );
         } else {
-            // 💻 데스크탑: h1 + h2 + project-info 같은 타임라인
+            // 💻 데스크탑
+            const viewHeight = window.innerHeight;
+
+            gsap.set('.visual > img', {
+                scale: 1.5,
+                transformOrigin: 'center center',
+            });
+
             const tl = gsap.timeline({
                 scrollTrigger: {
-                    trigger: '.visual',
-                    start: 'top 90%',
-                    toggleActions: 'play none none none',
+                    trigger: '.wrap',
+                    start: 'top top',
+                    end: `+=${viewHeight}`,
+                    pin: '.visual',
+                    pinSpacing: false,
+                    scrub: false,
                 },
+            });
+
+            tl.to('.visual > img', {
+                scale: 1,
+                duration: 2,
+                ease: 'power3.out',
             });
 
             tl.fromTo(
@@ -97,12 +100,12 @@ $(document).ready(function () {
                 {
                     y: 0,
                     opacity: 1,
-                    duration: 1,
+                    duration: 1.1,
                     stagger: 0.15,
                     ease: 'power2.out',
                     force3D: true,
                 },
-                0
+                '-=1'
             );
 
             tl.fromTo(
@@ -115,12 +118,12 @@ $(document).ready(function () {
                     ease: 'power2.out',
                     force3D: true,
                 },
-                0.6
+                '-=0.5'
             );
         }
     }
 
-    // ✅ .section-common h3 → p 순차 애니메이션
+    // ✅ section-common 애니메이션
     const sectionH3 = gsap.utils.toArray('.section-common h3 span');
     const sectionP = gsap.utils.toArray('.section-common p span');
     const desItems = gsap.utils.toArray('.des-container > li');
@@ -131,11 +134,9 @@ $(document).ready(function () {
                 trigger: '.section-common',
                 start: 'top 90%',
                 toggleActions: 'play none none none',
-                // markers: true,
             },
         });
 
-        // 동시에 시작할 그룹
         tl.fromTo(
             [...sectionH3, ...sectionP],
             { y: 200, opacity: 0, force3D: true },
@@ -147,7 +148,7 @@ $(document).ready(function () {
                 ease: 'power2.out',
                 force3D: true,
             },
-            0 // 타임라인 0초에 시작
+            0
         );
 
         tl.fromTo(

@@ -156,7 +156,10 @@ header #hidden_menu button:after {transform:rotate(135deg);}
   .custom-cursor.dot-cursor {display: none;}
   header .site_map li a .dash.on {width:50px;}
   .toast {width:calc(100% - 140px);}
-  header.on {background:rgba(0,0,0,0.5)}
+  header.on {color:#fff !important; background:rgba(0,0,0,0.5)}
+  header.black.on .inner a {color:#fff;}
+  header.black.on .inner a::before {background-position: -97px -114px;}
+  header.black.on .inner .btn_ham:before, header.black.on .inner .btn_ham::after {border-top:5px solid #fff;}
   #bottom span {font-size:12px;}
   #bottom.type3 > section > a {font-size:2.5rem;}
 }
