@@ -161,6 +161,6 @@ header #hidden_menu button:after {transform:rotate(135deg);}
   #bottom.type3 > section > a {font-size:2.5rem;}
 }
 
-/* @media screen and (min-width: 769px) and (max-width: 1919px) {
-    .cont_inner {width:100% !important; padding-left:30px; padding-right:30px; box-sizing: border-box;}
-} */
+@media screen and (min-width: 769px) and (max-width: 1399px) {
+  #wrap {min-width: 1066px; }
+}
