@@ -202,9 +202,9 @@ function animateSectionItems(sectionSelector, itemSelector) {
       force3D: true,
       scrollTrigger: {
         trigger: section,
-        start: 'top 80%',
+        start: '10% 80%',
         toggleActions: 'play none none none',
-        markers: false
+        markers: true
       }
     });
   });
