@@ -7,6 +7,7 @@
         <!-- CSS -->
         <link rel="stylesheet" href="/assets/css/common.css" />
         <link rel="stylesheet" href="/assets/css/ui.css" />
+        <link rel="stylesheet" href="/assets/css/swiper.css" />
         <link rel="stylesheet" href="/assets/css/pc_work_detail.css" media="(min-width: 769px)" />
         <link rel="stylesheet" href="/assets/css/pc_hns.css" media="(min-width: 769px)" />
         <link rel="stylesheet" href="/assets/css/mo_work_detail.css" media="(max-width: 768px)" />
@@ -216,20 +217,69 @@
                             <img src="/assets/images/work_detail/hns/gradiant.png" alt="" />
                         </div>
                         <div class="item guide">
-                            <img src="/assets/images/work_detail/hns/guide.png" alt="" />
+                            <p>Banner Style Guide</p>
+                            <!-- <img src="/assets/images/work_detail/hns/guide.png" alt="" /> -->
+                            <ul>
+                                <li><img src="/assets/images/work_detail/hns/guide-1.png" alt="" /></li>
+                                <li><img src="/assets/images/work_detail/hns/guide-2.png" alt="" /></li>
+                                <li><img src="/assets/images/work_detail/hns/guide-3.png" alt="" /></li>
+                            </ul>
                         </div>
                     </div>
-
+                </section>
+                <section class="section-list mt-200">
                     <div class="grid-wrapper">
-                        <div class="banner"></div>
-                        <div class="banner"></div>
-                        <div class="banner"></div>
-                        <div class="banner"></div>
-                        <div class="banner"></div>
+                        <div class="item banner1">
+                            <img src="/assets/images/work_detail/hns/banner-1.png" alt="" />
+                        </div>
+                        <div class="item banner2">
+                            <img src="/assets/images/work_detail/hns/banner-2.png" alt="" />
+                        </div>
+                        <div class="item banner3">
+                            <img src="/assets/images/work_detail/hns/banner-3.png" alt="" />
+                        </div>
+                        <div class="item banner4">
+                            <img src="/assets/images/work_detail/hns/banner-4.png" alt="" />
+                        </div>
+                    </div>
+                    <div class="swiper">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <img src="/assets/images/work_detail/hns/roll-1.png" alt="" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="/assets/images/work_detail/hns/roll-2.png" alt="" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="/assets/images/work_detail/hns/roll-3.png" alt="" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="/assets/images/work_detail/hns/roll-4.png" alt="" />
+                            </div>
+                            <div class="swiper-slide">
+                                <img src="/assets/images/work_detail/hns/roll-5.png" alt="" />
+                            </div>
+                        </div>
                     </div>
                 </section>
-
-                <section class="section-list banner-grid"></section>
+                <section class="section-list mt-120">
+                    <div class="flex-wrapper">
+                        <ul>
+                            <li><img src="/assets/images/work_detail/hns/poster-1.png" alt="" /></li>
+                            <li><img src="/assets/images/work_detail/hns/poster-2.png" alt="" /></li>
+                            <li><img src="/assets/images/work_detail/hns/poster-3.png" alt="" /></li>
+                        </ul>
+                        <ul>
+                            <li><img src="/assets/images/work_detail/hns/poster-4.png" alt="" /></li>
+                            <li><img src="/assets/images/work_detail/hns/poster-5.png" alt="" /></li>
+                            <li><img src="/assets/images/work_detail/hns/poster-6.png" alt="" /></li>
+                        </ul>
+                        <ul>
+                            <li><img src="/assets/images/work_detail/hns/poster-7.png" alt="" /></li>
+                            <li><img src="/assets/images/work_detail/hns/poster-8.png" alt="" /></li>
+                        </ul>
+                    </div>
+                </section>
             </div>
             <div id="bottom" class="type3">
                 <section>
@@ -253,7 +303,19 @@
         <script src="./assets/js/lenis.min.js"></script>
         <script src="/assets/js/common.js"></script>
         <script src="/assets/js/work_detail.js"></script>
+        <script src="/assets/js/swiper.js"></script>
+        <!-- <script src="/assets/js/swiper.js"></script> -->
         <script>
+            const swiper = new Swiper('.swiper', {
+                direction: 'horizontal',
+                slidesPerView: 'auto',
+                spaceBetween: 40,
+                loop: true,
+                loopedSlides: 5,
+                observer: true,
+                observeParents: true,
+            });
+
             $(function () {
                 lazyLoads();
                 customCursorEffect($('#bottom > section > a'), 'next');
