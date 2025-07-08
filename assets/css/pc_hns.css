@@ -14,7 +14,6 @@ section { position: relative; }
 .intro-container > .right img { height: 100%; border-radius: 0 32px 32px 0; } 
 .section-list:first-child { padding-top: 0 !important; } 
 .section-list { padding-top: 40px; } 
-.section-list:nth-of-type(4) { height: 716px; } 
 .flex-container { display: flex; padding: 67px 143px 68px 154px; margin: 0 auto; justify-content: center; gap: 10px; background: #fbf7f3; border-radius: 32px; } 
 .flex-container > li { display: flex; flex-direction: column; gap: 10px; justify-content: center; align-items: center; } 
 .flex-container > li .flex-2 { display: flex; gap: 10px; } 
@@ -31,7 +30,6 @@ section { position: relative; }
  -71px 119px 83px 0px rgba(0, 0, 0, 0.05), -32px 53px 62px 0px rgba(0, 0, 0, 0.09),
  -8px 13px 34px 0px rgba(0, 0, 0, 0.1); flex-shrink: 0; } 
 
-.section-list:nth-of-type(5) { margin-top: 160px; } 
 .section-list .txt-box { text-align: center; } 
 .section-list .txt-box h3 span { color: #101010; font-feature-settings: 'cv03' on, 'cv04' on, 'cv09' on; font-family: Pretendard; font-size: 22px; font-weight: 700; line-height: 130%; letter-spacing: -0.55px; text-transform: uppercase; } 
 .section-list .txt-box dt { margin-top: 12px; } 
