@@ -35,6 +35,7 @@ svg {width:auto; height:160px;}
 
 @media (max-width: 768px) {
     /* scroll_action */
+    img {width:100%}
     .cont_inner {width:100%; padding:0 16px;}
     svg {width:auto; height:51px;}
     .line {margin:40px 0; display:flex; align-items:center; justify-content:flex-start; gap:20px;}
@@ -43,10 +44,11 @@ svg {width:auto; height:160px;}
     .animate-bottom {padding:40px; color:#000; font-size:56px; background:transparent; transition: all 0.3s ease;}
     .scroll_action {padding-top:90px;}
     .scroll_action .cont_inner {text-align:left;}
+    .scroll_action .cont_inner.mo ul li img {width: 135%}
     .bold-text {margin-bottom:8px; padding:8px; font-weight:700; display:inline-block;}
 
     /**/
-    #layout > ul {padding:0 16px 0; display:flex; gap:5px}
+    #layout > ul {padding:0 16px 0; display:flex; justify-content: space-between;}
     .content.mo .cont_inner > img {width:100%; margin-top:60px;}
     #layout > ul li img {width:116px; height:488px;}
     #layout > ul li img[src*="06_6_2"] {margin:94px 0; }
