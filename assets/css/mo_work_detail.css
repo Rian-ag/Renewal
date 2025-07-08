@@ -21,8 +21,8 @@ body,
 span { display: block; } 
 
 /* visual */
-.visual { position: fixed; top: 0; left: 0; width: 100vw; min-height: 100vh; height: 100dvw; background-image: url(/assets/images/work_detail/bg-mo.jpg); background-size: cover; background-repeat: no-repeat; background-position: bottom center; } 
-
+.visual {width: 100vw; min-height: 100vh; height: 100dvw;} 
+.visual img {width:100%; height:100vh; object-fit:cover; object-position: center;}
 .title-container { position: absolute; top: 16.71dvh; /* left: 3rem; */
  left: 7.692vw; } 
 .visual h1 { font-family: 'Plus Jakarta Sans'; color: #fff; font-style: normal; font-size: 1.4rem; font-weight: 700; line-height: 110%; letter-spacing: -0.28px; } 

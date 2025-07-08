@@ -1,81 +1,37 @@
 gsap.registerPlugin(ScrollTrigger);
 
 $(document).ready(function () {
-    const isMobile = window.innerWidth <= 768;
-    const viewHeight = window.innerHeight;
-    // 📌 Visual pin 고정
-    ScrollTrigger.create({
-        trigger: '.wrap',
-        start: 'top top',
-        end: `+=${viewHeight}`,
-        pin: '.visual',
-        pinSpacing: false,
-        scrub: false,
-    });
+    const $visualImg = $('.visual img');
+    const originalSrc = $visualImg.attr('data-src'); // 최초 이미지 src 저장
+    const mobileSrc = originalSrc.replace(/\.png$/, '_mo.png');
 
-    // ✅ .visual h1,h2 -> project-info 요소 수집
+    function isMobileView() {
+        return window.innerWidth <= 768;
+    }
+
+    function updateVisualImageSrc() {
+        const currentSrc = $visualImg.attr('data-src');
+        if (isMobileView() && currentSrc !== mobileSrc) {
+            $visualImg.attr('data-src', mobileSrc);
+        } else if (!isMobileView() && currentSrc !== originalSrc) {
+            $visualImg.attr('data-src', originalSrc);
+        }
+    }
+
+    // 초기 이미지 적용
+    updateVisualImageSrc();
+
+    // 리사이즈 시 이미지 교체
+    $(window).on('resize', updateVisualImageSrc);
+
+    // 애니메이션 요소 정의
     const visualH1 = gsap.utils.toArray('.visual h1 span');
     const visualH2 = gsap.utils.toArray('.visual h2 span');
     const projectInfoItems = gsap.utils.toArray('.project-info li');
 
-    // ✅ visual 진입 시 scale + 텍스트 애니메이션 (PC만)
-    if (!isMobile) {
-        // 초기 스케일 설정
-        gsap.set('.visual', {
-            scale: 1.5,
-            transformOrigin: 'center center',
-        });
-
-        // ✅ 통합된 타임라인: scale → 텍스트 등장
-        const tl = gsap.timeline();
-
-        tl.to('.visual', {
-            scale: 1,
-            duration: 4,
-            ease: 'power3.out',
-        });
-
-        tl.fromTo(
-            [...visualH2],
-            { y: 200, opacity: 0, force3D: true },
-            {
-                y: 0,
-                opacity: 1,
-                duration: 1,
-                stagger: 0.15,
-                ease: 'power2.out',
-                force3D: true,
-            },
-            '<+0.8'
-        );
-
-        tl.fromTo(
-            projectInfoItems,
-            { opacity: 0, force3D: true },
-            {
-                opacity: 1,
-                duration: 1,
-                stagger: 0.2,
-                ease: 'power2.out',
-                force3D: true,
-            },
-            '<+1'
-        );
-
-        // ✅ 텍스트 패럴럭스 (.title-container)
-        gsap.to('.visual .title-container', {
-            y: -100,
-            ease: 'none',
-            scrollTrigger: {
-                trigger: '.visual',
-                start: 'top top',
-                end: `+=${viewHeight}`,
-                scrub: true,
-            },
-        });
-    } else {
-        // ✅ 모바일: scrollTrigger 기반 순차 애니메이션
-        if ((visualH1.length > 0 || visualH2.length > 0) && projectInfoItems.length > 0) {
+    if ((visualH1.length > 0 || visualH2.length > 0) && projectInfoItems.length > 0) {
+        if (isMobileView()) {
+            // 📱 모바일
             gsap.timeline({
                 scrollTrigger: {
                     trigger: '.visual',
@@ -112,10 +68,62 @@ $(document).ready(function () {
                     force3D: true,
                 }
             );
+        } else {
+            // 💻 데스크탑
+            const viewHeight = window.innerHeight;
+
+            gsap.set('.visual > img', {
+                scale: 1.5,
+                transformOrigin: 'center center',
+            });
+
+            const tl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: '.wrap',
+                    start: 'top top',
+                    end: `+=${viewHeight}`,
+                    pin: '.visual',
+                    pinSpacing: false,
+                    scrub: false,
+                },
+            });
+
+            tl.to('.visual > img', {
+                scale: 1,
+                duration: 2,
+                ease: 'power3.out',
+            });
+
+            tl.fromTo(
+                [...visualH1, ...visualH2],
+                { y: 200, opacity: 0, force3D: true },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 1.1,
+                    stagger: 0.15,
+                    ease: 'power2.out',
+                    force3D: true,
+                },
+                '-=1'
+            );
+
+            tl.fromTo(
+                projectInfoItems,
+                { opacity: 0, force3D: true },
+                {
+                    opacity: 1,
+                    duration: 1,
+                    stagger: 0.2,
+                    ease: 'power2.out',
+                    force3D: true,
+                },
+                '-=0.5'
+            );
         }
     }
 
-    // ✅ .section-common h3 → p 순차 애니메이션
+    // ✅ section-common 애니메이션
     const sectionH3 = gsap.utils.toArray('.section-common h3 span');
     const sectionP = gsap.utils.toArray('.section-common p span');
     const desItems = gsap.utils.toArray('.des-container > li');

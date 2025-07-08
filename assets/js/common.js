@@ -222,38 +222,29 @@ function lazyLoads() {
     }
 }
 
+
 function initHeaderScrollToggle() {
   let lastScrollTop = 0;
   const delta = 5;
   const $Headers = $('header');
   const $Logo = $Headers.find('h1 img');
   const originalSrc = $Logo.attr('src');
-  const whitekSrc = toWhiteLogo(originalSrc);  // 원래 로고 복귀용
-  const blacSrc = toBlackLogo(originalSrc);;    // black 로고 버전
+  const whitekSrc = toWhiteLogo(originalSrc);
+  const blacSrc = toBlackLogo(originalSrc);
 
   $(window).on('scroll.headerToggle', function () {
     if ($('.site_map.active').length > 0) return;
 
-        const st = $(this).scrollTop();
-        if (Math.abs(lastScrollTop - st) <= delta) return;
+    const st = $(this).scrollTop();
+    if (Math.abs(lastScrollTop - st) <= delta) return;
 
     const isMobile = window.innerWidth <= 767;
 
-    // ✅ 공통: header hide 처리
-    if (st > lastScrollTop && st > 100) {
-      $Headers.addClass('hide');
-      if (isMobile) $Headers.removeClass('on');
-    } else {
-      $Headers.removeClass('hide');
-      if (isMobile) {
-        $Headers.addClass('on');
-        if (st <= 1) $Headers.removeClass('on');
-      }
-    }
-
-    // ✅ scrollTop 5 이하일 때 초기화 (모든 기기 공통)
+    // ✅ scrollTop 5 이하일 때 완전 초기화
     if (st <= 5) {
-      if (!isMobile) {
+      if (isMobile) {
+        $Headers.removeClass('on hide');
+      } else {
         $Headers.removeClass('wh bl');
         $Logo.attr('src', originalSrc);
       }
@@ -261,8 +252,17 @@ function initHeaderScrollToggle() {
       return;
     }
 
-    // ✅ 태블릿/PC만 섹션 스타일 처리
-    if (!isMobile) {
+    if (isMobile) {
+      // ✅ 모바일 전용 동작: 스크롤 방향에 따라 처리
+      if (st > lastScrollTop) {
+        // 아래로 스크롤 → hide
+        $Headers.addClass('hide').removeClass('on');
+      } else {
+        // 위로 스크롤 → on
+        $Headers.removeClass('hide').addClass('on');
+      }
+    } else {
+      // ✅ PC/태블릿: 기본 섹션별 배경 처리
       let matched = false;
 
       $('.dark-section, .light-section').each(function () {
@@ -283,16 +283,18 @@ function initHeaderScrollToggle() {
         }
       });
 
-      // ✅ 섹션과 매칭되는 게 없으면 초기화 없이 그대로 유지
       if (!matched) {
         $Headers.removeClass('wh bl');
         $Logo.attr('src', originalSrc);
       }
     }
 
-        lastScrollTop = st;
-    });
+    lastScrollTop = st;
+  });
 }
+
+
+
 
 
 /* e:lazyload */
@@ -434,3 +436,4 @@ function toBlackLogo(src) {
 function toWhiteLogo(src) {
   return src.replace('_black.png', '.png');
 }
+
