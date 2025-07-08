@@ -2,7 +2,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 $(document).ready(function () {
     const $visualImg = $('.visual img');
-    const originalSrc = $visualImg.attr('data-src'); // 최초 이미지 src 저장
+    const originalSrc = $visualImg.attr('src'); // 최초 이미지 src 저장
     const mobileSrc = originalSrc.replace(/\.png$/, '_mo.png');
 
     function isMobileView() {
@@ -10,11 +10,11 @@ $(document).ready(function () {
     }
 
     function updateVisualImageSrc() {
-        const currentSrc = $visualImg.attr('data-src');
+        const currentSrc = $visualImg.attr('src');
         if (isMobileView() && currentSrc !== mobileSrc) {
-            $visualImg.attr('data-src', mobileSrc);
+            $visualImg.attr('src', mobileSrc);
         } else if (!isMobileView() && currentSrc !== originalSrc) {
-            $visualImg.attr('data-src', originalSrc);
+            $visualImg.attr('src', originalSrc);
         }
     }
 
@@ -165,3 +165,40 @@ $(document).ready(function () {
         );
     }
 });
+
+
+// 상세페이지 공통 함수 정의
+function animateSectionItems(sectionSelector, itemSelector) {
+  const sections = document.querySelectorAll(sectionSelector);
+  if (!sections.length) return;
+
+  sections.forEach(section => {
+    let items;
+
+    if (itemSelector) {
+      items = section.querySelectorAll(itemSelector);
+    } else {
+      // 기본값: 직계 자식 요소
+      items = section.children;
+    }
+
+    if (!items.length) return;
+
+    gsap.set(items, { opacity: 0, y: 200, force3D: true });
+
+    gsap.to(items, {
+      opacity: 1,
+      y: 0,
+      duration: 1.7,
+      stagger: 0.15,
+      ease: 'sine.out',
+      force3D: true,
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 80%',
+        toggleActions: 'play none none none',
+        markers: false
+      }
+    });
+  });
+}
