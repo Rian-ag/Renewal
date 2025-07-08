@@ -9,9 +9,8 @@
         <link rel="stylesheet" href="/assets/css/ui.css" />
         <link rel="stylesheet" href="/assets/css/swiper.css" />
         <link rel="stylesheet" href="/assets/css/pc_work_detail.css" media="(min-width: 769px)" />
-        <link rel="stylesheet" href="/assets/css/pc_hns.css" media="(min-width: 769px)" />
         <link rel="stylesheet" href="/assets/css/mo_work_detail.css" media="(max-width: 768px)" />
-        <link rel="stylesheet" href="/assets/css/mo_hns.css" media="(max-width: 768px)" />
+        <link rel="stylesheet" href="/assets/css/works_view_hns.css" />
     </head>
     <body>
         <div id="wrap">
@@ -46,9 +45,9 @@
             <!-- visual -->
             <div id="layout">
                 <div class="visual">
-                    <img class="lazy" data-src="/assets/images/work_detail/hns/bg-hns.jpg" alt="" />
+                    <img src="/assets/images/work_detail/hns/bg-hns.jpg" alt="" />
                     <div class="title-container">
-                        <h1>HOME & SHOPPING</h1>
+                        <h1><span>HOME & SHOPPING</span></h1>
                         <h2>
                             <ul>
                                 <li>
@@ -194,14 +193,14 @@
                                 </dd>
                             </dl>
                         </div>
-                        <div class="device-container">
-                            <div class="left">
+                        <ul class="device-container">
+                            <li class="left">
                                 <img src="/assets/images/work_detail/hns/mobile.png" alt="" />
-                            </div>
-                            <div class="right">
+                            </li>
+                            <li class="right">
                                 <img src="/assets/images/work_detail/hns/tablet.png" alt="" />
-                            </div>
-                        </div>
+                            </li>
+                        </ul>
                     </div>
                 </section>
                 <section class="section-list">
@@ -308,13 +307,12 @@
 
         <!-- JS -->
         <script type="text/javascript" src="/assets/js/jquery-3.7.1.min.js"></script>
-        <script src="/assets/js/lazyload.js"></script>
         <script src="/assets/js/gsap.min.js"></script>
         <script src="/assets/js/ScrollTrigger.min.js"></script>
         <script src="./assets/js/lenis.min.js"></script>
+        <script src="/assets/js/swiper.js"></script>
         <script src="/assets/js/common.js"></script>
         <script src="/assets/js/work_detail.js"></script>
-        <script src="/assets/js/swiper.js"></script>
         <script>
             // rolling swiper
             const swiper = new Swiper('.swiper', {
@@ -327,178 +325,9 @@
                 observeParents: true,
             });
 
-            //
-            gsap.registerPlugin(ScrollTrigger);
-
-            $(document).ready(function () {
-                const $visualImg = $('.visual img');
-                const originalSrc = $visualImg.attr('data-src'); // 최초 이미지 src 저장
-                const mobileSrc = originalSrc.replace(/\.png$/, '_mo.png');
-
-                function isMobileView() {
-                    return window.innerWidth <= 768;
-                }
-
-                function updateVisualImageSrc() {
-                    const currentSrc = $visualImg.attr('data-src');
-                    if (isMobileView() && currentSrc !== mobileSrc) {
-                        $visualImg.attr('data-src', mobileSrc);
-                    } else if (!isMobileView() && currentSrc !== originalSrc) {
-                        $visualImg.attr('data-src', originalSrc);
-                    }
-                }
-
-                // 초기 이미지 적용
-                updateVisualImageSrc();
-
-                // 리사이즈 시 이미지 교체
-                $(window).on('resize', updateVisualImageSrc);
-
-                // 애니메이션 요소 정의
-                const visualH1 = gsap.utils.toArray('.visual h1 span');
-                const visualH2 = gsap.utils.toArray('.visual h2 span');
-                const projectInfoItems = gsap.utils.toArray('.project-info li');
-
-                if ((visualH1.length > 0 || visualH2.length > 0) && projectInfoItems.length > 0) {
-                    if (isMobileView()) {
-                        // 📱 모바일
-                        gsap.timeline({
-                            scrollTrigger: {
-                                trigger: '.visual',
-                                start: 'top 90%',
-                                toggleActions: 'play none none none',
-                            },
-                        }).fromTo(
-                            [...visualH1, ...visualH2],
-                            { y: 200, opacity: 0, force3D: true },
-                            {
-                                y: 0,
-                                opacity: 1,
-                                duration: 1,
-                                stagger: 0.15,
-                                ease: 'power2.out',
-                                force3D: true,
-                            }
-                        );
-
-                        gsap.timeline({
-                            scrollTrigger: {
-                                trigger: '.visual-sub',
-                                start: 'top 90%',
-                                toggleActions: 'play none none none',
-                            },
-                        }).fromTo(
-                            projectInfoItems,
-                            { opacity: 0, force3D: true },
-                            {
-                                opacity: 1,
-                                duration: 1,
-                                stagger: 0.2,
-                                ease: 'power2.out',
-                                force3D: true,
-                            }
-                        );
-                    } else {
-                        // 💻 데스크탑
-                        const viewHeight = window.innerHeight;
-
-                        gsap.set('.visual > img', {
-                            scale: 1.5,
-                            transformOrigin: 'center center',
-                        });
-
-                        const tl = gsap.timeline({
-                            scrollTrigger: {
-                                trigger: '.wrap',
-                                start: 'top top',
-                                end: `+=${viewHeight}`,
-                                pin: '.visual',
-                                pinSpacing: false,
-                                scrub: false,
-                            },
-                        });
-
-                        tl.to('.visual > img', {
-                            scale: 1,
-                            duration: 2,
-                            ease: 'power3.out',
-                        });
-
-                        tl.fromTo(
-                            [...visualH1, ...visualH2],
-                            { y: 200, opacity: 0, force3D: true },
-                            {
-                                y: 0,
-                                opacity: 1,
-                                duration: 1.1,
-                                stagger: 0.15,
-                                ease: 'power2.out',
-                                force3D: true,
-                            },
-                            '-=1'
-                        );
-
-                        tl.fromTo(
-                            projectInfoItems,
-                            { opacity: 0, force3D: true },
-                            {
-                                opacity: 1,
-                                duration: 1,
-                                stagger: 0.2,
-                                ease: 'power2.out',
-                                force3D: true,
-                            },
-                            '-=0.5'
-                        );
-                    }
-                }
-
-                // ✅ section-common 애니메이션
-                const sectionH3 = gsap.utils.toArray('.section-common h3 span');
-                const sectionP = gsap.utils.toArray('.section-common p span');
-                const desItems = gsap.utils.toArray('.des-container > li');
-
-                if ((sectionH3.length > 0 || sectionP.length > 0) && desItems.length > 0) {
-                    const tl = gsap.timeline({
-                        scrollTrigger: {
-                            trigger: '.section-common',
-                            start: 'top 90%',
-                            toggleActions: 'play none none none',
-                        },
-                    });
-
-                    tl.fromTo(
-                        [...sectionH3, ...sectionP],
-                        { y: 200, opacity: 0, force3D: true },
-                        {
-                            y: 0,
-                            opacity: 1,
-                            duration: 1,
-                            stagger: 0.15,
-                            ease: 'power2.out',
-                            force3D: true,
-                        },
-                        0
-                    );
-
-                    tl.fromTo(
-                        desItems,
-                        { opacity: 0, force3D: true },
-                        {
-                            opacity: 1,
-                            duration: 1,
-                            stagger: 0.2,
-                            ease: 'power2.out',
-                            force3D: true,
-                        },
-                        0.6
-                    );
-                }
-            });
-
             $(function () {
-                lazyLoads();
                 customCursorEffect($('#bottom > section > a'), 'next');
+                animateSectionItems('.section-list, ul.device-container, .grid-wrapper');
             });
         </script>
     </body>
