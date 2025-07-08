@@ -1,4 +1,4 @@
-@import url('../css/font.css');:root { --font-main: 'Pretendard', sans-serif; --font-sub: 'Roboto', sans-serif; --font-eng: 'Plus Jakarta Sans', sans-serif; } 
+@import url('../css/font.css'); :root { --font-main: 'Pretendard', sans-serif; --font-sub: 'Roboto', sans-serif; --font-eng: 'Plus Jakarta Sans', sans-serif; } 
 @media screen and (max-width: 768px) { html { font-size: calc(100vw / 39); } 
  }
 
@@ -12,19 +12,20 @@ button,
 html,
 body { touch-action: manipulation; } 
 
-body{ font-family: var(--font-main); font-weight: 400; font-style: normal; color: #000; } 
+body { font-family: var(--font-main); font-weight: 400; font-style: normal; color: #000; } 
 * { box-sizing: border-box; } 
 
 .pc { display: none; } 
-#layout {padding-bottom:60px;}
+#layout { padding-bottom: 60px; } 
 span { display: block; } 
 
 /* visual */
-.visual {width: 100vw; min-height: 100vh; height: 100dvw;} 
-.visual img {width:100%; height:100vh; object-fit:cover; object-position: center;}
+.visual { width: 100vw; min-height: 100vh; height: 100dvw; } 
+.visual img { width: 100%; height: 100vh; object-fit: cover; object-position: center; } 
 .title-container { position: absolute; top: 16.71dvh; /* left: 3rem; */
  left: 7.692vw; } 
-.visual h1 { font-family: 'Plus Jakarta Sans'; color: #fff; font-style: normal; font-size: 1.4rem; font-weight: 700; line-height: 110%; letter-spacing: -0.28px; } 
+.visual h1 { overflow: hidden; } 
+.visual h1 span { font-family: 'Plus Jakarta Sans'; color: #fff; font-style: normal; font-size: 1.4rem; font-weight: 700; line-height: 110%; letter-spacing: -0.28px; transform: translate3d(0, 200px, 0); opacity: 0; will-change: transform, opacity; } 
 .visual h2 { margin-top: 2rem; } 
 .visual h2 li { line-height: 1.8; overflow: hidden; } 
 .visual h2 span { padding-bottom: 12px; color: #fff; font-family: 'Plus Jakarta Sans'; font-size: 4rem; font-weight: 700; line-height: 110%; letter-spacing: -0.8px; transform: translate3d(0, 200px, 0); opacity: 0; will-change: transform, opacity; } 
@@ -45,7 +46,7 @@ span { display: block; }
 
 .to-bottom { width: 12.8205vw; aspect-ratio: 1 / 1; /* height: 5rem; */
  position: absolute; right: 8.205vw; bottom: 3.554dvh; font-size: 0; order: 1; background-image: url(/assets/images/work_detail/to-bottom.svg); background-repeat: no-repeat; background-size: cover; /* background-image: url(../images/common/icon_split.png); background-size: 500px 500px; background-position: 0 -100px; */
- /* transform: rotate(90deg); */}
+ /* transform: rotate(90deg); */ } 
 .visual-sub { padding: 2.4rem 3rem; } 
 
 .visual-sub .project-info li { color: #101010; font-family: 'Plus Jakarta Sans'; font-size: 1.2rem; font-weight: 700; line-height: 102%; letter-spacing: -0.24px; } 
