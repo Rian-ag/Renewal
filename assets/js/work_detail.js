@@ -2,7 +2,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 $(document).ready(function () {
     const $visualImg = $('.visual img');
-    const originalSrc = $visualImg.attr('src'); // 최초 이미지 src 저장
+    const originalSrc = $visualImg.attr('src'); // PC 이미지 src 저장
     const mobileSrc = originalSrc.replace(/\.png$/, '_mo.png');
 
     function isMobileView() {
@@ -10,10 +10,17 @@ $(document).ready(function () {
     }
 
     function updateVisualImageSrc() {
-        const currentSrc = $visualImg.attr('src');
-        if (isMobileView() && currentSrc !== mobileSrc) {
-            $visualImg.attr('src', mobileSrc);
-        } else if (!isMobileView() && currentSrc !== originalSrc) {
+        if (isMobileView()) {
+            // 모바일 이미지 시도
+            const imgTest = new Image();
+            imgTest.onload = function () {
+                $visualImg.attr('src', mobileSrc);
+            };
+            imgTest.onerror = function () {
+                $visualImg.attr('src', originalSrc); // _mo.png 없으면 원래 이미지 유지
+            };
+            imgTest.src = mobileSrc;
+        } else {
             $visualImg.attr('src', originalSrc);
         }
     }
