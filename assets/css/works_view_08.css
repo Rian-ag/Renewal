@@ -15,7 +15,10 @@ ul.content li {width:50%;}
 ul.content li img {width:100%;;}
 p.content {padding-top:0; padding-left:0; padding-right:0;}
 div.content {padding-top:218px; background:#fff;}
-div.content img {margin-left:15.0416%;}
+div.content img {width:80%; margin-left:15.0416%;}
+ul.content.pc:first-of-type {display:block !important;}
+ul.content.pc:first-of-type li {width:100%;}
+#layout > .content.pc:first-of-type + ul {margin-top:0; padding-top:0px !important;}
 
 @media (max-width: 768px) {
     /* scroll_action */

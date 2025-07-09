@@ -245,24 +245,22 @@ function initHeaderScrollToggle() {
       if (isMobile) {
         $Headers.removeClass('on hide');
       } else {
-        $Headers.removeClass('wh bl');
+        $Headers.removeClass('wh bl hide on');
         $Logo.attr('src', originalSrc);
       }
       lastScrollTop = st;
       return;
     }
 
-    if (isMobile) {
-      // ✅ 모바일 전용 동작: 스크롤 방향에 따라 처리
-      if (st > lastScrollTop) {
-        // 아래로 스크롤 → hide
-        $Headers.addClass('hide').removeClass('on');
-      } else {
-        // 위로 스크롤 → on
-        $Headers.removeClass('hide').addClass('on');
-      }
+    // ✅ 공통: 스크롤 방향에 따라 hide/on 처리
+    if (st > lastScrollTop) {
+      $Headers.addClass('hide').removeClass('on');
     } else {
-      // ✅ PC/태블릿: 기본 섹션별 배경 처리
+      $Headers.removeClass('hide').addClass('on');
+    }
+
+    if (!isMobile) {
+      // ✅ PC 전용: 섹션 배경에 따라 header 색상 및 로고 변경
       let matched = false;
 
       $('.dark-section, .light-section').each(function () {
@@ -283,6 +281,7 @@ function initHeaderScrollToggle() {
         }
       });
 
+      // 섹션이 없거나 해당되지 않으면 원래 상태로
       if (!matched) {
         $Headers.removeClass('wh bl');
         $Logo.attr('src', originalSrc);
@@ -292,7 +291,6 @@ function initHeaderScrollToggle() {
     lastScrollTop = st;
   });
 }
-
 
 
 
