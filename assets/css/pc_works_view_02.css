@@ -60,6 +60,10 @@ section { position: relative; }
 .swiper { width: 100%; padding: 60px 0; margin-top: 40px; grid-column: 1 / 4; grid-row: 3 / 4; background: #fbf7f3; border-radius: 32px; overflow: hidden; } 
 .swiper .swiper-wrapper { display: flex; width: max-content; margin-left: -460px; } 
 .swiper-slide { width: auto; flex-shrink: 0; aspect-ratio: 4/5; } 
-.flex-wrapper { display: flex; padding: 88px 83px; gap: 40px; background: #fbf7f3; border-radius: 32px; } 
-.flex-wrapper ul { display: flex; flex-direction: column; gap: 40px; } 
-.flex-wrapper ul:nth-child(2) { margin-top: 176px; } 
+
+.flex-wrapper { display: flex; gap: 40px; height: 2338px; padding: 88px 83px 0; border-radius: 32px; background: #fbf7f3; overflow: hidden; } 
+
+.flex-wrapper li:nth-child(2) { margin-top: 176px; } 
+.flex-wrapper li img:not(:first-child) { margin-top: 40px; } 
+
+.flex-wrapper > li { overflow: hidden; } 
