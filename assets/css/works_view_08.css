@@ -1,7 +1,7 @@
 #layout {padding-bottom:0;}
 .cont_inner {width:1460px; margin:0 auto; padding:0 30px; box-sizing:border-box; text-align:center;}
 
- .inner-cont {padding-bottom:0px !important;}
+.inner-cont {padding-bottom:0px !important;}
 .cont_inner ul li {display:flex; justify-content:space-between;}
 #layout > ul {padding:80px 30px 30px; display:flex;}
 section {padding-top:100px;}
