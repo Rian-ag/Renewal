@@ -16,7 +16,7 @@ body { font-family: var(--font-main); font-weight: 400; font-style: normal; colo
 * { box-sizing: border-box; } 
 
 .pc { display: none; } 
-#layout { padding-bottom: 60px; } 
+#layout { padding-bottom:90px; } 
 span { display: block; } 
 
 /* visual */

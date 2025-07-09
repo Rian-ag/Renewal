@@ -6,7 +6,7 @@ body { font-weight: 400; color: #000; }
 span { display: block; } 
 
 #wrap { min-width: 1400px; } 
-#layout { min-width: 1440px; } 
+#layout { min-width: 1440px; padding-bottom:200px;} 
 /* visual */
 .visual { position: relative; width: 100vw; height: 100vh; color: #fff; display: flex; flex-direction: column; justify-content: center;} 
 .visual img {width:100%; height:100vh; object-fit:cover;}
