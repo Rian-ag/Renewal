@@ -1,15 +1,11 @@
 #layout {padding-bottom:0;}
 .cont_inner {width:1460px; margin:0 auto; padding:0 30px; box-sizing:border-box; text-align:center;}
-.section-common .inner-cont {padding-bottom:0px !important;}
-.cont_inner span {font-size:22px; font-weight:700; line-height:130%;}
-.cont_inner strong {margin-top:12px; margin-bottom:40px; font-size:52px; font-weight:800; display:block;}
-.cont_inner strong br {display:none;}
-.cont_inner i {font-weight:18px; font-weight:400; line-height:150%; display:block;}
-.cont_inner i br {display:none;}
+
+ .inner-cont {padding-bottom:0px !important;}
 .cont_inner ul li {display:flex; justify-content:space-between;}
 #layout > ul {padding:80px 30px 30px; display:flex;}
 section {padding-top:100px;}
-.content, .bg > .cont_inner, ul.cont_inner {will-change: transform, opacity;}
+.content, .cont_inner, ul.cont_inner {will-change: transform, opacity;}
 .content > img {width:100%;}
 #layout > div.content {display:flex; gap:30px;}
 .content {padding-left:30px; padding-right:30px;}
@@ -17,8 +13,9 @@ section {padding-top:100px;}
 ul.content {margin-top:100px; display:flex; gap:30px;}
 ul.content li {width:50%;}
 ul.content li img {width:100%;;}
-p.content {padding-top:0;}
-.zero {padding-left:0; padding-right:0;}
+p.content {padding-top:0; padding-left:0; padding-right:0;}
+div.content {padding-top:218px; background:#fff;}
+div.content img {margin-left:15.0416%;}
 
 @media (max-width: 768px) {
     /* scroll_action */
@@ -26,10 +23,5 @@ p.content {padding-top:0;}
     #layout > ul {padding:0 0 10px;}
     /* .zero {padding-top:0; padding-left:0; padding-right:0;} */
     .cont_inner {width:100%; padding-left:0; padding-right:0;}
-    .cont_inner span {font-size:14px; font-weight:700; line-height:130%;}
-    .cont_inner strong {margin-top:12px; margin-bottom:32px; font-size:32px; font-weight:800; display:block;}
-    .cont_inner strong br {display:block;}
-    .cont_inner i {margin-bottom:80px; font-weight:14px; font-weight:400; line-height:150%; display:block;}
-    .cont_inner i br {display:block;}
     ul.content {margin-top:0; gap:10px;}
 }
