@@ -49,4 +49,6 @@ img { display: block; width: 100%; height: auto; }
 .poster-section { padding-top: 80px; } 
 .poster-section .flex-wrapper { display: flex; flex-direction: column; gap: 8px; padding: 30px 30px 11px; background: #fbf7f3; } 
 
-.poster-section .flex-wrapper > li:nth-child(n + 5):nth-child(-n + 8) { display: none; } 
+.poster-section .flex-wrapper > li:first-child { display: flex; flex-direction: column; gap: 8px; } 
+.poster-section .flex-wrapper > li:nth-child(2) img:not(:first-child) { display: none; } 
+.poster-section .flex-wrapper > li:nth-child(3) { display: none; } 
