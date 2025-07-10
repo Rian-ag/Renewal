@@ -157,9 +157,9 @@
                         </ul>
 
                         <ul class="flex-wrapper type2">
-                            <li><img src="/assets/images/work_detail/03/phone-1.png" alt="" /></li>
-                            <li><img src="/assets/images/work_detail/03/phone-2.png" alt="" /></li>
-                            <li><img src="/assets/images/work_detail/03/phone-3.png" alt="" /></li>
+                            <li><img src="/assets/images/work_detail/03/phone1.png" alt="" /></li>
+                            <li><img src="/assets/images/work_detail/03/phone2.png" alt="" /></li>
+                            <li><img src="/assets/images/work_detail/03/phone3.png" alt="" /></li>
                         </ul>
 
                         <div class="swiper mySwiper">
@@ -177,7 +177,44 @@
                         </div>
                     </div>
                 </section>
-                <section class="section-list">.</section>
+                <section class="section-list position-section">
+                    <div class="cont_inner">
+                        <div class="pc-wrapper">
+                            <ul>
+                                <li><img src="/assets/images/work_detail/03/pc-1.png" alt="" /></li>
+                                <li><img src="/assets/images/work_detail/03/pc-2.png" alt="" /></li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <div class="dark-section">
+                    <section class="section-list">
+                        <div class="cont_inner">
+                            <span>Advanced Search</span>
+                            <strong>고도화된 검색.</strong>
+                            <i
+                                >실시간 검색어와 많이 본 상품, 베스트셀러 등을 효율적으로 배치하여 <br />강력한 검색
+                                기능을 제공합니다.</i
+                            >
+                        </div>
+
+                        <ul class="flex-wrapper type3">
+                            <li><img src="/assets/images/work_detail/03/search-1.png" alt="" /></li>
+                            <li><img src="/assets/images/work_detail/03/search-2.png" alt="" /></li>
+                            <li><img src="/assets/images/work_detail/03/search-3.png" alt="" /></li>
+                            <li><img src="/assets/images/work_detail/03/search-4.png" alt="" /></li>
+                        </ul>
+                    </section>
+                    <section class="section-list bg">
+                        <img src="/assets/images/work_detail/03/work_visual_03_9.png" alt="" />
+                    </section>
+                    <section class="section-list bg">
+                        <img src="/assets/images/work_detail/03/work_visual_03_10.png" alt="" />
+                    </section>
+                    <section class="section-list bg">
+                        <img src="/assets/images/work_detail/03/work_visual_03_11.png" alt="" />
+                    </section>
+                </div>
             </div>
             <!-- bottom -->
             <div id="bottom" class="type3">
@@ -231,7 +268,7 @@
             $(function () {
                 customCursorEffect($('#bottom > section > a'), 'next');
                 animateSectionItems(
-                    '.section-list, ul.device-container, .grid-wrapper, .flex-container, .flex-wrapper'
+                    '.section-list, ul.device-container, .grid, .flex-container, .flex-wrapper, .position-section ul'
                 );
             });
         </script>
