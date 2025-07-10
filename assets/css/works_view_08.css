@@ -13,18 +13,36 @@ section {padding-top:100px;}
 ul.content {margin-top:100px; display:flex; gap:30px;}
 ul.content li {width:50%;}
 ul.content li img {width:100%;;}
-p.content {padding-top:0; padding-left:0; padding-right:0;}
+p.content {padding-top:140px; padding-left:0; padding-right:0;}
 div.content {padding-top:218px; background:#fff;}
 div.content img {width:80%; margin-left:15.0416%;}
-ul.content.pc:first-of-type {display:block !important;}
+ul.content.pc:first-of-type {display:block;}
 ul.content.pc:first-of-type li {width:100%;}
+ul.content.pc:nth-of-type(4) {margin-top:0 !important; padding-top:0% !important; display:block;}
+ul.content.pc:nth-of-type(4) li {width:100%;;}
 #layout > .content.pc:first-of-type + ul {margin-top:0; padding-top:0px !important;}
+#layout section:nth-of-type(3) {padding-top:30px;}
+ol {height:2183px; padding-top:140px !important; position:relative;}
+ol li.cont_inner {width:1440px; height:100%; margin:0 auto; position:relative; } 
+ol li img {width:1080px; max-width:1080px; position:absolute;} 
+ol li img:last-of-type {top:39%; left:25.208%;}
 
 @media (max-width: 768px) {
-    /* scroll_action */
+    section {padding-top:0;}
     .content {padding-left:0; padding-right:0;}
     #layout > ul {padding:0 0 10px;}
-    /* .zero {padding-top:0; padding-left:0; padding-right:0;} */
     .cont_inner {width:100%; padding-left:0; padding-right:0;}
-    ul.content {margin-top:0; gap:10px;}
+    div.content {padding-top:0px;}
+    ul.content.mo:nth-of-type(5) {padding-left:16px !important; padding-right:16px !important;}
+    div.content img {width:150%; margin-left:20px;}
+    p.content {padding-top:50px;}
+    ul.content {margin-top:0; gap:0px;}
+    ul.content.mo li {width:100% !important;}
+    img[src*="08_02_2_mo"] {margin-top:16px;}
+    ol {height:682px; padding:80px 16px !important; position:relative;}
+    ol li.cont_inner {width:100%;}
+    ol li img {width:276px; max-width:276px; position:absolute;} 
+    ol li img:first-of-type {top:0%; left:0%;}
+    ol li img:last-of-type {top:42%; left:21.905%}
+    p.content:last-of-type {padding-top:0px;}
 }

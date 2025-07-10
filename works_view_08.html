@@ -3,13 +3,13 @@
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>RIANAG</title>
+        <title>리앙에이지</title>
         <!-- CSS -->
         <link rel="stylesheet" href="/assets/css/common.css" />
         <link rel="stylesheet" href="/assets/css/ui.css" />
         <link rel="stylesheet" href="/assets/css/pc_work_detail.css" media="(min-width: 769px)" />
         <link rel="stylesheet" href="/assets/css/mo_work_detail.css" media="(max-width: 768px)" />
-        <link rel="stylesheet" href="/assets/css/works_view_08.css">
+        <link rel="stylesheet" href="/assets/css/works_view_09.css">
     </head>
     <body>
         <div id="wrap">
@@ -139,12 +139,11 @@
                     <li><img src="/assets/images/work_detail/08/work_visual_08_02_2.png" alt=""></li>
                     <li><img src="/assets/images/work_detail/08/work_visual_08_02_3.png" alt=""></li>
                 </ul>
+                <p class="content mo light-section">
+                    <img src="/assets/images/work_detail/08/work_visual_08_02_1_mo.png" alt="">
+                </p>
                 <ul class="content mo light-section">
-                    <li><img src="/assets/images/work_detail/08/work_visual_08_02_1_mo.png" alt=""></li>
-                </ul>
-                <ul class="content mo light-section">
-                    <li><img src="/assets/images/work_detail/08/work_visual_08_02_2.png" alt=""></li>
-                    <li><img src="/assets/images/work_detail/08/work_visual_08_02_3.png" alt=""></li>
+                    <li><img src="/assets/images/work_detail/08/work_visual_08_02_2_mo.png" alt=""></li>
                 </ul>
                 <section class="content pc">
                     <img src="/assets/images/work_detail/08/work_visual_08_03.png" alt="">
@@ -157,12 +156,13 @@
                 </ul>
                 <ul class="content light-section mo">
                     <li><img src="/assets/images/work_detail/08/work_visual_08_04_mo.png" alt=""></li>
-                    <li><img src="/assets/images/work_detail/08/work_visual_08_05_mo.png" alt=""></li>
                 </ul>
-                <ul class="content light-section">
-                    <li><img src="/assets/images/work_detail/08/work_visual_08_06_1.png" alt=""></li>
-                    <li><img src="/assets/images/work_detail/08/work_visual_08_06_2.png" alt=""></li>
-                </ul>
+                <ol class="content light-section">
+                    <li class="cont_inner">
+                        <img src="/assets/images/work_detail/08/work_visual_08_06_1.png" alt="">
+                        <img src="/assets/images/work_detail/08/work_visual_08_06_2.png" alt="">
+                    </li>
+                </ol>
                 <p class="content">
                     <img src="/assets/images/work_detail/08/work_visual_08_07.png" alt=""> 
                 </p>
@@ -192,14 +192,8 @@
         <script>
             gsap.registerPlugin(ScrollTrigger, CSSPlugin);
 
-            function isMobile() {
-                return window.innerWidth <= 768;
-
-            }
-
-
             $(function () {
-                customCursorEffect($('#bottom > section > a'), 'next');
+                customCursorEffect($('#bottom > section > a:last-of-type'), 'next');
                 animateSectionItems('.content, #layout > img');
             });
         </script>

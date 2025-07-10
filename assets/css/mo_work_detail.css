@@ -37,7 +37,7 @@ body {
     box-sizing: border-box;
 }
 
-.pc { display: none; } 
+.pc { display: none !important; } 
 #layout { padding-bottom:90px; } 
 span { display: block; } 
 
