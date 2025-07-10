@@ -184,7 +184,7 @@ section {
 .dark-section .section-list:first-child {
     padding-top: 0;
 }
-
+/* 모바일  */
 @media screen and (max-width: 768px) {
     body {
         overflow-x: hidden;
@@ -201,6 +201,13 @@ section {
     .section-list {
         width: 100vw;
         padding-top: 80px;
+    }
+    .section-list.mo {
+        padding: 100px 0;
+    }
+
+    .trend {
+        padding-top: 100px;
     }
     .grid {
         gap: 6px;
@@ -222,10 +229,13 @@ section {
         gap: 10px;
         justify-content: space-between;
     }
-    .flex-wrapper:first-child {
+    /* .mt70 {
+        margin-top: 70px !important;
+    } */
+    .flex-wrapper {
         margin-top: 70px;
     }
-    .flex-wrapper:not(:first-child) {
+    .flex-wrapper + .flex-wrapper {
         margin-top: 10px;
     }
     .flex-wrapper.type2 {
@@ -271,10 +281,19 @@ section {
         box-shadow: -20px 60px 30px 0px rgba(0, 0, 0, 0.01), -15px 20px 30px 0px rgba(0, 0, 0, 0.05),
             -5px 5px 31px 0px rgba(0, 0, 0, 0.07), -148px 197px 95px 0px rgba(0, 0, 0, 0);
     }
+    .img-wrapper {
+        padding-top: 80px;
+    }
+    .img-wrapper + .flex-wrapper {
+        margin: 0;
+    }
     .dark-section {
         margin-top: 0;
         padding: 100px 0 0;
         background: linear-gradient(180deg, #000 5.94%, #f2f4f5 22.93%, #fff 79.76%);
+    }
+    .img-wrapper:last-child {
+        padding-top: 0;
     }
 
     .dark-section .cont_inner > strong {
