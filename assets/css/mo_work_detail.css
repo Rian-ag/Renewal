@@ -37,15 +37,9 @@ body {
     box-sizing: border-box;
 }
 
-.pc {
-    display: none;
-}
-#layout {
-    padding-bottom: 60px;
-}
-span {
-    display: block;
-}
+.pc { display: none; } 
+#layout { padding-bottom:90px; } 
+span { display: block; } 
 
 /* visual */
 .visual {

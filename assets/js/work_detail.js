@@ -180,14 +180,9 @@ function animateSectionItems(sectionSelector, itemSelector) {
   if (!sections.length) return;
 
   sections.forEach(section => {
-    let items;
-
-    if (itemSelector) {
-      items = section.querySelectorAll(itemSelector);
-    } else {
-      // 기본값: 직계 자식 요소
-      items = section.children;
-    }
+    let items = itemSelector 
+      ? gsap.utils.toArray(section.querySelectorAll(itemSelector)) 
+      : gsap.utils.toArray(section.children);
 
     if (!items.length) return;
 
@@ -196,15 +191,14 @@ function animateSectionItems(sectionSelector, itemSelector) {
     gsap.to(items, {
       opacity: 1,
       y: 0,
-      duration: 1.7,
-      stagger: 0.15,
-      ease: 'sine.out',
-      force3D: true,
+      duration: 1.4,
+      stagger: 0.2,
+      ease: 'power3.out',
       scrollTrigger: {
         trigger: section,
-        start: '10% 80%',
-        toggleActions: 'play none none none',
-        markers: true
+        start: 'top 85%',
+        toggleActions: 'play none none none'
+        // markers: true
       }
     });
   });
