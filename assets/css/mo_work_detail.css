@@ -1,4 +1,4 @@
-@import url('../css/font.css'); :root { --font-main: 'Pretendard', sans-serif; --font-sub: 'Roboto', sans-serif; --font-eng: 'Plus Jakarta Sans', sans-serif; } 
+@import url('../css/font.css');:root { --font-main: 'Pretendard', sans-serif; --font-sub: 'Roboto', sans-serif; --font-eng: 'Plus Jakarta Sans', sans-serif; } 
 @media screen and (max-width: 768px) { html { font-size: calc(100vw / 39); } 
  }
 
@@ -46,7 +46,7 @@ span { display: block; }
 
 .to-bottom { width: 12.8205vw; aspect-ratio: 1 / 1; /* height: 5rem; */
  position: absolute; right: 8.205vw; bottom: 3.554dvh; font-size: 0; order: 1; background-image: url(/assets/images/work_detail/to-bottom.svg); background-repeat: no-repeat; background-size: cover; /* background-image: url(../images/common/icon_split.png); background-size: 500px 500px; background-position: 0 -100px; */
- /* transform: rotate(90deg); */ } 
+ /* transform: rotate(90deg); */}
 .visual-sub { padding: 2.4rem 3rem; } 
 
 .visual-sub .project-info li { color: #101010; font-family: 'Plus Jakarta Sans'; font-size: 1.2rem; font-weight: 700; line-height: 102%; letter-spacing: -0.24px; } 
@@ -62,7 +62,7 @@ section { position: relative; background-color: #fff; z-index: 100; }
 .section-common .inner-cont > p span { color: #000; font-feature-settings: 'cpsp' on; font-family: var(--font-main); font-size: 1.6rem; font-weight: 700; line-height: 150%; letter-spacing: -0.24px; transform: translate3d(0, 200px, 0); opacity: 0; will-change: transform, opacity; } 
 .des-container { margin-top: 4.8em; border-top: 1px solid #000; } 
 .des-container li { margin-top: 3.2rem; font-feature-settings: 'cv03' on, 'cv04' on, 'cv09' on; font-family: var(--font-main); } 
-.des-container li strong { color: #101010; font-size: 1.6rem; font-weight: 700; line-height: 130%; letter-spacing: -0.4px; } 
-.des-container li p { margin-top: 0.8rem; color: #000; font-size: 1.4rem; font-weight: 400; line-height: 150%; letter-spacing: -0.21px; } 
+.des-container li strong { color: #101010; font-size: 1.6rem; font-weight: 700; line-height: 130%; letter-spacing: -0.4px; font-family: var(--font-main); } 
+.des-container li p { margin-top: 0.8rem; color: #000; font-size: 1.4rem; font-weight: 400; line-height: 150%; letter-spacing: -0.21px; font-family: var(--font-main); } 
 /* footer */
 #work-footer { position: relative; background-color: #000; } 
