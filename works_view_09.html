@@ -199,10 +199,10 @@
             <div id="bottom" class="type3">
                 <section>
                     <a href="/project.html"></a>
-                    <a href="javascript:void(0);">What’s next?</a>
+                    <a href="/works_view_09.html">WOORI BANK TABLET BRUNCH</a>
                 </section>
                 <!-- <a href="http://daum.net" target="_blank">BLOG</a> -->
-                <div>    
+                <div>
                     <span>© RIANag INC. All Rights Reserved.</span>
                     <button class="top">Back to Top</button>
                 </div>
@@ -287,6 +287,66 @@
                         }
                     }
                 });
+
+    const IMAGE_SELECTOR = '.visual img, .content img, .content.inner img';
+    let isMobile = window.innerWidth <= 768;
+
+    // 각 이미지마다 원본 src 저장
+    const imageData = [];
+
+    $(IMAGE_SELECTOR).each(function () {
+        const $img = $(this);
+        const originalSrc = $img.attr('src');
+        const mobileSrc = originalSrc.replace(/\.png$/, '_mo.png');
+
+        imageData.push({
+            $img,
+            originalSrc,
+            mobileSrc,
+            currentSrc: originalSrc,
+            hasMobileVersion: null // 초기엔 존재 여부 미확인
+        });
+    });
+
+    function checkImageExists(src) {
+        return new Promise((resolve) => {
+            const img = new Image();
+            img.onload = () => resolve(true);
+            img.onerror = () => resolve(false);
+            img.src = src;
+        });
+    }
+
+    async function updateImages(force = false) {
+        const nowMobile = window.innerWidth <= 768;
+
+        if (!force && nowMobile === isMobile) return;
+        isMobile = nowMobile;
+
+        for (const data of imageData) {
+            const { $img, originalSrc, mobileSrc, hasMobileVersion } = data;
+
+            if (nowMobile) {
+                if (hasMobileVersion === null) {
+                    // 첫 검사인 경우
+                    data.hasMobileVersion = await checkImageExists(mobileSrc);
+                }
+
+                if (data.hasMobileVersion && $img.attr('src') !== mobileSrc) {
+                    $img.attr('src', mobileSrc);
+                }
+            } else {
+                if ($img.attr('src') !== originalSrc) {
+                    $img.attr('src', originalSrc);
+                }
+            }
+        }
+    }
+
+    updateImages(true); // 최초 실행
+    $(window).on('resize', () => updateImages());
+
+
 
 
             });
