@@ -19,20 +19,22 @@ img.custom {
         -119px 168px 124px 0px rgba(0, 0, 0, 0.05), -53px 75px 91px 0px rgba(0, 0, 0, 0.09),
         -13px 19px 50px 0px rgba(0, 0, 0, 0.1);
 }
-.pt80 {
-    padding-top: 80px;
-}
-.pt120 {
-    padding-top: 120px;
-}
-.pt240 {
-    padding-top: 240px;
+@media screen and (min-width: 769px) {
+    .pt80 {
+        padding-top: 80px;
+    }
+    .pt120 {
+        padding-top: 120px;
+    }
+    .pt240 {
+        padding-top: 240px;
+    }
 }
 section {
     position: relative;
 }
 
-.pd {
+.px-md {
     padding: 0 380px;
 }
 .section-list .cont_inner {
@@ -131,31 +133,79 @@ section {
     body {
         overflow-x: hidden;
     }
-
     .pc {
         display: none !important;
+    }
+    .pt0 {
+        padding-top: 0 !important;
+    }
+    #layout {
+        padding-bottom: 0;
+    }
+    .section-list {
+        width: 100vw;
+        padding-top: 100px;
     }
     .section-list .cont_inner {
         padding: 0;
         width: 100vw;
         max-width: 100%;
-    }
-    .section-list {
-        width: 100vw;
-        padding-top: 80px;
+        /* padding: 0 24px; */
     }
 
-    .cont_inner > span {
+    .cont_inner > span,
+    .text-wrapper > span {
         font-size: 14px;
         letter-spacing: -0.35px;
     }
-    .cont_inner > strong {
+    .cont_inner > strong,
+    .text-wrapper > strong {
         font-size: 32px;
         letter-spacing: -0.35px;
     }
-    .cont_inner > i {
+    .cont_inner > i,
+    .text-wrapper > i {
         margin-top: 32px;
         font-size: 14px;
         letter-spacing: -0.21px;
+    }
+
+    .px-md {
+        padding: 0 24px;
+    }
+    .radius-md {
+        border-radius: 0;
+    }
+
+    .des-wrapper {
+        padding: 60px 24px;
+        flex-direction: column;
+        gap: 40px;
+    }
+    .flex-wrapper {
+        padding: 0 24px;
+        flex-direction: column;
+        gap: 24px;
+    }
+    .img-wrapper {
+        margin: 0 !important ;
+        padding-left: 24px;
+    }
+
+    .cont_inner > i + div,
+    .cont_inner > i + ul {
+        margin-top: 40px;
+    }
+    .card-list {
+        padding: 60px 24px 0;
+        flex-direction: column;
+        gap: 16px;
+    }
+    .card-list > li {
+        display: block;
+        margin: 0 !important;
+    }
+    .des-wrapper > div {
+        width: auto;
     }
 }
