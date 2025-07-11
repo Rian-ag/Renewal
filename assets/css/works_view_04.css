@@ -273,4 +273,10 @@ section {
     .effect-img {
         height: 521px;
     }
+    .pop-wrapper {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        margin-top: 0;
+    }
 }

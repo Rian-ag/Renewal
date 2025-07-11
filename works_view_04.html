@@ -143,7 +143,7 @@
                 </section>
                 <section class="section-list pt120">
                     <div class="cont_inner">
-                        <div class="des-wrapper radius-md">
+                        <div class="pc des-wrapper radius-md">
                             <div class="effect-img custom">
                                 <img src="/assets/images/work_detail/04/slide.png" alt="" />
                             </div>
@@ -165,8 +165,27 @@
                                     <img class="pop-5" src="/assets/images/work_detail/04/pop-5.png" alt="" />
                                 </div>
                             </div>
-
-                            <img class="mo custom" src="/assets/images/work_detail/04/work_visual_04_8_mo.png" alt="" />
+                        </div>
+                        <div class="mo des-wrapper">
+                            <div class="text-wrapper">
+                                <span>BiG & WIDE</span>
+                                <strong>크고 간결하게.</strong>
+                                <i
+                                    >이미지 중심의 크고 간결한 디자인을 채택하여, <br />
+                                    젊은 층부터 고령자까지 쉽게 인지하고 <br />
+                                    선택할 수 있는 UI를 설계했습니다.
+                                </i>
+                            </div>
+                            <div class="effect-img custom">
+                                <img src="/assets/images/work_detail/04/slide.png" alt="" />
+                            </div>
+                            <div class="pop-wrapper">
+                                <img class="pop-1" src="/assets/images/work_detail/04/pop-1.png" alt="" />
+                                <img class="pop-2" src="/assets/images/work_detail/04/pop-2.png" alt="" />
+                                <img class="pop-3" src="/assets/images/work_detail/04/pop-3.png" alt="" />
+                                <img class="pop-4" src="/assets/images/work_detail/04/pop-4.png" alt="" />
+                                <img class="pop-5" src="/assets/images/work_detail/04/pop-5.png" alt="" />
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -262,46 +281,49 @@
         <script>
             gsap.registerPlugin(ScrollTrigger);
 
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: '.pop-wrapper',
-                    start: 'top 80%',
-                    toggleActions: 'play none none none',
-                },
-            });
-
-            // 1. pop 이미지 등장
-            tl.from('.pop-wrapper img', {
-                y: 60,
-                opacity: 0,
-                duration: 1.2,
-                stagger: 1,
-                ease: 'power3.out',
-                delay: 0.4,
-            });
-
-            // 2. 이미지 1컷씩 위로 이동 (전체 높이의 1/4씩)
-            const $slideImg = $('.effect-img img');
-            const totalHeight = $slideImg.height(); // 전체 이미지 높이
-            const stepCount = 3; // 4컷 → 3번 이동
-            const stepHeight = totalHeight / 4; // 1컷 높이 계산
-
-            for (let i = 1; i <= stepCount; i++) {
-                tl.to(
-                    '.effect-img img',
-                    {
-                        y: -stepHeight * i,
-                        duration: 1,
-                        ease: 'power2.inOut',
-                    },
-                    '+=0.5'
-                );
-            }
-
             // 기타 실행 스크립트
             $(function () {
                 customCursorEffect($('#bottom > section > a'), 'next');
                 animateSectionItems('.section-list, .flex-wrapper, .card-list, .des-wrapper, .action');
+            });
+
+            // 이미지 로드 완료 후 실행 (높이 정확히 측정)
+            $(window).on('load', function () {
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: '.pop-wrapper',
+                        start: 'top 80%',
+                        toggleActions: 'play none none none',
+                    },
+                });
+
+                // 1. pop 이미지 순차 등장
+                tl.from('.pop-wrapper img', {
+                    y: 60,
+                    opacity: 0,
+                    duration: 1.2,
+                    stagger: 1,
+                    ease: 'power3.out',
+                    delay: 0.4,
+                });
+
+                // 2. 슬라이드 이미지 컷별 이동
+                const $slideImg = $('.effect-img img');
+                const totalHeight = $slideImg.height(); // 전체 이미지 높이
+                const stepCount = 3; // 총 4컷이면 이동은 3번
+                const stepHeight = totalHeight / 4; // 한 컷 높이 계산
+
+                for (let i = 1; i <= stepCount; i++) {
+                    tl.to(
+                        $slideImg,
+                        {
+                            y: -stepHeight * i,
+                            duration: 1,
+                            ease: 'power2.inOut',
+                        },
+                        '+=0.5'
+                    ); // 각 컷 사이 텀
+                }
             });
         </script>
     </body>
