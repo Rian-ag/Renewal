@@ -90,7 +90,7 @@ $(document).ready(function () {
 })
 .to('.wrap > p > img', {clipPath: 'inset(0% 0%)', y: 0,opacity: 1,duration: 1, ease: 'power2.out'}, 0.2);
 
-/* count evetn */
+  /* count evetn */
   const $targets = $('.about_swiper .swiper-slide strong');
   const values = [8, 2, 1, 1, 1, 3]; // 각 strong 요소의 목표값
 
@@ -103,14 +103,14 @@ $(document).ready(function () {
 
     ScrollTrigger.create({
       trigger: '.about_awards',
-      start: '50% 80%',
+      start: 'top 85%', // 모바일 대응 start 위치 조정
       once: true,
       onEnter: () => {
         gsap.to({ val: 0 }, {
           val: endValue,
-          duration: 0.5 + endValue * 0.2, // 값이 클수록 duration을 늘림
+          duration: 0.5 + endValue * 0.2,
           ease: 'power1.out',
-          snap: 'val', // 자연스러운 정수 변화
+          snap: 'val',
           onUpdate: function () {
             $el.text(this.targets()[0].val);
           }
@@ -198,7 +198,9 @@ $(document).ready(runPartnerAnimation);
     }
   });
 
-  
+  setTimeout(() => {
+    ScrollTrigger.refresh(); // 레이아웃/사이즈 변경 이후 재계산
+  }, 300);
 
 });
 

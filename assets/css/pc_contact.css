@@ -1,5 +1,4 @@
 /* 공통 */
-/* .cont_inner {min-width:1440px; margin:0 auto; padding:200px 20px; box-sizing:border-box;} */
 #wrap {min-width:1440px;}
 .cont_inner {width:1440px; min-width:1440px; margin:0 auto; padding:200px 20px;}
 em,i {font-style: normal;}

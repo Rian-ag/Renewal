@@ -18,10 +18,8 @@ ul.content li img {width:100%;;}
 p.content {padding-top:0;}
 
 @media (max-width: 768px) {
-    /* scroll_action */
     .content {padding-left:0; padding-right:0;}
     #layout > ul {padding:0 0 10px;}
-    /* .zero {padding-top:0; padding-left:0; padding-right:0;} */
     .cont_inner {width:100%; padding-left:0; padding-right:0;}
     .cont_inner span {font-size:14px; font-weight:700; line-height:130%;}
     .cont_inner strong {margin-top:12px; margin-bottom:32px; font-size:32px; font-weight:800; display:block;}

@@ -1,3 +1,4 @@
+#bottom {border-top:none;}
 :root {
     --title-transition-property: transform, opacity;
     --title-transition-duration: 0.6s;
