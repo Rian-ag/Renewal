@@ -20,7 +20,7 @@ body { font-family: var(--font-main); font-weight: 400; font-style: normal; colo
 span { display: block; } 
 
 /* visual */
-.visual { width: 100vw; min-height: 100vh; height: 100dvw; } 
+.visual { width: 100vw; min-height: 100vh; height: 100dvw; position:relative; } 
 .visual img { width: 100%; height: 100vh; object-fit: cover; object-position: center; } 
 .title-container { position: absolute; top: 16.71dvh; /* left: 3rem; */
  left: 7.692vw; } 
@@ -45,8 +45,7 @@ span { display: block; }
 .product-info span { color: #fff; font-size: 1.4rem; font-weight: 700; line-height: 120%; letter-spacing: -0.14px; } 
 
 .to-bottom { width: 12.8205vw; aspect-ratio: 1 / 1; /* height: 5rem; */
- position: absolute; right: 8.205vw; bottom: 3.554dvh; font-size: 0; order: 1; background-image: url(/assets/images/work_detail/to-bottom.svg); background-repeat: no-repeat; background-size: cover; /* background-image: url(../images/common/icon_split.png); background-size: 500px 500px; background-position: 0 -100px; */
- /* transform: rotate(90deg); */}
+ position: absolute; left:50%; bottom: 3.554dvh; font-size: 0; order: 1; background-image: url(/assets/images/work_detail/to-bottom.svg); background-repeat: no-repeat; background-size: cover; transform:translateX(-50%);;}
 .visual-sub { padding: 2.4rem 3rem; } 
 
 .visual-sub .project-info li { color: #101010; font-family: 'Plus Jakarta Sans'; font-size: 1.2rem; font-weight: 700; line-height: 102%; letter-spacing: -0.24px; } 

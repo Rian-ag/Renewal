@@ -176,7 +176,13 @@ $(document).ready(function () {
     /* e:sitemap */
 
     $('.top').on('click', function () {
-        $('html, body').animate({ scrollTop: 0 }, 500); // 500은 애니메이션 시간(ms)
+        $('html, body').animate({ scrollTop: 0 }, 800); // 500은 애니메이션 시간(ms)
+    });
+
+    $('.to-bottom').on('click', function () {
+        $('html, body').animate({
+            scrollTop: $(document).height()
+        }, 800); // 0.8초 동안 부드럽게 이동
     });
 });
 
