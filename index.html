@@ -105,7 +105,16 @@
 						$('.visual_cont .project').html(project.title[index].replace(/\n/g, '<br>'));
 						$('.visual_cont .slogan').html(project.slogan[index].replace(/\n/g, '<br>'));
 						$('.visual_cont').css('color', mixColor[index]);
-						$('#section_wrap > p > a').attr('href', url[index]);
+						// href 설정
+						const link = $('#section_wrap > p > a');
+						link.attr('href', url[index]);
+
+						// target="_blank" 조건 추가
+						if (url[index] === 'https://page.kakao.com/content/63697399') {
+							link.attr('target', '_blank');
+						} else {
+							link.removeAttr('target');
+						}
 					}, 800);
 				}
 
@@ -162,7 +171,6 @@
 				});
 				$('body').css('cursor', 'none');
 			});
-
 			
 		});
 	</script>
@@ -231,7 +239,7 @@
 			<section>
 				<a href="/insight_view_02.html"><div class="parallax-bg lazyload" data-src="/assets/images/main/visual_coldplay.png" data-src-mobile="/assets/images/main/visual_coldplay_mo.png"></div></a>
 			</section>
-			<section c;a>
+			<section>
 				<a href="https://page.kakao.com/content/63697399" target="_blank"><div class="parallax-bg lazyload" data-src="/assets/images/main/visual_web.png" data-src-mobile="/assets/images/main/visual_web_mo.png"></div></a>
 			</section>
 
