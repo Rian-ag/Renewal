@@ -37,57 +37,6 @@
 			setRealVh();
 			$(window).on('resize orientationchange', setRealVh);
 		});
-		function replaceDivWithVideo($div, videoSrc) {
-			const video = document.createElement('video');
-			video.src = videoSrc;
-			video.autoplay = true;
-			video.muted = true;
-			video.loop = true;
-			video.playsInline = true;
-			video.setAttribute('muted', '');
-			video.style.width = '100%';
-			video.style.height = '100%';
-			video.style.objectFit = 'cover';
-			video.style.position = 'absolute';
-			video.style.top = 0;
-			video.style.left = 0;
-			video.style.zIndex = -1;
-
-			// 기존 커서 효과 유지 위해 이벤트 타겟 div 자체는 유지
-			$div.classList.remove('lazyload');
-			$div.innerHTML = ''; // 내부 내용 비우고
-			$div.appendChild(video); // video 추가
-		}
-
-		function updateLazyloadSrc() {
-			const isMobile = window.innerWidth <= 767;
-
-			document.querySelectorAll('.parallax-bg').forEach(function(el) {
-				const mobileSrc = el.getAttribute('data-src-mobile');
-				const pcSrc = el.getAttribute('data-src');
-				const targetSrc = (isMobile && mobileSrc) ? mobileSrc : pcSrc;
-
-				if (!el.getAttribute('data-src-original')) {
-					el.setAttribute('data-src-original', pcSrc);
-				}
-
-				// 🎯 비디오 처리
-				if (el.classList.contains('video-bg')) {
-					const video = el.querySelector('video');
-					if (video) {
-						if (video.getAttribute('src') !== targetSrc) {
-							video.setAttribute('src', targetSrc);
-							video.load();
-						}
-					} else {
-						replaceDivWithVideo(el, targetSrc);
-					}
-				} else {
-					el.setAttribute('data-src', targetSrc);
-				}
-			});
-		}
-
 
 		document.addEventListener('DOMContentLoaded', function() {
 			updateLazyloadSrc(); // ✅ src 교체
@@ -191,13 +140,30 @@
 			customCursorEffect($('.visual_cont'), 'view');
 			customCursorEffect($('.video-bg'), 'view');
 
-			// ✅ 페이지 로딩 후 첫 섹션에 커서 보이도록 강제 트리거
-			$(window).on('load', function () {
-				const $firstActive = $('section.active .parallax-bg');
-				if ($firstActive.length > 0) {
-					$firstActive.trigger('mouseenter');
-				}
+			// ⬇ header 진입 시 커서 변경 추가
+			$('header').on('mouseenter', function () {
+				$('.custom-cursor.view').css({
+					transform: 'translate(-50%, -50%) scale(0.5)',
+					opacity: 0
+				});
+				$('.custom-cursor.dot-cursor').css({
+					transform: 'translate(-50%, -50%) scale(1)'
+				});
+				$('body').css('cursor', 'default');
 			});
+
+			$('header').on('mouseleave', function () {
+				$('.custom-cursor.view').css({
+					transform: 'translate(-50%, -50%) scale(1)',
+					opacity: 1
+				});
+				$('.custom-cursor.dot-cursor').css({
+					transform: 'translate(-50%, -50%) scale(0)'
+				});
+				$('body').css('cursor', 'none');
+			});
+
+			
 		});
 	</script>
 	<style>

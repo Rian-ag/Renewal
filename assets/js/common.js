@@ -8,25 +8,7 @@ $(document).ready(function () {
     /* header스크롤 */
     initHeaderScrollToggle();
 
-    // // ✅ Lenis 전체 공통 적용
-    // const lenis = new Lenis({
-    //     duration: 1.2,
-    //     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    //     smooth: true,
-    //     smoothTouch: false,
-    // });
-
-    // // 다른 페이이지에서 제어
-    // window.lenis = lenis;
-
-    // function raf(time) {
-    //     lenis.raf(time);
-    //     requestAnimationFrame(raf);
-    // }
-    // requestAnimationFrame(raf);
-
-
-        // Lenis 제외 페이지 설정
+    // Lenis 제외 페이지 설정
     const lenisExcludePages = ['/project.html'];
     const currentPath = window.location.pathname;
 
@@ -47,7 +29,6 @@ $(document).ready(function () {
         }
         requestAnimationFrame(raf);
     }
-
 
     // 예: 로고 클릭 시
     $('h1 img').on('click', function (e) {
@@ -228,7 +209,6 @@ function lazyLoads() {
     }
 }
 
-
 function initHeaderScrollToggle() {
   let lastScrollTop = 0;
   const delta = 5;
@@ -297,9 +277,6 @@ function initHeaderScrollToggle() {
     lastScrollTop = st;
   });
 }
-
-
-
 
 /* e:lazyload */
 function goBack() {
@@ -441,3 +418,53 @@ function toWhiteLogo(src) {
   return src.replace('_black.png', '.png');
 }
 
+function replaceDivWithVideo($div, videoSrc) {
+    const video = document.createElement('video');
+    video.src = videoSrc;
+    video.autoplay = true;
+    video.muted = true;
+    video.loop = true;
+    video.playsInline = true;
+    video.setAttribute('muted', '');
+    video.style.width = '100%';
+    video.style.height = '100%';
+    video.style.objectFit = 'cover';
+    video.style.position = 'absolute';
+    video.style.top = 0;
+    video.style.left = 0;
+    video.style.zIndex = -1;
+
+    // 기존 커서 효과 유지 위해 이벤트 타겟 div 자체는 유지
+    $div.classList.remove('lazyload');
+    $div.innerHTML = ''; // 내부 내용 비우고
+    $div.appendChild(video); // video 추가
+}
+
+function updateLazyloadSrc() {
+    const isMobile = window.innerWidth <= 767;
+
+    document.querySelectorAll('.parallax-bg').forEach(function(el) {
+        const mobileSrc = el.getAttribute('data-src-mobile');
+        const pcSrc = el.getAttribute('data-src');
+        const targetSrc = (isMobile && mobileSrc) ? mobileSrc : pcSrc;
+
+        if (!el.getAttribute('data-src-original')) {
+            el.setAttribute('data-src-original', pcSrc);
+        }
+
+        // 🎯 비디오 처리
+        if (el.classList.contains('video-bg')) {
+            const video = el.querySelector('video');
+            if (video) {
+                if (video.getAttribute('src') !== targetSrc) {
+                    video.setAttribute('src', targetSrc);
+                    video.load();
+                }
+            } else {
+                replaceDivWithVideo(el, targetSrc);
+            }
+        } else {
+            el.setAttribute('data-src', targetSrc);
+        }
+    });
+}

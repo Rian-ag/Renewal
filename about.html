@@ -80,16 +80,10 @@
 		<!-- //header -->
 
         <div class="about_visual dark-section">
-            <video
-                src="/assets/video/About_Draft.mp4"
-                autoplay
-                loop
-                muted
-                playsinline
-                style="width: 100%; height: 100%; object-fit: cover"
-                type="video/mp4"
-            ></video>
-            <div class="mo_cursor mo">Scroll</div>
+                <div class="parallax-bg video-bg lazyload"
+                    data-src="/assets/video/About_Draft.mp4"
+                    data-src-mobile="/assets/video/About_Draft_m.mp4">
+                </div>
             <div class="custom-cursor scroll">Scroll</div>
         </div>
         <section class="about_vision light-section">
@@ -151,7 +145,7 @@
                                 <p>Content that benefits everyone.</p>
                             </dt>
                             <dd>
-                                <p>리앙에이지의 운영 중인 도시문화관광 창작연구소는 메타버스 설계와 구현은 물론, O2O 연계 컨텐츠를 제작합니다.</p>
+                                <p>리앙에이지는 웹페이지, APP 등 디지털 솔루션 구축 및 운영사업과 함께 문화사업의 일환으로 웹툰 컨텐츠를 제작합니다.</p>
                                 <p>저희의 콘텐츠를 접하는 분들에게, 더 큰 즐거움과 경험을 드리는 것이 리앙에이지가 지향하는 ‘이로움’이라 생각합니다.</p>
                             </dd>
                         </dl>
@@ -410,6 +404,17 @@
             runGsapScrollAnimations('.about_vision', '.about_vision h2 span', 0.2);
             runGsapScrollAnimations('.about_awards', '.about_awards h2 span', 0.3);
             runGsapScrollAnimations('.about_awards', '.about_awards h2 p', 0.2);
+        });
+        document.addEventListener('DOMContentLoaded', function () {
+            updateLazyloadSrc(); // ✅ 초기 비디오 src 설정
+            new LazyLoad();      // ✅ 이미지 lazyload 실행
+
+            // ✅ 리사이즈 대응
+            let resizeTimer;
+            window.addEventListener('resize', function () {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(updateLazyloadSrc, 200);
+            });
         });
 
     </script>

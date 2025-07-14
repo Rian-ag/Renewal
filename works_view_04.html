@@ -239,12 +239,14 @@
             <!-- bottom -->
             <div id="bottom" class="type3">
                 <section>
-                    <button></button>
-                    <a href="">HYUNDAI DUTY FREE </a>
+                    <a href="/project.html"></a>
+                    <a href="/works_view_05.html">HYUNDAI DUTY FREE</a>
                 </section>
                 <!-- <a href="http://daum.net" target="_blank">BLOG</a> -->
-                <span>© RIANag INC. All Rights Reserved.</span>
-                <button class="top">Back to Top</button>
+                <div>
+                    <span>© RIANag INC. All Rights Reserved.</span>
+                    <button class="top">Back to Top</button>
+                </div>
             </div>
             <!-- //bottom -->
             <div class="custom-cursor dot-cursor"></div>
@@ -300,7 +302,7 @@
 
             // 기타 실행 스크립트
             $(function () {
-                customCursorEffect($('#bottom > section > a'), 'next');
+                customCursorEffect($('#bottom > section > a:last-of-type'), 'next');
                 animateSectionItems('.section-list, .flex-wrapper, .card-list, .des-wrapper, .action');
             });
         </script>
