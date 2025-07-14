@@ -42,30 +42,21 @@ $(document).ready(function () {
         }, 500); // transition 시간과 동일하게
     });
 
-    // 모든 a 태그 클릭 시 페이드 아웃 처리
-    $('a[href]:not([href^="#"]):not([target="_blank"])').on('click', function (e) {
-        const href = $(this).attr('href');
+    // 1. 일반 a 태그 처리
+    handleFadeLinkTransition(
+        'a[href]:not([href^="#"]):not([target="_blank"])',
+        ($el) => $el.attr('href')
+    );
 
-        // ✅ 자바스크립트 링크 제외
-        if (
-            href === 'javascript:void(0);' ||
-            href.startsWith('javascript:')
-        ) return;
-
-        // ✅ tel: 또는 mailto:는 브라우저 기본 동작으로 처리 (절대 막지 않기)
-        if (
-            href.startsWith('tel:') ||
-            href.startsWith('mailto:')
-        ) return;
-
-        // ✅ 나머지 일반 링크만 페이드 아웃 처리
-        e.preventDefault();
-        $('body').removeClass('fadein').addClass('fadeout');
-
-        setTimeout(function () {
-            window.location.href = href;
-        }, 500);
-    });
+    // 2. onclick="location.href='...'" 처리
+    handleFadeLinkTransition(
+        '[onclick*="location.href"]',
+        ($el) => {
+            const onclickValue = $el.attr('onclick');
+            const match = onclickValue?.match(/location\.href\s*=\s*['"]([^'"]+)['"]/);
+            return match ? match[1] : null;
+        }
+    );
     
     $('header').each(function () {
         const $header = $(this);
@@ -466,5 +457,27 @@ function updateLazyloadSrc() {
         } else {
             el.setAttribute('data-src', targetSrc);
         }
+    });
+}
+
+function handleFadeLinkTransition(selector, getUrl) {
+    $(document).on('click', selector, function (e) {
+        const url = getUrl($(this));
+        if (!url) return;
+
+        // 예외 조건 처리
+        if (
+            url.startsWith('#') ||
+            url.startsWith('javascript:') ||
+            url.startsWith('tel:') ||
+            url.startsWith('mailto:')
+        ) return;
+
+        e.preventDefault();
+        $('body').removeClass('fadein').addClass('fadeout');
+
+        setTimeout(function () {
+            window.location.href = url;
+        }, 450); // 페이드 시간과 맞추기
     });
 }
