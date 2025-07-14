@@ -447,6 +447,7 @@ function updateLazyloadSrc() {
             el.setAttribute('data-src', targetSrc);
         }
     });
+    console.log('video')
 }
 
 function handleFadeLinkTransition(selector, getUrl) {
