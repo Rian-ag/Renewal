@@ -157,16 +157,8 @@ $(document).ready(function () {
         }, 800); // 0.8초 동안 부드럽게 이동
     });
 
+    initPageRestoreHandler();
 
-    $(window).on('pageshow', function (event) {
-        if (event.originalEvent.persisted || performance.getEntriesByType("navigation")[0].type === "back_forward") {
-            $('body').removeClass('fadeout').addClass('fadein');
-            ScrollTrigger?.refresh?.();
-            if (typeof lenis !== 'undefined') {
-            requestAnimationFrame((t) => lenis.raf(t));
-            }
-        }
-    });
 
 
 });
@@ -492,5 +484,36 @@ function handleFadeLinkTransition(selector, getUrl) {
         setTimeout(function () {
             window.location.href = url;
         }, 450); // 페이드 시간과 맞추기
+    });
+}
+
+function initPageRestoreHandler() {
+    $(window).on('pageshow', function (event) {
+        const isBackForward = event.originalEvent?.persisted ||
+            performance.getEntriesByType("navigation")[0]?.type === "back_forward";
+
+        if (isBackForward) {
+            // ✅ fadein 복원
+            $('body').removeClass('fadeout').addClass('fadein');
+
+            // ✅ ScrollTrigger 재활성화
+            if (window.ScrollTrigger && typeof ScrollTrigger.refresh === 'function') {
+                ScrollTrigger.refresh();
+            }
+
+            // ✅ Lenis 재시작
+            if (window.lenis && typeof lenis.raf === 'function') {
+                requestAnimationFrame((t) => lenis.raf(t));
+            }
+
+            // ✅ lazyload 이미지 및 비디오 복구
+            updateLazyloadSrc();
+            if (typeof LazyLoad !== 'undefined') new LazyLoad();
+
+            // ✅ 커스텀 커서도 재적용
+            customCursorEffect($('.parallax-bg'), 'view');
+            customCursorEffect($('.visual_cont'), 'view');
+            customCursorEffect($('.video-bg'), 'view');
+        }
     });
 }
