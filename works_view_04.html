@@ -143,11 +143,21 @@
                 <section class="section-list pt120">
                     <div class="cont_inner">
                         <div class="des-wrapper radius-md">
+                            <div class="text-wrapper mo">
+                                <span>BiG & WIDE</span>
+                                <strong>크고 간결하게.</strong>
+                                <i
+                                    >이미지 중심의 크고 간결한 디자인을 채택하여, <br />
+                                    젊은 층부터 고령자까지 쉽게 인지하고 <br />
+                                    선택할 수 있는 UI를 설계했습니다.
+                                </i>
+                            </div>
                             <div class="effect-img custom">
-                                <img src="/assets/images/work_detail/04/slide.png" alt="" />
+                                <img class="pc" src="/assets/images/work_detail/04/slide.png" alt="" />
+                                <img class="mo" src="/assets/images/work_detail/04/slide_mo.png" alt="" />
                             </div>
                             <div class="pop">
-                                <div class="text-wrapper">
+                                <div class="text-wrapper pc">
                                     <span>BiG & WIDE</span>
                                     <strong>크고 간결하게.</strong>
                                     <i
@@ -164,8 +174,6 @@
                                     <img class="pop-5" src="/assets/images/work_detail/04/pop-5.png" alt="" />
                                 </div>
                             </div>
-
-                            <img class="mo custom" src="/assets/images/work_detail/04/work_visual_04_8_mo.png" alt="" />
                         </div>
                     </div>
                 </section>
@@ -262,46 +270,52 @@
         <script>
             gsap.registerPlugin(ScrollTrigger);
 
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: '.pop-wrapper',
-                    start: 'top 80%',
-                    toggleActions: 'play none none none',
-                },
-            });
-
-            // 1. pop 이미지 등장
-            tl.from('.pop-wrapper img', {
-                y: 60,
-                opacity: 0,
-                duration: 1.2,
-                stagger: 1,
-                ease: 'power3.out',
-                delay: 0.4,
-            });
-
-            // 2. 이미지 1컷씩 위로 이동 (전체 높이의 1/4씩)
-            const $slideImg = $('.effect-img img');
-            const totalHeight = $slideImg.height(); // 전체 이미지 높이
-            const stepCount = 3; // 4컷 → 3번 이동
-            const stepHeight = totalHeight / 4; // 1컷 높이 계산
-
-            for (let i = 1; i <= stepCount; i++) {
-                tl.to(
-                    '.effect-img img',
-                    {
-                        y: -stepHeight * i,
-                        duration: 1,
-                        ease: 'power2.inOut',
-                    },
-                    '+=0.5'
-                );
-            }
-
             // 기타 실행 스크립트
             $(function () {
                 customCursorEffect($('#bottom > section > a:last-of-type'), 'next');
                 animateSectionItems('.section-list, .flex-wrapper, .card-list, .des-wrapper, .action');
+            });
+
+            // 이미지 로드 완료 후 실행 (높이 정확히 측정)
+            $(window).on('load', function () {
+                const isMobile = window.innerWidth <= 768;
+
+                // const $effectImg = $('.effect-img');
+                const $slideImg = isMobile ? $('.effect-img img.mo') : $('.effect-img img.pc');
+
+                const moveHeights = isMobile ? [521, 521, 275.71] : [758, 758, 397];
+
+                // const visibleHeight = isMobile ? moveHeights[0] : 758;
+                // $effectImg.height(visibleHeight);
+
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: '.pop-wrapper',
+                        start: 'top 80%',
+                        toggleActions: 'play none none none',
+                    },
+                });
+
+                tl.from('.pop-wrapper img', {
+                    y: 60,
+                    opacity: 0,
+                    duration: 1.2,
+                    stagger: 1,
+                    ease: 'power3.out',
+                    delay: 0.4,
+                });
+
+                moveHeights.forEach((moveY, i) => {
+                    tl.to(
+                        $slideImg,
+                        {
+                            y: `-=${moveY}`,
+                            duration: 1,
+                            ease: 'power2.inOut',
+                        },
+                        '+=0.5'
+                    );
+                });
             });
         </script>
     </body>
