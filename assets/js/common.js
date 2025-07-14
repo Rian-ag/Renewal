@@ -180,7 +180,6 @@ function lazyLoads() {
                         } else if (el.tagName.toLowerCase() === 'img') {
                             el.src = original;
                         }
-
                         el.classList.remove('lazy');
                         obs.unobserve(el);
                     }
@@ -213,15 +212,11 @@ function initHeaderScrollToggle() {
   const originalSrc = $Logo.attr('src');
   const whitekSrc = toWhiteLogo(originalSrc);
   const blacSrc = toBlackLogo(originalSrc);
-
   $(window).on('scroll.headerToggle', function () {
     if ($('.site_map.active').length > 0) return;
-
     const st = $(this).scrollTop();
     if (Math.abs(lastScrollTop - st) <= delta) return;
-
     const isMobile = window.innerWidth <= 767;
-
     // ✅ scrollTop 5 이하일 때 완전 초기화
     if (st <= 5) {
       if (isMobile) {
@@ -233,14 +228,12 @@ function initHeaderScrollToggle() {
       lastScrollTop = st;
       return;
     }
-
     // ✅ 공통: 스크롤 방향에 따라 hide/on 처리
     if (st > lastScrollTop) {
       $Headers.addClass('hide').removeClass('on');
     } else {
       $Headers.removeClass('hide').addClass('on');
     }
-
     if (!isMobile) {
       // ✅ PC 전용: 섹션 배경에 따라 header 색상 및 로고 변경
       let matched = false;
@@ -249,7 +242,6 @@ function initHeaderScrollToggle() {
         const $section = $(this);
         const top = $section.offset().top;
         const bottom = top + $section.outerHeight();
-
         if (st >= top && st < bottom) {
           matched = true;
 
@@ -269,7 +261,6 @@ function initHeaderScrollToggle() {
         $Logo.attr('src', originalSrc);
       }
     }
-
     lastScrollTop = st;
   });
 }
@@ -289,7 +280,6 @@ function customCursorEffect($area = null, type = 'view') {
     const isMobile = window.innerWidth <= 767;
     const $cursorDot = $('.custom-cursor.dot-cursor');
     const $cursor = $(`.custom-cursor.${type}`);
-
     if (isMobile) {
         // ✅ 모바일이면 커서 숨기고 이벤트 해제
         $cursorDot.css('display', 'none');
@@ -309,7 +299,6 @@ function customCursorEffect($area = null, type = 'view') {
         $cursorDot.css({ left: x, top: y });
         $cursor.css({ left: x, top: y });
     });
-
     // ✅ hover 효과 처리
     if ($area && $area.length > 0) {
         $area.on('mouseenter.customCursor.' + type, function () {
@@ -319,7 +308,6 @@ function customCursorEffect($area = null, type = 'view') {
                 opacity: 1,
             });
         });
-
         $area.on('mouseleave.customCursor.' + type, function () {
             $cursorDot.css('transform', 'translate(-50%, -50%) scale(1)');
             $cursor.css({
@@ -339,7 +327,6 @@ function customCursorEffect($area = null, type = 'view') {
 function runGsapScrollAnimations(trigger, target, stagger = 0.2) {
     const elements = gsap.utils.toArray(target);
     if (!elements.length) return;
-
     gsap.timeline({
         scrollTrigger: {
             trigger: trigger,
@@ -367,13 +354,11 @@ function copyTextAndToast(button, message) {
     const clone = $targetP.clone();
     clone.find('button').remove(); // 버튼 제거
     const text = clone.text().trim();
-
     const temp = $('<textarea>');
     $('body').append(temp);
     temp.val(text).select();
     document.execCommand('copy');
     temp.remove();
-
     toast('auto', message, 1500);
 }
 
@@ -384,7 +369,6 @@ function toast(_type, _message, _time) {
         .removeClass('active auto confirm') // 기존 class 제거
         .addClass('active ' + _type)
         .html('<span>' + _message + '</span>');
-
     if (_type === 'auto') {
         setTimeout(function () {
             toast_close(_toast);
