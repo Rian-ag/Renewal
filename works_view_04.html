@@ -145,7 +145,8 @@
                     <div class="cont_inner">
                         <div class="pc des-wrapper radius-md">
                             <div class="effect-img custom">
-                                <img src="/assets/images/work_detail/04/slide.png" alt="" />
+                                <img class="mo" src="/assets/images/work_detail/04/slide.png" alt="" />
+                                <img class="pc" src="/assets/images/work_detail/04/slide_mo.png" alt="" />
                             </div>
                             <div class="pop">
                                 <div class="text-wrapper">
@@ -281,15 +282,51 @@
         <script>
             gsap.registerPlugin(ScrollTrigger);
 
-            // 기타 실행 스크립트
             $(function () {
                 customCursorEffect($('#bottom > section > a'), 'next');
                 animateSectionItems('.section-list, .flex-wrapper, .card-list, .des-wrapper, .action');
             });
 
-            // 이미지 로드 완료 후 실행 (높이 정확히 측정)
             $(window).on('load', function () {
-                const tl = gsap.timeline({
+                const $slideImg = $('.effect-img img');
+                const isMobile = window.innerWidth <= 768;
+                const moveHeights = isMobile ? [521, 521, 266.71] : [758, 758, 393];
+
+                const popStagger = 1;
+                const popDelay = 0.1;
+                const popDuration = 1.2;
+                const popImgCount = $('.pop-wrapper img').length;
+
+                const lastImgStartTime = popDelay + (popImgCount - 1) * popStagger;
+                const totalPopTime = lastImgStartTime + popDuration;
+
+                // pop 등장 애니메이션
+                const popTl = gsap.timeline();
+                popTl.from('.pop-wrapper img', {
+                    y: 60,
+                    opacity: 0,
+                    duration: popDuration,
+                    stagger: popStagger,
+                    ease: 'power3.out',
+                    delay: popDelay,
+                });
+
+                // 슬라이드 이동 애니메이션
+                const slideTl = gsap.timeline();
+                moveHeights.forEach((moveY, i) => {
+                    slideTl.to(
+                        $slideImg,
+                        {
+                            y: `-=${moveY}`,
+                            duration: 1,
+                            ease: 'power2.inOut',
+                        },
+                        i === 0 ? 0 : '+=0.3'
+                    );
+                });
+
+                // ScrollTrigger로 실행 연결
+                const master = gsap.timeline({
                     scrollTrigger: {
                         trigger: '.pop-wrapper',
                         start: 'top 80%',
@@ -297,33 +334,8 @@
                     },
                 });
 
-                // 1. pop 이미지 순차 등장
-                tl.from('.pop-wrapper img', {
-                    y: 60,
-                    opacity: 0,
-                    duration: 1.2,
-                    stagger: 1,
-                    ease: 'power3.out',
-                    delay: 0.4,
-                });
-
-                // 2. 슬라이드 이미지 컷별 이동
-                const $slideImg = $('.effect-img img');
-                const totalHeight = $slideImg.height(); // 전체 이미지 높이
-                const stepCount = 3; // 총 4컷이면 이동은 3번
-                const stepHeight = totalHeight / 4; // 한 컷 높이 계산
-
-                for (let i = 1; i <= stepCount; i++) {
-                    tl.to(
-                        $slideImg,
-                        {
-                            y: -stepHeight * i,
-                            duration: 1,
-                            ease: 'power2.inOut',
-                        },
-                        '+=0.5'
-                    ); // 각 컷 사이 텀
-                }
+                master.add(popTl, 0); // pop 먼저
+                master.add(slideTl, totalPopTime - 4.6); // ✅ 마지막 img 등장 *도중에* 바로 slide 시작
             });
         </script>
     </body>
