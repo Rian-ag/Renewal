@@ -9,13 +9,13 @@
         "title": "HOME & SHOPPING",
         "tags": ["COMMERCE", "DISTRIBUTION"],
         "image": "/assets/images/project_list/hns.jpg",
-        "link": "/work_detail.html"
+        "link": "/works_view_02.html"
     },
     {
         "title": "LOTTE DUTY FREE",
         "tags": ["DUTY FREE", "COMMERCE", "DISTRIBUTION"],
         "image": "/assets/images/project_list/lotte_dutyfree.jpg",
-        "link": "/work_detail.html"
+        "link": "/works_view_03.html"
     },
     {
         "title": "OK CASHBAG",
@@ -56,19 +56,19 @@
         "title": "KB KOOKMIN CARD TABLET ODS",
         "tags": ["FINANCE ", "CREDIT CARD"],
         "image": "/assets/images/project_list/KB_Card.jpg",
-        "link": "/work_detail.html"
+        "link": "/works_view_04.html"
     },
     {
         "title": "CJ SEAFOOD",
         "tags": ["COMMERCE", "DISTRIBUTION", "FOOD"],
         "image": "/assets/images/project_list/CJ_Seafood.jpg",
-        "link": "/work_detail.html"
+        "link": "/works_view_08.html"
     },
     {
         "title": "SKT, T ID ADMIN",
         "tags": ["MEMBERS ", "TELECOM ", "ADMIN"],
         "image": "/assets/images/project_list/SKT_TID.jpg",
-        "link": "/work_detail.html"
+        "link": "/works_view_07.html"
     },
     {
         "title": "J.ESTINA SHOPPINGMALL",
@@ -79,7 +79,7 @@
         "title": "HYUNDAI DUTY FREE ONL INE MALL",
         "tags": ["COMMERCE", "DISTRIBUTION", "DUTY FREE", "SHOPPING"],
         "image": "/assets/video/HD_dutyfree.mp4",
-        "link": "/work_detail.html"
+        "link": "/works_view_05.html"
     },
     {
         "title": "SHINSEGAE TV SHOPPINGMALL & VISIBLE ARS",
@@ -135,7 +135,7 @@
         "title": "WOORI BANK TABLET BRUNCH",
         "tags": ["FINANCE", "BANK"],
         "image": "/assets/images/project_list/wooribank_tablet.jpg",
-        "link": "/work_detail.html"
+        "link": "/works_view_09.html"
     },
     {
         "title": "IBK SMART ON",
@@ -146,7 +146,7 @@
         "title": "HYUNDAI LIVART WILLIAMS SONOMA",
         "tags": ["COMMERCE", "FUNITURE"],
         "image": "/assets/images/project_list/LIVART_Williams Sonoma.jpg",
-        "link": "/work_detail.html"
+        "link": "/works_view_06.html"
     },
     {
         "title": "SK INNOVATION mySUNI INTEGRATED ID ",
