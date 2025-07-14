@@ -156,6 +156,19 @@ $(document).ready(function () {
             scrollTop: $(document).height()
         }, 800); // 0.8초 동안 부드럽게 이동
     });
+
+
+    $(window).on('pageshow', function (event) {
+        if (event.originalEvent.persisted || performance.getEntriesByType("navigation")[0].type === "back_forward") {
+            $('body').removeClass('fadeout').addClass('fadein');
+            ScrollTrigger?.refresh?.();
+            if (typeof lenis !== 'undefined') {
+            requestAnimationFrame((t) => lenis.raf(t));
+            }
+        }
+    });
+
+
 });
 
 /* s:lazyload */
