@@ -45,7 +45,6 @@
                 <div class="bottom">
                     <div>
                         <a href="/contact.html">RIANAG@RIANAG.COM</a>
-                        <!-- <a href="http://daum.net" target="_blank">BLOG</a> -->
                     </div>
                     <a href="javascript:void(0);" class="download">BROCHURE DOWNLOAD</a>
                 </div>
@@ -122,7 +121,6 @@
         </section>
         <!-- bottom -->
         <div id="bottom" class="type3">
-            <!-- <a href="http://daum.net" target="_blank">BLOG</a> -->
             <div>
                 <span>© RIANag INC. All Rights Reserved.</span>
                 <button class="top">Back to Top</button>
@@ -152,14 +150,9 @@
 
             $('.tel').on('click', function (e) {
                 const href = $(this).attr('href');
-
-                // ✅ href가 tel:이 아니면 막는다 (안 쓸 수도 있음)
                 if (!href.startsWith('tel:')) {
                     e.preventDefault();
                 }
-
-                // ✅ tel:일 경우엔 아무것도 하지 않고 브라우저에 맡긴다
-                // => return; 도 불필요하니 아예 함수 내부에 아무 동작도 하지 않게 두는 것이 제일 안전합니다.
             });
 
             $('.map').on('click', function () {
