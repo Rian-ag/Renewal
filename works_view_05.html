@@ -148,6 +148,7 @@
                             </i>
                         </div>
                         <img class="pc" src="/assets/images/work_detail/05/work_visual_05_3.png" alt="" />
+                        <img class="mo" src="/assets/images/work_detail/05/work_visual_05_3_mo.png" alt="" />
                     </div>
                 </section>
 
@@ -199,8 +200,8 @@
                         <img class="mo" src="/assets/images/work_detail/05/work_visual_05_6_mo.png" alt="" />
                     </div>
                 </section>
-                <section class="section-list">
-                    <ul class="mobile-list">
+                <section class="section-list mobile-list-section">
+                    <ul class="pc mobile-list">
                         <li><img src="/assets/images/work_detail/05/mobile-1.png" alt="" /></li>
                         <li><img src="/assets/images/work_detail/05/mobile-2.png" alt="" /></li>
                         <li><img src="/assets/images/work_detail/05/mobile-3.png" alt="" /></li>
@@ -208,6 +209,18 @@
                         <li><img src="/assets/images/work_detail/05/mobile-5.png" alt="" /></li>
                         <li><img src="/assets/images/work_detail/05/mobile-6.png" alt="" /></li>
                     </ul>
+                    <div class="mo mobile-list">
+                        <div class="row">
+                            <div><img src="/assets/images/work_detail/05/mobile-1_mo.png" alt="" /></div>
+                            <div><img src="/assets/images/work_detail/05/mobile-2_mo.png" alt="" /></div>
+                            <div><img src="/assets/images/work_detail/05/mobile-3_mo.png" alt="" /></div>
+                        </div>
+                        <div class="row">
+                            <div><img src="/assets/images/work_detail/05/mobile-4_mo.png" alt="" /></div>
+                            <div><img src="/assets/images/work_detail/05/mobile-5_mo.png" alt="" /></div>
+                            <div><img src="/assets/images/work_detail/05/mobile-6_mo.png" alt="" /></div>
+                        </div>
+                    </div>
                 </section>
             </div>
             <!-- bottom -->
@@ -239,7 +252,7 @@
 
             $(function () {
                 customCursorEffect($('#bottom > section > a:last-of-type'), 'next');
-                animateSectionItems('.section-list, ul');
+                animateSectionItems('.section-list, .banner-list, .phone-wrapper, .mobile-list, .mobile-list > .row');
             });
         </script>
     </body>
