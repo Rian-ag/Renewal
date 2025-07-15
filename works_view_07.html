@@ -226,12 +226,7 @@
         <script src="/assets/js/common.js"></script>
         <script src="/assets/js/work_detail.js"></script>
         <script>
-            gsap.registerPlugin(ScrollTrigger, CSSPlugin);
-
-            function isMobile() {
-                return window.innerWidth <= 768;
-            }
-
+            gsap.registerPlugin(ScrollTrigger);
             $(function () {
                 customCursorEffect($('#bottom > section > a:last-of-type'), 'next');
                 animateSectionItems('.content, #layout > img, .scroll_cont');
