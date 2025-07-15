@@ -260,9 +260,9 @@
                 const moveY2 = $img2.height() - $box2.height();
 
                 if (moveY1 > 0) {
-                    $img1.animate({ top: -moveY1 }, 3000, 'swing', function () {
+                    $img1.animate({ top: -moveY1 }, 1500, 'swing', function () {
                         if (moveY2 > 0) {
-                            $img2.animate({ top: -moveY2 }, 3000, 'swing');
+                            $img2.animate({ top: -moveY2 }, 1500, 'swing');
                         }
                     });
                 }
