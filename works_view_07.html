@@ -125,7 +125,7 @@
                 <section class="content pc">
                     <img src="/assets/images/work_detail/07/work_visual_07_01.png" alt="">
                 </section>
-                <section class="content zero mo">
+                <section class="content mo">
                     <img src="/assets/images/work_detail/07/work_visual_07_01_mo.png" alt="">
                 </section>
                 <section class="content light-section">
@@ -139,7 +139,7 @@
                         </i>
                     </div>
                 </section>
-                <ul class="content light-section zero">
+                <ul class="content light-section">
                     <li><img src="/assets/images/work_detail/07/work_visual_07_02_1.png" alt=""></li>
                     <li><img src="/assets/images/work_detail/07/work_visual_07_02_2.png" alt=""></li>
                 </ul>
@@ -152,40 +152,22 @@
                     <img src="/assets/images/work_detail/07/work_visual_07_03.png" alt="">
                 </section>
 
-                <div class="cont_scroll pc">
+                <div class="scroll_cont">
                     <section class="type_1">
                         <div class="scroll-box">
-                            <img src="/assets/images/work_detail/07/work_visual_07_04_1.png" alt="07_04_1">
-                        </div>
+                            <img src="/assets/images/work_detail/07/work_visual_07_04_1.png" alt="type1">
+                        </div> 
                         <p>
-                            <img src="/assets/images/work_detail/07/work_visual_07_04_2.png" alt="07_04_2">
+                            <img src="/assets/images/work_detail/07/work_visual_07_04_1.png" alt="">
                         </p>
                     </section>
 
                     <section class="type_2">
                         <div class="scroll-box">
-                            <img src="/assets/images/work_detail/07/work_visual_07_04_1.png" alt="07_04_1">
+                            <img src="/assets/images/work_detail/07/work_visual_07_04_2.png" alt="type2">
                         </div>
                         <p>
-                            <img src="/assets/images/work_detail/07/work_visual_07_04_2.png" alt="07_04_2">
-                        </p>
-                    </section>
-                </div>
-                <div class="cont_scroll mo">
-                    <section class="type_1">
-                        <div class="scroll-box">
-                            <img src="/assets/images/test.png" alt="type1" class="scroll-img-1">
-                        </div>
-                        <p>
-                            <img src="/assets/images/test.png" alt="">
-                        </p>
-                    </section>
-                    <section class="type_2">
-                        <div class="scroll-box">
-                            <img src="/assets/images/test2.png" alt="type2" class="scroll-img-2">
-                        </div>
-                        <p>
-                            <img src="/assets/images/test2.png" alt="">
+                            <img src="/assets/images/work_detail/07/work_visual_07_04_2.png" alt="">
                         </p>
                     </section>
                 </div>
@@ -251,15 +233,43 @@
 
             function isMobile() {
                 return window.innerWidth <= 768;
-
             }
-
 
             $(function () {
                 customCursorEffect($('#bottom > section > a:last-of-type'), 'next');
-                animateSectionItems('.content, #layout > img');
+                animateSectionItems('.content, #layout > img, .scroll_cont');
+
+                // 🟡 별도 trigger 등록
+                ScrollTrigger.create({
+                trigger: '.scroll_cont',
+                start: 'top 85%',
+                once: true,
+                onEnter: () => {
+                    animateImageScrollSequence('type_1', 'type_2');
+                }
+                });
             });
+
+            function animateImageScrollSequence(type1Class, type2Class) {
+                const $img1 = $(`.scroll_cont .${type1Class} img`);
+                const $box1 = $img1.closest('.scroll-box');
+                const moveY1 = $img1.height() - $box1.height();
+
+                const $img2 = $(`.scroll_cont .${type2Class} img`);
+                const $box2 = $img2.closest('.scroll-box');
+                const moveY2 = $img2.height() - $box2.height();
+
+                if (moveY1 > 0) {
+                    $img1.animate({ top: -moveY1 }, 3000, 'swing', function () {
+                        if (moveY2 > 0) {
+                            $img2.animate({ top: -moveY2 }, 3000, 'swing');
+                        }
+                    });
+                }
+            }
+
         </script>
+
 
     </body>
 </html>

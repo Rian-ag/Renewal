@@ -11,13 +11,12 @@ $(document).ready(function () {
 
     function updateVisualImageSrc() {
         if (isMobileView()) {
-            // 모바일 이미지 시도
             const imgTest = new Image();
             imgTest.onload = function () {
                 $visualImg.attr('src', mobileSrc);
             };
             imgTest.onerror = function () {
-                $visualImg.attr('src', originalSrc); // _mo.png 없으면 원래 이미지 유지
+                $visualImg.attr('src', originalSrc);
             };
             imgTest.src = mobileSrc;
         } else {
@@ -25,11 +24,39 @@ $(document).ready(function () {
         }
     }
 
+    // ✅ .scroll_cont 내부 이미지도 모바일이면 _mo.png 로 변경
+    function updateScrollContImages() {
+        if (!isMobileView()) return;
+
+        // .scroll_cont 내 모든 img 대상 (scroll-box 안 img, p 안 img 모두 포함)
+        $('.scroll_cont img').each(function () {
+            const $img = $(this);
+            const src = $img.attr('src');
+
+            if (!src || /_mo\.png$/.test(src)) return; // 이미 _mo거나 유효하지 않으면 skip
+
+            const moSrc = src.replace(/\.png$/, '_mo.png');
+
+            const imgTest = new Image();
+            imgTest.onload = function () {
+            $img.attr('src', moSrc);
+            };
+            imgTest.onerror = function () {
+            // 이미지가 없으면 원래 이미지 유지
+            };
+            imgTest.src = moSrc;
+        });
+    }
+
     // 초기 이미지 적용
     updateVisualImageSrc();
+    updateScrollContImages(); // ✅ 추가
 
     // 리사이즈 시 이미지 교체
-    $(window).on('resize', updateVisualImageSrc);
+    $(window).on('resize', function () {
+        updateVisualImageSrc();
+        updateScrollContImages(); // ✅ 추가
+    });
 
     // 애니메이션 요소 정의
     const visualH1 = gsap.utils.toArray('.visual h1 span');
@@ -174,32 +201,31 @@ $(document).ready(function () {
 });
 
 
-// 상세페이지 공통 함수 정의
+// ✅ 상세페이지 공통 함수 정의
 function animateSectionItems(sectionSelector, itemSelector) {
-  const sections = document.querySelectorAll(sectionSelector);
-  if (!sections.length) return;
+    const sections = document.querySelectorAll(sectionSelector);
+    if (!sections.length) return;
 
-  sections.forEach(section => {
-    let items = itemSelector 
-      ? gsap.utils.toArray(section.querySelectorAll(itemSelector)) 
-      : gsap.utils.toArray(section.children);
+    sections.forEach(section => {
+        let items = itemSelector
+            ? gsap.utils.toArray(section.querySelectorAll(itemSelector))
+            : gsap.utils.toArray(section.children);
 
-    if (!items.length) return;
+        if (!items.length) return;
 
-    gsap.set(items, { opacity: 0, y: 200, force3D: true });
+        gsap.set(items, { opacity: 0, y: 200, force3D: true });
 
-    gsap.to(items, {
-      opacity: 1,
-      y: 0,
-      duration: 1.4,
-      stagger: 0.2,
-      ease: 'power3.out',
-      scrollTrigger: {
-        trigger: section,
-        start: 'top 85%',
-        toggleActions: 'play none none none'
-        // markers: true
-      }
+        gsap.to(items, {
+            opacity: 1,
+            y: 0,
+            duration: 1.4,
+            stagger: 0.2,
+            ease: 'power3.out',
+            scrollTrigger: {
+                trigger: section,
+                start: 'top 85%',
+                toggleActions: 'play none none none'
+            }
+        });
     });
-  });
 }
