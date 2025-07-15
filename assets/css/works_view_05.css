@@ -1,0 +1,125 @@
+body {
+    color: #000;
+}
+
+#layout {
+    padding-bottom: 160px;
+}
+img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* .custom {
+    border-radius: 32px;
+    border: 5px solid #000;
+    box-shadow: -332px 466px 160px 0px rgba(0, 0, 0, 0), -212px 298px 146px 0px rgba(0, 0, 0, 0.01),
+        -119px 168px 124px 0px rgba(0, 0, 0, 0.05), -53px 75px 91px 0px rgba(0, 0, 0, 0.09),
+        -13px 19px 50px 0px rgba(0, 0, 0, 0.1);
+} */
+
+.visual,
+.visual h2 span,
+.visual h1 span,
+.project-info li {
+    color: #000 !important;
+}
+@media screen and (min-width: 769px) {
+}
+section {
+    position: relative;
+}
+
+.section-list .cont_inner {
+    width: 100%;
+    max-width: 1920px;
+    padding: 0 30px;
+    margin: 0 auto;
+}
+
+.section-list,
+.cont_inner {
+    will-change: transform, opacity;
+    text-align: center;
+}
+
+.cont_inner > span,
+.text-wrapper > span {
+    display: block;
+    color: #101010;
+    font-feature-settings: 'cv03' on, 'cv04' on, 'cv09' on;
+    font-family: Pretendard;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 130%; /* 28.6px */
+    letter-spacing: -0.55px;
+    text-transform: uppercase;
+}
+
+.cont_inner > strong,
+.text-wrapper > strong {
+    display: block;
+    margin-top: 12px;
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 52px;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.cont_inner > i,
+.text-wrapper > i {
+    display: block;
+    margin-top: 40px;
+    text-align: center;
+    font-feature-settings: 'cv03' on, 'cv04' on, 'cv09' on;
+    font-family: Pretendard;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 150%; /* 27px */
+    letter-spacing: -0.27px;
+}
+
+/* 모바일 */
+@media screen and (max-width: 768px) {
+    body {
+        overflow-x: hidden;
+    }
+    .pc {
+        display: none !important;
+    }
+    .pt0 {
+        padding-top: 0 !important;
+    }
+    /* #layout {
+        padding-bottom: 0;
+    } */
+    .section-list {
+        width: 100vw;
+        padding-top: 100px;
+    }
+    .section-list .cont_inner {
+        padding: 0;
+        width: 100vw;
+        max-width: 100%; /* padding: 0 24px; */
+    }
+
+    .cont_inner > span,
+    .text-wrapper > span {
+        font-size: 14px;
+        letter-spacing: -0.35px;
+    }
+    .cont_inner > strong,
+    .text-wrapper > strong {
+        font-size: 32px;
+        letter-spacing: -0.35px;
+    }
+    .cont_inner > i,
+    .text-wrapper > i {
+        margin-top: 32px;
+        font-size: 14px;
+        letter-spacing: -0.21px;
+    }
+}
