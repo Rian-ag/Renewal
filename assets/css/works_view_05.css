@@ -3,7 +3,7 @@ body {
 }
 
 #layout {
-    padding-bottom: 160px;
+    padding-bottom: 232px;
 }
 img {
     display: block;
@@ -12,26 +12,23 @@ img {
     object-fit: cover;
 }
 
-/* .custom {
-    border-radius: 32px;
-    border: 5px solid #000;
-    box-shadow: -332px 466px 160px 0px rgba(0, 0, 0, 0), -212px 298px 146px 0px rgba(0, 0, 0, 0.01),
-        -119px 168px 124px 0px rgba(0, 0, 0, 0.05), -53px 75px 91px 0px rgba(0, 0, 0, 0.09),
-        -13px 19px 50px 0px rgba(0, 0, 0, 0.1);
-} */
-
 .visual,
 .visual h2 span,
 .visual h1 span,
 .project-info li {
     color: #000 !important;
 }
-@media screen and (min-width: 769px) {
+
+.tablet-section {
+    padding-top: 200px !important;
 }
+
 section {
     position: relative;
 }
-
+.section-list {
+    padding-top: 100px;
+}
 .section-list .cont_inner {
     width: 100%;
     max-width: 1920px;
@@ -81,16 +78,42 @@ section {
     line-height: 150%; /* 27px */
     letter-spacing: -0.27px;
 }
+.text-wrapper + img {
+    margin-top: 100px;
+}
+.banner-list {
+    display: flex;
+    gap: 18px;
+    justify-content: space-between;
+}
+.phone-wrapper {
+    display: flex;
+    gap: 130px;
+    padding: 100px 260px 116px;
+}
+.phone-wrapper img {
+    border-radius: 32px;
+    border: 5px solid #000;
+    background: #fff;
+    box-shadow: -127px 211px 98px 0px rgba(0, 0, 0, 0.01), -32px 53px 62px 0px rgba(0, 0, 0, 0.09),
+        -8px 13px 34px 0px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
 /* 모바일 */
 @media screen and (max-width: 768px) {
     body {
         overflow-x: hidden;
     }
-    .pc {
-        display: none !important;
-    }
     .pt0 {
+        padding-top: 0 !important;
+    }
+    .pt200 {
         padding-top: 0 !important;
     }
     /* #layout {
@@ -98,14 +121,16 @@ section {
     } */
     .section-list {
         width: 100vw;
-        padding-top: 100px;
+        padding-top: 0;
     }
     .section-list .cont_inner {
         padding: 0;
         width: 100vw;
-        max-width: 100%; /* padding: 0 24px; */
+        max-width: 100%;
     }
-
+    .text-wrapper {
+        padding: 100px 16px 80px;
+    }
     .cont_inner > span,
     .text-wrapper > span {
         font-size: 14px;
@@ -121,5 +146,14 @@ section {
         margin-top: 32px;
         font-size: 14px;
         letter-spacing: -0.21px;
+    }
+    .section-common + .section-list {
+        padding-top: 0;
+    }
+    .banner-list {
+        gap: 6px;
+    }
+    .img-wrapper {
+        padding: 80px 42px 70px;
     }
 }
