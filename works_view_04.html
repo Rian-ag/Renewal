@@ -68,7 +68,6 @@
                                 UI/UX Design/Tablet Web & App
                             </li>
                         </ul>
-                        <span></span>
                     </div>
 
                     <button class="to-bottom mo">Back to bottom</button>
@@ -208,7 +207,7 @@
                         </div>
                     </div>
                 </section>
-                <div class="section-list pt80">
+                <section class="section-list pt80">
                     <div class="cont_inner">
                         <ul class="pc card-list radius-md">
                             <li>
@@ -241,7 +240,7 @@
                             </li>
                         </ul>
                     </div>
-                </div>
+                </section>
             </div>
             <!-- bottom -->
             <div id="bottom" class="type3">
@@ -270,23 +269,15 @@
         <script>
             gsap.registerPlugin(ScrollTrigger);
 
-            // 기타 실행 스크립트
             $(function () {
                 customCursorEffect($('#bottom > section > a:last-of-type'), 'next');
                 animateSectionItems('.section-list, .flex-wrapper, .card-list, .des-wrapper, .action');
             });
 
-            // 이미지 로드 완료 후 실행 (높이 정확히 측정)
             $(window).on('load', function () {
                 const isMobile = window.innerWidth <= 768;
-
-                // const $effectImg = $('.effect-img');
                 const $slideImg = isMobile ? $('.effect-img img.mo') : $('.effect-img img.pc');
-
                 const moveHeights = isMobile ? [521, 521, 275.71] : [758, 758, 397];
-
-                // const visibleHeight = isMobile ? moveHeights[0] : 758;
-                // $effectImg.height(visibleHeight);
 
                 const tl = gsap.timeline({
                     scrollTrigger: {

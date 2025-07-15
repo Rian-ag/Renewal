@@ -1,15 +1,29 @@
 gsap.registerPlugin(ScrollTrigger);
 
 $(document).ready(function () {
-    const $visualImg = $('.visual img');
-    const originalSrc = $visualImg.attr('src'); // PC 이미지 src 저장
-    const mobileSrc = originalSrc.replace(/\.png$/, '_mo.png');
+    const $visual = $('.visual');
+    const $media = $visual.find('img, video').first(); // 이미지 또는 비디오
+    const hasMedia = $media.length > 0;
+
+    let $visualImg = null;
+    let originalSrc = '';
+    let mobileSrc = '';
+
+    // 이미지인 경우만 처리
+    if (hasMedia && $media.is('img')) {
+        $visualImg = $media;
+        originalSrc = $visualImg.attr('src');
+        mobileSrc = originalSrc.replace(/\.png$/, '_mo.png');
+    }
 
     function isMobileView() {
         return window.innerWidth <= 768;
     }
 
+    // ✅ visual 이미지 교체
     function updateVisualImageSrc() {
+        if (!$visualImg || !originalSrc || !mobileSrc) return;
+
         if (isMobileView()) {
             const imgTest = new Image();
             imgTest.onload = function () {
@@ -24,137 +38,96 @@ $(document).ready(function () {
         }
     }
 
-    // ✅ .scroll_cont 내부 이미지도 모바일이면 _mo.png 로 변경
+    // ✅ scroll_cont 안의 모든 이미지 (_mo 대응)
     function updateScrollContImages() {
         if (!isMobileView()) return;
 
-        // .scroll_cont 내 모든 img 대상 (scroll-box 안 img, p 안 img 모두 포함)
         $('.scroll_cont img').each(function () {
             const $img = $(this);
             const src = $img.attr('src');
 
-            if (!src || /_mo\.png$/.test(src)) return; // 이미 _mo거나 유효하지 않으면 skip
+            if (!src || /_mo\.png$/.test(src)) return;
 
             const moSrc = src.replace(/\.png$/, '_mo.png');
 
             const imgTest = new Image();
             imgTest.onload = function () {
-            $img.attr('src', moSrc);
+                $img.attr('src', moSrc);
             };
             imgTest.onerror = function () {
-            // 이미지가 없으면 원래 이미지 유지
+                // 실패 시 무시 (원본 유지)
             };
             imgTest.src = moSrc;
         });
     }
 
-    // 초기 이미지 적용
+    // 초기 이미지 교체
     updateVisualImageSrc();
-    updateScrollContImages(); // ✅ 추가
+    updateScrollContImages();
 
-    // 리사이즈 시 이미지 교체
+    // 리사이즈 대응
     $(window).on('resize', function () {
         updateVisualImageSrc();
-        updateScrollContImages(); // ✅ 추가
+        updateScrollContImages();
     });
 
-    // 애니메이션 요소 정의
+    // ✅ 애니메이션
     const visualH1 = gsap.utils.toArray('.visual h1 span');
     const visualH2 = gsap.utils.toArray('.visual h2 span');
     const projectInfoItems = gsap.utils.toArray('.project-info li');
+    const isMobile = isMobileView();
 
     if ((visualH1.length > 0 || visualH2.length > 0) && projectInfoItems.length > 0) {
-        if (isMobileView()) {
-            // 📱 모바일
-            gsap.timeline({
-                scrollTrigger: {
-                    trigger: '.visual',
-                    start: 'top 90%',
-                    toggleActions: 'play none none none',
-                },
-            }).fromTo(
-                [...visualH1, ...visualH2],
-                { y: 200, opacity: 0, force3D: true },
-                {
-                    y: 0,
-                    opacity: 1,
-                    duration: 1,
-                    stagger: 0.15,
-                    ease: 'power2.out',
-                    force3D: true,
-                }
-            );
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: isMobile ? '.visual' : '.wrap',
+                start: isMobile ? 'top 90%' : 'top top',
+                end: isMobile ? undefined : `+=${window.innerHeight}`,
+                pin: isMobile ? false : '.visual',
+                pinSpacing: isMobile ? false : false,
+                scrub: isMobile ? false : false,
+            },
+        });
 
-            gsap.timeline({
-                scrollTrigger: {
-                    trigger: '.visual-sub',
-                    start: 'top 90%',
-                    toggleActions: 'play none none none',
-                },
-            }).fromTo(
-                projectInfoItems,
-                { opacity: 0, force3D: true },
-                {
-                    opacity: 1,
-                    duration: 1,
-                    stagger: 0.2,
-                    ease: 'power2.out',
-                    force3D: true,
-                }
-            );
-        } else {
-            // 💻 데스크탑
-            const viewHeight = window.innerHeight;
-
-            gsap.set('.visual > img', {
+        if (hasMedia) {
+            gsap.set($media[0], {
                 scale: 1.5,
                 transformOrigin: 'center center',
             });
 
-            const tl = gsap.timeline({
-                scrollTrigger: {
-                    trigger: '.wrap',
-                    start: 'top top',
-                    end: `+=${viewHeight}`,
-                    pin: '.visual',
-                    pinSpacing: false,
-                    scrub: false,
-                },
-            });
-
-            tl.to('.visual > img', {
+            tl.to($media[0], {
                 scale: 1,
-                duration: 2,
+                duration: isMobile ? 1 : 2,
                 ease: 'power3.out',
             });
-
-            tl.fromTo(
-                [...visualH1, ...visualH2],
-                { y: 200, opacity: 0, force3D: true },
-                {
-                    y: 0,
-                    opacity: 1,
-                    duration: 1.1,
-                    stagger: 0.15,
-                    ease: 'power2.out',
-                    force3D: true,
-                },
-                '-=1'
-            );
-
-            tl.fromTo(
-                projectInfoItems,
-                { opacity: 0, force3D: true },
-                {
-                    opacity: 1,
-                    duration: 1,
-                    stagger: 0.2,
-                    ease: 'power2.out',
-                    force3D: true,
-                },
-                '-=0.5'
-            );
         }
+
+        tl.fromTo(
+            [...visualH1, ...visualH2],
+            { y: 200, opacity: 0, force3D: true },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 1.1,
+                stagger: 0.15,
+                ease: 'power2.out',
+                force3D: true,
+            },
+            hasMedia ? '-=1' : '+=0'
+        );
+
+        tl.fromTo(
+            projectInfoItems,
+            { opacity: 0, force3D: true },
+            {
+                opacity: 1,
+                duration: 1,
+                stagger: 0.2,
+                ease: 'power2.out',
+                force3D: true,
+            },
+            '-=0.5'
+        );
     }
 
     // ✅ section-common 애니메이션
@@ -198,6 +171,8 @@ $(document).ready(function () {
             0.6
         );
     }
+
+    ScrollTrigger.refresh();
 });
 
 

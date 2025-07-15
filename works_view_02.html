@@ -69,9 +69,7 @@
                                 UI/UX Design/Mobile Web&App/PC Web
                             </li>
                         </ul>
-                        <span></span>
                     </div>
-
                     <button class="to-bottom mo">Back to bottom</button>
                     <em>Scroll to explore</em>
                 </div>
@@ -134,8 +132,26 @@
                                 </p>
                             </div>
                             <div class="right">
-                                <img src="/assets/images/work_detail/hns/dalba.png" alt="" class="pc" />
-                                <img src="/assets/images/work_detail/hns/dalba_mo.png" alt="" class="mo" />
+                                <video
+                                    class="pc"
+                                    src="/assets/video/Home&shopping_Web.mp4"
+                                    autoplay
+                                    loop
+                                    muted
+                                    playsinline
+                                    style="width: 100%; height: 100%; object-fit: cover"
+                                    type="video/mp4"
+                                ></video>
+                                <video
+                                    class="mo"
+                                    src="/assets/video/Home&shopping_mobile.mp4"
+                                    autoplay
+                                    loop
+                                    muted
+                                    playsinline
+                                    style="width: 100%; height: 100%; object-fit: cover"
+                                    type="video/mp4"
+                                ></video>
                             </div>
                         </div>
                     </div>
@@ -173,7 +189,7 @@
                                     <img class="mo" src="/assets/images/work_detail/hns/card-md_mo.png" alt="" />
                                 </div>
                                 <div class="flex-1">
-                                    <img class="pc" src="/assets/images/work_detail/hns/card- lg-4.png" alt="" />
+                                    <img class="pc" src="/assets/images/work_detail/hns/card-lg-4.png" alt="" />
                                     <img class="mo" src="/assets/images/work_detail/hns/card-lg-4_mo.png" alt="" />
                                 </div>
                             </li>
@@ -342,26 +358,34 @@
         <script src="/assets/js/common.js"></script>
         <script src="/assets/js/work_detail.js"></script>
         <script>
-            // rolling swiper
-            const swiper = new Swiper('.swiper', {
-                direction: 'horizontal',
-                slidesPerView: 'auto',
-                loop: true,
-                loopedSlides: 5,
-                observer: true,
-                observeParents: true,
-
-                // ✅ 반응형 설정
-                breakpoints: {
-                    // 768px 이상
-                    769: {
-                        spaceBetween: 40,
+            $(window).on('load', function () {
+                const swiper = new Swiper('.swiper', {
+                    slidesPerView: 'auto',
+                    loop: true,
+                    loopedSlides: document.querySelectorAll('.swiper-slide').length,
+                    speed: 5000,
+                    allowTouchMove: false,
+                    autoplay: {
+                        delay: 0,
+                        disableOnInteraction: false,
                     },
-                    // 768px 이하
-                    0: {
-                        spaceBetween: 8,
+                    on: {
+                        init: function () {
+                            const swiperWrapper = document.querySelector('.swiper-wrapper');
+                            if (swiperWrapper) {
+                                swiperWrapper.style.transitionTimingFunction = 'linear';
+                            }
+                        },
                     },
-                },
+                    breakpoints: {
+                        769: {
+                            spaceBetween: 40,
+                        },
+                        0: {
+                            spaceBetween: 8,
+                        },
+                    },
+                });
             });
 
             $(function () {
