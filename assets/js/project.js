@@ -203,29 +203,48 @@ function initListItemBehavior() {
 function initSwiper() {
     // 👉 썸네일을 Swiper로 구성
     thumbSwiper = new Swiper('.thumbnail-swiper', {
+        loop: true, // ✅ 추가
         slidesPerView: 'auto',
         spaceBetween: 33,
         centeredSlides: true,
         slideToClickedSlide: true, // 클릭 시 자동 이동
         watchSlidesProgress: true,
+
         on: {
+            init() {
+                const index = this.realIndex;
+                if (!mainSwiper) return;
+                mainSwiper.slideToLoop(index, 600, false, true, 'next'); // 초기에는 그냥 next
+                updateTitleAndSubtitle(index);
+                updateThumbnailState(index);
+                $industry.text(project.industry[index]);
+                $date.text(project.date[index]);
+                $type.text(project.type[index]);
+            },
             slideChange() {
-                const index = thumbSwiper.activeIndex;
-                mainSwiper.slideTo(index);
+                if (!thumbSwiper || !mainSwiper) return;
+
+                const index = thumbSwiper.realIndex;
+                const currentIndex = mainSwiper.realIndex;
+                const direction = index > currentIndex ? 'next' : 'prev';
+
+                mainSwiper.slideToLoop(index, 600, false, true, direction);
+
                 updateThumbnailState(index);
                 updateTitleAndSubtitle(index);
                 $industry.text(project.industry[index]);
                 $date.text(project.date[index]);
                 $type.text(project.type[index]);
 
-                // ✅ 커스텀 가운데 정렬 보정
-                slideToCenter(index);
+                slideToCenter(index); // 썸네일 위치도 맞추기
             },
         },
     });
 
     // 👉 메인 Swiper
     mainSwiper = new Swiper('.main-swiper', {
+        loop: true,
+        slidesPerView: 1,
         scrollbar: {
             el: '.swiper-scrollbar',
             draggable: true,
@@ -235,7 +254,7 @@ function initSwiper() {
         },
         on: {
             init() {
-                const index = this.activeIndex;
+                const index = this.realIndex;
                 updateTitleAndSubtitle(index);
                 updateThumbnailState(index);
                 $industry.text(project.industry[index]);
@@ -243,48 +262,60 @@ function initSwiper() {
                 $type.text(project.type[index]);
             },
             slideChange() {
-                const index = this.activeIndex;
-                thumbSwiper.slideTo(index); // 메인에서 바꾸면 썸네일도 따라오게
+                const index = mainSwiper.realIndex;
+                const currentIndex = thumbSwiper.realIndex;
+
+                // ✅ 방향 판별
+                let direction = 'next';
+                if (
+                    (currentIndex === 0 && index === project.title.length - 1) || // 첫 → 마지막
+                    (index < currentIndex && !(currentIndex === project.title.length - 1 && index === 0)) // 일반적인 prev
+                ) {
+                    direction = 'prev';
+                }
+
+                thumbSwiper.slideToLoop(index, 600, false, true, direction);
+
                 updateTitleAndSubtitle(index);
                 updateThumbnailState(index);
                 $industry.text(project.industry[index]);
                 $date.text(project.date[index]);
                 $type.text(project.type[index]);
+
+                slideToCenter(index);
             },
         },
     });
 }
 
 // ✅ swiper 내부 썸네일 상태 업데이트
-function updateThumbnailState(index) {
+function updateThumbnailState(realIndex) {
     const thumbnails = document.querySelectorAll('.thumbnail');
-    thumbnails.forEach((el, i) => {
-        el.classList.toggle('active', i === index);
+    thumbnails.forEach((el) => {
+        const slideIndex = parseInt(el.dataset.swiperSlideIndex, 10);
+        el.classList.toggle('active', slideIndex === realIndex);
     });
 }
 
 // ✅ swiper 썸네일을 가운데로 이동
+// ✅ 최종 추천 코드
 function slideToCenter(index) {
-    const viewer = document.querySelector('.thumbnail-viewer');
-    const thumbnails = document.querySelectorAll('.thumbnail');
-    if (!viewer || thumbnails.length === 0) {
-        return;
-    }
+    const viewer = document.querySelector('.thumbnail-swiper');
+    const slides = document.querySelectorAll('.thumbnail');
+    const target = Array.from(slides).find(
+        (el) => !el.classList.contains('swiper-slide-duplicate') && parseInt(el.dataset.swiperSlideIndex, 10) === index
+    );
 
-    const target = thumbnails[index];
-    const container = viewer.parentElement;
+    if (!viewer || !target) return;
 
-    const targetLeft = target.offsetLeft;
-    const targetWidth = target.offsetWidth;
-    const containerWidth = container.clientWidth;
+    const targetCenter = target.offsetLeft + target.offsetWidth / 2;
+    const viewerCenter = viewer.clientWidth / 2;
+    const scrollLeft = targetCenter - viewerCenter;
 
-    const targetCenter = targetLeft + targetWidth / 2;
-    const containerCenter = containerWidth / 2;
-    const scrollLeft = targetCenter - containerCenter;
-
-    container.scrollTo({
-        left: scrollLeft,
-        behavior: 'smooth',
+    gsap.to(viewer, {
+        scrollTo: { x: scrollLeft },
+        duration: 0.5,
+        ease: 'power2.out',
     });
 }
 
