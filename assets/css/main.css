@@ -35,10 +35,10 @@ section.active .parallax-bg {transform:scale(1.2);}
     .mo {display:block;}
     header .inner > a {display:none;}
     .visual_cont {font-size:40px; font-weight:800; line-height:102%;}
-    #section_wrap > p {position:fixed; z-index: 100; bottom:40px; left:30px; display:flex; align-items:center; gap:10px;}
-    #section_wrap > p > span, #section_wrap > p > a {color:#fff !important; mix-blend-mode:normal !important; background-color:rgba(0, 0, 0, 0.001);}
+    .visual_cont + p {position:fixed; z-index: 100; bottom:40px; left:30px; display:flex; align-items:center; gap:10px;}
+    .visual_cont + p > span, .visual_cont + p > a {color:#fff !important; mix-blend-mode:normal !important; background-color:rgba(0, 0, 0, 0.001);}
     #section_wrap span {margin-right:0px; font-size:14px; font-weight:800; vertical-align:text-top; display:inline-block;}
-    #section_wrap > p > a {width:50px; height:50px; background-image:url('../images/common/icon_split.png'); background-repeat:no-repeat; background-size:500px 500px; background-position:0 -100px; display:inline-block;}
+    .visual_cont + p > a {width:50px; height:50px; background-image:url('../images/common/icon_split.png'); background-repeat:no-repeat; background-size:500px 500px; background-position:0 -100px; display:inline-block;}
     .fp-arrows {top:100px;}
     .fp-arrow {display:none;}
     #bottom {display:none;}

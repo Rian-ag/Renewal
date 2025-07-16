@@ -102,5 +102,5 @@ if (!isMobile()) {
         $(this).addClass('active');
       }, index * 800); 
     });
-  }, 1000);
+  }, 600);
 });

@@ -83,6 +83,7 @@
                     data-src-mobile="/assets/video/About_Draft_m.mp4">
                 </div>
             <div class="custom-cursor scroll">Scroll</div>
+            <button class="to-bottom mo">Back to bottom</button>
         </div>
         <section class="about_vision light-section">
             <div class="cont_inner">
@@ -400,7 +401,12 @@
             ScrollTrigger.refresh();
             runGsapScrollAnimations('.about_vision', '.about_vision h2 span', 0.2);
             runGsapScrollAnimations('.about_awards', '.about_awards h2 span', 0.3);
-            runGsapScrollAnimations('.about_awards', '.about_awards h2 p', 0.2);
+            // ✅ 모바일 전용 strong 애니메이션 (mo_vision 내부)
+            ScrollTrigger.matchMedia({
+                "(max-width: 768px)": function () {
+                    runGsapScrollAnimations('.about_awards', '.about_awards h2 .mo_vision strong', 0.2);
+                }
+            });
         });
         document.addEventListener('DOMContentLoaded', function () {
             updateLazyloadSrc(); // ✅ 초기 비디오 src 설정
