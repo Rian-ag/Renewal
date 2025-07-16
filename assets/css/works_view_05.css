@@ -8,8 +8,8 @@ img { display: block; width: 100%; height: auto; object-fit: cover; }
 .visual h1 span,
 .project-info li { color: #000; } 
 
-.main-section,
-.tablet-section { padding-top: 200px; } 
+.section-list.main-section,
+.section-list.tablet-section { padding-top: 200px; } 
 .section-common h3 li { padding-bottom: 3px; } 
 section { position: relative; } 
 .section-list { padding-top: 100px; } 
@@ -37,8 +37,10 @@ section { position: relative; }
 
 /* 모바일 */
 @media screen and (max-width: 768px) { body { overflow-x: hidden; } 
- .main-section { padding: 0; } 
+ .section-list.main-section { padding: 0; } 
  .section-list { width: 100vw; padding-top: 0; } 
+ .section-list.banner-section {padding-top: 20px;} 
+ .section-list.tablet-section { padding-top: 100px; } 
  .section-list .cont_inner { padding: 0; width: 100vw; max-width: 100%; } 
  .text-wrapper { padding: 100px 16px 80px; } 
  .cont_inner > span,
@@ -50,7 +52,6 @@ section { position: relative; }
  .section-common + .section-list { padding-top: 0; } 
  .banner-list { gap: 6px; } 
  .img-wrapper { padding: 80px 42px 70px; } 
- .tablet-section { padding-top: 100px; } 
  .mobile-list-section { padding-top: 80px; } 
  .mobile-list { display: block; } 
  .row { display: flex; } 
