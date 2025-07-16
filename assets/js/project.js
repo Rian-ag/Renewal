@@ -201,27 +201,50 @@ function initListItemBehavior() {
 
 // ✅ 프로젝트 swiper 초기화 및 썸네일 관리 함수
 function initSwiper() {
+    // 👉 썸네일을 Swiper로 구성
     thumbSwiper = new Swiper('.thumbnail-swiper', {
-        slidesPerView: 1,
-        centeredSlides: true,
+        loop: true, // ✅ 추가
+        slidesPerView: 'auto',
         spaceBetween: 33,
-        allowTouchMove: false,
+        centeredSlides: true,
+        slideToClickedSlide: true, // 클릭 시 자동 이동
         watchSlidesProgress: true,
+
         on: {
-            init: function () {
-                const index = this.activeIndex;
+            init() {
+                const index = this.realIndex;
+                if (!mainSwiper) return;
+                mainSwiper.slideToLoop(index, 600, false, true, 'next'); // 초기에는 그냥 next
+                updateTitleAndSubtitle(index);
                 updateThumbnailState(index);
-                slideToCenter(index);
+                $industry.text(project.industry[index]);
+                $date.text(project.date[index]);
+                $type.text(project.type[index]);
             },
-            slideChange: function () {
-                const index = this.activeIndex;
+            slideChange() {
+                if (!thumbSwiper || !mainSwiper) return;
+
+                const index = thumbSwiper.realIndex;
+                const currentIndex = mainSwiper.realIndex;
+                const direction = index > currentIndex ? 'next' : 'prev';
+
+                mainSwiper.slideToLoop(index, 600, false, true, direction);
+
                 updateThumbnailState(index);
-                slideToCenter(index);
+                updateTitleAndSubtitle(index);
+                $industry.text(project.industry[index]);
+                $date.text(project.date[index]);
+                $type.text(project.type[index]);
+
+                slideToCenter(index); // 썸네일 위치도 맞추기
             },
         },
     });
 
+    // 👉 메인 Swiper
     mainSwiper = new Swiper('.main-swiper', {
+        loop: true,
+        slidesPerView: 1,
         scrollbar: {
             el: '.swiper-scrollbar',
             draggable: true,
@@ -230,67 +253,70 @@ function initSwiper() {
             swiper: thumbSwiper,
         },
         on: {
-            init: function () {
-                const index = this.activeIndex;
+            init() {
+                const index = this.realIndex;
                 updateTitleAndSubtitle(index);
+                updateThumbnailState(index);
                 $industry.text(project.industry[index]);
                 $date.text(project.date[index]);
                 $type.text(project.type[index]);
             },
-            slideChange: function () {
-                thumbSwiper.slideTo(this.activeIndex);
-            },
-            slideChangeTransitionEnd: function () {
-                const index = this.activeIndex;
+            slideChange() {
+                const index = mainSwiper.realIndex;
+                const currentIndex = thumbSwiper.realIndex;
+
+                // ✅ 방향 판별
+                let direction = 'next';
+                if (
+                    (currentIndex === 0 && index === project.title.length - 1) || // 첫 → 마지막
+                    (index < currentIndex && !(currentIndex === project.title.length - 1 && index === 0)) // 일반적인 prev
+                ) {
+                    direction = 'prev';
+                }
+
+                thumbSwiper.slideToLoop(index, 600, false, true, direction);
+
                 updateTitleAndSubtitle(index);
+                updateThumbnailState(index);
                 $industry.text(project.industry[index]);
                 $date.text(project.date[index]);
                 $type.text(project.type[index]);
-            },
-            // 맨 끝 slide 드래그 막기
-            touchMove: function (e) {
-                const swiper = this;
-                const isFirst = swiper.activeIndex === 0;
-                const isLast = swiper.activeIndex === swiper.slides.length - 1;
 
-                // 드래그 방향 확인
-                const diff = swiper.touches.currentX - swiper.touches.startX;
-
-                // 왼쪽으로 드래그 중인데 첫 번째 슬라이드일 때 → 막기
-                if (isFirst && diff > 0) {
-                    e.preventDefault();
-                    e.stopImmediatePropagation?.();
-                }
-
-                // 오른쪽으로 드래그 중인데 마지막 슬라이드일 때 → 막기
-                if (isLast && diff < 0) {
-                    e.preventDefault();
-                    e.stopImmediatePropagation?.();
-                }
+                slideToCenter(index);
             },
         },
     });
 }
 
 // ✅ swiper 내부 썸네일 상태 업데이트
-function updateThumbnailState(index) {
+function updateThumbnailState(realIndex) {
     const thumbnails = document.querySelectorAll('.thumbnail');
-    thumbnails.forEach((el, i) => {
-        el.classList.toggle('active', i === index);
+    thumbnails.forEach((el) => {
+        const slideIndex = parseInt(el.dataset.swiperSlideIndex, 10);
+        el.classList.toggle('active', slideIndex === realIndex);
     });
 }
 
 // ✅ swiper 썸네일을 가운데로 이동
+// ✅ 최종 추천 코드
 function slideToCenter(index) {
-    const viewer = document.querySelector('.thumbnail-viewer');
-    const thumbnails = document.querySelectorAll('.thumbnail');
-    if (!viewer || thumbnails.length === 0) return;
+    const viewer = document.querySelector('.thumbnail-swiper');
+    const slides = document.querySelectorAll('.thumbnail');
+    const target = Array.from(slides).find(
+        (el) => !el.classList.contains('swiper-slide-duplicate') && parseInt(el.dataset.swiperSlideIndex, 10) === index
+    );
 
-    const target = thumbnails[index];
-    const slideWidth = target.offsetWidth;
-    const gap = parseFloat(getComputedStyle(thumbnails[0]).marginRight || 0);
-    const offset = (slideWidth + gap) * index;
-    viewer.style.transform = `translateX(-${offset}px)`;
+    if (!viewer || !target) return;
+
+    const targetCenter = target.offsetLeft + target.offsetWidth / 2;
+    const viewerCenter = viewer.clientWidth / 2;
+    const scrollLeft = targetCenter - viewerCenter;
+
+    gsap.to(viewer, {
+        scrollTo: { x: scrollLeft },
+        duration: 0.5,
+        ease: 'power2.out',
+    });
 }
 
 // ✅ swiper 제거 함수
