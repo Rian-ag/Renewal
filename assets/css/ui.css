@@ -120,7 +120,7 @@ header #hidden_menu button:after {transform:rotate(135deg);}
 .toast .btn_close:before {transform:rotate(45deg);}
 .toast .btn_close:after {transform:rotate(-45deg);}
 
-.video-bg {width:100%; height:100vh; position:relative; overflow: hidden;}
+.video-bg {width:100%; height:100vh; position:relative; z-index:1; overflow: hidden;}
 .video-bg video {width:100%; height:100%;object-fit:cover; display: block;}
 
 @keyframes active_sitemap {

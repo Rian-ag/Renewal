@@ -125,7 +125,7 @@
                 <section class="content pc">
                     <img src="/assets/images/work_detail/07/work_visual_07_01.png" alt="">
                 </section>
-                <section class="content zero mo">
+                <section class="content mo">
                     <img src="/assets/images/work_detail/07/work_visual_07_01_mo.png" alt="">
                 </section>
                 <section class="content light-section">
@@ -139,60 +139,38 @@
                         </i>
                     </div>
                 </section>
-                <ul class="content light-section zero">
+                <ul class="content light-section">
                     <li><img src="/assets/images/work_detail/07/work_visual_07_02_1.png" alt=""></li>
                     <li><img src="/assets/images/work_detail/07/work_visual_07_02_2.png" alt=""></li>
                 </ul>
-                <section>
-                    <video autoplay muted playsinline style="width:100%; height:100%;">
-                        <source src="/assets/video/SK_TID_Concept.mp4" type="video/mp4">
-                    </video>
+                <section class="light-section">
+                    <div class="parallax-bg video-bg lazyload"
+                        data-src="/assets/video/SK_TID_Concept.mp4">
+                    </div>
                 </section>
                 <section class="content light-section">
                     <img src="/assets/images/work_detail/07/work_visual_07_03.png" alt="">
                 </section>
 
-                <div class="cont_scroll pc">
+                <div class="scroll_cont light-section">
                     <section class="type_1">
                         <div class="scroll-box">
-                            <img src="/assets/images/work_detail/07/work_visual_07_04_1.png" alt="07_04_1">
-                        </div>
+                            <img src="/assets/images/work_detail/07/work_visual_07_04_1.png" alt="type1">
+                        </div> 
                         <p>
-                            <img src="/assets/images/work_detail/07/work_visual_07_04_2.png" alt="07_04_2">
+                            <img src="/assets/images/work_detail/07/work_visual_07_04_1.png" alt="">
                         </p>
                     </section>
 
                     <section class="type_2">
                         <div class="scroll-box">
-                            <img src="/assets/images/work_detail/07/work_visual_07_04_1.png" alt="07_04_1">
+                            <img src="/assets/images/work_detail/07/work_visual_07_04_2.png" alt="type2">
                         </div>
                         <p>
-                            <img src="/assets/images/work_detail/07/work_visual_07_04_2.png" alt="07_04_2">
+                            <img src="/assets/images/work_detail/07/work_visual_07_04_2.png" alt="">
                         </p>
                     </section>
                 </div>
-                <div class="cont_scroll mo">
-                    <section class="type_1">
-                        <div class="scroll-box">
-                            <img src="/assets/images/test.png" alt="type1" class="scroll-img-1">
-                        </div>
-                        <p>
-                            <img src="/assets/images/test.png" alt="">
-                        </p>
-                    </section>
-                    <section class="type_2">
-                        <div class="scroll-box">
-                            <img src="/assets/images/test2.png" alt="type2" class="scroll-img-2">
-                        </div>
-                        <p>
-                            <img src="/assets/images/test2.png" alt="">
-                        </p>
-                    </section>
-                </div>
-
-
-
-
                 <section class="content light-section">
                     <img src="/assets/images/work_detail/07/work_visual_07_05.png" alt="">
                 </section>
@@ -241,25 +219,61 @@
 
         <!-- JS -->
         <script type="text/javascript" src="/assets/js/jquery-3.7.1.min.js"></script>
+        <script src="/assets/js/lazyload.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
         <script src="./assets/js/lenis.min.js"></script>
         <script src="/assets/js/common.js"></script>
         <script src="/assets/js/work_detail.js"></script>
         <script>
-            gsap.registerPlugin(ScrollTrigger, CSSPlugin);
-
-            function isMobile() {
-                return window.innerWidth <= 768;
-
-            }
-
-
+            gsap.registerPlugin(ScrollTrigger);
             $(function () {
                 customCursorEffect($('#bottom > section > a:last-of-type'), 'next');
-                animateSectionItems('.content, #layout > img');
+                animateSectionItems('.content, #layout > img, .scroll_cont');
+
+                // 🟡 별도 trigger 등록
+                ScrollTrigger.create({
+                trigger: '.scroll_cont',
+                start: 'top 85%',
+                once: true,
+                onEnter: () => {
+                    animateImageScrollSequence('type_1', 'type_2');
+                }
+                });
             });
+
+            function animateImageScrollSequence(type1Class, type2Class) {
+                const $img1 = $(`.scroll_cont .${type1Class} img`);
+                const $box1 = $img1.closest('.scroll-box');
+                const moveY1 = $img1.height() - $box1.height();
+
+                const $img2 = $(`.scroll_cont .${type2Class} img`);
+                const $box2 = $img2.closest('.scroll-box');
+                const moveY2 = $img2.height() - $box2.height();
+
+                if (moveY1 > 0) {
+                    $img1.animate({ top: -moveY1 }, 1500, 'swing', function () {
+                        if (moveY2 > 0) {
+                            $img2.animate({ top: -moveY2 }, 1500, 'swing');
+                        }
+                    });
+                }
+            }
+
+            document.addEventListener('DOMContentLoaded', function () {
+                updateLazyloadSrc(); // ✅ 초기 비디오 src 설정
+                new LazyLoad();      // ✅ 이미지 lazyload 실행
+
+                // ✅ 리사이즈 대응
+                let resizeTimer;
+                window.addEventListener('resize', function () {
+                    clearTimeout(resizeTimer);
+                    resizeTimer = setTimeout(updateLazyloadSrc, 200);
+                });
+            });
+
         </script>
+
 
     </body>
 </html>

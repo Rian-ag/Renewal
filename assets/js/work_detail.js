@@ -1,55 +1,83 @@
 gsap.registerPlugin(ScrollTrigger);
 
 $(document).ready(function () {
-    const $visualImg = $('.visual img');
-    let originalSrc, mobileSrc;
-    // const originalSrc = $visualImg.attr('src');
-    // const mobileSrc = originalSrc.replace(/\.png$/, '_mo.png');
+    const $visual = $('.visual');
+    const $media = $visual.find('img, video').first(); // 이미지 또는 비디오
+    const hasMedia = $media.length > 0;
+
+    let $visualImg = null;
+    let originalSrc = '';
+    let mobileSrc = '';
+
+    // 이미지인 경우만 처리
+    if (hasMedia && $media.is('img')) {
+        $visualImg = $media;
+        originalSrc = $visualImg.attr('src');
+        mobileSrc = originalSrc.replace(/\.png$/, '_mo.png');
+    }
 
     function isMobileView() {
         return window.innerWidth <= 768;
     }
 
-    if ($visualImg.length > 0) {
-        originalSrc = $visualImg.attr('src');
+    // ✅ visual 이미지 교체
+    function updateVisualImageSrc() {
+        if (!$visualImg || !originalSrc || !mobileSrc) return;
 
-        if (originalSrc) {
-            mobileSrc = originalSrc.replace(/\.png$/, '_mo.png');
-
-            function updateVisualImageSrc() {
-                if (isMobileView()) {
-                    const imgTest = new Image();
-                    imgTest.onload = function () {
-                        $visualImg.attr('src', mobileSrc);
-                    };
-                    imgTest.onerror = function () {
-                        $visualImg.attr('src', originalSrc);
-                    };
-                    imgTest.src = mobileSrc;
-                } else {
-                    $visualImg.attr('src', originalSrc);
-                }
-            }
-
-            // 초기 적용 및 리사이즈 이벤트 등록
-            updateVisualImageSrc();
-            $(window).on('resize', updateVisualImageSrc);
+        if (isMobileView()) {
+            const imgTest = new Image();
+            imgTest.onload = function () {
+                $visualImg.attr('src', mobileSrc);
+            };
+            imgTest.onerror = function () {
+                $visualImg.attr('src', originalSrc);
+            };
+            imgTest.src = mobileSrc;
+        } else {
+            $visualImg.attr('src', originalSrc);
         }
     }
 
-    // 추가
-    const $visual = $('.visual');
-    const $media = $visual.find('img, video').first();
-    const hasMedia = $media.length > 0;
-    // 애니메이션 요소 정의
+    // ✅ scroll_cont 안의 모든 이미지 (_mo 대응)
+    function updateScrollContImages() {
+        if (!isMobileView()) return;
+
+        $('.scroll_cont img').each(function () {
+            const $img = $(this);
+            const src = $img.attr('src');
+
+            if (!src || /_mo\.png$/.test(src)) return;
+
+            const moSrc = src.replace(/\.png$/, '_mo.png');
+
+            const imgTest = new Image();
+            imgTest.onload = function () {
+                $img.attr('src', moSrc);
+            };
+            imgTest.onerror = function () {
+                // 실패 시 무시 (원본 유지)
+            };
+            imgTest.src = moSrc;
+        });
+    }
+
+    // 초기 이미지 교체
+    updateVisualImageSrc();
+    updateScrollContImages();
+
+    // 리사이즈 대응
+    $(window).on('resize', function () {
+        updateVisualImageSrc();
+        updateScrollContImages();
+    });
+
+    // ✅ 애니메이션
     const visualH1 = gsap.utils.toArray('.visual h1 span');
     const visualH2 = gsap.utils.toArray('.visual h2 span');
     const projectInfoItems = gsap.utils.toArray('.project-info li');
-
     const isMobile = isMobileView();
 
     if ((visualH1.length > 0 || visualH2.length > 0) && projectInfoItems.length > 0) {
-        // ✅ 공통 타임라인 구성
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: isMobile ? '.visual' : '.wrap',
@@ -61,7 +89,6 @@ $(document).ready(function () {
             },
         });
 
-        // 🎬 미디어 scale 애니메이션 (있을 경우만)
         if (hasMedia) {
             gsap.set($media[0], {
                 scale: 1.5,
@@ -75,7 +102,6 @@ $(document).ready(function () {
             });
         }
 
-        // 🎯 텍스트 애니메이션
         tl.fromTo(
             [...visualH1, ...visualH2],
             { y: 200, opacity: 0, force3D: true },
@@ -90,7 +116,6 @@ $(document).ready(function () {
             hasMedia ? '-=1' : '+=0'
         );
 
-        // ℹ️ 프로젝트 정보 텍스트
         tl.fromTo(
             projectInfoItems,
             { opacity: 0, force3D: true },
@@ -146,15 +171,17 @@ $(document).ready(function () {
             0.6
         );
     }
+
     ScrollTrigger.refresh();
 });
 
-// 상세페이지 공통 함수 정의
+
+// ✅ 상세페이지 공통 함수 정의
 function animateSectionItems(sectionSelector, itemSelector) {
     const sections = document.querySelectorAll(sectionSelector);
     if (!sections.length) return;
 
-    sections.forEach((section) => {
+    sections.forEach(section => {
         let items = itemSelector
             ? gsap.utils.toArray(section.querySelectorAll(itemSelector))
             : gsap.utils.toArray(section.children);
@@ -172,9 +199,8 @@ function animateSectionItems(sectionSelector, itemSelector) {
             scrollTrigger: {
                 trigger: section,
                 start: 'top 85%',
-                toggleActions: 'play none none none',
-                // markers: true
-            },
+                toggleActions: 'play none none none'
+            }
         });
     });
 }
