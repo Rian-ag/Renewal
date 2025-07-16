@@ -105,7 +105,7 @@ header #hidden_menu button:before {transform:rotate(45deg);}
 header #hidden_menu button:after {transform:rotate(135deg);}
 
 /* 점 커서 */
-.custom-cursor.dot-cursor {width:20px; height:20px; background-color:rgba(94, 94, 94, 0.4); border-radius:50%; position:fixed; z-index:9999; pointer-events:none; transform:translate(-50%, -50%) scale(1); opacity:1;transition:transform 0.5s ease, opacity 0.5s ease;}
+.custom-cursor.dot-cursor {width:20px; height:20px; background-color:rgba(16, 94, 240, 0.527); border-radius:50%; position:fixed; z-index:9999; pointer-events:none; transform:translate(-50%, -50%) scale(1); opacity:1;transition:transform 0.5s ease, opacity 0.5s ease;}
 
 /* View 커서 */
 .custom-cursor.view {width:80px; height:80px; color:white; font-size:16px; font-weight:bold; background-color:rgba(94, 94, 94, 0.4); backdrop-filter:blur(10px); position:fixed; pointer-events:none; display:flex; align-items:center; justify-content:center; transform:translate(-50%, -50%) scale(0.5); /* 나갈 때 scale 0.5로 */ opacity:0; z-index:9999; transition:transform 0.5s ease, opacity 0.5s ease;}

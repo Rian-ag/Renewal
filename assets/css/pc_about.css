@@ -64,6 +64,7 @@ section dt span {font-size:32px; font-weight:400;}
 .about_partners ul li img {width:100%;}
 .about_awards .cont_inner dl dd dl {width:80%; padding:50px 0; border-bottom:1px solid #E9E9E9;}
 .about_awards .cont_inner dl dd dl:last-of-type {margin-bottom:0;}
+.about_awards .cont_inner dl dd dl dt {margin-right:20px;}
 .about_awards .cont_inner dl dd dl dt span {width:58px; height:58px; box-sizing:border-box; background-image:url('/assets/images/common/icon_split.png'); background-size:500px 500px;  display:inline-block;}
 .about_awards .cont_inner dl dd dl dd {display:flex; flex-direction:column;}
 .about_awards .cont_inner dl dd dl dd div {display:flex;}
