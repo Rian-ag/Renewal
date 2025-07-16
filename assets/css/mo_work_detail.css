@@ -46,7 +46,8 @@ span { display: block; }
 
 .to-bottom { width: 12.8205vw; aspect-ratio: 1 / 1; /* height: 5rem; */
  position: absolute; left:50%; bottom: 3.554dvh; font-size: 0; order: 1; background-image: url(/assets/images/work_detail/to-bottom.svg); background-repeat: no-repeat; background-size: cover; transform:translateX(-50%);;}
-.visual-sub { padding: 2.4rem 3rem; } 
+.to-bottom.dark{background-image: url(/assets/images/work_detail/to-bottm-dark.svg);}
+ .visual-sub { padding: 2.4rem 3rem; } 
 
 .visual-sub .project-info li { color: #101010; font-family: 'Plus Jakarta Sans'; font-size: 1.2rem; font-weight: 700; line-height: 102%; letter-spacing: -0.24px; } 
 .visual-sub .project-info li:not(:first-child) { margin-top: 1.6rem; } 
