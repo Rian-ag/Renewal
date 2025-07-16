@@ -201,26 +201,30 @@ function initListItemBehavior() {
 
 // ✅ 프로젝트 swiper 초기화 및 썸네일 관리 함수
 function initSwiper() {
+    // 👉 썸네일을 Swiper로 구성
     thumbSwiper = new Swiper('.thumbnail-swiper', {
-        slidesPerView: 1,
-        centeredSlides: true,
+        slidesPerView: 'auto',
         spaceBetween: 33,
-        allowTouchMove: false,
+        centeredSlides: true,
+        slideToClickedSlide: true, // 클릭 시 자동 이동
         watchSlidesProgress: true,
         on: {
-            init: function () {
-                const index = this.activeIndex;
+            slideChange() {
+                const index = thumbSwiper.activeIndex;
+                mainSwiper.slideTo(index);
                 updateThumbnailState(index);
-                slideToCenter(index);
-            },
-            slideChange: function () {
-                const index = this.activeIndex;
-                updateThumbnailState(index);
+                updateTitleAndSubtitle(index);
+                $industry.text(project.industry[index]);
+                $date.text(project.date[index]);
+                $type.text(project.type[index]);
+
+                // ✅ 커스텀 가운데 정렬 보정
                 slideToCenter(index);
             },
         },
     });
 
+    // 👉 메인 Swiper
     mainSwiper = new Swiper('.main-swiper', {
         scrollbar: {
             el: '.swiper-scrollbar',
@@ -230,43 +234,22 @@ function initSwiper() {
             swiper: thumbSwiper,
         },
         on: {
-            init: function () {
+            init() {
                 const index = this.activeIndex;
                 updateTitleAndSubtitle(index);
+                updateThumbnailState(index);
                 $industry.text(project.industry[index]);
                 $date.text(project.date[index]);
                 $type.text(project.type[index]);
             },
-            slideChange: function () {
-                thumbSwiper.slideTo(this.activeIndex);
-            },
-            slideChangeTransitionEnd: function () {
+            slideChange() {
                 const index = this.activeIndex;
+                thumbSwiper.slideTo(index); // 메인에서 바꾸면 썸네일도 따라오게
                 updateTitleAndSubtitle(index);
+                updateThumbnailState(index);
                 $industry.text(project.industry[index]);
                 $date.text(project.date[index]);
                 $type.text(project.type[index]);
-            },
-            // 맨 끝 slide 드래그 막기
-            touchMove: function (e) {
-                const swiper = this;
-                const isFirst = swiper.activeIndex === 0;
-                const isLast = swiper.activeIndex === swiper.slides.length - 1;
-
-                // 드래그 방향 확인
-                const diff = swiper.touches.currentX - swiper.touches.startX;
-
-                // 왼쪽으로 드래그 중인데 첫 번째 슬라이드일 때 → 막기
-                if (isFirst && diff > 0) {
-                    e.preventDefault();
-                    e.stopImmediatePropagation?.();
-                }
-
-                // 오른쪽으로 드래그 중인데 마지막 슬라이드일 때 → 막기
-                if (isLast && diff < 0) {
-                    e.preventDefault();
-                    e.stopImmediatePropagation?.();
-                }
             },
         },
     });
@@ -284,13 +267,25 @@ function updateThumbnailState(index) {
 function slideToCenter(index) {
     const viewer = document.querySelector('.thumbnail-viewer');
     const thumbnails = document.querySelectorAll('.thumbnail');
-    if (!viewer || thumbnails.length === 0) return;
+    if (!viewer || thumbnails.length === 0) {
+        return;
+    }
 
     const target = thumbnails[index];
-    const slideWidth = target.offsetWidth;
-    const gap = parseFloat(getComputedStyle(thumbnails[0]).marginRight || 0);
-    const offset = (slideWidth + gap) * index;
-    viewer.style.transform = `translateX(-${offset}px)`;
+    const container = viewer.parentElement;
+
+    const targetLeft = target.offsetLeft;
+    const targetWidth = target.offsetWidth;
+    const containerWidth = container.clientWidth;
+
+    const targetCenter = targetLeft + targetWidth / 2;
+    const containerCenter = containerWidth / 2;
+    const scrollLeft = targetCenter - containerCenter;
+
+    container.scrollTo({
+        left: scrollLeft,
+        behavior: 'smooth',
+    });
 }
 
 // ✅ swiper 제거 함수
