@@ -1,8 +1,64 @@
+#layout {padding-bottom:0;}
 * { box-sizing: border-box; } 
-.cont_inner {width:1920px; padding:150px 200px;}
-img { display: block; width: 100%; height: auto; object-fit: cover; } 
+.cont_inner {width:1920px; margin:0 auto; padding:150px 200px;}
+img {width: 100%; height: auto; object-fit: cover; display:block; } 
 section { position: relative; } 
-.section-list .cont_inner { width: 100%; max-width: 1920px; padding: 0 30px; margin: 0 auto; } 
+.section-list .cont_inner {width:100%; max-width:1920px; margin:0 auto; padding:0 30px;} 
 #layout > section:nth-of-type(3) {padding-top:400px;}
 #layout > section:nth-of-type(3) img[src*="work_visual_01_02"] {width:50%; position:absolute; left:50%; top:10%; transform:translateX(-50%);}
-.flex_warp {display:flex; flex-wrap:wrap; gap:10px; border:1px solid blue;}
+.flex_warp {display:flex; flex-wrap:wrap; gap:10px;}
+section:nth-of-type(5) {padding:0px 110px 200px;}
+section:nth-of-type(5) ul li {text-align:center;}
+section:nth-of-type(5) ul.pc li:last-of-type {padding-top:155px;}
+section:nth-of-type(5) ul.pc li:last-of-type img {width:50%; display:inline-block;}
+div > div.cont_inner {padding-top:0;}
+.type_01 {padding-bottom:130px; text-align:center;}
+.type_01 li strong {padding-bottom:30px; font-size:32px; font-weight:700; display:block;;}
+.type_01 li span {color:#666; font-size:36px; font-weight:200;}
+.type_01 li span br {display:none;}
+.type_02 {padding-top:200px;}
+.type_02 li strong {font-size:60px; font-weight:700; display:flex; align-items:center; gap:24px;}
+.type_02 li strong::after {content:'발견'; padding:3px 30px; color:#fff; font-size:40px; font-weight:400; background:#EE3224; border-radius:32px;}
+.type_02 li em {padding:30px 0; font-size:40px; font-size:700; display:block;}
+.type_02 li span {color:#999; font-size:20px; font-weight:400; line-height:150%;}
+.type_03 {padding-top:150px; padding-bottom:80px;}
+.type_03 li {text-align:center;}
+.type_03 li i {font-size:22px; font-weight:700;}
+.type_03 li strong {padding:12px 0 40px; font-size:52px; font-weight:800; display:inline-block;}
+.type_03 li span {font-size:18px; font-weight:400;}
+
+.bg_gray {height:100%; min-height:2410px; padding-top:200px; background:#f4f4f4; position:relative;}
+.bg_gray .cont_inner ol {width:1051px; height:1774px; position:absolute; right:0; top:20.705394%; display:flex;}
+.bg_gray .cont_inner ol li {position:absolute;}
+.bg_gray .cont_inner ol li:first-of-type {width:620px; height:844px; top:30.701244%; left:-47%;}
+.bg_gray .cont_inner ol li:nth-of-type(2) {width:700px; top:0%; left:-7%;}
+.bg_gray .cont_inner ol li:nth-of-type(3) {width:700px; top:50.294605%; left:-7%;}
+.bg_gray .cont_inner ol li:nth-of-type(4) {width:343px; height:494px; top:37.182572%; right:0;}
+
+.bg_black {background-color:#262626; height:100%; min-height:1656px; position:relative; overflow:hidden;}
+.bg_black .type_02 {color:#fff;}
+.bg_black .type_02 li strong::after {content:'몰입';}
+.bg_black ol {width:1572px; height:1400px; position:absolute; right:5%; top:200px;}
+.bg_black ol li {position:absolute;}
+.bg_black ol li:first-of-type {width:465px; top:41.304347%; left:-1%;}
+.bg_black ol li:nth-of-type(2) {width:455px; top:20.514492%; left:26.90%;}
+.bg_black ol li:nth-of-type(3) {width:700px; left:38.270833%}
+.bg_black ol li:nth-of-type(4) {width:390px; max-height:612px; top:33.454106%; right:-9%;}
+section:nth-of-type(7) .cont_inner {padding-top:0; padding-bottom:0;}
+.talk {height:2232px; position:relative; overflow:hidden;}
+.talk ol li {position:absolute;}
+.talk ol li:first-of-type {width:10%; top:15%;}
+.talk ol li:nth-of-type(2) {width:18%; top:20.47244%; left:16.854166%}
+.talk ol li:nth-of-type(3) {width:32%; left:27.84375%}
+.talk ol li:nth-of-type(4) {width:26%; top:30.220472%; left:63.760416%}
+.talk ol li:nth-of-type(5) {width:15%; top:50.165354%; right:0;}
+section:nth-of-type(8) {padding-top:0; min-height:100%;}
+.bg_gray .cont_inner .flex_wrap {display:flex; gap:40px;}
+#layout section:nth-of-type(9) {height:7410px;}
+#layout section:nth-of-type(9) .cont_inner ul {}
+#layout section:nth-of-type(9) .cont_inner ul li {text-align:left;}
+#layout section:nth-of-type(9) .cont_inner ul li strong {font-size:32px;}
+#layout section:nth-of-type(9) ol {padding-top:70px; display:flex; gap:115px;}
+#layout section:nth-of-type(9) ol img {width:92%;}
+#layout section:nth-of-type(9) .cont_inner ol li:nth-of-type(2) {margin-top:-400px;}
+#layout section:nth-of-type(9) .cont_inner ol li:nth-of-type(3) {margin-top:-250px;}
