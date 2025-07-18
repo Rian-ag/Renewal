@@ -451,18 +451,6 @@ $(window).on('load', function () {
     loadProjectList();
     handleLayout();
     $(window).on('resize', handleLayout);
-
-    document.addEventListener('touchstart', (e) => {
-        console.log('[touchstart]', e.target);
-    });
-    document.addEventListener('touchstart', (e) => {
-        console.log('[touchstart]', e.target);
-        if (e.target.closest('.thumbnail')) {
-            console.log('썸네일에서 터치 시작');
-        } else if (e.target.closest('.swiper-touch-layer')) {
-            console.log('터치 레이어에서 시작');
-        }
-    });
 });
 
 // ✅ 이벤트 바인딩
