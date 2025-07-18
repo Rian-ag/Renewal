@@ -1,0 +1,8 @@
+* { box-sizing: border-box; } 
+.cont_inner {width:1920px; padding:150px 200px;}
+img { display: block; width: 100%; height: auto; object-fit: cover; } 
+section { position: relative; } 
+.section-list .cont_inner { width: 100%; max-width: 1920px; padding: 0 30px; margin: 0 auto; } 
+#layout > section:nth-of-type(3) {padding-top:400px;}
+#layout > section:nth-of-type(3) img[src*="work_visual_01_02"] {width:50%; position:absolute; left:50%; top:10%; transform:translateX(-50%);}
+.flex_warp {display:flex; flex-wrap:wrap; gap:10px; border:1px solid blue;}
