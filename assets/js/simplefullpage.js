@@ -13,7 +13,6 @@
       arrows: true,                 // 이전 / 다음 버튼 활성화 여부
       autoplay: false,
       autoplaySpeed: 5000,
-      continuousVertical: true,
       onLeave: function(prevIndex, nextIndex) {},  // 이동 직전 호출
       afterLoad: function(index) {},                // 이동 완료 후 호출
       on: {} // ✅ 사용자 정의 이벤트 객체 추가
@@ -68,161 +67,86 @@
     }
 
     // 🔽 섹션 이동 함수
-// 🔽 섹션 이동 함수
-// function moveTo(index) {
-//   // 유효한 범위 & 중복 스크롤 방지
-//   if (isScrolling) return;
+    function moveTo(index) {
+      // 유효한 범위 & 중복 스크롤 방지
+      if (index < 0 || index >= $sections.length || isScrolling) return;
 
-//   if (index < 0) {
-//     // If we're at the first section, move to the last section
-//     index = $sections.length - 1;
-//   } else if (index >= $sections.length) {
-//     // If we're at the last section, move to the first section
-//     index = 0;
-//   }
+      if (typeof settings.onLeave === 'function') {
+        settings.onLeave(currentIndex, index);
+      }
 
-//   if (typeof settings.onLeave === 'function') {
-//     settings.onLeave(currentIndex, index);
-//   }
+      isScrolling = true;
+      const height = window.innerHeight;// 브라우저 높이
+      const moveY = -index * height;     // 이동할 Y 위치 계산
 
-//   isScrolling = true;
-//   const height = window.innerHeight; // 브라우저 높이
-//   const moveY = -index * height;     // 이동할 Y 위치 계산
+      // ✅ 현재 섹션 기준 index → 이전 섹션: index - 1, 다음 섹션: index + 1
+      // 하지만 실제 코드에서는 따로 해당 섹션 DOM을 직접 사용하지 않고,
+      // 인덱스 차이를 이용한 계산만 수행합니다.
 
-//   // 전체 페이지 이동
-//   if (!settings.parallax) {
-//     $container.css({
-//       transform: `translateY(${moveY}px)`,
-//       transition: `transform ${settings.duration}ms ${settings.easing}`
-//     });
-//   }
+      // 전체 페이지 이동
+      if (!settings.parallax) {
+        $container.css({
+          transform: `translateY(${moveY}px)`,
+          transition: `transform ${settings.duration}ms ${settings.easing}`
+        });
+      }
 
-//   // 활성 섹션 class 갱신
-//   $sections.removeClass('active');
-//   $sections.eq(index).addClass('active');
+      // 활성 섹션 class 갱신
+      $sections.removeClass('active');
+      $sections.eq(index).addClass('active');
 
-//   // 내비게이션 도트 업데이트
-//   if (settings.navigation) {
-//     $navDots.find('.fp-dot').removeClass('active');
-//     $navDots.find(`.fp-dot[data-index="${index}"]`).addClass('active');
-//   }
+      // 내비게이션 도트 업데이트
+      if (settings.navigation) {
+        $navDots.find('.fp-dot').removeClass('active');
+        $navDots.find(`.fp-dot[data-index="${index}"]`).addClass('active');
+      }
 
-//   // 패럴럭스 효과 처리
-//   if (settings.parallax) {
-//     $sections.each(function(i, el) {
-//       const $bg = $(el); //.find('.parallax-bg');
-//       const sectionOffset = index;
+      // 패럴럭스 효과 처리
+      if (settings.parallax) {
+        $sections.each(function(i, el) {
+          const $bg = $(el);//.find('.parallax-bg');
+          const sectionOffset = index;// - i; // 현재 이동하는 섹션과의 거리
 
-//       // 기본 이동 거리
-//       const baseY = sectionOffset * settings.parallaxRatio * height;
+          // 기본 이동 거리
+          const baseY = sectionOffset * settings.parallaxRatio * height;
 
-//       let bgY;         // 실제 translateY 적용값
-//       let bgDuration;  // 배경 전환 시간
+          let bgY;         // 실제 translateY 적용값
+          let bgDuration;  // 배경 전환 시간
 
-//       if (i === index) {
-//         bgY = -sectionOffset * settings.parallaxRatio * height;
-//         bgDuration = settings.duration * 0.5;
-//       } else {
-//         settings.easing = 'ease-in-out';
-//         bgY = -sectionOffset * settings.parallaxRatio * height;
-//         bgDuration = settings.duration;
-//       }
+          if (i === index) {
+            bgY = -sectionOffset * settings.parallaxRatio * height;
+            bgDuration = settings.duration * 0.5;
+          } else {
+            // ✅ 나머지 섹션의 배경 → 느리게 기본 속도로 이동
+            settings.easing = 'ease-in-out';
+            bgY = -sectionOffset * settings.parallaxRatio * height;
+            bgDuration = settings.duration;
+          }
 
-//       $bg.css({
-//         transform: `translate3d(0px, ${bgY}px, 0px)`,
-//         transition: `transform ${bgDuration}ms ${settings.easing}`
-//       });
-//     });
-//   }
+          $bg.css({
+            // transform: `translateY(${bgY}px)`,
+            transform: `translate3d(0px, ${bgY}px, 0px)`,
+            transition: `transform ${bgDuration}ms ${settings.easing}`
+          });
+        });
+      }
 
-//   // 인덱스 갱신
-//   currentIndex = index;
+      // 인덱스 갱신
+      currentIndex = index;
 
-//   // 애니메이션 후 다시 스크롤 가능하게
-//   setTimeout(() => {
-//     isScrolling = false;
-//   }, settings.duration);
+      // 애니메이션 후 다시 스크롤 가능하게
+      setTimeout(() => {
+        isScrolling = false;
+      }, settings.duration);
 
-//   $container.one('transitionend', function() {
-//     if (typeof settings.afterLoad === 'function') {
-//       settings.afterLoad(currentIndex);
-//     }
-//   });
-// }
+      console.log('d : '+settings.duration);
 
-function moveTo(index) {
-  if (isScrolling) return;
-
-  // ✅ 무한스크롤 적용
-  if (index < 0) {
-    if (settings.continuousVertical) {
-      index = $sections.length - 1;
-    } else {
-      return;
-    }
-  } else if (index >= $sections.length) {
-    if (settings.continuousVertical) {
-      index = 0;
-    } else {
-      return;
-    }
-  }
-
-  if (typeof settings.onLeave === 'function') {
-    settings.onLeave(currentIndex, index);
-  }
-
-  isScrolling = true;
-  const height = window.innerHeight;
-  const moveY = -index * height;
-
-  if (!settings.parallax) {
-    $container.css({
-      transform: `translateY(${moveY}px)`,
-      transition: `transform ${settings.duration}ms ${settings.easing}`
-    });
-  }
-
-  $sections.removeClass('active');
-  $sections.eq(index).addClass('active');
-
-  if (settings.navigation) {
-    $navDots.find('.fp-dot').removeClass('active');
-    $navDots.find(`.fp-dot[data-index="${index}"]`).addClass('active');
-  }
-
-  if (settings.parallax) {
-    $sections.each(function(i, el) {
-      const $bg = $(el);
-      const sectionOffset = index;
-
-      let bgY = -sectionOffset * settings.parallaxRatio * height;
-      let bgDuration = (i === index) ? settings.duration * 0.5 : settings.duration;
-
-      $bg.css({
-        transform: `translate3d(0px, ${bgY}px, 0px)`,
-        transition: `transform ${bgDuration}ms ${settings.easing}`
+      $container.one('transitionend', function() {
+        if (typeof settings.afterLoad === 'function') {
+          settings.afterLoad(currentIndex);
+        }
       });
-    });
-  }
-
-  currentIndex = index;
-
-  setTimeout(() => {
-    isScrolling = false;
-  }, settings.duration);
-
-  $container.one('transitionend', function() {
-    if (typeof settings.afterLoad === 'function') {
-      settings.afterLoad(currentIndex);
     }
-  });
-}
-
-
-
-
-
 
     // 🔽 마우스 휠 이벤트
     $container.on('wheel', function(e) {
