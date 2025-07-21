@@ -290,24 +290,33 @@ function applySlideBackgrounds() {
     });
 }
 
-// 모바일에서 썸네일 인터렉션
+let previousIndex = 0;
+
 function animateActiveThumbnail(index) {
     const $active = $('.thumbnail.swiper-slide-active').find('img, video');
+    if (!$active.length) return;
+
+    // 현재 방향 계산
+    const direction = index > previousIndex ? 'right' : 'left';
+    previousIndex = index;
+
+    const fromX = direction === 'right' ? '24.5rem' : '-24.5rem';
 
     gsap.set($active, {
-        y: '30rem',
+        x: fromX,
         scale: 0.95,
         opacity: 0,
     });
 
     gsap.to($active, {
-        y: '0rem',
+        x: '0rem',
         scale: 1,
         opacity: 1,
-        duration: 0.6,
-        ease: 'power2.out',
+        duration: 1.1,
+       ease: 'power3.out',
     });
 }
+
 
 // ✅ 프로젝트 swiper 초기화 및 썸네일 관리 함수
 function initSwiper() {
