@@ -237,8 +237,19 @@ document.querySelectorAll('.thumbnail').forEach((thumb) => {
         }
     });
 });
+
+// 각 슬라이드 인덱스에 대응되는 배경색 배열 (data-swiper-slide-index 기준)
+const bgColors = ['#1d1617', '#ea1236', '#7d8696', '#a5bfe1', '#253146', '#1d251c', '#215ec3', '#5fbf8c', '#089bd0'];
+
+function applySlideBackgrounds() {
+    document.querySelectorAll('.main-swiper .swiper-slide').forEach((el) => {
+        const index = el.dataset.swiperSlideIndex;
+        if (index !== undefined && bgColors[index]) {
+            el.style.backgroundColor = bgColors[index];
+        }
+    });
+}
 // ✅ 프로젝트 swiper 초기화 및 썸네일 관리 함수
-// ✅ 메인 & 썸네일 swiper 초기화 및 연동
 function initSwiper() {
     // 👉 썸네일 Swiper 초기화
     thumbSwiper = new Swiper('.thumbnail-swiper', {
@@ -247,7 +258,7 @@ function initSwiper() {
         spaceBetween: 33,
         centeredSlides: true,
         slideToClickedSlide: true,
-        allowTouchMove: false, // 썸네일 자체는 터치 이동 막음
+        allowTouchMove: false,
     });
 
     // 👉 메인 Swiper 초기화
@@ -258,18 +269,22 @@ function initSwiper() {
             el: '.swiper-scrollbar',
             draggable: true,
         },
-        touchEventsTarget: 'container', // 외부에서 터치 전달 받도록 설정
         thumbs: {
             swiper: thumbSwiper, // 썸네일과 연동
         },
         on: {
             init() {
                 const index = this.realIndex;
-                updateTitleAndSubtitle(index); // 타이틀 & 서브타이틀 갱신
-                updateThumbnailState(index); // 썸네일 active 처리
+                updateTitleAndSubtitle(index);
+                updateThumbnailState(index);
                 $industry.text(project.industry[index]);
                 $date.text(project.date[index]);
                 $type.text(project.type[index]);
+
+                setTimeout(() => {
+                    mainSwiper.update();
+                    applySlideBackgrounds();
+                }, 100);
             },
             slideChange() {
                 const index = this.realIndex;
@@ -451,6 +466,14 @@ $(window).on('load', function () {
     loadProjectList();
     handleLayout();
     $(window).on('resize', handleLayout);
+});
+
+let resizeTimer;
+$(window).on('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+        handleLayout();
+    }, 200);
 });
 
 // ✅ 이벤트 바인딩
