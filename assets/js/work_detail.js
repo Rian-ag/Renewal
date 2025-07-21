@@ -22,9 +22,14 @@ $(document).ready(function () {
 
     // ✅ visual 이미지 교체
     function updateVisualImageSrc() {
-        if (!$visualImg || !originalSrc || !mobileSrc) return;
+        if (!$visualImg || !originalSrc) return;
+
+        const currentSrc = $visualImg.attr('src');
+        const isMoSrc = /_mo\.png$/.test(currentSrc);
 
         if (isMobileView()) {
+            if (isMoSrc) return; // 이미 _mo 이미지면 무시
+
             const imgTest = new Image();
             imgTest.onload = function () {
                 $visualImg.attr('src', mobileSrc);
@@ -34,15 +39,14 @@ $(document).ready(function () {
             };
             imgTest.src = mobileSrc;
         } else {
+            if (!isMoSrc) return; // 이미 원본이면 무시
             $visualImg.attr('src', originalSrc);
         }
     }
 
-    // ✅ scroll_cont 안의 모든 이미지 (_mo 대응)
-    function updateScrollContImages() {
-        if (!isMobileView()) return;
-
-        $('.scroll_cont img').each(function () {
+    // ✅ #layout 안의 모든 이미지 (_mo 대응)
+    function updateLayoutImages() {
+        $('#layout img').each(function () {
             const $img = $(this);
             const src = $img.attr('src');
 
@@ -50,25 +54,26 @@ $(document).ready(function () {
 
             const moSrc = src.replace(/\.png$/, '_mo.png');
 
-            const imgTest = new Image();
-            imgTest.onload = function () {
-                $img.attr('src', moSrc);
-            };
-            imgTest.onerror = function () {
-                // 실패 시 무시 (원본 유지)
-            };
-            imgTest.src = moSrc;
+            if (isMobileView()) {
+                const imgTest = new Image();
+                imgTest.onload = function () {
+                    $img.attr('src', moSrc);
+                };
+                imgTest.src = moSrc;
+            } else {
+                $img.attr('src', src); // PC에선 원본 유지
+            }
         });
     }
 
-    // 초기 이미지 교체
+    // ✅ 초기 실행
     updateVisualImageSrc();
-    updateScrollContImages();
+    updateLayoutImages();
 
-    // 리사이즈 대응
+    // ✅ 리사이즈 대응
     $(window).on('resize', function () {
         updateVisualImageSrc();
-        updateScrollContImages();
+        updateLayoutImages();
     });
 
     // ✅ 애니메이션
@@ -186,6 +191,31 @@ function animateSectionItems(sectionSelector, itemSelector) {
             ? gsap.utils.toArray(section.querySelectorAll(itemSelector))
             : gsap.utils.toArray(section.children);
 
+        if (!items.length) return;
+
+        gsap.set(items, { opacity: 0, y: 200, force3D: true });
+
+        gsap.to(items, {
+            opacity: 1,
+            y: 0,
+            duration: 1.4,
+            stagger: 0.2,
+            ease: 'power3.out',
+            scrollTrigger: {
+                trigger: section,
+                start: 'top 85%',
+                toggleActions: 'play none none none'
+            }
+        });
+    });
+}
+
+function animateListGroupWithChildren(sectionSelector, itemSelector = 'li *') {
+    const sections = document.querySelectorAll(sectionSelector);
+    if (!sections.length) return;
+
+    sections.forEach(section => {
+        const items = gsap.utils.toArray(section.querySelectorAll(itemSelector));
         if (!items.length) return;
 
         gsap.set(items, { opacity: 0, y: 200, force3D: true });

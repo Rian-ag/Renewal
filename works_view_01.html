@@ -7,12 +7,13 @@
         <!-- CSS -->
         <link rel="stylesheet" href="/assets/css/common.css" />
         <link rel="stylesheet" href="/assets/css/ui.css" />
-        <link rel="stylesheet" href="/assets/css/swiper.css" />
         <link rel="stylesheet" href="/assets/css/pc_work_detail.css" media="(min-width: 769px)" />
         <link rel="stylesheet" href="/assets/css/mo_work_detail.css" media="(max-width: 768px)" />
         <link rel="stylesheet" href="/assets/css/pc_works_view_01.css" media="(min-width: 769px)" />
         <link rel="stylesheet" href="/assets/css/mo_works_view_01.css" media="(max-width: 768px)" />
     </head>
+    <style>
+    </style>
     <body>
         <div id="wrap">
             <!-- header -->
@@ -142,7 +143,6 @@
                             <li><img src="/assets/images/work_detail/01/work_visual_01_03_06.png" alt=""></li>
                             <li><img src="/assets/images/work_detail/01/work_visual_01_03_07.png" alt=""></li>
                         </ul>
-
                     </div>
                 </section>
                 <section class="light-section">
@@ -150,7 +150,7 @@
                         <li><img src="/assets/images/work_detail/01/work_visual_01_04_01.png" alt=""></li>
                         <li><img src="/assets/images/work_detail/01/work_visual_01_04_02.png" alt=""></li>
                     </ul>
-                    <ul class="mo">
+                    <ul class="cont_inner mo">
                         <li><img src="/assets/images/work_detail/01/work_visual_01_04_01_mo.png" alt=""></li>
                         <li><img src="/assets/images/work_detail/01/work_visual_01_04_02_mo.png" alt=""></li>
                     </ul>
@@ -163,7 +163,7 @@
                             <li><span>공간의 특수성처럼 디자인도 이성과 감성적인<br/> 측면이 모두 공존합니다.</span></li>
                         </ul>
                         <ul class="type_02">
-                            <li><strong>기본. 본질에 집중</strong></li>
+                            <li><strong>기본. <br/>본질에 집중</strong></li>
                             <li><em>Simple Display. Easy Discovery.</em></li>
                             <li><span>친숙하고 익숙한 UI를 활용하여 사용자가 쉽고 편하게​</span></li>
                             <li><span>매력적인 컨텐츠를 발견할 수 있도록 합니다.</span></li>
@@ -181,7 +181,7 @@
                 <div class="bg_black">
                     <div class="cont_inner">
                         <ul class="type_02">
-                            <li><strong>기본. 본질에 집중</strong></li>
+                            <li><strong>감각.<br/> 본능에 집중</strong></li>
                             <li><em>Dynamic Darkness</em></li>
                             <li><span>입체감의 역동적인 표현으로, 자연스럽게 몰입이 이루어집니다.</span></li>
                             <li><span>사용자는 CGV의 공감감을 자연스럽게 수용하며</span></li>
@@ -205,7 +205,7 @@
                         <ul class="type_03">
                             <li><i>MODULE UI</i></li>
                             <li><strong>원하는대로 자유롭게.</strong></li>
-                            <li><span>필요에 따라 메인화면을 자유롭게 구성할 수 있는 모듈형 UI를 도입했습니다.</span></li>
+                            <li><span>필요에 따라 메인화면을 자유롭게 구성할 수<br/> 있는 모듈형 UI를 도입했습니다.</span></li>
                             <li><span>운영자는 상품, 영화, 무비톡, 최근 소식 등을</span></li>
                             <li><span>자유롭게 배치하고, 사용자별로 특화된 컨텐츠를 제공합니다.</span></li>
                         </ul>
@@ -328,6 +328,7 @@
                 animateSectionItems(
                     '.section-list, ul, ol'
                 );
+                animateListGroupWithChildren('.type_01, .type_02, .type_03');
             });
         </script>
     </body>

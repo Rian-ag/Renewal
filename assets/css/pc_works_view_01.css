@@ -22,7 +22,7 @@ div > div.cont_inner {padding-top:0;}
 .type_02 li em {padding:30px 0; font-size:40px; font-size:700; display:block;}
 .type_02 li span {color:#999; font-size:20px; font-weight:400; line-height:150%;}
 .type_03 {padding-top:150px; padding-bottom:80px;}
-.type_03 li {text-align:center;}
+.type_03 li {text-align:center; overflow:hidden;}
 .type_03 li i {font-size:22px; font-weight:700;}
 .type_03 li strong {padding:12px 0 40px; font-size:52px; font-weight:800; display:inline-block;}
 .type_03 li span {font-size:18px; font-weight:400;}
@@ -62,3 +62,5 @@ section:nth-of-type(8) {padding-top:0; min-height:100%;}
 #layout section:nth-of-type(9) ol img {width:92%;}
 #layout section:nth-of-type(9) .cont_inner ol li:nth-of-type(2) {margin-top:-400px;}
 #layout section:nth-of-type(9) .cont_inner ol li:nth-of-type(3) {margin-top:-250px;}
+
+.type_01 > li, .type_02 > li, .type_03 > li {overflow:hidden !important;}
