@@ -200,7 +200,7 @@
 
                     </div>
                 </div>
-                <section>
+                <section class="light-section">
                     <div class="cont_inner">
                         <ul class="type_03">
                             <li><i>MODULE UI</i></li>
@@ -272,7 +272,7 @@
             <div id="bottom" class="type3">
                 <section>
                     <a href="/project.html"></a>
-                    <a href="/works_view_03.html">LOTTE DUTY FREE</a>
+                    <a href="/works_view_02.html">HOME & SHOPPING</a>
                 </section>
                 <div>
                     <span>© RIANag INC. All Rights Reserved.</span>
@@ -293,41 +293,9 @@
         <script src="/assets/js/common.js"></script>
         <script src="/assets/js/work_detail.js"></script>
         <script>
-            $(window).on('load', function () {
-                const swiper = new Swiper('.swiper', {
-                    slidesPerView: 'auto',
-                    loop: true,
-                    loopedSlides: document.querySelectorAll('.swiper-slide').length,
-                    speed: 5000,
-                    allowTouchMove: false,
-                    autoplay: {
-                        delay: 0,
-                        disableOnInteraction: false,
-                    },
-                    on: {
-                        init: function () {
-                            const swiperWrapper = document.querySelector('.swiper-wrapper');
-                            if (swiperWrapper) {
-                                swiperWrapper.style.transitionTimingFunction = 'linear';
-                            }
-                        },
-                    },
-                    breakpoints: {
-                        769: {
-                            spaceBetween: 40,
-                        },
-                        0: {
-                            spaceBetween: 8,
-                        },
-                    },
-                });
-            });
-
             $(function () {
                 customCursorEffect($('#bottom > section > a:last-of-type'), 'next');
-                animateSectionItems(
-                    '.section-list, ul, ol'
-                );
+                animateSectionItems('.section-list, .section-list + section .flex_warp, .light-section ul, .bg_gray .flex_wrap, section ol, div ol');
                 animateListGroupWithChildren('.type_01, .type_02, .type_03');
             });
         </script>

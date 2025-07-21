@@ -135,6 +135,7 @@ $(document).ready(function () {
         );
     }
 
+
     // ✅ section-common 애니메이션
     const sectionH3 = gsap.utils.toArray('.section-common h3 span');
     const sectionP = gsap.utils.toArray('.section-common p span');

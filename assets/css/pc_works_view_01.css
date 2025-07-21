@@ -30,7 +30,7 @@ div > div.cont_inner {padding-top:0;}
 .bg_gray {height:100%; min-height:2410px; padding-top:200px; background:#f4f4f4; position:relative;}
 .bg_gray .cont_inner ol {width:1051px; height:1774px; position:absolute; right:0; top:20.705394%; display:flex;}
 .bg_gray .cont_inner ol li {position:absolute;}
-.bg_gray .cont_inner ol li:first-of-type {width:620px; height:844px; top:30.701244%; left:-47%;}
+.bg_gray .cont_inner ol li:first-of-type {width:620px; height:844px; top:33.701244%; left:-47%;}
 .bg_gray .cont_inner ol li:nth-of-type(2) {width:700px; top:0%; left:-7%;}
 .bg_gray .cont_inner ol li:nth-of-type(3) {width:700px; top:50.294605%; left:-7%;}
 .bg_gray .cont_inner ol li:nth-of-type(4) {width:343px; height:494px; top:37.182572%; right:0;}
