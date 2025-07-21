@@ -154,7 +154,7 @@ function updateTitleAndSubtitle(index) {
                 $(this).css({
                     opacity: 1,
                     transform: 'translateY(0)',
-                    transition: 'all 0.8s cubic-bezier(0.87, 0, 0.13, 1)',
+                    transition: 'all 1.1s ease-in-out',
                     transitionDelay: i * 0.1 + 's',
                 });
             });
