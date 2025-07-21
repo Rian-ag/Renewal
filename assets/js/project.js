@@ -2,7 +2,7 @@
 const project = {
     title: [
         'Go deep\nDive in\nWatch on',
-        'Effortless\nChic\nLifestyle',
+        'Trendy\nPersonalized\nVisual\nCatregorizing',
         'Enjoy\nA new\nHappiness',
         'Simple\n& Easy\nConsulting',
         'Concise\nApproach\nFor customer',
@@ -75,55 +75,95 @@ function updateTitleAndSubtitle(index) {
     const $subtitle = $('.sub-title');
     const $projectInfo = $('.project-info');
 
+    // ✅ 타이틀 구성
     const titleLines = project.title[index]
         .split('\n')
-        .map((line) => `<div>${line}</div>`)
+        .map((line) => `<li><span>${line}</span></li>`)
         .join('');
+    $title.html(`<ul>${titleLines}</ul>`);
 
-    let subtitleLines = '';
+    // ✅ 서브타이틀 구성
     const raw = project.subTitle[index];
+    let subtitleHTML = '';
 
     if (window.innerWidth <= 768) {
         const compactLine = raw.replace(/\n/g, ' ').replace(/\s*&\s*/g, '&');
-        subtitleLines = `<div>${compactLine}</div>`;
+        subtitleHTML = `<ul><li><span>${compactLine}</span></li></ul>`;
     } else {
-        const lines = raw.split('\n');
-        const line1 = lines[0] || '';
-        const line2 = (lines[1] || '') + (lines[2] || '');
-        subtitleLines = `<div>${line1}</div><div>${line2}</div>`;
+        const lines = raw.split('\n').filter(Boolean);
+        const subtitleLines = lines.map((line) => `<li><span>${line}</span></li>`).join('');
+        subtitleHTML = `<ul>${subtitleLines}</ul>`;
+    }
+    $subtitle.html(subtitleHTML);
+
+    // ✅ project-info는 PC에서만 적용
+    const isPC = window.innerWidth > 768;
+    if (isPC) {
+        $projectInfo.show();
+        $projectInfo.find('li').css({
+            opacity: 0,
+            transform: 'translateY(100%)',
+            transition: 'none',
+        });
+    } else {
+        $projectInfo.hide();
     }
 
-    $title.removeClass('active').html(titleLines);
-    $subtitle.removeClass('active').html(subtitleLines);
-
-    $projectInfo.find('li').css({
-        opacity: 0,
-        transform: 'translateY(100%)',
-        transition: 'none',
-    });
-
+    // ✅ GSAP 애니메이션
     setTimeout(() => {
-        $title.addClass('active');
-        $subtitle.addClass('active');
+        const titleSpans = gsap.utils.toArray('.title span');
+        const subtitleSpans = gsap.utils.toArray('.sub-title span');
 
-        $title.find('div').each(function (i) {
-            $(this).css('transition-delay', i * 0.1 + 's');
-        });
-        $subtitle.find('div').each(function (i) {
-            $(this).css('transition-delay', i * 0.1 + 's');
-        });
-
-        $projectInfo.find('li').each(function (i) {
-            $(this).css({
+        // 각각 동시에 실행되도록 따로 fromTo 호출
+        gsap.fromTo(
+            titleSpans,
+            {
+                opacity: 0,
+                y: 200,
+                force3D: true,
+            },
+            {
                 opacity: 1,
-                transform: 'translateY(0%)',
-                transition: 'all 0.8s cubic-bezier(0.87, 0, 0.13, 1)',
+                y: 0,
+                duration: 1.1,
+                stagger: 0.15,
+                ease: 'power2.out',
+                force3D: true,
+            }
+        );
+
+        gsap.fromTo(
+            subtitleSpans,
+            {
+                opacity: 0,
+                y: 200,
+                force3D: true,
+            },
+            {
+                opacity: 1,
+                y: 0,
+                duration: 1.1,
+                stagger: 0.15,
+                ease: 'power2.out',
+                force3D: true,
+            }
+        );
+
+        if (isPC) {
+            $projectInfo.find('li').each(function (i) {
+                $(this).css({
+                    opacity: 1,
+                    transform: 'translateY(0)',
+                    transition: 'all 0.8s cubic-bezier(0.87, 0, 0.13, 1)',
+                    transitionDelay: i * 0.1 + 's',
+                });
             });
-        });
-    }, 100);
+        }
+    }, 0);
 }
 
 // ✅ 이미지 or 비디오 경로에 따라 .image-viewer 업데이트 함수
+
 function updateImageViewer(mediaPath) {
     const $viewer = $('.image-viewer');
     $viewer.empty(); // 기존 이미지나 영상 제거
@@ -239,7 +279,7 @@ document.querySelectorAll('.thumbnail').forEach((thumb) => {
 });
 
 // 각 슬라이드 인덱스에 대응되는 배경색 배열 (data-swiper-slide-index 기준)
-const bgColors = ['#1d1617', '#ea1236', '#7d8696', '#a5bfe1', '#253146', '#1d251c', '#215ec3', '#5fbf8c', '#089bd0'];
+const bgColors = ['#1d1617', '#EA1236', '#8DDFAF', '#A5BFE1', '#253146', '#1D251C', '#215EC3', '#5FBF8C', '#089BD0'];
 
 function applySlideBackgrounds() {
     document.querySelectorAll('.main-swiper .swiper-slide').forEach((el) => {
@@ -333,27 +373,6 @@ function updateThumbnailState(realIndex) {
         el.classList.toggle('active', slideIndex === realIndex);
     });
 }
-
-// ✅ swiper 썸네일을 가운데로 이동
-// function slideToCenter(index) {
-//     const viewer = document.querySelector('.thumbnail-swiper');
-//     const slides = document.querySelectorAll('.thumbnail');
-//     const target = Array.from(slides).find(
-//         (el) => !el.classList.contains('swiper-slide-duplicate') && parseInt(el.dataset.swiperSlideIndex, 10) === index
-//     );
-
-//     if (!viewer || !target) return;
-
-//     const targetCenter = target.offsetLeft + target.offsetWidth / 2;
-//     const viewerCenter = viewer.clientWidth / 2;
-//     const scrollLeft = targetCenter - viewerCenter;
-
-//     gsap.to(viewer, {
-//         scrollTo: { x: scrollLeft },
-//         duration: 0.5,
-//         ease: 'power2.out',
-//     });
-// }
 
 // ✅ swiper 제거 함수
 function destroySwiper() {
