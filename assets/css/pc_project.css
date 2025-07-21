@@ -36,6 +36,7 @@ section.active { z-index: 1; }
 .thumbnail.active { opacity: 1; transform: scale(1); pointer-events: auto; } 
 .heading { flex: 1; } 
 .title { position: absolute; top: 22px; left: 83px; color: #fff; overflow: hidden; z-index: 2; pointer-events: none; } 
+.title::after { content: ''; display: block; height: 0.55em; /* descender 공간 확보용 */}
 .sub-title { padding-bottom: 8px; text-align: right; overflow: hidden; z-index: 2; } 
 @media (max-width: 1066px){
  .title { top: 22px; left: 27px; } 
@@ -43,12 +44,8 @@ section.active { z-index: 1; }
 
 .title span,
 .sub-title span { display: inline-block; vertical-align: bottom; transform: translate3d(0, 200px, 0); opacity: 0; will-change: transform, opacity; } 
-
-.title::after { content: ''; display: block; height: 0.55em; /* descender 공간 확보용 */}
 .title span { font-size: 128px; font-weight: 700; line-height: 102%; } 
-
 .sub-title span { color: #fff; font-size: 24px; font-weight: 800; line-height: 110%; letter-spacing: -0.48px; } 
-
 .project-info { display: flex; flex: 1; padding-bottom: 8px; flex-direction: column; align-items: flex-start; justify-content: space-between; gap: 32px; z-index: 3; } 
 .project-info > li { overflow: hidden; line-height: 102%; } 
 .project-info > li > div { height: 16px; color: #fff; font-size: 14px; font-weight: 700; line-height: 102%; letter-spacing: -0.28px; } 
