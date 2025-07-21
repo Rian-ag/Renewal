@@ -249,6 +249,26 @@ function applySlideBackgrounds() {
         }
     });
 }
+
+// 모바일에서 썸네일 인터렉션
+function animateActiveThumbnail(index) {
+    const $active = $('.thumbnail.swiper-slide-active').find('img, video');
+
+    gsap.set($active, {
+        y: '30rem',
+        scale: 0.95,
+        opacity: 0,
+    });
+
+    gsap.to($active, {
+        y: '0rem',
+        scale: 1,
+        opacity: 1,
+        duration: 0.6,
+        ease: 'power2.out',
+    });
+}
+
 // ✅ 프로젝트 swiper 초기화 및 썸네일 관리 함수
 function initSwiper() {
     // 👉 썸네일 Swiper 초기화
@@ -284,6 +304,7 @@ function initSwiper() {
                 setTimeout(() => {
                     mainSwiper.update();
                     applySlideBackgrounds();
+                    thumbSwiper.slideToLoop(index, 0);
                 }, 100);
             },
             slideChange() {
@@ -293,6 +314,13 @@ function initSwiper() {
                 $industry.text(project.industry[index]);
                 $date.text(project.date[index]);
                 $type.text(project.type[index]);
+
+                thumbSwiper.update();
+                thumbSwiper.slideToLoop(index, 0);
+
+                if (isMobile()) {
+                    animateActiveThumbnail(index);
+                }
             },
         },
     });
@@ -307,25 +335,25 @@ function updateThumbnailState(realIndex) {
 }
 
 // ✅ swiper 썸네일을 가운데로 이동
-function slideToCenter(index) {
-    const viewer = document.querySelector('.thumbnail-swiper');
-    const slides = document.querySelectorAll('.thumbnail');
-    const target = Array.from(slides).find(
-        (el) => !el.classList.contains('swiper-slide-duplicate') && parseInt(el.dataset.swiperSlideIndex, 10) === index
-    );
+// function slideToCenter(index) {
+//     const viewer = document.querySelector('.thumbnail-swiper');
+//     const slides = document.querySelectorAll('.thumbnail');
+//     const target = Array.from(slides).find(
+//         (el) => !el.classList.contains('swiper-slide-duplicate') && parseInt(el.dataset.swiperSlideIndex, 10) === index
+//     );
 
-    if (!viewer || !target) return;
+//     if (!viewer || !target) return;
 
-    const targetCenter = target.offsetLeft + target.offsetWidth / 2;
-    const viewerCenter = viewer.clientWidth / 2;
-    const scrollLeft = targetCenter - viewerCenter;
+//     const targetCenter = target.offsetLeft + target.offsetWidth / 2;
+//     const viewerCenter = viewer.clientWidth / 2;
+//     const scrollLeft = targetCenter - viewerCenter;
 
-    gsap.to(viewer, {
-        scrollTo: { x: scrollLeft },
-        duration: 0.5,
-        ease: 'power2.out',
-    });
-}
+//     gsap.to(viewer, {
+//         scrollTo: { x: scrollLeft },
+//         duration: 0.5,
+//         ease: 'power2.out',
+//     });
+// }
 
 // ✅ swiper 제거 함수
 function destroySwiper() {
@@ -465,7 +493,6 @@ function closeProjectViewer() {
 $(window).on('load', function () {
     loadProjectList();
     handleLayout();
-    $(window).on('resize', handleLayout);
 });
 
 let resizeTimer;
