@@ -76,10 +76,19 @@ function updateTitleAndSubtitle(index) {
     const $projectInfo = $('.project-info');
 
     // ✅ 타이틀 구성
-    const titleLines = project.title[index]
+    // ✅ 타이틀 구성
+    let titleText = project.title[index];
+
+    // 👉 index === 1일 때 PC에선 Visual + Catregorizing 합치기
+    if (index === 1 && !isMobile()) {
+        titleText = titleText.replace('Personalized\nVisual', 'Personalized Visual');
+    }
+
+    const titleLines = titleText
         .split('\n')
         .map((line) => `<li><span>${line}</span></li>`)
         .join('');
+
     $title.html(`<ul>${titleLines}</ul>`);
 
     // ✅ 서브타이틀 구성
@@ -165,18 +174,28 @@ function updateTitleAndSubtitle(index) {
 // ✅ 이미지 or 비디오 경로에 따라 .image-viewer 업데이트 함수
 function updateImageViewer(mediaPath) {
     const $viewer = $('.image-viewer');
-    $viewer.empty(); // 기존 이미지나 영상 제거
+    $viewer.empty();
 
     if (mediaPath.endsWith('.mp4')) {
         const video = document.createElement('video');
         video.src = mediaPath;
-        video.autoplay = true;
-        video.loop = true;
-        video.muted = true;
-        video.playsInline = true;
+
+        video.setAttribute('autoplay', '');
+        video.setAttribute('muted', '');
+        video.setAttribute('loop', '');
+        video.setAttribute('playsinline', '');
+        video.setAttribute('preload', 'auto');
+
         video.style.width = '100%';
         video.style.height = '100%';
         video.style.objectFit = 'cover';
+        video.style.pointerEvents = 'none';
+
+        // iOS 대응용 play 보장
+        video.addEventListener('loadeddata', () => {
+            video.play().catch(() => {});
+        });
+
         $viewer.append(video);
     } else {
         const img = document.createElement('img');
