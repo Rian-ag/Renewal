@@ -9,11 +9,6 @@ body { color: #000; font-weight: 400; }
 
 #layout { width: 100%; max-width: 1460px; padding: 0 30px; margin: 0 auto; } 
 
-@media (max-width: 1066px){
- #wrap { min-width: 1066px; /* 공통 넣고 삭제예정 */}
- #layout { width: 1066px; } 
- }
-
 .section-container { display: flex; width: 100%; padding: 140px 0; flex-direction: column; gap: 200px; } 
 .title { font-family: 'Plus Jakarta Sans'; font-size: 60px; font-weight: 700; line-height: 102%; letter-spacing: -1.2px; } 
 .content { margin-top: 100px; } 
@@ -21,16 +16,20 @@ body { color: #000; font-weight: 400; }
 
 /* main */
 .main { margin: 0 auto; padding: 70px 0 90px; } 
-.main .title-wrapper { padding-top: 200px; } 
-.main .title-wrapper h2 { font-size: 60px; font-weight: 700; line-height: 102%; letter-spacing: -1.2px; } 
-.main .title-wrapper strong { margin-top: 23px; font-size: 90px; font-weight: 700; line-height: 102%; letter-spacing: -1.2px; } 
-.main .title-wrapper strong br { display: none; } 
-.main .sub-wrapper { width: 920px; margin-left: auto !important; margin-right: 0 !important; } 
-.main .sub-wrapper .head { margin-top: 110px; font-size: 60px; } 
-.main .sub-wrapper .head > p { font-family: 'Plus Jakarta Sans'; font-weight: 700; line-height: 130%; letter-spacing: -1.2px; } 
-.main .sub-wrapper .subhead { margin-top: 40px; } 
-.main .sub-wrapper .subhead p { font-family: var(--font-main); color: #808080; font-feature-settings: 'cpsp' on; font-size: 16px; line-height: 150%; } 
-.main .sub-wrapper p + p { margin-top: 16px; } 
+.title-wrapper { padding-top: 200px; } 
+.title-wrapper h2 li { overflow: hidden; } 
+.title-wrapper h2 span { display: block; padding-bottom: 8px; font-size: 60px; font-weight: 700; line-height: 102%; letter-spacing: -1.2px; transform: translate3d(0, 200px, 0); opacity: 0; will-change: transform, opacity; } 
+.title-wrapper h2 strong { display: block; padding-bottom: 10px; margin-top: 15px; font-size: 90px; font-weight: 700; line-height: 102%; letter-spacing: -1.2px; transform: translate3d(0, 200px, 0); opacity: 0; will-change: transform, opacity; } 
+.title-wrapper strong br { display: none; } 
+.sub-wrapper { width: 920px; margin-left: auto !important; margin-right: 0 !important; } 
+.sub-wrapper .head { margin-top: 100px; font-size: 60px; } 
+.sub-wrapper .head > p,
+.sub-wrapper .subhead p { overflow: hidden; } 
+
+.sub-wrapper .head > p span { display: block; font-family: 'Plus Jakarta Sans'; font-weight: 700; line-height: 130%; letter-spacing: -1.2px; transform: translate3d(0, 200px, 0); opacity: 0; will-change: transform, opacity; } 
+.sub-wrapper .subhead { margin-top: 40px; } 
+.sub-wrapper .subhead p span { display: block; font-family: var(--font-main); color: #808080; font-feature-settings: 'cpsp' on; font-size: 16px; line-height: 150%; transform: translate3d(0, 200px, 0); opacity: 0; will-change: transform, opacity; } 
+.sub-wrapper p + p { margin-top: 16px; } 
 
 /* benefit */
 .benefit-container { display: flex; gap: 40px; justify-content: space-between; } 

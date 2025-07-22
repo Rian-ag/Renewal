@@ -76,10 +76,19 @@ function updateTitleAndSubtitle(index) {
     const $projectInfo = $('.project-info');
 
     // ✅ 타이틀 구성
-    const titleLines = project.title[index]
+    // ✅ 타이틀 구성
+    let titleText = project.title[index];
+
+    // 👉 index === 1일 때 PC에선 Visual + Catregorizing 합치기
+    if (index === 1 && !isMobile()) {
+        titleText = titleText.replace('Personalized\nVisual', 'Personalized Visual');
+    }
+
+    const titleLines = titleText
         .split('\n')
         .map((line) => `<li><span>${line}</span></li>`)
         .join('');
+
     $title.html(`<ul>${titleLines}</ul>`);
 
     // ✅ 서브타이틀 구성
@@ -163,21 +172,30 @@ function updateTitleAndSubtitle(index) {
 }
 
 // ✅ 이미지 or 비디오 경로에 따라 .image-viewer 업데이트 함수
-
 function updateImageViewer(mediaPath) {
     const $viewer = $('.image-viewer');
-    $viewer.empty(); // 기존 이미지나 영상 제거
+    $viewer.empty();
 
     if (mediaPath.endsWith('.mp4')) {
         const video = document.createElement('video');
         video.src = mediaPath;
-        video.autoplay = true;
-        video.loop = true;
-        video.muted = true;
-        video.playsInline = true;
+
+        video.setAttribute('autoplay', '');
+        video.setAttribute('muted', '');
+        video.setAttribute('loop', '');
+        video.setAttribute('playsinline', '');
+        video.setAttribute('preload', 'auto');
+
         video.style.width = '100%';
         video.style.height = '100%';
         video.style.objectFit = 'cover';
+        video.style.pointerEvents = 'none';
+
+        // iOS 대응용 play 보장
+        video.addEventListener('loadeddata', () => {
+            video.play().catch(() => {});
+        });
+
         $viewer.append(video);
     } else {
         const img = document.createElement('img');
@@ -262,7 +280,7 @@ document.querySelectorAll('.thumbnail').forEach((thumb) => {
 
     thumb.addEventListener('touchend', (e) => {
         if (isDragging) {
-            e.preventDefault(); // 드래그 시 링크 동작 방지
+            e.preventDefault();
 
             // 드래그 방향에 따라 메인 슬라이드 이동
             if (dragDiff > 0) {
@@ -271,9 +289,8 @@ document.querySelectorAll('.thumbnail').forEach((thumb) => {
                 mainSwiper.slideNext();
             }
         } else {
-            // 드래그가 아니면 탭으로 판단하여 링크 열기
             const link = e.currentTarget.getAttribute('href');
-            if (link) window.open(link, '_blank');
+            if (link) window.location.href = link;
         }
     });
 });
@@ -313,10 +330,9 @@ function animateActiveThumbnail(index) {
         scale: 1,
         opacity: 1,
         duration: 1.1,
-       ease: 'power3.out',
+        ease: 'power3.out',
     });
 }
-
 
 // ✅ 프로젝트 swiper 초기화 및 썸네일 관리 함수
 function initSwiper() {
@@ -471,7 +487,7 @@ function loadProjectList() {
             const tagsHtml = item.tags.map((tag) => `<li>${tag}</li>`).join('');
             const html = `
                 <a class="list-item" data-image="${item.image}" href="${item.link || 'javascript:void(0);'}" 
-                   ${item.link ? 'data-link="true" target="_blank"' : ''}>
+                   ${item.link ? 'data-link="true"' : ''}>
                     <div class="animate-wrap">
                         <div class="animate">
                             <div class="ani-top">

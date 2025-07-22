@@ -61,24 +61,32 @@
                             <a href="/contact.html">RIANAG@RIANAG.COM</a>
                             <!-- <a href="http://daum.net" target="_blank">BLOG</a> -->
                         </div>
-                        <a href="/assets/RIANag_CompanyProfile.pdf" class="download" target="_blank">BROCHURE DOWNLOAD</a>
+                        <a href="/assets/RIANag_CompanyProfile.pdf" class="download" target="_blank"
+                            >BROCHURE DOWNLOAD</a
+                        >
                     </div>
                     <!-- //bottom -->
-                </div>
+                </div> 
             </header>
             <!-- //header -->
             <div id="layout">
                 <!-- main -->
                 <div class="main">
                     <div class="title-wrapper">
-                        <h2 class="title">We need you</h2>
-                        <strong>recruit@rianag.<br />com</strong>
+                        <h2 class="title">
+                            <ul>
+                                <li><span>We need you</span></li>
+                                <li>
+                                    <strong>recruit@rian.<br />com</strong>
+                                </li>
+                            </ul>
+                        </h2>
                     </div>
                     <div class="sub-wrapper">
                         <!-- pc -->
                         <div class="head pc">
-                            <p class="tar">We make digital solutions</p>
-                            <p class="tal">that deliver real results.</p>
+                            <p class="tar"><span>We make digital solutions</span></p>
+                            <p class="tal"><span></span></p>
                         </div>
                         <!-- mo -->
                         <h3 class="mo">
@@ -89,11 +97,13 @@
                             </ul>
                         </h3>
                         <div class="subhead">
-                            <p>리앙에이지는 국내 최고의 전문가들이 설립한 글로벌 UX 전문기업입니다.</p>
+                            <p><span>리앙에이지는 국내 최고의 전문가들이 설립한 글로벌 UX 전문기업입니다.</span></p>
                             <p>
-                                e-Commerce, e-Finance, e-Brand 등 온라인 사업분야에서 강한 리더십과 믿음직한
-                                커뮤니케이션 능력을 활용하여 글로벌 비즈니스, 모바일, 컨버전스 분야로 확대해 가고
-                                있습니다.
+                                <span>
+                                    e-Commerce, e-Finance, e-Brand 등 온라인 사업분야에서 강한 리더십과 믿음직한
+                                    커뮤니케이션 능력을 활용하여 글로벌 비즈니스, 모바일, 컨버전스 분야로 확대해 가고
+                                    있습니다.
+                                </span>
                             </p>
                         </div>
                     </div>
@@ -106,7 +116,7 @@
                             <ul class="benefit-container">
                                 <li class="benefit-item">
                                     <div class="img-wrapper">
-                                        <img class="lazy" data-src="/assets/images/join/benefit1.jpg" alt="" />
+                                        <img src="/assets/images/join/benefit1.jpg" alt="" />
                                     </div>
                                     <ol>
                                         <li>
@@ -124,7 +134,7 @@
                                 </li>
                                 <li class="benefit-item">
                                     <div class="img-wrapper">
-                                        <img class="lazy" data-src="/assets/images/join/benefit2.jpg" alt="" />
+                                        <img src="/assets/images/join/benefit2.jpg" alt="" />
                                     </div>
                                     <ol>
                                         <li>
@@ -142,7 +152,7 @@
                                 </li>
                                 <li class="benefit-item">
                                     <div class="img-wrapper">
-                                        <img class="lazy" data-src="/assets/images/join/benefit3.jpg" alt="" />
+                                        <img src="/assets/images/join/benefit3.jpg" alt="" />
                                     </div>
                                     <ol>
                                         <li>
@@ -328,106 +338,101 @@
         <script src="/assets/js/accordion.js"></script>
         <script>
             $(function () {
-                lazyLoads();
                 customCursorEffect();
-            });
-            gsap.registerPlugin(ScrollTrigger);
-            // ✅ title-wrapper 안 텍스트 한 줄씩
-            $('.title-wrapper')
-                .children()
-                .each(function (i, el) {
-                    gsap.from(el, {
-                        opacity: 0,
-                        y: 40,
-                        duration: 0.6,
-                        delay: i * 0.2,
-                        ease: 'power3.out',
-                        scrollTrigger: {
-                            trigger: el,
-                            start: 'top 90%',
-                            toggleActions: 'play none none none',
-                        },
-                    });
-                });
+                gsap.registerPlugin(ScrollTrigger);
 
-            // ✅ sub-wrapper 안 p들 한 줄씩
-            $('.sub-wrapper p').each(function (i, el) {
-                gsap.from(el, {
-                    opacity: 0,
-                    y: 40,
-                    duration: 0.6,
-                    delay: i * 0.2,
-                    ease: 'power3.out',
+                // 텍스트 관련 애니메이션
+                function animateFromTo(targets, options = {}) {
+                    if (!targets || targets.length === 0) return;
+
+                    gsap.fromTo(
+                        targets,
+                        {
+                            opacity: 0,
+                            y: 200,
+                            force3D: true,
+                        },
+                        {
+                            opacity: 1,
+                            y: 0,
+                            duration: options.duration || 1.1,
+                            stagger: options.stagger || 0.15,
+                            ease: options.ease || 'power2.out',
+                            force3D: true,
+                        }
+                    );
+                }
+
+                const titleSpans = gsap.utils.toArray('.title-wrapper h2 span');
+                const subtitleSpans = gsap.utils.toArray('.title-wrapper h2 strong');
+                const headSpans = gsap.utils.toArray('.head p span');
+                const subheadSpans = gsap.utils.toArray('.subhead p span');
+                const moSubSpan = gsap.utils.toArray('h3 li span ');
+
+                animateFromTo(titleSpans);
+                animateFromTo(subtitleSpans);
+                animateFromTo(headSpans);
+                animateFromTo(subheadSpans);
+                animateFromTo(moSubSpan);
+
+                // section 관련 애니메이션
+                function animateSectionItems(sectionSelector, itemSelector) {
+                    const sections = document.querySelectorAll(sectionSelector);
+                    if (!sections.length) return;
+
+                    sections.forEach((section) => {
+                        let items = itemSelector
+                            ? gsap.utils.toArray(section.querySelectorAll(itemSelector))
+                            : gsap.utils.toArray(section.children);
+
+                        if (!items.length) return;
+
+                        gsap.set(items, { opacity: 0, y: 200, force3D: true });
+
+                        gsap.to(items, {
+                            opacity: 1,
+                            y: 0,
+                            duration: 1.4,
+                            stagger: 0.2,
+                            ease: 'power3.out',
+                            scrollTrigger: {
+                                trigger: section,
+                                start: 'top 85%',
+                                toggleActions: 'play none none none',
+                            },
+                        });
+                    });
+                }
+                animateSectionItems('.section-container > section, .benefit-container');
+
+                //전형절차 애니메이션
+                const stepTitles = $('.step-title li');
+                const stepDots = $('.step-line .step-dot');
+                const stepDescs = $('.step-desc li');
+
+                const stepTimeline = gsap.timeline({
                     scrollTrigger: {
-                        trigger: el,
+                        trigger: '.apply-item .step-list',
                         start: 'top 90%',
                         toggleActions: 'play none none none',
                     },
                 });
-            });
 
-            // ✅ 각 section 내부 title, content 애니메이션
-            $('.section-container > section').each(function (_, section) {
-                const $section = $(section);
-                const title = $section.find('.title')[0];
-                const content = $section.find('.content')[0];
+                stepTitles.each(function (i) {
+                    const group = [stepTitles[i], stepDots[i], stepDescs[i]];
 
-                if (title) {
-                    gsap.from(title, {
-                        opacity: 0,
-                        y: 40,
-                        duration: 0.8,
-                        ease: 'power3.out',
-                        scrollTrigger: {
-                            trigger: section,
-                            start: 'top 80%',
-                            toggleActions: 'play none none none',
+                    stepTimeline.from(
+                        group,
+                        {
+                            opacity: 0,
+                            y: 30,
+                            duration: 0.5,
+                            ease: 'power3.out',
+                            stagger: 0.05,
                         },
-                    });
-                }
-
-                if (content) {
-                    gsap.from(content, {
-                        opacity: 0,
-                        y: 40,
-                        duration: 0.8,
-                        delay: 0.2,
-                        ease: 'power3.out',
-                        scrollTrigger: {
-                            trigger: section,
-                            start: 'top 80%',
-                            toggleActions: 'play none none none',
-                        },
-                    });
-                }
-            });
-            // 전형절차 step 그룹 순차 등장 (동시에 세 요소씩)
-            const stepTitles = $('.step-title li');
-            const stepDots = $('.step-line .step-dot');
-            const stepDescs = $('.step-desc li');
-
-            const stepTimeline = gsap.timeline({
-                scrollTrigger: {
-                    trigger: '.apply-item .step-list',
-                    start: 'top 90%',
-                    toggleActions: 'play none none none',
-                },
-            });
-
-            stepTitles.each(function (i) {
-                const group = [stepTitles[i], stepDots[i], stepDescs[i]];
-
-                stepTimeline.from(
-                    group,
-                    {
-                        opacity: 0,
-                        y: 30,
-                        duration: 0.5,
-                        ease: 'power3.out',
-                        stagger: 0.05,
-                    },
-                    i * 0.2
-                );
+                        i * 0.2
+                    );
+                });
             });
         </script>
     </body>
