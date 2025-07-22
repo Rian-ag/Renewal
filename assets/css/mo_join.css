@@ -1,29 +1,18 @@
-@import url('../css/font.css');:root { --font-main: 'Pretendard', sans-serif; } 
-
 @media screen and (max-width: 768px) { html { font-size: calc(100vw / 39); } 
  }
 
-/* 모바일 터치 최적화 */
-body,
-a,
-button,
-.swiper-slide_wrap,
-.project-viewer { user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent; } 
-
-html,
-body { touch-action: manipulation; } 
-
+:root { --font-main: 'Pretendard', sans-serif; } 
 body { height: 100%; font-family: var(--font-main); font-weight: 400; font-style: normal; color: #000; overflow-x: hidden; } 
 .pc { display: none !important; } 
 * { box-sizing: border-box; } 
-.ko { font-family: var(--font-main); } 
+
 /* 공통 */
 .tar { text-align: right !important; } 
 .tal { text-align: left !important; } 
 .pc { display: none; } 
 
 * { word-break: keep-all; } 
-.layout { width: 100vw; padding-top: 8rem; /* padding: 8rem 3rem 0; */}
+.layout { width: 100vw; padding-top: 8rem; } 
 .section-container { display: flex; flex-direction: column; gap: 0; } 
 .section-container > section { padding-bottom: 16rem; } 
 .title { font-family: 'Plus Jakarta Sans'; font-style: normal; font-size: 3.2rem; font-weight: 700; line-height: 102%; letter-spacing: -0.64px; } 
@@ -34,17 +23,18 @@ body { height: 100%; font-family: var(--font-main); font-weight: 400; font-style
 
 /* main */
 .main { padding: 14rem 3rem 12rem; } 
-.main .title-wrapper h2 { font-size: 3.2rem; font-weight: 700; line-height: 102%; letter-spacing: -0.64px; } 
-.main .title-wrapper strong { display: block; margin-top: 2rem; font-size: 4.8rem; font-weight: 800; line-height: 102%; letter-spacing: -0.96px; } 
-.main .title-wrapper strong br { display: block; } 
 
-.main .sub-wrapper .subhead { margin-top: 4rem; } 
-.main .sub-wrapper .subhead p { font-family: var(--font-main); color: #808080; font-feature-settings: 'cpsp' on; font-size: 1.6rem; line-height: 150%; } 
-.main .sub-wrapper p + p { margin-top: 1.6rem; } 
-
+.title-wrapper h2 li { overflow: hidden; } 
+.title-wrapper h2 span { display: block; font-size: 3.2rem; font-weight: 700; line-height: 102%; letter-spacing: -0.64px; transform: translate3d(0, 200px, 0); opacity: 0; will-change: transform, opacity; } 
+.title-wrapper h2 strong { display: block; margin-top: 2rem; font-size: 4.8rem; font-weight: 800; line-height: 102%; letter-spacing: -0.96px; transform: translate3d(0, 200px, 0); opacity: 0; will-change: transform, opacity; } 
+.title-wrapper strong br { display: block; } 
+.sub-wrapper .subhead { margin-top: 4rem; } 
+.sub-wrapper .subhead p { overflow: hidden; } 
+.sub-wrapper .subhead p span { display: block; font-family: var(--font-main); color: #808080; font-feature-settings: 'cpsp' on; font-size: 1.6rem; line-height: 150%; transform: translate3d(0, 200px, 0); opacity: 0; will-change: transform, opacity; } 
+.sub-wrapper p + p { margin-top: 1.6rem; } 
 .sub-wrapper h3 { margin-top: 12rem; } 
 .sub-wrapper h3 li { overflow: hidden; } 
-.sub-wrapper h3 li span { display: block; font-family: 'Plus Jakarta Sans'; font-size: 2.4rem; font-weight: 700; line-height: 130%; letter-spacing: -0.48px; } 
+.sub-wrapper h3 li span { display: block; font-family: 'Plus Jakarta Sans'; font-size: 2.4rem; font-weight: 700; line-height: 130%; letter-spacing: -0.48px; transform: translate3d(0, 200px, 0); opacity: 0; will-change: transform, opacity; } 
 
 /* benefit */
 .benefit-container { width: 100%; display: flex; flex-direction: column; justify-content: space-between; align-items: center; gap: 6rem; } 
@@ -58,7 +48,7 @@ body { height: 100%; font-family: var(--font-main); font-weight: 400; font-style
 .board_type_toggle > dt { border-top: 1px solid rgba(0, 0, 0, 0.2); position: relative; height: 8rem; display: flex; justify-content: flex-start; align-items: center; } 
 .board_type_toggle > dt > button { position: relative; display: block; width: 100%; height: 100%; color: #000; font-family: 'Plus Jakarta Sans'; font-size: 2rem; font-style: normal; font-weight: 700; letter-spacing: -0.64px; cursor: pointer; } 
 .board_type_toggle > dt > button::after { content: ''; position: absolute; width: 2rem; height: 2rem; right: 0; top: 50%; transform: translateY(-50%); background: url('/assets/images/join/toggle.svg'); background-repeat: no-repeat; background-position: center; background-size: cover; transition: all 0.3s ease; } 
-.board_type_toggle > dt > button.active::after { transform: translateY(-50%) rotate(180deg);}
+.board_type_toggle > dt > button.active::after { transform: translateY(-50%) rotate(180deg); } 
 .board_type_toggle > dd { height: 0; line-height: 1.5; overflow: hidden; transition: height 0.3s ease; overflow: hidden; } 
 .board_type_toggle > dd > ul { display: flex; flex-direction: column; padding: 4rem 0; gap: 4rem; } 
 .board_type_toggle > dd > ul > li > strong { font-size: 2rem; font-weight: 700; line-height: 130%; letter-spacing: -0.3px; color: #464646; } 
@@ -78,8 +68,7 @@ body { height: 100%; font-family: var(--font-main); font-weight: 400; font-style
 .apply-item .process-info > p::before { content: ''; width: 4px; height: 4px; position: absolute; left: 4px; top: 50%; transform: translateY(-50%); background-color: #808080; border-radius: 50%; } 
 .apply-item .process-info > p:last-child::before { top: 0; transform: translateY(1rem); } 
 .step-list { position: relative; padding: 6rem 3rem 6.8rem; background: rgba(250, 250, 250, 0.98); } 
-.step-item { text-align: center; /* flex: 1; */
- position: relative; } 
+.step-item { text-align: center; position: relative; } 
 .step-title { display: flex; gap: 1rem; align-items: center; margin: 0 auto; margin-bottom: 4.3rem; } 
 .step-title > li { font-size: 1.4rem; font-weight: 700; line-height: 150%; letter-spacing: -0.21px; font-family: var(--font-main); } 
 .step-title > li:nth-child(1) { width: 6.3rem; } 
@@ -104,4 +93,3 @@ body { height: 100%; font-family: var(--font-main); font-weight: 400; font-style
 .step-desc > li::after { content: ''; position: absolute; right: 0; top: 0; width: 1px; height: 6rem; background: #e6e6e6; } 
 .step-desc > li:last-child::after { display: none; } 
 .step-desc > li > p { position: absolute; bottom: 0; font-size: 1.4rem; line-height: 150%; letter-spacing: -0.21px; font-family: var(--font-main); } 
-
