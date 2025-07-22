@@ -2,16 +2,6 @@
 @media screen and (max-width: 768px) { html { font-size: calc(100vw / 39); } 
  }
 
-/* 모바일 터치 최적화 */
-body,
-a,
-button,
-.swiper-slide_wrap,
-.project-viewer { user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent; } 
-
-html,
-body { touch-action: manipulation; } 
-
 body { font-family: var(--font-main); font-weight: 400; font-style: normal; color: #000; } 
 * { box-sizing: border-box; } 
 
@@ -41,18 +31,14 @@ span { display: block; }
 .product-info p { color: #fff; text-overflow: ellipsis; font-size: 12px; line-height: 140%; letter-spacing: -0.06px; } 
 .prices { display: flex; align-items: baseline; margin-top: 1.4rem; } 
 .product-info strong { color: #fff; font-family: var(--font-sub); font-size: 1.5rem; font-weight: 700; line-height: 120%; } 
-
 .product-info span { color: #fff; font-size: 1.4rem; font-weight: 700; line-height: 120%; letter-spacing: -0.14px; } 
-
 .to-bottom.dark{background-image: url(/assets/images/work_detail/to-bottm-dark.svg);}
  .visual-sub { padding: 2.4rem 3rem; } 
-
 .visual-sub .project-info li { color: #101010; font-family: 'Plus Jakarta Sans'; font-size: 1.2rem; font-weight: 700; line-height: 102%; letter-spacing: -0.24px; } 
 .visual-sub .project-info li:not(:first-child) { margin-top: 1.6rem; } 
 
 /* section-common */
 section { position: relative; background-color: #fff; z-index: 100; } 
-
 .section-common { padding: 12rem 3rem 6rem; z-index: 50; } 
 .section-common h3 li { overflow: hidden; } 
 .section-common h3 span { color: #000; font-family: 'Plus Jakarta Sans'; font-size: 4rem; font-weight: 700; line-height: 110%; letter-spacing: -0.8px; transform: translate3d(0, 200px, 0); opacity: 0; will-change: transform, opacity; } 
