@@ -163,7 +163,6 @@ function updateTitleAndSubtitle(index) {
 }
 
 // ✅ 이미지 or 비디오 경로에 따라 .image-viewer 업데이트 함수
-
 function updateImageViewer(mediaPath) {
     const $viewer = $('.image-viewer');
     $viewer.empty(); // 기존 이미지나 영상 제거
@@ -262,7 +261,7 @@ document.querySelectorAll('.thumbnail').forEach((thumb) => {
 
     thumb.addEventListener('touchend', (e) => {
         if (isDragging) {
-            e.preventDefault(); // 드래그 시 링크 동작 방지
+            e.preventDefault();
 
             // 드래그 방향에 따라 메인 슬라이드 이동
             if (dragDiff > 0) {
@@ -271,9 +270,8 @@ document.querySelectorAll('.thumbnail').forEach((thumb) => {
                 mainSwiper.slideNext();
             }
         } else {
-            // 드래그가 아니면 탭으로 판단하여 링크 열기
             const link = e.currentTarget.getAttribute('href');
-            if (link) window.open(link, '_blank');
+            if (link) window.location.href = link;
         }
     });
 });
@@ -313,10 +311,9 @@ function animateActiveThumbnail(index) {
         scale: 1,
         opacity: 1,
         duration: 1.1,
-       ease: 'power3.out',
+        ease: 'power3.out',
     });
 }
-
 
 // ✅ 프로젝트 swiper 초기화 및 썸네일 관리 함수
 function initSwiper() {
@@ -471,7 +468,7 @@ function loadProjectList() {
             const tagsHtml = item.tags.map((tag) => `<li>${tag}</li>`).join('');
             const html = `
                 <a class="list-item" data-image="${item.image}" href="${item.link || 'javascript:void(0);'}" 
-                   ${item.link ? 'data-link="true" target="_blank"' : ''}>
+                   ${item.link ? 'data-link="true"' : ''}>
                     <div class="animate-wrap">
                         <div class="animate">
                             <div class="ani-top">
