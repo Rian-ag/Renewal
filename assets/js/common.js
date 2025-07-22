@@ -159,6 +159,17 @@ $(document).ready(function () {
 
     initPageRestoreHandler();
 
+    document.addEventListener('DOMContentLoaded', function () {
+        const video = document.querySelector('video');
+        if (video) {
+            video.play().catch(() => {
+            // autoplay 실패 시 처리
+            video.muted = true;
+            video.play();
+            });
+        }
+    });
+
 
 
 });
