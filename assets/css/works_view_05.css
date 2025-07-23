@@ -39,7 +39,7 @@ section { position: relative; }
 @media screen and (max-width: 768px) { body { overflow-x: hidden; } 
  .section-list.main-section { padding: 0; } 
  .section-list { width: 100vw; padding-top: 0; } 
- .section-list.banner-section {padding-top: 20px;} 
+ 
  .section-list.tablet-section { padding-top: 100px; } 
  .section-list .cont_inner { padding: 0; width: 100vw; max-width: 100%; } 
  .text-wrapper { padding: 100px 16px 80px; } 
