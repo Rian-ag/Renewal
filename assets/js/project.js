@@ -76,7 +76,6 @@ function updateTitleAndSubtitle(index) {
     const $projectInfo = $('.project-info');
 
     // ✅ 타이틀 구성
-    // ✅ 타이틀 구성
     let titleText = project.title[index];
 
     // 👉 index === 1일 때 PC에선 Visual + Catregorizing 합치기
@@ -123,7 +122,6 @@ function updateTitleAndSubtitle(index) {
         const titleSpans = gsap.utils.toArray('.title span');
         const subtitleSpans = gsap.utils.toArray('.sub-title span');
 
-        // 각각 동시에 실행되도록 따로 fromTo 호출
         gsap.fromTo(
             titleSpans,
             {
@@ -257,44 +255,6 @@ function initListItemBehavior() {
     });
 }
 
-// ✅ 썸네일 터치 드래그로 메인 슬라이드 이동 + 클릭 구분
-let dragStartX = 0;
-let dragDiff = 0;
-let isDragging = false;
-
-document.querySelectorAll('.thumbnail').forEach((thumb) => {
-    thumb.addEventListener('touchstart', (e) => {
-        dragStartX = e.touches[0].clientX; // 터치 시작 X좌표 저장
-        isDragging = false;
-    });
-
-    thumb.addEventListener('touchmove', (e) => {
-        const moveX = e.touches[0].clientX;
-        dragDiff = moveX - dragStartX;
-
-        // 일정 거리 이상 움직이면 드래그로 판단
-        if (Math.abs(dragDiff) > 10) {
-            isDragging = true;
-        }
-    });
-
-    thumb.addEventListener('touchend', (e) => {
-        if (isDragging) {
-            e.preventDefault();
-
-            // 드래그 방향에 따라 메인 슬라이드 이동
-            if (dragDiff > 0) {
-                mainSwiper.slidePrev();
-            } else {
-                mainSwiper.slideNext();
-            }
-        } else {
-            const link = e.currentTarget.getAttribute('href');
-            if (link) window.location.href = link;
-        }
-    });
-});
-
 // 각 슬라이드 인덱스에 대응되는 배경색 배열 (data-swiper-slide-index 기준)
 const bgColors = ['#1d1617', '#EA1236', '#8DDFAF', '#A5BFE1', '#253146', '#1D251C', '#215EC3', '#5FBF8C', '#089BD0'];
 
@@ -310,28 +270,29 @@ function applySlideBackgrounds() {
 let previousIndex = 0;
 
 function animateActiveThumbnail(index) {
-    const $active = $('.thumbnail.swiper-slide-active').find('img, video');
+    const $active = $('.thumbnail-swiper .swiper-slide-active').find('img, video');
     if (!$active.length) return;
 
-    // 현재 방향 계산
     const direction = index > previousIndex ? 'right' : 'left';
     previousIndex = index;
 
-    const fromX = direction === 'right' ? '24.5rem' : '-24.5rem';
+    const fromX = direction === 'right' ? 80 : -80;
 
-    gsap.set($active, {
-        x: fromX,
-        scale: 0.95,
-        opacity: 0,
-    });
-
-    gsap.to($active, {
-        x: '0rem',
-        scale: 1,
-        opacity: 1,
-        duration: 1.1,
-        ease: 'power3.out',
-    });
+    gsap.fromTo(
+        $active,
+        {
+            x: fromX,
+            opacity: 0,
+            scale: 0.96,
+        },
+        {
+            x: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 1.3,
+            ease: 'expo.out',
+        }
+    );
 }
 
 // ✅ 프로젝트 swiper 초기화 및 썸네일 관리 함수
@@ -361,7 +322,6 @@ function initSwiper() {
             init() {
                 const index = this.realIndex;
                 updateTitleAndSubtitle(index);
-                updateThumbnailState(index);
                 $industry.text(project.industry[index]);
                 $date.text(project.date[index]);
                 $type.text(project.type[index]);
@@ -375,7 +335,6 @@ function initSwiper() {
             slideChange() {
                 const index = this.realIndex;
                 updateTitleAndSubtitle(index);
-                updateThumbnailState(index);
                 $industry.text(project.industry[index]);
                 $date.text(project.date[index]);
                 $type.text(project.type[index]);
@@ -390,15 +349,6 @@ function initSwiper() {
         },
     });
 }
-// ✅ swiper 내부 썸네일 상태 업데이트
-function updateThumbnailState(realIndex) {
-    const thumbnails = document.querySelectorAll('.thumbnail');
-    thumbnails.forEach((el) => {
-        const slideIndex = parseInt(el.dataset.swiperSlideIndex, 10);
-        el.classList.toggle('active', slideIndex === realIndex);
-    });
-}
-
 // ✅ swiper 제거 함수
 function destroySwiper() {
     if (mainSwiper) {
