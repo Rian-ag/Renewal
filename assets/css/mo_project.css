@@ -2,9 +2,7 @@
 html,
 body { height: 100%; margin: 0; padding: 0; color: #fff; overflow: hidden; } 
 .pc { display: none; } 
-body,
-a,
-button { user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent; } 
+body,a,button { user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent; } 
 @media screen and (max-width: 768px) { html { font-size: calc(100vw / 39); } 
  }
 * { box-sizing: border-box; } 
