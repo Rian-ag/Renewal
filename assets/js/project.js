@@ -270,28 +270,29 @@ function applySlideBackgrounds() {
 let previousIndex = 0;
 
 function animateActiveThumbnail(index) {
-    const $active = $('.thumbnail.swiper-slide-active').find('img, video');
+    const $active = $('.thumbnail-swiper .swiper-slide-active').find('img, video');
     if (!$active.length) return;
 
-    // 현재 방향 계산
     const direction = index > previousIndex ? 'right' : 'left';
     previousIndex = index;
 
-    const fromX = direction === 'right' ? '24.5rem' : '-24.5rem';
+    const fromX = direction === 'right' ? 80 : -80;
 
-    gsap.set($active, {
-        x: fromX,
-        scale: 0.95,
-        opacity: 0,
-    });
-
-    gsap.to($active, {
-        x: '0rem',
-        scale: 1,
-        opacity: 1,
-        duration: 1.1,
-        ease: 'power3.out',
-    });
+    gsap.fromTo(
+        $active,
+        {
+            x: fromX,
+            opacity: 0,
+            scale: 0.96,
+        },
+        {
+            x: 0,
+            opacity: 1,
+            scale: 1,
+            duration: 1.3,
+            ease: 'expo.out',
+        }
+    );
 }
 
 // ✅ 프로젝트 swiper 초기화 및 썸네일 관리 함수
