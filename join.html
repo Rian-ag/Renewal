@@ -339,6 +339,17 @@
         <script>
             $(function () {
                 customCursorEffect();
+                let prevIsMobile = window.innerWidth <= 767;
+                $(window).on('resize', function () {
+                    const currentIsMobile = window.innerWidth <= 767;
+
+                    if (prevIsMobile !== currentIsMobile) {
+                        prevIsMobile = currentIsMobile;
+
+                        // 📌 다시 적용
+                        customCursorEffect();
+                    }
+                });
                 gsap.registerPlugin(ScrollTrigger);
 
                 // 텍스트 관련 애니메이션

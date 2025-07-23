@@ -146,7 +146,6 @@
             }, 1000);
             customCursorEffect()
             /* header스크롤 */
-            customCursorEffect();
 
             $('.tel').on('click', function (e) {
                 const href = $(this).attr('href');
@@ -163,6 +162,18 @@
                 
                 window.open(url, '_blank');
             });
+            let prevIsMobile = window.innerWidth <= 767;
+            $(window).on('resize', function () {
+				const currentIsMobile = window.innerWidth <= 767;
+
+				if (prevIsMobile !== currentIsMobile) {
+					prevIsMobile = currentIsMobile;
+
+					// 📌 다시 적용
+					customCursorEffect();
+				}
+			});
+
         })//fn
     </script>
     

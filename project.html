@@ -224,6 +224,19 @@
             $(function () {
                 customCursorEffect($('.contents'), 'view');
                 customCursorEffect($('.project-section'), 'scroll');
+
+                let prevIsMobile = window.innerWidth <= 767;
+                $(window).on('resize', function () {
+                    const currentIsMobile = window.innerWidth <= 767;
+
+                    if (prevIsMobile !== currentIsMobile) {
+                        prevIsMobile = currentIsMobile;
+
+                        // 📌 다시 적용
+                        customCursorEffect($('.contents'), 'view');
+                        customCursorEffect($('.project-section'), 'scroll');
+                    }
+                });
             });
         </script>
     </body>

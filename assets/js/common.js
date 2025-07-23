@@ -170,6 +170,11 @@ $(document).ready(function () {
         }
     });
 
+    window.addEventListener('resize', () => {
+        ScrollTrigger.refresh();
+        console.log('refresh')
+    });
+
 
 
 });
@@ -291,26 +296,42 @@ function customCursorEffect($area = null, type = 'view') {
     const isMobile = window.innerWidth <= 767;
     const $cursorDot = $('.custom-cursor.dot-cursor');
     const $cursor = $(`.custom-cursor.${type}`);
+
+    // ✅ 모든 이전 이벤트 제거 (중복 방지)
+    $(document).off('mousemove.customCursor.' + type);
+    if ($area) {
+        $area.off('mouseenter.customCursor.' + type);
+        $area.off('mouseleave.customCursor.' + type);
+    }
+
     if (isMobile) {
-        // ✅ 모바일이면 커서 숨기고 이벤트 해제
+        // ✅ 모바일이면 숨기고 리턴
         $cursorDot.css('display', 'none');
         $cursor.css('display', 'none');
-        $(document).off('mousemove.customCursor.' + type);
-        if ($area) {
-            $area.off('mouseenter.customCursor.' + type);
-            $area.off('mouseleave.customCursor.' + type);
-        }
         return;
     }
 
-    // ✅ PC일 경우만 마우스 따라다니게
+    // ✅ PC인 경우 커서 표시
+    $cursorDot.css({
+        display: 'block',
+        transform: 'translate(-50%, -50%) scale(1)',
+        opacity: 1
+    });
+    $cursor.css({
+        display: 'flex',
+        transform: 'translate(-50%, -50%) scale(0.5)',
+        opacity: 0
+    });
+
+    // ✅ 마우스 따라 이동
     $(document).on('mousemove.customCursor.' + type, function (e) {
         const x = e.clientX;
         const y = e.clientY;
         $cursorDot.css({ left: x, top: y });
         $cursor.css({ left: x, top: y });
     });
-    // ✅ hover 효과 처리
+
+    // ✅ hover 대상 있을 경우
     if ($area && $area.length > 0) {
         $area.on('mouseenter.customCursor.' + type, function () {
             $cursorDot.css('transform', 'translate(-50%, -50%) scale(0)');
@@ -319,18 +340,13 @@ function customCursorEffect($area = null, type = 'view') {
                 opacity: 1,
             });
         });
+
         $area.on('mouseleave.customCursor.' + type, function () {
             $cursorDot.css('transform', 'translate(-50%, -50%) scale(1)');
             $cursor.css({
                 transform: 'translate(-50%, -50%) scale(0.5)',
                 opacity: 0,
             });
-        });
-    } else {
-        // ❌ hover 대상 없으면 기본 크기만
-        $cursor.css({
-            transform: 'translate(-50%, -50%) scale(0.5)',
-            opacity: 1,
         });
     }
 }
