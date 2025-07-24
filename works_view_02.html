@@ -399,6 +399,17 @@
                 animateSectionItems(
                     '.section-list, ul.device-container, .grid-wrapper, .flex-container, .flex-wrapper'
                 );
+                let prevIsMobile = window.innerWidth <= 767;
+                $(window).on('resize', function () {
+                    const currentIsMobile = window.innerWidth <= 767;
+
+                    if (prevIsMobile !== currentIsMobile) {
+                        prevIsMobile = currentIsMobile;
+
+                        // 📌 다시 적용
+                        customCursorEffect($('#bottom > section > a:last-of-type'), 'next');
+                    }
+                });
             });
         </script>
     </body>

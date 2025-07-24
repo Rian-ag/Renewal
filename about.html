@@ -414,9 +414,20 @@
 
             // ✅ 리사이즈 대응
             let resizeTimer;
+            let prevIsMobile = window.innerWidth <= 767;
             window.addEventListener('resize', function () {
                 clearTimeout(resizeTimer);
                 resizeTimer = setTimeout(updateLazyloadSrc, 200);
+                const currentIsMobile = window.innerWidth <= 767;
+
+				if (prevIsMobile !== currentIsMobile) {
+					prevIsMobile = currentIsMobile;
+
+					// 📌 다시 적용
+					customCursorEffect($('.parallax-bg'), 'view');
+					customCursorEffect($('.visual_cont'), 'view');
+					customCursorEffect($('.video-bg'), 'view');
+				}
             });
         });
 

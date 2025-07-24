@@ -42,12 +42,12 @@
 			updateLazyloadSrc(); // ✅ src 교체
 			new LazyLoad();      // ✅ 이미지 lazyload 실행
 
-		// ✅ 리사이즈 대응
-		let resizeTimer;
-		window.addEventListener('resize', function () {
-			clearTimeout(resizeTimer);
-			resizeTimer = setTimeout(updateLazyloadSrc, 200);
-		});
+			// ✅ 리사이즈 대응
+			let resizeTimer;
+			window.addEventListener('resize', function () {
+				clearTimeout(resizeTimer);
+				resizeTimer = setTimeout(updateLazyloadSrc, 200);
+			});
 
 			// ✅ 이하 기존 기능 유지
 			var project = {
@@ -170,6 +170,21 @@
 					transform: 'translate(-50%, -50%) scale(0)'
 				});
 				$('body').css('cursor', 'none');
+			});
+
+			let prevIsMobile = window.innerWidth <= 767;
+
+			$(window).on('resize', function () {
+				const currentIsMobile = window.innerWidth <= 767;
+
+				if (prevIsMobile !== currentIsMobile) {
+					prevIsMobile = currentIsMobile;
+
+					// 📌 다시 적용
+					customCursorEffect($('.parallax-bg'), 'view');
+					customCursorEffect($('.visual_cont'), 'view');
+					customCursorEffect($('.video-bg'), 'view');
+				}
 			});
 			
 		});

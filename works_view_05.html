@@ -259,6 +259,18 @@
                 animateSectionItems(
                     '.section-list, .cont_inner, .banner-list, .phone-wrapper, .mobile-list, .mobile-list > .row'
                 );
+
+                let prevIsMobile = window.innerWidth <= 767;
+                $(window).on('resize', function () {
+                    const currentIsMobile = window.innerWidth <= 767;
+
+                    if (prevIsMobile !== currentIsMobile) {
+                        prevIsMobile = currentIsMobile;
+
+                        // 📌 다시 적용
+                        customCursorEffect($('#bottom > section > a:last-of-type'), 'next');
+                    }
+                });
             });
         </script>
     </body>

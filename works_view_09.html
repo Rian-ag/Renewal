@@ -342,7 +342,20 @@
                 }
 
                 updateImages(true); // 최초 실행
-                $(window).on('resize', () => updateImages());
+                let prevIsMobile = window.innerWidth <= 767;
+                $(window).on('resize', function () {
+                    const currentIsMobile = window.innerWidth <= 767;
+
+                    // ✅ 이미지 관련 로직 실행
+                    updateImages();
+
+                    // ✅ 모바일/PC 상태 변경 감지 시 커서 리셋
+                    if (prevIsMobile !== currentIsMobile) {
+                        prevIsMobile = currentIsMobile;
+
+                        customCursorEffect($('#bottom > section > a:last-of-type'), 'next');
+                    }
+                });
 
             });
         </script>

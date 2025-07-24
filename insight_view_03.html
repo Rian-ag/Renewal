@@ -44,6 +44,17 @@
 			}
 			updateClock();
 			customCursorEffect();
+			let prevIsMobile = window.innerWidth <= 767;
+			$(window).on('resize', function () {
+				const currentIsMobile = window.innerWidth <= 767;
+
+				if (prevIsMobile !== currentIsMobile) {
+					prevIsMobile = currentIsMobile;
+
+					// 📌 다시 적용
+					customCursorEffect();
+				}
+			});
 		});
 	</script>
 </head>

@@ -297,6 +297,18 @@
                 customCursorEffect($('#bottom > section > a:last-of-type'), 'next');
                 animateSectionItems('.section-list, .section-list + section .flex_warp, .light-section ul, .bg_gray .flex_wrap, section ol, div ol');
                 animateListGroupWithChildren('.type_01, .type_02, .type_03');
+
+                let prevIsMobile = window.innerWidth <= 767;
+                $(window).on('resize', function () {
+                    const currentIsMobile = window.innerWidth <= 767;
+
+                    if (prevIsMobile !== currentIsMobile) {
+                        prevIsMobile = currentIsMobile;
+
+                        // 📌 다시 적용
+                        customCursorEffect($('#bottom > section > a:last-of-type'), 'next');
+                    }
+                });
             });
         </script>
     </body>
