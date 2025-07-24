@@ -39,10 +39,11 @@ section { position: relative; }
 @media screen and (max-width: 768px) { body { overflow-x: hidden; } 
  .section-list.main-section { padding: 0; } 
  .section-list { width: 100vw; padding-top: 0; } 
- 
+ .banner-section { padding-top: 20px; } 
  .section-list.tablet-section { padding-top: 100px; } 
  .section-list .cont_inner { padding: 0; width: 100vw; max-width: 100%; } 
  .text-wrapper { padding: 100px 16px 80px; } 
+ .text-wrapper + img { margin-top: 0; } 
  .cont_inner > span,
  .text-wrapper > span { font-size: 14px; letter-spacing: -0.35px; } 
  .cont_inner > strong,
@@ -54,7 +55,7 @@ section { position: relative; }
  .img-wrapper { padding: 80px 42px 70px; } 
  .mobile-list-section { padding-top: 80px; } 
  .mobile-list { display: block; } 
- .row { display: flex; } 
+ .row { display: flex; width: calc(100% - 20px); } 
  .row:first-child { margin-left: auto; } 
  .row:last-child { margin-left: 0; margin-right: auto; } 
  #layout { padding-bottom: 79px; } 
