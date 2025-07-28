@@ -18,6 +18,7 @@ div > div.cont_inner {padding-top:0;}
 .type_01 li span br {display:none;}
 .type_02 {padding-top:200px;}
 .type_02 li strong {font-size:60px; font-weight:700; display:flex; align-items:center; gap:24px;}
+.type_02 li strong br {display:none;}
 .type_02 li strong::after {content:'발견'; padding:3px 30px; color:#fff; font-size:40px; font-weight:400; background:#EE3224; border-radius:32px;}
 .type_02 li em {padding:30px 0; font-size:40px; font-size:700; display:block;}
 .type_02 li span {color:#999; font-size:20px; font-weight:400; line-height:150%;}

@@ -1,6 +1,7 @@
 :root { --font-main: 'Pretendard', sans-serif; --font-sub: 'Roboto', sans-serif; --font-eng: 'Plus Jakarta Sans', sans-serif; } 
 body { font-weight: 400; color: #000; } 
 * { box-sizing: border-box; } 
+.cont_inner > span {text-transform: uppercase;}
 
 .mo { display: none !important; } 
 span { display: block; } 
