@@ -255,6 +255,44 @@ function initListItemBehavior() {
     });
 }
 
+// ✅ 썸네일 터치 드래그로 메인 슬라이드 이동 + 클릭 구분
+let dragStartX = 0;
+let dragDiff = 0;
+let isDragging = false;
+
+document.querySelectorAll('.thumbnail').forEach((thumb) => {
+    thumb.addEventListener('touchstart', (e) => {
+        dragStartX = e.touches[0].clientX; // 터치 시작 X좌표 저장
+        isDragging = false;
+    });
+
+    thumb.addEventListener('touchmove', (e) => {
+        const moveX = e.touches[0].clientX;
+        dragDiff = moveX - dragStartX;
+
+        // 일정 거리 이상 움직이면 드래그로 판단
+        if (Math.abs(dragDiff) > 10) {
+            isDragging = true;
+        }
+    });
+
+    thumb.addEventListener('touchend', (e) => {
+        if (isDragging) {
+            e.preventDefault();
+
+            // 드래그 방향에 따라 메인 슬라이드 이동
+            if (dragDiff > 0) {
+                mainSwiper.slidePrev();
+            } else {
+                mainSwiper.slideNext();
+            }
+        } else {
+            const link = e.currentTarget.getAttribute('href');
+            if (link) window.location.href = link;
+        }
+    });
+});
+
 // 각 슬라이드 인덱스에 대응되는 배경색 배열 (data-swiper-slide-index 기준)
 const bgColors = ['#1d1617', '#EA1236', '#8DDFAF', '#A5BFE1', '#253146', '#1D251C', '#215EC3', '#5FBF8C', '#089BD0'];
 
@@ -311,6 +349,7 @@ function initSwiper() {
     mainSwiper = new Swiper('.main-swiper', {
         loop: true,
         slidesPerView: 1,
+        touchEventsTarget: 'container',
         scrollbar: {
             el: '.swiper-scrollbar',
             draggable: true,
@@ -318,10 +357,12 @@ function initSwiper() {
         thumbs: {
             swiper: thumbSwiper, // 썸네일과 연동
         },
+
         on: {
             init() {
                 const index = this.realIndex;
                 updateTitleAndSubtitle(index);
+
                 $industry.text(project.industry[index]);
                 $date.text(project.date[index]);
                 $type.text(project.type[index]);
@@ -335,6 +376,7 @@ function initSwiper() {
             slideChange() {
                 const index = this.realIndex;
                 updateTitleAndSubtitle(index);
+
                 $industry.text(project.industry[index]);
                 $date.text(project.date[index]);
                 $type.text(project.type[index]);
@@ -349,6 +391,7 @@ function initSwiper() {
         },
     });
 }
+
 // ✅ swiper 제거 함수
 function destroySwiper() {
     if (mainSwiper) {
