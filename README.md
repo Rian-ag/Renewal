@@ -24,4 +24,4 @@ git remote add origin https://github.com/Rian-ag/Renewal.git
 - cursor : about.css -> common.css(25-06-11)
 
 ## js병합 및 이동
-- cursor : about.js -> common.js(25-06-11)
+- cursor : about.js -> common.js(25-06-11)#
